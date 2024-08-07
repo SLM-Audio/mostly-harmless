@@ -23,7 +23,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/include/mostly_harmless)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
 
 message(STATUS ${MOSTLYHARMLESS_SOURCES}) 
-add_library(MostlyHarmless STATIC ${MOSTLYHARMLESS_SOURCES})
+add_library(MostlyHarmless STATIC)
+target_sources(MostlyHarmless PUBLIC ${MOSTLYHARMLESS_SOURCES}) 
 target_include_directories(MostlyHarmless PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/mostly_harmless)
 
 target_link_libraries(MostlyHarmless 
