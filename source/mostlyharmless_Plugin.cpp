@@ -1,15 +1,23 @@
 #include "clap/ext/note-ports.h"
+#include "clap/ext/params.h"
 #include "clap/helpers/plugin.hxx"
 #include "clap/process.h"
 #include "clap/string-sizes.h"
 #include "marvin/containers/marvin_BufferView.h"
+#include "marvin/library/marvin_Concepts.h"
 #include "mostlyharmless_BusConfig.h"
+#include <iomanip>
 #include <limits>
 #include <mostlyharmless_Descriptor.h>
 #include <mostlyharmless_Plugin.h>
+#include <sstream>
 namespace mostly_harmless {
     template <marvin::FloatType SampleType>
-    Plugin<SampleType>::Plugin(const clap_host* host) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host) {
+    Plugin<SampleType>::Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
+                                                                                                     m_indexedParams(std::move(params)) {
+        for (auto& p : m_indexedParams) {
+            m_idParams.emplace(p.pid, &p);
+        }
     }
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept {
@@ -19,26 +27,64 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     clap_process_status Plugin<SampleType>::process(const clap_process* processContext) noexcept {
-        const auto* audioIn = processContext->audio_inputs;
-        const auto inCount = processContext->audio_inputs_count;
-        auto* audioOut = processContext->audio_outputs;
-        const auto outCount = processContext->audio_outputs;
-        SampleType **inPtr{ nullptr }, **outPtr{ nullptr };
-        if constexpr (std::same_as<SampleType, float>) {
-            inPtr = audioIn->data32;
-            outPtr = audioOut->data32;
-        } else {
-            inPtr = audioIn->data64;
-            outPtr = audioOut->data64;
+        if (processContext->audio_outputs_count == 0) {
+            return CLAP_PROCESS_SLEEP;
         }
-        if (inPtr != outPtr) {
-            for (std::uint32_t channel = 0; channel < audioIn->channel_count; ++channel) {
-                std::memcpy(outPtr[channel], inPtr[channel], sizeof(SampleType) * processContext->frames_count);
-            }
-        }
-        marvin::containers::BufferView<SampleType> bufferView{ outPtr, static_cast<size_t>(audioOut->channel_count), static_cast<size_t>(processContext->frames_count) };
-        process(bufferView);
         return CLAP_PROCESS_CONTINUE;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::implementsParams() const noexcept {
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::isValidParamId(clap_id id) const noexcept {
+        return m_idParams.find(id) != m_idParams.end();
+    }
+
+    template <marvin::FloatType SampleType>
+    std::uint32_t Plugin<SampleType>::paramsCount() const noexcept {
+        return m_indexedParams.size();
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::paramsInfo(std::uint32_t paramIndex, clap_param_info* info) const noexcept {
+        if (paramIndex >= m_indexedParams.size()) return false;
+        const auto& param = m_indexedParams[paramIndex];
+        info->id = param.pid;
+        info->flags = param.flags;
+        strncpy_s(info->name, param.name.c_str(), CLAP_NAME_SIZE);
+        strncpy_s(info->module, param.category.c_str(), CLAP_NAME_SIZE);
+        const auto [min, max] = param.range;
+        info->min_value = min;
+        info->max_value = max;
+        info->default_value = param.defaultValue;
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::paramsValue(clap_id id, double* value) noexcept {
+        if (m_idParams.find(id) == m_idParams.end()) return false;
+        *value = static_cast<double>(m_idParams.at(id)->value);
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::paramsValueToText(clap_id id, double value, char* display, std::uint32_t size) noexcept {
+        if (m_idParams.find(id) == m_idParams.end()) return false;
+        std::string res;
+        auto* const param = m_idParams.at(id);
+        if (param->valueToString) {
+            res = param->valueToString(*param, value);
+        } else {
+            std::ostringstream outStream;
+            outStream << std::setprecision(6) << value;
+            res = outStream.str();
+        }
+        strncpy(display, res.c_str(), size);
+        display[size - 1] = '\0';
+        return true;
     }
 
     template <marvin::FloatType SampleType>
