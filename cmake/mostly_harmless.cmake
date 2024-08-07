@@ -22,6 +22,22 @@ function(mostly_harmless_add_plugin)
         "${LIST_ARGS}"
         ${ARGN}
     )
+    list(FIND PLUGIN_FEATURES "audio-effect" INDEX)
+    if(${INDEX} GREATER -1) 
+        set(PLUGIN_NOTE_BUS_CONFIG "BusConfig::None")
+        set(PLUGIN_AUDIO_BUS_CONFIG "BusConfig::InputOutput")
+    endif()
+    list(FIND PLUGIN_FEATURES "instrument" INDEX)
+    if(${INDEX} GREATER -1) 
+        set(PLUGIN_NOTE_BUS_CONFIG "BusConfig::InputOnly")
+        set(PLUGIN_AUDIO_BUS_CONFIG "BusConfig::OutputOnly")
+    endif()
+    list(FIND PLUGIN_FEATURES "note-effect" INDEX)
+    if(${INDEX} GREATER -1)
+        set(PLUGIN_NOTE_BUS_CONFIG "BusConfig::InputOutput")
+        set(PLUGIN_AUDIO_BUS_CONFIG "BusConfig::None")
+    endif()
+
     list(TRANSFORM PLUGIN_FEATURES REPLACE "(.+)" "\"\\1\"" OUTPUT_VARIABLE PLUGIN_FEATURES)
     list(JOIN PLUGIN_FEATURES ", " PLUGIN_FEATURES)
 

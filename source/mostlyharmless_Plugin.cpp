@@ -1,38 +1,38 @@
+#include "clap/ext/note-ports.h"
 #include "clap/helpers/plugin.hxx"
 #include "clap/process.h"
+#include "clap/string-sizes.h"
 #include "marvin/containers/marvin_BufferView.h"
+#include "mostlyharmless_BusConfig.h"
 #include <limits>
 #include <mostlyharmless_Descriptor.h>
 #include <mostlyharmless_Plugin.h>
-namespace mostly_harmless { 
-    template<marvin::FloatType SampleType> 
-    Plugin<SampleType>::Plugin(const clap_host* host) : 
-    clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host) { 
-
+namespace mostly_harmless {
+    template <marvin::FloatType SampleType>
+    Plugin<SampleType>::Plugin(const clap_host* host) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host) {
     }
-    template<marvin::FloatType SampleType>
-    bool Plugin<SampleType>::activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept { 
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept {
         initialise(sampleRate, minFrameCount, maxFrameCount);
         return true;
     }
 
-    template<marvin::FloatType SampleType> 
-    clap_process_status Plugin<SampleType>::process(const clap_process* processContext) noexcept { 
+    template <marvin::FloatType SampleType>
+    clap_process_status Plugin<SampleType>::process(const clap_process* processContext) noexcept {
         const auto* audioIn = processContext->audio_inputs;
         const auto inCount = processContext->audio_inputs_count;
         auto* audioOut = processContext->audio_outputs;
         const auto outCount = processContext->audio_outputs;
-        SampleType** inPtr{ nullptr }, **outPtr{ nullptr };
-        if constexpr(std::same_as<SampleType, float>) { 
+        SampleType **inPtr{ nullptr }, **outPtr{ nullptr };
+        if constexpr (std::same_as<SampleType, float>) {
             inPtr = audioIn->data32;
             outPtr = audioOut->data32;
-        }
-        else { 
+        } else {
             inPtr = audioIn->data64;
             outPtr = audioOut->data64;
         }
-        if(inPtr != outPtr) { 
-            for(std::uint32_t channel = 0; channel < audioIn->channel_count; ++channel) { 
+        if (inPtr != outPtr) {
+            for (std::uint32_t channel = 0; channel < audioIn->channel_count; ++channel) {
                 std::memcpy(outPtr[channel], inPtr[channel], sizeof(SampleType) * processContext->frames_count);
             }
         }
@@ -41,42 +41,86 @@ namespace mostly_harmless {
         return CLAP_PROCESS_CONTINUE;
     }
 
-    template<marvin::FloatType SampleType>
-    bool Plugin<SampleType>::implementsAudioPorts() const noexcept { 
-        return true; // Todo: midi only? 
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::implementsAudioPorts() const noexcept {
+        const auto audioBusConfig = getAudioBusConfig();
+        return audioBusConfig != BusConfig::None;
     }
 
-    template<marvin::FloatType SampleType> 
-    std::uint32_t Plugin<SampleType>::audioPortsCount(bool isInput) const noexcept { 
-        return 1; // Todo: Handle output only
+    template <marvin::FloatType SampleType>
+    std::uint32_t Plugin<SampleType>::audioPortsCount(bool isInput) const noexcept {
+        const auto audioBusConfig = getAudioBusConfig();
+        switch (audioBusConfig) {
+            case BusConfig::None: {
+                return 0;
+            }
+            case BusConfig::InputOutput: {
+                return 1;
+            }
+            case mostly_harmless::BusConfig::InputOnly: {
+                return isInput ? 1 : 0;
+            }
+            case mostly_harmless::BusConfig::OutputOnly: {
+                return isInput ? 0 : 1;
+            }
+            default: return 0;
+        }
     }
 
-    template<marvin::FloatType SampleType> 
-    bool Plugin<SampleType>::audioPortsInfo(std::uint32_t index, bool isInput, clap_audio_port_info* info) const noexcept { 
-        info->id = 0;
-        info->in_place_pair = std::numeric_limits<std::uint32_t>::max();
-        strncpy_s(info->name, "main", sizeof(info->name));
-        info->flags = CLAP_AUDIO_PORT_IS_MAIN;
-        info->channel_count = 2;
-        info->port_type = CLAP_PORT_STEREO;
-        return true;
-    }
-
-    template<marvin::FloatType SampleType> 
-    bool Plugin<SampleType>::implementsNotePorts() const noexcept { 
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::audioPortsInfo(std::uint32_t index, bool isInput, clap_audio_port_info* info) const noexcept {
+        const auto audioBusConfig = getAudioBusConfig();
+        if (audioBusConfig == BusConfig::InputOutput || (isInput && audioBusConfig == BusConfig::InputOnly) || (!isInput && audioBusConfig == BusConfig::OutputOnly)) {
+            info->id = 0;
+            info->in_place_pair = std::numeric_limits<std::uint32_t>::max();
+            strncpy_s(info->name, "main", sizeof(info->name));
+            info->flags = CLAP_AUDIO_PORT_IS_MAIN;
+            info->channel_count = 2;
+            info->port_type = CLAP_PORT_STEREO;
+            return true;
+        }
         return false;
     }
 
-    template<marvin::FloatType SampleType> 
-    std::uint32_t Plugin<SampleType>::notePortsCount(bool isInput) const noexcept { 
-        return 0;
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::implementsNotePorts() const noexcept {
+        const auto noteBusConfig = getNoteBusConfig();
+        return noteBusConfig != BusConfig::None;
     }
 
-    template<marvin::FloatType SampleType> 
-    bool Plugin<SampleType>::notePortsInfo(std::uint32_t index, bool isInput, clap_note_port_info* info) const noexcept { 
+    template <marvin::FloatType SampleType>
+    std::uint32_t Plugin<SampleType>::notePortsCount(bool isInput) const noexcept {
+        const auto noteBusConfig = getNoteBusConfig();
+        switch (noteBusConfig) {
+            case BusConfig::None: {
+                return 0;
+            }
+            case BusConfig::InputOutput: {
+                return 1;
+            }
+            case BusConfig::InputOnly: {
+                return isInput ? 1 : 0;
+            }
+            case BusConfig::OutputOnly: {
+                return isInput ? 0 : 1;
+            }
+            default: return 0;
+        }
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::notePortsInfo(std::uint32_t index, bool isInput, clap_note_port_info* info) const noexcept {
+        const auto noteBusConfig = getNoteBusConfig();
+        if (noteBusConfig == BusConfig::InputOutput || (isInput && noteBusConfig == BusConfig::InputOnly) || (!isInput && noteBusConfig == BusConfig::OutputOnly)) {
+            info->id = 1;
+            info->supported_dialects = CLAP_NOTE_DIALECT_MIDI | CLAP_NOTE_DIALECT_CLAP;
+            info->preferred_dialect = CLAP_NOTE_DIALECT_CLAP;
+            strncpy_s(info->name, "NoteInput", CLAP_NAME_SIZE);
+            return true;
+        }
         return false;
     }
 
     template class Plugin<float>;
     template class Plugin<double>;
-}
+} // namespace mostly_harmless

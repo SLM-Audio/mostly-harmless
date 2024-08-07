@@ -1,5 +1,6 @@
 #ifndef MOSTLYHARMLESS_PLUGIN_H
 #define MOSTLYHARMLESS_PLUGIN_H
+#include "clap/plugin-features.h"
 #include "mostlyharmless_Descriptor.h"
 #include "clap/helpers/checking-level.hh"
 #include "clap/helpers/misbehaviour-handler.hh"
@@ -33,6 +34,7 @@ namespace mostly_harmless {
         [[nodiscard]] bool implementsNotePorts() const noexcept override;
         [[nodiscard]] std::uint32_t notePortsCount(bool isInput) const noexcept override;
         [[nodiscard]] bool notePortsInfo(std::uint32_t index, bool isInput, clap_note_port_info* info) const noexcept override;
+
     };
 }
 #endif
