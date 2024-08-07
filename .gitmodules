@@ -1,0 +1,3 @@
+[submodule "modules/marvin"]
+	path = modules/marvin
+	url = https://github.com/MeijisIrlnd/marvin.git

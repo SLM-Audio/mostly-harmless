@@ -1,0 +1,16 @@
+#ifndef GAIN_H
+#define GAIN_H
+#include "marvin/containers/marvin_BufferView.h"
+#include <mostlyharmless_Plugin.h>
+namespace mostly_harmless::examples { 
+    class Gain : public mostly_harmless::Plugin<float> { 
+        public: 
+            explicit Gain(const clap_host* host);
+            ~Gain() noexcept override = default;
+            void initialise(double sampleRate, std::uint32_t minFrames, std::uint32_t maxFrames) noexcept override;
+            void process(marvin::containers::BufferView<float> buffer) noexcept override;
+        private: 
+
+    };
+}
+#endif
