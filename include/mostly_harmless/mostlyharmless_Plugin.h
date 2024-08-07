@@ -9,10 +9,12 @@
 #include <fstream>
 #include <iostream>
 #define MOSTLYHARMLESS_REGISTER(ProcessorType) \
+namespace mostly_harmless::entry { \
     const clap_plugin* clap_create_plugin(const clap_plugin_factory* f, const clap_host* h, const char* id) { \
         auto* p = new ProcessorType(h); \
         return p->clapPlugin(); \
-    } 
+    } \
+}
 
 namespace mostly_harmless { 
     template <marvin::FloatType SampleType>
