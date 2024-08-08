@@ -1,3 +1,4 @@
+#include "clap/events.h"
 #include "clap/ext/note-ports.h"
 #include "clap/ext/params.h"
 #include "clap/helpers/plugin.hxx"
@@ -6,6 +7,8 @@
 #include "marvin/containers/marvin_BufferView.h"
 #include "marvin/library/marvin_Concepts.h"
 #include "mostlyharmless_BusConfig.h"
+#include "mostlyharmless_EventContext.h"
+#include "mostlyharmless_Parameters.h"
 #include <iomanip>
 #include <limits>
 #include <mostlyharmless_Descriptor.h>
@@ -19,6 +22,7 @@ namespace mostly_harmless {
             m_idParams.emplace(p.pid, &p);
         }
     }
+
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept {
         initialise(sampleRate, minFrameCount, maxFrameCount);
@@ -26,11 +30,30 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
+    Parameter<SampleType>* Plugin<SampleType>::getParameter(clap_id id) noexcept {
+        assert(m_idParams.find(id) != m_idParams.end());
+        return m_idParams.at(id);
+    }
+
+    template <marvin::FloatType SampleType>
     clap_process_status Plugin<SampleType>::process(const clap_process* processContext) noexcept {
+        EventContext context{ processContext->in_events };
         if (processContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
         return CLAP_PROCESS_CONTINUE;
+    }
+
+    template <marvin::FloatType SampleType>
+    void Plugin<SampleType>::pollEventQueue(size_t currentSample, EventContext context) noexcept {
+        while (context.next() && context.next()->time == currentSample) {
+            handleEvent(context.next());
+            ++context;
+        }
+    }
+
+    template <marvin::FloatType SampleType>
+    void Plugin<SampleType>::handleEvent(const clap_event_header_t* event) noexcept {
     }
 
     template <marvin::FloatType SampleType>

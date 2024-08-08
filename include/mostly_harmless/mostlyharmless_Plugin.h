@@ -1,7 +1,9 @@
 #ifndef MOSTLYHARMLESS_PLUGIN_H
 #define MOSTLYHARMLESS_PLUGIN_H
+#include "clap/events.h"
 #include "clap/plugin-features.h"
 #include "mostlyharmless_Descriptor.h"
+#include "mostlyharmless_EventContext.h"
 #include "mostlyharmless_Parameters.h"
 #include "clap/helpers/checking-level.hh"
 #include "clap/helpers/misbehaviour-handler.hh"
@@ -25,11 +27,19 @@ namespace mostly_harmless {
         explicit Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params);
         ~Plugin() noexcept = default;
         virtual void initialise(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept = 0;
-        virtual void process(marvin::containers::BufferView<SampleType> buffer) noexcept = 0;
+        virtual void process(marvin::containers::BufferView<SampleType> buffer, EventContext eventContext) noexcept = 0;
 
     protected:
+        [[nodiscard]] Parameter<SampleType>* getParameter(clap_id id) noexcept;
+        /**
+            Convenience function to handle incoming events for the current sample
+         */
+        void pollEventQueue(size_t currentSample, EventContext context) noexcept;
+
+    private:
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
         clap_process_status process(const clap_process* processContext) noexcept override;
+        void handleEvent(const clap_event_header_t* event) noexcept;
 
         [[nodiscard]] bool implementsParams() const noexcept override;
         [[nodiscard]] bool isValidParamId(clap_id paramId) const noexcept override;
