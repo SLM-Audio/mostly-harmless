@@ -15,6 +15,10 @@
 #define MOSTLYHARMLESS_REGISTER(ProcessorType)                                                                    \
     namespace mostly_harmless::entry {                                                                            \
         const clap_plugin* clap_create_plugin(const clap_plugin_factory* f, const clap_host* h, const char* id) { \
+            auto& desc = getDescriptor();                                                                         \
+            if (std::strcmp(desc.id, id) != 0) {                                                                  \
+                return nullptr;                                                                                   \
+            }                                                                                                     \
             auto* p = new ::ProcessorType(h);                                                                     \
             return p->clapPlugin();                                                                               \
         }                                                                                                         \
@@ -30,11 +34,34 @@ namespace mostly_harmless {
         virtual void process(marvin::containers::BufferView<SampleType> buffer, EventContext eventContext) noexcept = 0;
 
     protected:
+        /**
+            Retrieves a parameter by its param id was constructed with.
+            \param id The id to retrieve
+            \return A pointer to the associated parameter.
+         */
         [[nodiscard]] Parameter<SampleType>* getParameter(clap_id id) noexcept;
         /**
             Convenience function to handle incoming events for the current sample
          */
         void pollEventQueue(size_t currentSample, EventContext context) noexcept;
+        /**
+            Called Internally by pollEventQueue when a midi note on message is received.
+            If note on functionality is required, make sure you override this function!
+            \param portIndex The port this event occured on
+            \param channel The midi channel this event was targeted at
+            \param note The midi note value
+            \param velocity The midi velocity value
+         */
+        virtual void handleNoteOn(std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity) { assert(false); }
+        /**
+            Called Internally by pollEventQueue when a midi note off message is received.
+            If note off functionality is required, make sure you override this function!
+            \param portIndex The port this event occured on
+            \param channel The midi channel this event was targeted at
+            \param note The midi note value
+            \param velocity The midi velocity value
+         */
+        virtual void handleNoteOff(std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity) { assert(false); }
 
     private:
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;

@@ -21,7 +21,7 @@ namespace mostly_harmless::entry {
     };
 
     static const void* get_factory(const char* factoryId) {
-        return factoryId != CLAP_PLUGIN_FACTORY_ID ? &mostlyHarmlessFactory : nullptr;
+        return strcmp(factoryId, CLAP_PLUGIN_FACTORY_ID) == 0 ? &mostlyHarmlessFactory : nullptr;
     }
 
     bool clap_init(const char* p) {

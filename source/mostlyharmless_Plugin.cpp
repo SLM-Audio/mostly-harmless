@@ -41,7 +41,32 @@ namespace mostly_harmless {
         if (processContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
-        return CLAP_PROCESS_CONTINUE;
+        // If our input data != our output data, do a copy..
+        const auto* inputData = processContext->audio_inputs;
+        auto* outputData = processContext->audio_outputs;
+        SampleType **inDataPtr{ nullptr }, **outDataPtr{ nullptr };
+        if constexpr (std::same_as<float, SampleType>) {
+            inDataPtr = inputData->data32;
+            outDataPtr = outputData->data32;
+        } else {
+            inDataPtr = inputData->data64;
+            outDataPtr = outputData->data64;
+        }
+        for (std::uint32_t i = 0; i < outputData->channel_count; ++i) {
+            // Check if we're out of range..
+            if (i >= inputData->channel_count) {
+                const auto inIndex = inputData->channel_count - 1;
+                std::memcpy(outDataPtr[i], inDataPtr[inIndex], sizeof(SampleType) * processContext->frames_count);
+            } else {
+                if (inDataPtr[i] == outDataPtr[i]) continue;
+                std::memcpy(outDataPtr[i], inDataPtr[i], sizeof(SampleType) * processContext->frames_count);
+            }
+        }
+        // Okay cool - thats taken care of, now make a BufferView..
+        marvin::containers::BufferView<SampleType> bufferView{ outDataPtr, outputData->channel_count, processContext->frames_count };
+        // and then call the virtual process function..
+        process(bufferView, context);
+        return CLAP_PROCESS_SLEEP;
     }
 
     template <marvin::FloatType SampleType>
@@ -54,6 +79,52 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::handleEvent(const clap_event_header_t* event) noexcept {
+        if (event->space_id != CLAP_CORE_EVENT_SPACE_ID) return;
+        switch (event->type) {
+            case CLAP_EVENT_PARAM_VALUE: {
+                const auto v = reinterpret_cast<const clap_event_param_value*>(event);
+                const auto id = v->param_id;
+                const auto paramValue = v->value;
+                m_idParams.at(id)->value = paramValue;
+                // Also inform the UI
+                break;
+            }
+            case CLAP_EVENT_NOTE_ON: {
+                const auto* noteEv = reinterpret_cast<const clap_event_note*>(event);
+                handleNoteOn(noteEv->port_index, noteEv->channel, noteEv->key, noteEv->velocity);
+                break;
+            }
+            case CLAP_EVENT_NOTE_OFF: {
+                const auto* noteEv = reinterpret_cast<const clap_event_note*>(event);
+                handleNoteOff(noteEv->port_index, noteEv->channel, noteEv->key, noteEv->velocity);
+                break;
+            }
+            case CLAP_EVENT_MIDI: {
+                // SSSS CCCC
+                // 0PPP PPPP
+                // 0VVV VVVV
+                const auto* midiEvent = reinterpret_cast<const clap_event_midi*>(event);
+                std::uint8_t message = midiEvent->data[0] & 0xF0; // SSSS 0000 - Message will be << 4
+                std::uint8_t channel = midiEvent->data[0] & 0x0F; // 0000 CCCC
+                std::uint8_t note = midiEvent->data[1];           // 0PPP PPPP
+                std::uint8_t velocity = midiEvent->data[2];       // 0VVV VVVV
+                const auto fpVelocity = static_cast<double>(velocity) / 127.0;
+                switch (message) {
+                    case 0x90: {
+                        handleNoteOn(midiEvent->port_index, channel, note, fpVelocity);
+                        break;
+                    }
+                    case 0x80: {
+                        handleNoteOff(midiEvent->port_index, channel, note, fpVelocity);
+                        break;
+                    }
+                    default: break; // TODO
+                }
+            }
+
+            case CLAP_EVENT_PARAM_MOD: [[fallthrough]]; // TODO
+            default: break;
+        }
     }
 
     template <marvin::FloatType SampleType>
