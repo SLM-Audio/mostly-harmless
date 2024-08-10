@@ -7,23 +7,24 @@
 namespace mostly_harmless::gui {
 
     PluginEditor::PluginEditor() {
+        choc::ui::setWindowsDPIAwareness();
     }
 
     PluginEditor::~PluginEditor() noexcept {
     }
 
     void PluginEditor::create() {
+        m_webView = std::make_unique<choc::ui::WebView>();
         m_window = std::make_unique<choc::ui::DesktopWindow>(choc::ui::Bounds{ 0, 0, 800, 800 });
         m_window->setMinimumSize(800, 800);
         m_window->setMaximumSize(800, 800);
+        m_window->setBounds({ 0, 0, 800, 800 });
         m_window->setWindowTitle("Test");
-        setSize(800, 800);
-        m_webView = std::make_unique<choc::ui::WebView>();
         m_webView->navigate("https://www.github.com/SLM-Audio/mostly-harmless");
-// This is technically a reparent, sooo
-#if defined(MOSTLY_HARMLESS_WINDOWS)
-        ::SetWindowLongPtrW(static_cast<HWND>(m_webView->getViewHandle()), GWL_STYLE, WS_CHILD);
-#endif
+        // When this is called, it's the *only* place the child HWND's visibility gets set -
+        // So if we start with the parent invisible, the child will always be invisible
+        // To remedy this, we can set the vis to SW_SHOW in show(), and SW_HIDE in hide().
+        // What a nightmare...
         m_window->setContent(m_webView->getViewHandle());
     }
 
@@ -62,10 +63,16 @@ namespace mostly_harmless::gui {
 
     void PluginEditor::show() {
         m_window->setVisible(true);
+#if defined(MOSTLY_HARMLESS_WINDOWS)
+        ShowWindow(static_cast<HWND>(m_webView->getViewHandle()), SW_SHOW);
+#endif
     }
 
     void PluginEditor::hide() {
         m_window->setVisible(false);
+#if defined(MOSTLY_HARMLESS_WINDOWS)
+        ShowWindow(static_cast<HWND>(m_webView->getViewHandle()), SW_HIDE);
+#endif
     }
 
 
