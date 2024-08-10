@@ -1,3 +1,6 @@
 [submodule "modules/marvin"]
 	path = modules/marvin
 	url = https://github.com/MeijisIrlnd/marvin.git
+[submodule "modules/choc"]
+	path = modules/choc
+	url = https://github.com/Tracktion/choc.git

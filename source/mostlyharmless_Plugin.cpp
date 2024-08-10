@@ -1,4 +1,5 @@
 #include "clap/events.h"
+#include "clap/ext/gui.h"
 #include "clap/ext/note-ports.h"
 #include "clap/ext/params.h"
 #include "clap/helpers/plugin.hxx"
@@ -259,6 +260,73 @@ namespace mostly_harmless {
             return true;
         }
         return false;
+    }
+
+    //===========================================================================================
+    // Here be gui
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::implementsGui() const noexcept {
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiIsApiSupported(const char* api, bool isFloating) noexcept {
+        if (isFloating) return false;
+#if defined(MOSTLY_HARMLESS_WINDOWS)
+        return strcmp(api, CLAP_WINDOW_API_WIN32) == 0;
+#elif defined(MOSTLY_HARMLESS_MACOS)
+        return strcmp(api, CLAP_WINDOW_API_COCOA) == 0;
+#endif
+        return false;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiCreate(const char* api, bool isFloating) noexcept {
+        m_editor.create();
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    void Plugin<SampleType>::guiDestroy() noexcept {
+        m_editor.destroy();
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiSetParent(const clap_window* window) noexcept {
+#if defined(MOSTLY_HARMLESS_WINDOWS)
+        m_editor.setParent(window->win32);
+#else
+        static_assert(false)
+#endif
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiSetScale(double scale) noexcept {
+        return false; // TODO
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiCanResize() const noexcept {
+        return false; // TODO
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiAdjustSize(std::uint32_t* width, std::uint32_t* height) noexcept {
+        return false; // TODO
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiSetSize(std::uint32_t width, std::uint32_t height) noexcept {
+        m_editor.setSize(width, height);
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiGetSize(std::uint32_t* width, std::uint32_t* height) noexcept {
+        m_editor.getSize(width, height);
+        return true;
     }
 
     template class Plugin<float>;

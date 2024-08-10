@@ -25,7 +25,20 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
 message(STATUS ${MOSTLYHARMLESS_SOURCES}) 
 add_library(MostlyHarmless STATIC)
 target_sources(MostlyHarmless PUBLIC ${MOSTLYHARMLESS_SOURCES}) 
-target_include_directories(MostlyHarmless PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/mostly_harmless)
+target_include_directories(MostlyHarmless PUBLIC 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/mostly_harmless
+    ${CMAKE_CURRENT_SOURCE_DIR}/modules
+)
+if(APPLE) 
+    set(PLATFORM_PREPRO MOSTLY_HARMLESS_MACOS)
+elseif(WIN32)
+    set(PLATFORM_PREPRO MOSTLY_HARMLESS_WINDOWS)
+else()
+    message(FATAL_ERROR "Platform not supported!")
+endif()
+target_compile_definitions(MostlyHarmless PUBLIC 
+    ${PLATFORM_PREPRO}
+)
 
 target_link_libraries(MostlyHarmless 
     PUBLIC

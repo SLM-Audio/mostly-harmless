@@ -1,10 +1,12 @@
 #ifndef MOSTLYHARMLESS_PLUGIN_H
 #define MOSTLYHARMLESS_PLUGIN_H
 #include "clap/events.h"
+#include "clap/ext/gui.h"
 #include "clap/plugin-features.h"
 #include "mostlyharmless_Descriptor.h"
 #include "mostlyharmless_EventContext.h"
 #include "mostlyharmless_Parameters.h"
+#include <gui/mostlyharmless_PluginEditor.h>
 #include "clap/helpers/checking-level.hh"
 #include "clap/helpers/misbehaviour-handler.hh"
 #include "clap/helpers/plugin.hh"
@@ -81,9 +83,22 @@ namespace mostly_harmless {
         [[nodiscard]] std::uint32_t notePortsCount(bool isInput) const noexcept override;
         [[nodiscard]] bool notePortsInfo(std::uint32_t index, bool isInput, clap_note_port_info* info) const noexcept override;
 
+        // Implemented in mostlyharmless_PluginEditor.cpp
+        [[nodiscard]] bool implementsGui() const noexcept override;
+        [[nodiscard]] bool guiIsApiSupported(const char* api, bool isFloating) noexcept override;
+        [[nodiscard]] bool guiCreate(const char* api, bool isFloating) noexcept override;
+        void guiDestroy() noexcept override;
+        [[nodiscard]] bool guiSetParent(const clap_window* window) noexcept override;
+        [[nodiscard]] bool guiSetScale(double scale) noexcept override;
+        [[nodiscard]] bool guiCanResize() const noexcept override;
+        [[nodiscard]] bool guiAdjustSize(std::uint32_t* width, std::uint32_t* height) noexcept override;
+        [[nodiscard]] bool guiSetSize(std::uint32_t width, std::uint32_t height) noexcept override;
+        [[nodiscard]] bool guiGetSize(std::uint32_t* width, std::uint32_t* height) noexcept override;
+
     private:
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
+        gui::PluginEditor m_editor;
     };
 } // namespace mostly_harmless
 #endif
