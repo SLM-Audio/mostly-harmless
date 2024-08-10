@@ -8,8 +8,8 @@ namespace mostly_harmless::gui {
     class PluginEditor {
     public:
         PluginEditor();
-        ~PluginEditor() noexcept;
-        void create();
+        virtual ~PluginEditor() noexcept;
+        void create() noexcept;
         void destroy();
         void setSize(std::uint32_t width, std::uint32_t height);
         void getSize(std::uint32_t* width, std::uint32_t* height);
@@ -17,9 +17,13 @@ namespace mostly_harmless::gui {
         void show();
         void hide();
 
-    private:
+        virtual void windowCreated() noexcept = 0;
+        virtual void windowDestroyed() noexcept = 0;
+        virtual void windowShown() noexcept = 0;
+        virtual void windowHidden() noexcept = 0;
+
+    protected:
         std::unique_ptr<choc::ui::DesktopWindow> m_window;
-        std::unique_ptr<choc::ui::WebView> m_webView;
     };
 } // namespace mostly_harmless::gui
 #endif

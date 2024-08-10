@@ -6,7 +6,7 @@
 #include "mostlyharmless_Descriptor.h"
 #include "mostlyharmless_EventContext.h"
 #include "mostlyharmless_Parameters.h"
-#include <gui/mostlyharmless_PluginEditor.h>
+#include <gui/mostlyharmless_WebviewEditor.h>
 #include "clap/helpers/checking-level.hh"
 #include "clap/helpers/misbehaviour-handler.hh"
 #include "clap/helpers/plugin.hh"
@@ -98,7 +98,7 @@ namespace mostly_harmless {
     private:
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
-        gui::PluginEditor m_editor;
+        gui::WebviewEditor m_editor;
     };
 } // namespace mostly_harmless
 #endif
