@@ -7,14 +7,9 @@
 namespace mostly_harmless::gui {
 
     PluginEditor::PluginEditor() {
-        m_dummyHwnd = ::CreateWindowA("STATIC", "dummy", WS_DISABLED, 0, 0, 100, 100, NULL, NULL, NULL, NULL);
-        m_webView = std::make_unique<choc::ui::WebView>();
-        m_webView->navigate("https://www.github.com/SLM-Audio/mostly-harmless");
-        ::SetParent(static_cast<HWND>(m_webView->getViewHandle()), static_cast<HWND>(m_dummyHwnd));
     }
 
     PluginEditor::~PluginEditor() noexcept {
-        ::DestroyWindow(static_cast<HWND>(m_dummyHwnd));
     }
 
     void PluginEditor::create() {
@@ -23,16 +18,18 @@ namespace mostly_harmless::gui {
         m_window->setMaximumSize(800, 800);
         m_window->setWindowTitle("Test");
         setSize(800, 800);
+        m_webView = std::make_unique<choc::ui::WebView>();
+        m_webView->navigate("https://www.github.com/SLM-Audio/mostly-harmless");
+// This is technically a reparent, sooo
+#if defined(MOSTLY_HARMLESS_WINDOWS)
+        ::SetWindowLongPtrW(static_cast<HWND>(m_webView->getViewHandle()), GWL_STYLE, WS_CHILD);
+#endif
         m_window->setContent(m_webView->getViewHandle());
     }
 
     void PluginEditor::destroy() {
-// DON'T Destroy the webview - instead just reparent it
-#if defined(MOSTLY_HARMLESS_WINDOWS)
-        SetParent(static_cast<HWND>(m_webView->getViewHandle()), static_cast<HWND>(m_dummyHwnd));
-#else
-        static_assert(false);
-#endif
+        m_window.reset();
+        m_webView.reset();
     }
 
     void PluginEditor::setSize(std::uint32_t width, std::uint32_t height) {
@@ -54,7 +51,9 @@ namespace mostly_harmless::gui {
     void PluginEditor::setParent(void* parentHandle) {
         auto* windowHandle = m_window->getWindowHandle();
 #if defined(MOSTLY_HARMLESS_WINDOWS)
-        SetParent(static_cast<HWND>(windowHandle), static_cast<HWND>(parentHandle));
+        auto asHwnd = static_cast<HWND>(windowHandle);
+        ::SetWindowLongPtrW(asHwnd, GWL_STYLE, WS_CHILD);
+        ::SetParent(asHwnd, static_cast<HWND>(parentHandle));
 #else
         static_assert(false);
 #endif

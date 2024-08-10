@@ -20,7 +20,6 @@ namespace mostly_harmless::gui {
     private:
         std::unique_ptr<choc::ui::DesktopWindow> m_window;
         std::unique_ptr<choc::ui::WebView> m_webView;
-        void* m_dummyHwnd;
     };
 } // namespace mostly_harmless::gui
 #endif
