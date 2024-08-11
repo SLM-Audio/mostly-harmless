@@ -56,8 +56,8 @@ namespace mostly_harmless {
          * class YourPluginType : public mostly_harmless::Plugin<float> {
          * public:
          *     YourPluginType(const clap_host* host) : mostly_harmless::Plugin<float>(host, createParams()) {
-         *     ...
-         *     ...
+         *     }
+         *     // The rest of the boilerplate
          * };
          * ```
          * \param host A clap internal type provided when the plugin is created by the factory - don't worry about it, just make sure your PluginType subclass also takes one to its constructor.
