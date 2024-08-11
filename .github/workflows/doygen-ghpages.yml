@@ -6,6 +6,8 @@ on:
 
 jobs:
   build-project:
+    permissions:
+      contents: write
     name: Build Documentation
     runs-on: ubuntu-latest
     steps:
