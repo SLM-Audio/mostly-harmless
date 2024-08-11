@@ -59,7 +59,7 @@ if(APPLE)
 elseif(WIN32)
     set(PLATFORM_PREPRO MOSTLY_HARMLESS_WINDOWS)
 else()
-    message(FATAL_ERROR "Platform not supported!")
+#    message(FATAL_ERROR "Platform not supported!")
 endif()
 target_compile_definitions(MostlyHarmless PUBLIC 
     ${PLATFORM_PREPRO}
