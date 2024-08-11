@@ -117,5 +117,9 @@ install(
 #     COMPONENT MostlyHarmless
 # )
 
-add_subdirectory(docs)
-add_subdirectory(examples/gain)
+if(${PROJECT_IS_TOP_LEVEL})
+    add_subdirectory(docs)
+endif()
+if(${EXAMPLES})
+    add_subdirectory(examples/gain)
+endif()

@@ -8,6 +8,8 @@ if(Doxygen_FOUND)
         set(MOSTLYHARMLESS_EXTRA_DOC_HEADERS
                 ${CMAKE_SOURCE_DIR}/include/mostly_harmless/gui/platform/mostlyharmless_GuiHelpersMacOS.h)
     endif()
+    message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
+
     add_subdirectory(${CMAKE_SOURCE_DIR}/modules/marvin/include ${CMAKE_CURRENT_BINARY_DIR}/marvin)
     doxygen_add_docs(
             mostly_harmless_docs
