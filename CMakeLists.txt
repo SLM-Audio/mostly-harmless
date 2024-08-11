@@ -117,4 +117,5 @@ install(
 #     COMPONENT MostlyHarmless
 # )
 
+add_subdirectory(docs)
 add_subdirectory(examples/gain)

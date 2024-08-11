@@ -16,6 +16,11 @@
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
+/**
+ * Macro to register your custom plugin type with the clap factory.
+ * Must be called at the end of your plugin type's source file, with `MOSTLYHARMLESS_REGISTER(YourPluginType)`.
+ * Failure to do so will result in no entry point being found, and the plugin not working.
+ */
 #define MOSTLYHARMLESS_REGISTER(ProcessorType)                                                                        \
     namespace mostly_harmless::entry {                                                                                \
         const clap_plugin* clap_create_plugin(const clap_plugin_factory* /*f*/, const clap_host* h, const char* id) { \
@@ -30,12 +35,49 @@
 
 namespace mostly_harmless {
 
+    /**
+     * \brief The base class for Plugins to subclass.
+     *
+     * To register your subclassed plugin type with the clap factory, you <b>must</b> call `MOSTLYHARMLESS_REGISTER(YourPluginType)` at the end of your plugin source file.
+     */
     template <marvin::FloatType SampleType>
     class Plugin : public clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal> {
     public:
+        /**
+         * To establish parameters with the plugin, create a vector of them, and std::move them into the `params` arg here.
+         * (In my opinion) the cleanest way to do so is with a free function - for example:
+         * ```cpp
+         * std::vector<mostly_harmless::Parameter<float>> createParams() noexcept {
+         *      return {
+         *          mostly_harmless::Parameter<float>{ 0, "MyParam", "Plugin", { 0.0f, 1.0f }, 1.0f, CLAP_PARAM_IS_AUTOMATABLE }
+         *      }
+         * }
+         *
+         * class YourPluginType : public mostly_harmless::Plugin<float> {
+         * public:
+         *     YourPluginType(const clap_host* host) : mostly_harmless::Plugin<float>(host, createParams()) {
+         *     ...
+         *     ...
+         * };
+         * ```
+         * \param host A clap internal type provided when the plugin is created by the factory - don't worry about it, just make sure your PluginType subclass also takes one to its constructor.
+         * \param params An rvalue ref to a vector of type mostly_harmless::Parameter.
+         */
         explicit Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params);
         ~Plugin() noexcept override = default;
+        /**
+         * Called by the host when the audio is getting ready to play - you should do any audio initialisation you need here.
+         * \param sampleRate The sample rate we're currently running at.
+         * \param minFrameCount The minimum amount of samples a buffer might contain.
+         * \param maxFrameCount The maximum amount of samples a buffer might contain.
+         */
         virtual void initialise(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept = 0;
+        /**
+         * The main audio processing function (will run on the audio thread). All audio process should be done in (or called from) this function.
+         * We provide a convenience function to handle the events in the EventContext, for more info see Plugin::pollEventQueue.
+         * \param buffer A non owning view into the host provided buffer.
+         * \param eventContext A trivially copyable wrapper around the host provided clap event queue.
+         */
         virtual void process(marvin::containers::BufferView<SampleType> buffer, EventContext eventContext) noexcept = 0;
         /**
             Implement this to supply your own custom gui editor using a framework of your choice.
@@ -51,8 +93,11 @@ namespace mostly_harmless {
             \return A pointer to the associated parameter.
          */
         [[nodiscard]] Parameter<SampleType>* getParameter(clap_id id) noexcept;
+
         /**
             Convenience function to handle incoming events for the current sample
+            \param currentSample The index of the current sample into the block.
+            \param context The EventContext containing the event queue.
          */
         void pollEventQueue(size_t currentSample, EventContext context) noexcept;
         /**
@@ -92,7 +137,6 @@ namespace mostly_harmless {
         [[nodiscard]] std::uint32_t notePortsCount(bool isInput) const noexcept override;
         [[nodiscard]] bool notePortsInfo(std::uint32_t index, bool isInput, clap_note_port_info* info) const noexcept override;
 
-        // Implemented in mostlyharmless_PluginEditor.cpp
         [[nodiscard]] bool implementsGui() const noexcept override;
         [[nodiscard]] bool guiIsApiSupported(const char* api, bool isFloating) noexcept override;
         [[nodiscard]] bool guiCreate(const char* api, bool isFloating) noexcept override;

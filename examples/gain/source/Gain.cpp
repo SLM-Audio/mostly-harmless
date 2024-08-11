@@ -32,7 +32,7 @@ namespace examples::gain {
     }
 
     std::unique_ptr<mostly_harmless::gui::IEditor> Gain::createEditor() noexcept {
-        return std::make_unique<GainEditor>(800, 800);
+        return std::make_unique<GainEditor>(500, 500);
     }
 
 

@@ -86,32 +86,32 @@ namespace mostly_harmless::gui {
 
         void create() {
             m_webview = std::make_unique<choc::ui::WebView>();
-            helpers::setViewSize(m_webview->getViewHandle(), m_initialWidth, m_initialHeight);
+            helpers::macos::setViewSize(m_webview->getViewHandle(), m_initialWidth, m_initialHeight);
         }
 
         void destroy() {
-            helpers::removeFromParentView(m_webview->getViewHandle());
+            helpers::macos::removeFromParentView(m_webview->getViewHandle());
             m_webview = nullptr;
         }
 
         void getSize(std::uint32_t* width, std::uint32_t* height) {
-            helpers::getViewSize(m_webview->getViewHandle(), width, height);
+            helpers::macos::getViewSize(m_webview->getViewHandle(), width, height);
         }
 
         void setSize(std::uint32_t width, std::uint32_t height) {
-            helpers::setViewSize(m_webview->getViewHandle(), width, height);
+            helpers::macos::setViewSize(m_webview->getViewHandle(), width, height);
         }
 
         void setParent(void* parentHandle) {
-            helpers::reparentView(parentHandle, m_webview->getViewHandle());
+            helpers::macos::reparentView(parentHandle, m_webview->getViewHandle());
         }
 
         void show() {
-            helpers::showView(m_webview->getViewHandle());
+            helpers::macos::showView(m_webview->getViewHandle());
         }
 
         void hide() {
-            helpers::hideView(m_webview->getViewHandle());
+            helpers::macos::hideView(m_webview->getViewHandle());
         }
 
         [[nodiscard]] choc::ui::WebView* getWebview() noexcept {

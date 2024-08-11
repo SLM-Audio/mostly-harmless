@@ -1,7 +1,7 @@
 #include <mostly_harmless/gui/platform/mostlyharmless_GuiHelpersMacOS.h>
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
-namespace mostly_harmless::gui::helpers {
+namespace mostly_harmless::gui::helpers::macos {
     void removeFromParentView(void* viewHandle) {
         auto* asView = static_cast<NSView*>(viewHandle);
         [asView removeFromSuperview];

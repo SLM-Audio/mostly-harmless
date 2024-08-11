@@ -8,17 +8,50 @@
 #include <choc/gui/choc_WebView.h>
 #include <memory>
 namespace mostly_harmless::gui {
+    /**
+     * \brief Convenience wrapper layer implementing the creation and management of a `choc::ui::WebView`.
+     *
+     * Provides the basic setup code for the Webview, but you'll likely want to derive from this, and override some of its functions.
+     * The underlying `choc::ui::WebView` can be accessed via the protected `m_internalWebview` member.
+     */
     class WebviewEditor : public IEditor {
     public:
+        /**
+         * \param initialWidth The initial width for the webview.
+         * \param initialHeight The initial height for the webview.
+         */
         WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight);
-        // Non default destructor for pimpl
+        /**
+         * Non default destructor for pimpl
+         */
         ~WebviewEditor() noexcept override;
+        /**
+         * Implementation of mostly_harmless::gui::IEditor::initialise().
+         */
         void initialise() override;
+        /**
+         * Implementation of mostly_harmless::gui::IEditor::destroy().
+         */
         void destroy() override;
+        /**
+         * Implementation of mostly_harmless::gui::IEditor::setSize().
+         */
         void setSize(std::uint32_t width, std::uint32_t height) override;
+        /**
+         * Implementation of mostly_harmless::gui::IEditor::getSize().
+         */
         void getSize(std::uint32_t* width, std::uint32_t* height) override;
+        /**
+         * Implementation of mostly_harmless::gui::IEditor::setParent().
+         */
         void setParent(void* parentHandle) override;
+        /**
+         * Implementation of mostly_harmless::gui::IEditor::show().
+         */
         void show() override;
+        /**
+         * Implementation of mostly_harmless::gui::IEditor::hide().
+         */
         void hide() override;
 
 
@@ -27,6 +60,9 @@ namespace mostly_harmless::gui {
         std::unique_ptr<Impl> m_impl;
 
     protected:
+        /**
+         * A pointer to the internal choc::ui::WebView owned by this class, for extension in any derived classes you may write.
+         */
         choc::ui::WebView* m_internalWebview{ nullptr };
     };
 } // namespace mostly_harmless::gui

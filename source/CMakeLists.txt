@@ -8,6 +8,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Entry.cpp
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Plugin.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_EventContext.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewEditor.cpp
         ${PLATFORM_SOURCES}
         PARENT_SCOPE)
