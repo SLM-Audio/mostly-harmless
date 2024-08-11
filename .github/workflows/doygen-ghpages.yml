@@ -9,12 +9,9 @@ jobs:
     name: Build Documentation
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.2
-      - name: Submodules
-        shell: bash
-        run : |
-          git submodule sync --recursive
+      - uses: actions/checkout@v4.1.2
+        with:
+          submodules: true
       - name: Install doxygen
         uses: ssciwr/doxygen-install@v1
       - name: Configure
