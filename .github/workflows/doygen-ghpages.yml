@@ -1,0 +1,24 @@
+name: Doxygen Github Pages Deploy Action
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-project:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+      - name: Install doxygen
+        uses: ssciwr/doxygen-install@v1
+      - name: Configure
+        uses: threeal/cmake-action@main
+        with:
+          build-args: "--target mostly_harmless_docs"
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/docs/html
