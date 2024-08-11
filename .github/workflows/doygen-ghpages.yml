@@ -11,6 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.2
+      - name: Submodules
+        uses: actions/checkout@v2
+        shell: bash
+        run : |
+          git submodule sync --recursive
       - name: Install doxygen
         uses: ssciwr/doxygen-install@v1
       - name: Configure
