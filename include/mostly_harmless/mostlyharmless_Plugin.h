@@ -1,12 +1,13 @@
 #ifndef MOSTLYHARMLESS_PLUGIN_H
 #define MOSTLYHARMLESS_PLUGIN_H
+#include <mostly_harmless/mostlyharmless_Descriptor.h>
+#include <mostly_harmless/mostlyharmless_EventContext.h>
+#include <mostly_harmless/mostlyharmless_Parameters.h>
+#include <mostly_harmless/gui/mostlyharmless_IEditor.h>
+
 #include "clap/events.h"
 #include "clap/ext/gui.h"
 #include "clap/plugin-features.h"
-#include "mostlyharmless_Descriptor.h"
-#include "mostlyharmless_EventContext.h"
-#include "mostlyharmless_Parameters.h"
-#include <gui/mostlyharmless_WebviewEditor.h>
 #include "clap/helpers/checking-level.hh"
 #include "clap/helpers/misbehaviour-handler.hh"
 #include "clap/helpers/plugin.hh"
@@ -14,26 +15,34 @@
 #include <marvin/containers/marvin_BufferView.h>
 #include <fstream>
 #include <iostream>
-#define MOSTLYHARMLESS_REGISTER(ProcessorType)                                                                    \
-    namespace mostly_harmless::entry {                                                                            \
-        const clap_plugin* clap_create_plugin(const clap_plugin_factory* f, const clap_host* h, const char* id) { \
-            auto& desc = getDescriptor();                                                                         \
-            if (std::strcmp(desc.id, id) != 0) {                                                                  \
-                return nullptr;                                                                                   \
-            }                                                                                                     \
-            auto* p = new ::ProcessorType(h);                                                                     \
-            return p->clapPlugin();                                                                               \
-        }                                                                                                         \
+#include <unordered_map>
+#define MOSTLYHARMLESS_REGISTER(ProcessorType)                                                                        \
+    namespace mostly_harmless::entry {                                                                                \
+        const clap_plugin* clap_create_plugin(const clap_plugin_factory* /*f*/, const clap_host* h, const char* id) { \
+            auto& desc = getDescriptor();                                                                             \
+            if (std::strcmp(desc.id, id) != 0) {                                                                      \
+                return nullptr;                                                                                       \
+            }                                                                                                         \
+            auto* p = new ::ProcessorType(h);                                                                         \
+            return p->clapPlugin();                                                                                   \
+        }                                                                                                             \
     }
 
 namespace mostly_harmless {
+
     template <marvin::FloatType SampleType>
     class Plugin : public clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal> {
     public:
         explicit Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params);
-        ~Plugin() noexcept = default;
+        ~Plugin() noexcept override = default;
         virtual void initialise(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept = 0;
         virtual void process(marvin::containers::BufferView<SampleType> buffer, EventContext eventContext) noexcept = 0;
+        /**
+            Implement this to supply your own custom gui editor using a framework of your choice.
+            Called internally when the gui is created,  - we internally take ownership of the pointer allocated here.
+            \return An allocated editor class deriving from `gui::IEditor`, for us to take ownership of.
+        */
+        virtual std::unique_ptr<gui::IEditor> createEditor() noexcept = 0;
 
     protected:
         /**
@@ -54,7 +63,7 @@ namespace mostly_harmless {
             \param note The midi note value
             \param velocity The midi velocity value
          */
-        virtual void handleNoteOn(std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity) { assert(false); }
+        virtual void handleNoteOn([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) { assert(false); }
         /**
             Called Internally by pollEventQueue when a midi note off message is received.
             If note off functionality is required, make sure you override this function!
@@ -63,7 +72,7 @@ namespace mostly_harmless {
             \param note The midi note value
             \param velocity The midi velocity value
          */
-        virtual void handleNoteOff(std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity) { assert(false); }
+        virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) { assert(false); }
 
     private:
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
@@ -98,7 +107,7 @@ namespace mostly_harmless {
     private:
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
-        gui::WebviewEditor m_editor;
+        std::unique_ptr<gui::IEditor> m_editor{ nullptr };
     };
 } // namespace mostly_harmless
 #endif

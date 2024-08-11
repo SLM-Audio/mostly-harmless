@@ -1,20 +1,9 @@
-#include "clap/events.h"
-#include "clap/ext/gui.h"
-#include "clap/ext/note-ports.h"
-#include "clap/ext/params.h"
 #include "clap/helpers/plugin.hxx"
-#include "clap/process.h"
-#include "clap/string-sizes.h"
-#include "marvin/containers/marvin_BufferView.h"
-#include "marvin/library/marvin_Concepts.h"
-#include "mostlyharmless_BusConfig.h"
-#include "mostlyharmless_EventContext.h"
-#include "mostlyharmless_Parameters.h"
-#include <iomanip>
-#include <limits>
-#include <mostlyharmless_Descriptor.h>
-#include <mostlyharmless_Plugin.h>
+#include <mostly_harmless/mostlyharmless_BusConfig.h>
+#include <mostly_harmless/mostlyharmless_Plugin.h>
 #include <sstream>
+#include <string>
+
 namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     Plugin<SampleType>::Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
@@ -149,8 +138,8 @@ namespace mostly_harmless {
         const auto& param = m_indexedParams[paramIndex];
         info->id = param.pid;
         info->flags = param.flags;
-        strncpy_s(info->name, param.name.c_str(), CLAP_NAME_SIZE);
-        strncpy_s(info->module, param.category.c_str(), CLAP_NAME_SIZE);
+        strncpy(info->name, param.name.c_str(), CLAP_NAME_SIZE);
+        strncpy(info->module, param.category.c_str(), CLAP_NAME_SIZE);
         const auto [min, max] = param.range;
         info->min_value = min;
         info->max_value = max;
@@ -209,12 +198,12 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
-    bool Plugin<SampleType>::audioPortsInfo(std::uint32_t index, bool isInput, clap_audio_port_info* info) const noexcept {
+    bool Plugin<SampleType>::audioPortsInfo(std::uint32_t /*index*/, bool isInput, clap_audio_port_info* info) const noexcept {
         const auto audioBusConfig = getAudioBusConfig();
         if (audioBusConfig == BusConfig::InputOutput || (isInput && audioBusConfig == BusConfig::InputOnly) || (!isInput && audioBusConfig == BusConfig::OutputOnly)) {
             info->id = 0;
             info->in_place_pair = std::numeric_limits<std::uint32_t>::max();
-            strncpy_s(info->name, "main", sizeof(info->name));
+            strncpy(info->name, "main", sizeof(info->name));
             info->flags = CLAP_AUDIO_PORT_IS_MAIN;
             info->channel_count = 2;
             info->port_type = CLAP_PORT_STEREO;
@@ -250,13 +239,13 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
-    bool Plugin<SampleType>::notePortsInfo(std::uint32_t index, bool isInput, clap_note_port_info* info) const noexcept {
+    bool Plugin<SampleType>::notePortsInfo(std::uint32_t /*index*/, bool isInput, clap_note_port_info* info) const noexcept {
         const auto noteBusConfig = getNoteBusConfig();
         if (noteBusConfig == BusConfig::InputOutput || (isInput && noteBusConfig == BusConfig::InputOnly) || (!isInput && noteBusConfig == BusConfig::OutputOnly)) {
             info->id = 1;
             info->supported_dialects = CLAP_NOTE_DIALECT_MIDI | CLAP_NOTE_DIALECT_CLAP;
             info->preferred_dialect = CLAP_NOTE_DIALECT_CLAP;
-            strncpy_s(info->name, "NoteInput", CLAP_NAME_SIZE);
+            strncpy(info->name, "NoteInput", CLAP_NAME_SIZE);
             return true;
         }
         return false;
@@ -282,28 +271,31 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
-    bool Plugin<SampleType>::guiCreate(const char* api, bool isFloating) noexcept {
-        m_editor.create();
+    bool Plugin<SampleType>::guiCreate(const char* /*api*/, bool /*isFloating*/) noexcept {
+        m_editor = createEditor();
+        m_editor->initialise();
         return true;
     }
 
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::guiDestroy() noexcept {
-        m_editor.destroy();
+        m_editor.reset();
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiSetParent(const clap_window* window) noexcept {
 #if defined(MOSTLY_HARMLESS_WINDOWS)
         m_editor.setParent(window->win32);
+#elif defined(MOSTLY_HARMLESS_MACOS)
+        m_editor->setParent(window->cocoa);
 #else
-        static_assert(false)
+        static_assert(false);
 #endif
         return true;
     }
 
     template <marvin::FloatType SampleType>
-    bool Plugin<SampleType>::guiSetScale(double scale) noexcept {
+    bool Plugin<SampleType>::guiSetScale(double /*scale*/) noexcept {
         return false; // TODO
     }
 
@@ -313,22 +305,23 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
-    bool Plugin<SampleType>::guiAdjustSize(std::uint32_t* width, std::uint32_t* height) noexcept {
+    bool Plugin<SampleType>::guiAdjustSize(std::uint32_t* /*width*/, std::uint32_t* /*height*/) noexcept {
         return false; // TODO
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiSetSize(std::uint32_t width, std::uint32_t height) noexcept {
-        m_editor.setSize(width, height);
+        m_editor->setSize(width, height);
         return true;
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiGetSize(std::uint32_t* width, std::uint32_t* height) noexcept {
-        m_editor.getSize(width, height);
+        m_editor->getSize(width, height);
         return true;
     }
 
     template class Plugin<float>;
     template class Plugin<double>;
+
 } // namespace mostly_harmless

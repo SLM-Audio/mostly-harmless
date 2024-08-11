@@ -1,5 +1,5 @@
 
-#include <mostlyharmless_Descriptor.h>
+#include <mostly_harmless/mostlyharmless_Descriptor.h>
 namespace mostly_harmless {
     // clang-format off
     static BusConfig s_audioBusConfig { @PLUGIN_AUDIO_BUS_CONFIG@ };
