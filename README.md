@@ -40,6 +40,7 @@ should you need some convenience helpers and basic audio features.
 > We've included the boilerplate for various projects in the `boilerplate` directory - these should serve as a good starting point for your plugin sources. 
 > As previously mentioned, you can also check out the `examples` directory for more inspiration.
 
+### Documentation
 
 
 
