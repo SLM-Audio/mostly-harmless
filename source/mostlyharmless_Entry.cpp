@@ -16,7 +16,7 @@ namespace mostly_harmless::entry {
     }
 
     // const __declspec(dllexport) struct clap_plugin_factory mostlyHarmlessFactory = {
-    const CLAP_EXPORT __attribute__((used)) struct clap_plugin_factory mostlyHarmlessFactory = {
+    const CLAP_EXPORT struct clap_plugin_factory mostlyHarmlessFactory = {
         .get_plugin_count = mostly_harmless::entry::clap_get_plugin_count,
         .get_plugin_descriptor = mostly_harmless::entry::clap_get_plugin_descriptor,
         .create_plugin = mostly_harmless::entry::clap_create_plugin
@@ -36,7 +36,7 @@ namespace mostly_harmless::entry {
 } // namespace mostly_harmless::entry
 extern "C" {
 // const __declspec(dllexport) clap_plugin_entry clap_entry{
-const CLAP_EXPORT __attribute__((used)) clap_plugin_entry clap_entry{
+const CLAP_EXPORT clap_plugin_entry clap_entry{
     .clap_version = CLAP_VERSION,
     .init = mostly_harmless::entry::clap_init,
     .deinit = mostly_harmless::entry::clap_deinit,

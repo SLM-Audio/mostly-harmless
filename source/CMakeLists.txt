@@ -2,7 +2,6 @@ if (APPLE)
     set(PLATFORM_SOURCES
             ${CMAKE_CURRENT_SOURCE_DIR}/gui/platform/mostlyharmless_GuiHelpersMacOS.mm
     )
-elseif (WIN32)
 endif ()
 set(MOSTLYHARMLESS_SOURCES
         INTERFACE

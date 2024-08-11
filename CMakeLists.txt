@@ -9,6 +9,8 @@ if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15)
     enable_language(OBJCXX)
+elseif(WIN32)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 include(GNUInstallDirs)
 set(MOSTLYHARMLESS_INSTALL_DEST "${CMAKE_INSTALL_LIBDIR}/cmake/mostly-harmless" 
@@ -76,7 +78,10 @@ target_link_libraries(MostlyHarmless
 
 
 if(MSVC)
-
+    target_compile_definitions(MostlyHarmless PUBLIC _CRT_SECURE_NO_WARNINGS)
+    target_compile_options(MostlyHarmless PUBLIC
+    /W4
+    /WX)
 else()
     target_compile_options(MostlyHarmless PUBLIC 
         -Wall 

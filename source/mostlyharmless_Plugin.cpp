@@ -3,6 +3,7 @@
 #include <mostly_harmless/mostlyharmless_Plugin.h>
 #include <sstream>
 #include <string>
+#include <iomanip>
 
 namespace mostly_harmless {
     template <marvin::FloatType SampleType>
@@ -34,7 +35,7 @@ namespace mostly_harmless {
         // If our input data != our output data, do a copy..
         const auto* inputData = processContext->audio_inputs;
         auto* outputData = processContext->audio_outputs;
-        SampleType **inDataPtr{ nullptr }, **outDataPtr{ nullptr };
+        SampleType **inDataPtr, **outDataPtr;
         if constexpr (std::same_as<float, SampleType>) {
             inDataPtr = inputData->data32;
             outDataPtr = outputData->data32;
@@ -75,18 +76,18 @@ namespace mostly_harmless {
                 const auto v = reinterpret_cast<const clap_event_param_value*>(event);
                 const auto id = v->param_id;
                 const auto paramValue = v->value;
-                m_idParams.at(id)->value = paramValue;
+                m_idParams.at(id)->value = static_cast<SampleType>(paramValue);
                 // Also inform the UI
                 break;
             }
             case CLAP_EVENT_NOTE_ON: {
                 const auto* noteEv = reinterpret_cast<const clap_event_note*>(event);
-                handleNoteOn(noteEv->port_index, noteEv->channel, noteEv->key, noteEv->velocity);
+                handleNoteOn(noteEv->port_index, static_cast<std::uint8_t>(noteEv->channel), static_cast<std::uint8_t>(noteEv->key), noteEv->velocity);
                 break;
             }
             case CLAP_EVENT_NOTE_OFF: {
                 const auto* noteEv = reinterpret_cast<const clap_event_note*>(event);
-                handleNoteOff(noteEv->port_index, noteEv->channel, noteEv->key, noteEv->velocity);
+                handleNoteOff(noteEv->port_index, static_cast<std::uint8_t>(noteEv->channel), static_cast<std::uint8_t>(noteEv->key), noteEv->velocity);
                 break;
             }
             case CLAP_EVENT_MIDI: {
@@ -129,7 +130,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     std::uint32_t Plugin<SampleType>::paramsCount() const noexcept {
-        return m_indexedParams.size();
+        return static_cast<std::uint32_t>(m_indexedParams.size());
     }
 
     template <marvin::FloatType SampleType>
@@ -266,8 +267,9 @@ namespace mostly_harmless {
         return strcmp(api, CLAP_WINDOW_API_WIN32) == 0;
 #elif defined(MOSTLY_HARMLESS_MACOS)
         return strcmp(api, CLAP_WINDOW_API_COCOA) == 0;
+#else
+        static_assert(false);
 #endif
-        return false;
     }
 
     template <marvin::FloatType SampleType>
@@ -285,7 +287,7 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiSetParent(const clap_window* window) noexcept {
 #if defined(MOSTLY_HARMLESS_WINDOWS)
-        m_editor.setParent(window->win32);
+        m_editor->setParent(window->win32);
 #elif defined(MOSTLY_HARMLESS_MACOS)
         m_editor->setParent(window->cocoa);
 #else
