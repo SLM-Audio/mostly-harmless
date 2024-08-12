@@ -11,6 +11,7 @@ var searchData=
   ['_7esineoscillator_8',['~SineOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1SineOscillator.html#ab23dae7fbc55fe9da8e26eada295adf4',1,'marvin::dsp::oscillators::SineOscillator']]],
   ['_7esquareoscillator_9',['~SquareOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1SquareOscillator.html#abe20d23ac4302b50fe496e8a8a0228a2',1,'marvin::dsp::oscillators::SquareOscillator']]],
   ['_7eswapbuffer_10',['~SwapBuffer',['../classmarvin_1_1containers_1_1SwapBuffer.html#ad45640bc6d74dd806b999fd1ae660914',1,'marvin::containers::SwapBuffer']]],
-  ['_7etrioscillator_11',['~TriOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html#a60140b17f8f9db8bbde272ae5033d1e5',1,'marvin::dsp::oscillators::TriOscillator']]],
-  ['_7ewebvieweditor_12',['~WebviewEditor',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a9d95b0ea1803ab68b16d4e8b302c5ffa',1,'mostly_harmless::gui::WebviewEditor']]]
+  ['_7etimer_11',['~Timer',['../classmostly__harmless_1_1utils_1_1Timer.html#a8f2e42ac08553a566e02ccd9081dae74',1,'mostly_harmless::utils::Timer']]],
+  ['_7etrioscillator_12',['~TriOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html#a60140b17f8f9db8bbde272ae5033d1e5',1,'marvin::dsp::oscillators::TriOscillator']]],
+  ['_7ewebvieweditor_13',['~WebviewEditor',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a9d95b0ea1803ab68b16d4e8b302c5ffa',1,'mostly_harmless::gui::WebviewEditor']]]
 ];

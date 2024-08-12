@@ -5,12 +5,13 @@ var searchData=
   ['taskthread_2',['TaskThread',['../classmostly__harmless_1_1utils_1_1TaskThread.html',1,'mostly_harmless::utils']]],
   ['the_20actual_20plugin_20code_3',['The actual plugin code',['../index.html#autotoc_md10',1,'']]],
   ['threadshouldexit_4',['threadShouldExit',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a7c42f5bbc3b914dbcb1d1c7a152f434e',1,'mostly_harmless::utils::TaskThread']]],
-  ['to_20your_20project_5',['Adding to your project',['../index.html#autotoc_md8',1,'']]],
-  ['triangle_6',['Triangle',['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#ac43911d9178f41514a0c48a9a80de28ca5e5500cb2b82eb72d550de644bd1b64b',1,'marvin::dsp::oscillators::MultiOscillator']]],
-  ['trioscillator_7',['TriOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html',1,'marvin::dsp::oscillators']]],
-  ['trioscillator_3c_20sampletype_2c_20bandlimiting_3a_3aoff_20_3e_8',['TriOscillator&lt; SampleType, Bandlimiting::Off &gt;',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html',1,'marvin::dsp::oscillators']]],
-  ['trypop_9',['tryPop',['../classmarvin_1_1containers_1_1fifos_1_1SPSC.html#ae0438c6dc0b0019887d81d9aa1e184e5',1,'marvin::containers::fifos::SPSC']]],
-  ['trypush_10',['tryPush',['../classmarvin_1_1containers_1_1fifos_1_1SPSC.html#a2acb3e27a2dc5bf8e821d6c219ad7b20',1,'marvin::containers::fifos::SPSC']]],
-  ['tukey_11',['Tukey',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58ae64282abbecb575a17b762eb0138273b',1,'marvin::math::windows']]],
-  ['tukey_12',['tukey',['../namespacemarvin_1_1math_1_1windows.html#adc37f3055a2d4b788ebb0415fde9e9c9',1,'marvin::math::windows']]]
+  ['timer_5',['Timer',['../classmostly__harmless_1_1utils_1_1Timer.html',1,'mostly_harmless::utils']]],
+  ['to_20your_20project_6',['Adding to your project',['../index.html#autotoc_md8',1,'']]],
+  ['triangle_7',['Triangle',['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#ac43911d9178f41514a0c48a9a80de28ca5e5500cb2b82eb72d550de644bd1b64b',1,'marvin::dsp::oscillators::MultiOscillator']]],
+  ['trioscillator_8',['TriOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html',1,'marvin::dsp::oscillators']]],
+  ['trioscillator_3c_20sampletype_2c_20bandlimiting_3a_3aoff_20_3e_9',['TriOscillator&lt; SampleType, Bandlimiting::Off &gt;',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html',1,'marvin::dsp::oscillators']]],
+  ['trypop_10',['tryPop',['../classmarvin_1_1containers_1_1fifos_1_1SPSC.html#ae0438c6dc0b0019887d81d9aa1e184e5',1,'marvin::containers::fifos::SPSC']]],
+  ['trypush_11',['tryPush',['../classmarvin_1_1containers_1_1fifos_1_1SPSC.html#a2acb3e27a2dc5bf8e821d6c219ad7b20',1,'marvin::containers::fifos::SPSC']]],
+  ['tukey_12',['Tukey',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58ae64282abbecb575a17b762eb0138273b',1,'marvin::math::windows']]],
+  ['tukey_13',['tukey',['../namespacemarvin_1_1math_1_1windows.html#adc37f3055a2d4b788ebb0415fde9e9c9',1,'marvin::math::windows']]]
 ];
