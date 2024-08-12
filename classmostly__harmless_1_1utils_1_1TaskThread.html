@@ -165,7 +165,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Starts the thread, with the user provided <code>action</code> lambda if it has been assigned - if it hasn't, asserts false and exits. </p>
+<p>Starts the thread, with the user provided <code>action</code> lambda if it has been assigned - if it hasn't, asserts false and exits. Note that launching a thread is a syscall, and thus can take an unbounded amount of time - so this is <em>not</em> realtime safe, and you can't really make any assumptions about how long until <a class="el" href="#a2dc43b2e8ff9d3e9ce5078d62cbc31ee">isThreadRunning()</a> will return true. </p>
 
 </div>
 </div>
