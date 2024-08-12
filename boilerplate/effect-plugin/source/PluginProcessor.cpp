@@ -20,6 +20,14 @@ void PluginProcessor::process(marvin::containers::BufferView<float> /*bufferView
 
 }
 
+void PluginProcessor::flushParams(mostly_harmless::EventContext /*eventContext*/) noexcept {
+
+}
+
+void PluginProcessor::reset() noexcept {
+
+}
+
 std::unique_ptr<mostly_harmless::gui::IEditor> PluginProcessor::createEditor() noexcept {
    return std::make_unique<mostly_harmless::gui::WebviewEditor>(400, 400);
 }

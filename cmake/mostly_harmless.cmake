@@ -87,6 +87,7 @@ function(mostly_harmless_add_plugin)
     OUTPUT_NAME ${PLUGIN_NAME}
             HOSTED_CLAP_NAME ${PLUGIN_NAME}
     )
+    add_dependencies(${STANDALONE_TARGET} ${PLUGIN_NAME})
 
 
 endfunction()

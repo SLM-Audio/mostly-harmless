@@ -19,6 +19,8 @@ namespace examples::gain {
         ~Gain() noexcept override = default;
         void initialise(double sampleRate, std::uint32_t minFrames, std::uint32_t maxFrames) noexcept override;
         void process(marvin::containers::BufferView<float> buffer, mostly_harmless::EventContext eventContext) noexcept override;
+        void flushParams(mostly_harmless::EventContext eventContext) noexcept override;
+        void reset() noexcept override;
         std::unique_ptr<mostly_harmless::gui::IEditor> createEditor() noexcept override;
 
     private:

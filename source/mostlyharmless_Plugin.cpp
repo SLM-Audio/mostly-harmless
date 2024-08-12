@@ -60,9 +60,23 @@ namespace mostly_harmless {
         return CLAP_PROCESS_SLEEP;
     }
 
+    template<marvin::FloatType SampleType>
+    void Plugin<SampleType>::paramsFlush(const clap_input_events* in, const clap_output_events* /*out*/) noexcept { // TODO: OUTPUT!
+        EventContext inContext{ in };
+        flushParams(inContext);
+    }
+
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::pollEventQueue(size_t currentSample, EventContext context) noexcept {
         while (context.next() && context.next()->time == currentSample) {
+            handleEvent(context.next());
+            ++context;
+        }
+    }
+
+    template<marvin::FloatType SampleType>
+    void Plugin<SampleType>::pollEventQueue(mostly_harmless::EventContext context) noexcept {
+        while(context.next()) {
             handleEvent(context.next());
             ++context;
         }

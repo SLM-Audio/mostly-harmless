@@ -80,6 +80,16 @@ namespace mostly_harmless {
          */
         virtual void process(marvin::containers::BufferView<SampleType> buffer, EventContext eventContext) noexcept = 0;
         /**
+         * Called when audio processing is bypassed, to allow param updates to continue to update the gui.
+         * \param eventContext A trivially copyable wrapper around the host provided clap event queue.
+         */
+        virtual void flushParams(EventContext eventContext) noexcept = 0;
+
+        /**
+         * Called to clear all audio buffers, and state, etc.
+         */
+        void reset() noexcept override = 0;
+        /**
             Implement this to supply your own custom gui editor using a framework of your choice.
             Called internally when the gui is created,  - we internally take ownership of the pointer allocated here.
             \return An allocated editor class deriving from `gui::IEditor`, for us to take ownership of.
@@ -100,6 +110,13 @@ namespace mostly_harmless {
             \param context The EventContext containing the event queue.
          */
         void pollEventQueue(size_t currentSample, EventContext context) noexcept;
+
+        /**
+         *  Convenience function to handle all incoming events for the current block.
+         *  \param eventContext The EventContext containing the event queue.
+         */
+        void pollEventQueue(EventContext context) noexcept;
+
         /**
             Called Internally by pollEventQueue when a midi note on message is received.
             If note on functionality is required, make sure you override this function!
@@ -122,6 +139,7 @@ namespace mostly_harmless {
     private:
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
         clap_process_status process(const clap_process* processContext) noexcept override;
+        void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
         void handleEvent(const clap_event_header_t* event) noexcept;
 
         [[nodiscard]] bool implementsParams() const noexcept override;

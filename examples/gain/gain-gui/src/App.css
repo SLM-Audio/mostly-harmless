@@ -1,0 +1,13 @@
+#root {
+  min-width: 400px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.slider-el {
+}
+
