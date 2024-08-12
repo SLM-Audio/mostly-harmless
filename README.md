@@ -4,7 +4,9 @@
  mostly harmless is a minimal audio plugin framework for C++20. It's first and foremost a wrapper around the CLAP API, capable of building CLAP, VST3, Audio Unit and Standalone targets.
 > If you're compiling VST3 targets, the responsibility to ensure you're adhering to the Steinberg VST3 License agreement is firmly on you!
  
+
 ## Documentation
+
 Documentation is built automatically, and hosted [here](https://mostly-harmless.pages.dev). For convenience, it also includes the documentation for marvin.
 
 ## Features
