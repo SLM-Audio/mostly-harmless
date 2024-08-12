@@ -127,6 +127,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acfb132cd318ce098bedac4381435eeec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab104e5c92f4d37e09f7866a0083dcbcb" id="r_ab104e5c92f4d37e09f7866a0083dcbcb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab104e5c92f4d37e09f7866a0083dcbcb">hide</a> ()=0</td></tr>
 <tr class="separator:ab104e5c92f4d37e09f7866a0083dcbcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55fc5d5088a5ad03a61699df11f77d7e" id="r_a55fc5d5088a5ad03a61699df11f77d7e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55fc5d5088a5ad03a61699df11f77d7e">onParamEvent</a> (<a class="el" href="structmostly__harmless_1_1events_1_1ParamEvent.html">events::ParamEvent</a> event)=0</td></tr>
+<tr class="separator:a55fc5d5088a5ad03a61699df11f77d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for custom gui editors to implement. </p>
@@ -278,6 +280,34 @@ Public Member Functions</h2></td></tr>
 <p>Called immediately after the gui is created, any setup should be done here. </p>
 
 <p>Implemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#a1f971ab269931475d34d5dca242f563d">mostly_harmless::gui::WebviewEditor</a>.</p>
+
+</div>
+</div>
+<a id="a55fc5d5088a5ad03a61699df11f77d7e" name="a55fc5d5088a5ad03a61699df11f77d7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55fc5d5088a5ad03a61699df11f77d7e">&#9670;&#160;</a></span>onParamEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void mostly_harmless::gui::IEditor::onParamEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1ParamEvent.html">events::ParamEvent</a></td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called via the internal gui dispatch thread when a new parameter event is sent by the host - use this hook to sync the changes with the gui! </p>
+
+<p>Implemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#a335da478644cfef672a5b7b1e8627bfd">mostly_harmless::gui::WebviewEditor</a>.</p>
 
 </div>
 </div>

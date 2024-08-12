@@ -15,8 +15,9 @@ var searchData=
   ['marvin_3a_3amath_3a_3awindows_12',['windows',['../namespacemarvin_1_1math_1_1windows.html',1,'marvin::math']]],
   ['marvin_3a_3autils_13',['utils',['../namespacemarvin_1_1utils.html',1,'marvin']]],
   ['mostly_5fharmless_14',['mostly_harmless',['../namespacemostly__harmless.html',1,'']]],
-  ['mostly_5fharmless_3a_3agui_15',['gui',['../namespacemostly__harmless_1_1gui.html',1,'mostly_harmless']]],
-  ['mostly_5fharmless_3a_3agui_3a_3ahelpers_16',['helpers',['../namespacemostly__harmless_1_1gui_1_1helpers.html',1,'mostly_harmless::gui']]],
-  ['mostly_5fharmless_3a_3agui_3a_3ahelpers_3a_3amacos_17',['macos',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html',1,'mostly_harmless::gui::helpers']]],
-  ['mostly_5fharmless_3a_3autils_18',['utils',['../namespacemostly__harmless_1_1utils.html',1,'mostly_harmless']]]
+  ['mostly_5fharmless_3a_3aevents_15',['events',['../namespacemostly__harmless_1_1events.html',1,'mostly_harmless']]],
+  ['mostly_5fharmless_3a_3agui_16',['gui',['../namespacemostly__harmless_1_1gui.html',1,'mostly_harmless']]],
+  ['mostly_5fharmless_3a_3agui_3a_3ahelpers_17',['helpers',['../namespacemostly__harmless_1_1gui_1_1helpers.html',1,'mostly_harmless::gui']]],
+  ['mostly_5fharmless_3a_3agui_3a_3ahelpers_3a_3amacos_18',['macos',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html',1,'mostly_harmless::gui::helpers']]],
+  ['mostly_5fharmless_3a_3autils_19',['utils',['../namespacemostly__harmless_1_1utils.html',1,'mostly_harmless']]]
 ];
