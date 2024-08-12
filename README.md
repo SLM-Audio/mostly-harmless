@@ -57,6 +57,11 @@ mostly harmless depends on the following libraries:
 - [catch2](https://github.com/catchorg/Catch2)
 
 
+## Credits
+This framework wouldn't exist without the advice, moral support and help of [mthierman](https://github.com/mthierman), [Ben Vining](https://github.com/benthevining), [Signalsmith](https://signalsmith-audio.co.uk/) and the legions of incredible people in [The Audio Programmer Discord](https://discord.gg/v5Rs8h6aGF).<b>
+
+SLM Audio Brat Summer 2024, all rights reserved.
+
 
 
 
