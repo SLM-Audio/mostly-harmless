@@ -6,6 +6,14 @@
   text-align: center;
   align-content: center;
   justify-content: center;
+  font-family: Arial, serif;
+
+}
+
+.label {
+  color: black;
+  font-size: 90px;
+  -webkit-transform:scale(0.65, 1);
 }
 
 .slider-el {

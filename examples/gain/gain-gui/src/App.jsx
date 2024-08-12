@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-          <p>Gain</p>
+          <p className="label">Gain</p>
           <input className="slider-el" type={"range"}></input>
       </div>
     </>
