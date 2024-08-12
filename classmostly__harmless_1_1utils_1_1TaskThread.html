@@ -105,6 +105,10 @@ $(function(){ initResizable(false); });
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae82139117b54e99df9de0ee5cfe5a1a5" id="r_ae82139117b54e99df9de0ee5cfe5a1a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae82139117b54e99df9de0ee5cfe5a1a5">perform</a> ()</td></tr>
 <tr class="separator:ae82139117b54e99df9de0ee5cfe5a1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a966cb6f9825dfc8c90904791c7cf49b8" id="r_a966cb6f9825dfc8c90904791c7cf49b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966cb6f9825dfc8c90904791c7cf49b8">sleep</a> ()</td></tr>
+<tr class="separator:a966cb6f9825dfc8c90904791c7cf49b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5767debb36f097d06df842173d509a82" id="r_a5767debb36f097d06df842173d509a82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5767debb36f097d06df842173d509a82">wake</a> ()</td></tr>
+<tr class="separator:a5767debb36f097d06df842173d509a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8877049bdcaa73425e10bcf72b71d307" id="r_a8877049bdcaa73425e10bcf72b71d307"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8877049bdcaa73425e10bcf72b71d307">signalThreadShouldExit</a> ()</td></tr>
 <tr class="separator:a8877049bdcaa73425e10bcf72b71d307"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c42f5bbc3b914dbcb1d1c7a152f434e" id="r_a7c42f5bbc3b914dbcb1d1c7a152f434e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c42f5bbc3b914dbcb1d1c7a152f434e">threadShouldExit</a> () const noexcept</td></tr>
@@ -183,6 +187,24 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a966cb6f9825dfc8c90904791c7cf49b8" name="a966cb6f9825dfc8c90904791c7cf49b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966cb6f9825dfc8c90904791c7cf49b8">&#9670;&#160;</a></span>sleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::utils::TaskThread::sleep </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sleeps the thread until <code>wake</code> is called. <b>Only call this from the thread!</b> </p>
+
+</div>
+</div>
 <a id="a7c42f5bbc3b914dbcb1d1c7a152f434e" name="a7c42f5bbc3b914dbcb1d1c7a152f434e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7c42f5bbc3b914dbcb1d1c7a152f434e">&#9670;&#160;</a></span>threadShouldExit()</h2>
 
@@ -206,6 +228,24 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>The state of the internal atomic bool specifying whether or not the thread should exit. </dd></dl>
+
+</div>
+</div>
+<a id="a5767debb36f097d06df842173d509a82" name="a5767debb36f097d06df842173d509a82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5767debb36f097d06df842173d509a82">&#9670;&#160;</a></span>wake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::utils::TaskThread::wake </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Wakes a thread previously suspended with <code><a class="el" href="#a966cb6f9825dfc8c90904791c7cf49b8">sleep()</a></code>. </p>
 
 </div>
 </div>
