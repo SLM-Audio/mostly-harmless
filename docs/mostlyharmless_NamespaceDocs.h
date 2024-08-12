@@ -22,8 +22,12 @@ namespace mostly_harmless {
             namespace macos {
 
             }
-
         }
+    }
+    /**
+     * \brief Contains general purpose utility classes & functions
+     */
+    namespace utils {
 
     }
 }
