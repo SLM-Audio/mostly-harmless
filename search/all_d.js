@@ -8,7 +8,7 @@ var searchData=
   ['plugin_20code_5',['The actual plugin code',['../index.html#autotoc_md10',1,'']]],
   ['plugin_20target_6',['Adding a plugin target',['../index.html#autotoc_md9',1,'']]],
   ['pointer_7',['pointer',['../classmarvin_1_1containers_1_1StrideView_1_1iterator.html#a19ab2b0a51b0a685657b7f6b54e0dce4',1,'marvin::containers::StrideView::iterator::pointer'],['../classmarvin_1_1containers_1_1StrideView_1_1const__iterator.html#a5a39b73d389ef581f91734d6111c2336',1,'marvin::containers::StrideView::const_iterator::pointer']]],
-  ['polleventqueue_8',['pollEventQueue',['../classmostly__harmless_1_1Plugin.html#a70f06fae59c5b03897b6e9093d235cc9',1,'mostly_harmless::Plugin']]],
+  ['polleventqueue_8',['pollEventQueue',['../classmostly__harmless_1_1Plugin.html#a70f06fae59c5b03897b6e9093d235cc9',1,'mostly_harmless::Plugin::pollEventQueue(size_t currentSample, EventContext context) noexcept'],['../classmostly__harmless_1_1Plugin.html#aae06a0d6d7ec531fd122d22fbf09d4d8',1,'mostly_harmless::Plugin::pollEventQueue(EventContext context) noexcept']]],
   ['popsample_9',['popSample',['../classmarvin_1_1dsp_1_1DelayLine.html#a9762b8fd07e022f7c1e279345da4e212',1,'marvin::dsp::DelayLine']]],
   ['process_10',['process',['../classmostly__harmless_1_1Plugin.html#a98b811fae66d4c1179bf9d4c6f33f6f7',1,'mostly_harmless::Plugin']]],
   ['project_11',['Adding to your project',['../index.html#autotoc_md8',1,'']]],
