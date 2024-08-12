@@ -1,5 +1,6 @@
 #ifndef MOSTLYHARMLESS_IEDITOR_H
 #define MOSTLYHARMLESS_IEDITOR_H
+#include <mostly_harmless/events/mostlyharmless_ParamEvent.h>
 #include <cstdint>
 namespace mostly_harmless::gui {
     /**
@@ -45,6 +46,11 @@ namespace mostly_harmless::gui {
          * Called when the editor should hide.
          */
         virtual void hide() = 0;
+
+        /**
+         * Called via the internal gui dispatch thread when a new parameter event is sent by the host - use this hook to sync the changes with the gui!
+         */
+        virtual void onParamEvent(events::ParamEvent event) = 0;
     };
 } // namespace mostly_harmless::gui
 

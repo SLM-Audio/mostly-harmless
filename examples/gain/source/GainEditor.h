@@ -11,6 +11,7 @@ namespace examples::gain {
     public:
         GainEditor(std::uint32_t width, std::uint32_t height);
         void initialise() override;
+        void onParamEvent(mostly_harmless::events::ParamEvent event) override;
     };
 } // namespace examples::gain
 

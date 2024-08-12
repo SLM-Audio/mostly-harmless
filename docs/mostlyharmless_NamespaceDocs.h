@@ -30,5 +30,11 @@ namespace mostly_harmless {
     namespace utils {
 
     }
+    /**
+     * \brief Contains classes and functions related to events
+     */
+    namespace events {
+
+    }
 }
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_NAMESPACEDOCS_H

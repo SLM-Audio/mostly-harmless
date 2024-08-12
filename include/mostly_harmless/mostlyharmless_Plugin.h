@@ -4,6 +4,8 @@
 #include <mostly_harmless/mostlyharmless_EventContext.h>
 #include <mostly_harmless/mostlyharmless_Parameters.h>
 #include <mostly_harmless/gui/mostlyharmless_IEditor.h>
+#include <mostly_harmless/utils/mostlyharmless_Timer.h>
+#include <mostly_harmless/events/mostlyharmless_ParamEvent.h>
 
 #include "clap/events.h"
 #include "clap/ext/gui.h"
@@ -13,6 +15,7 @@
 #include "clap/helpers/plugin.hh"
 #include <marvin/library/marvin_Concepts.h>
 #include <marvin/containers/marvin_BufferView.h>
+#include <marvin/containers/marvin_FIFO.h>
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
@@ -169,6 +172,9 @@ namespace mostly_harmless {
     private:
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
+        marvin::containers::fifos::SPSC<events::ParamEvent> m_procToGuiQueue;
+        utils::Timer m_guiDispatchThread;
+
         std::unique_ptr<gui::IEditor> m_editor{ nullptr };
     };
 } // namespace mostly_harmless

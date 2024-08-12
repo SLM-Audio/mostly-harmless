@@ -34,6 +34,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(clap_helpers)
 
+FetchContent_Declare(
+    fmt
+    GIT_REPOSITORY https://github.com/fmtlib/fmt
+    GIT_TAG 11.0.2
+    GIT_SHALLOW ON)
+FetchContent_MakeAvailable(fmt)
+
 add_subdirectory(modules/marvin)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/include/mostly_harmless)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
@@ -73,6 +80,7 @@ target_link_libraries(MostlyHarmless
     slma::marvin 
     clap 
     clap-helpers
+    fmt::fmt-header-only
     ${MOSTLY_HARMLESS_EXTRA_LIBS}
 )
 

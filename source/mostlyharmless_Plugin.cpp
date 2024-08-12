@@ -8,10 +8,21 @@
 namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     Plugin<SampleType>::Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
-                                                                                                     m_indexedParams(std::move(params)) {
+                                                                                                     m_indexedParams(std::move(params)),
+                                                                                                     m_procToGuiQueue(100) {
         for (auto& p : m_indexedParams) {
             m_idParams.emplace(p.pid, &p);
         }
+        auto guiDispatchCallback = [this]() -> void {
+            auto messageThreadCallback = [this]() -> void {
+              while(auto nextEvent = m_procToGuiQueue.tryPop()) {
+                  if(!m_editor) continue;
+                  m_editor->onParamEvent(*nextEvent);
+              }
+            };
+            runOnMainThread(std::move(messageThreadCallback));
+        };
+        m_guiDispatchThread.action = std::move(guiDispatchCallback);
     }
 
     template <marvin::FloatType SampleType>
@@ -92,6 +103,7 @@ namespace mostly_harmless {
                 const auto paramValue = v->value;
                 m_idParams.at(id)->value = static_cast<SampleType>(paramValue);
                 // Also inform the UI
+                m_procToGuiQueue.tryPush({id, paramValue});
                 break;
             }
             case CLAP_EVENT_NOTE_ON: {
@@ -290,11 +302,13 @@ namespace mostly_harmless {
     bool Plugin<SampleType>::guiCreate(const char* /*api*/, bool /*isFloating*/) noexcept {
         m_editor = createEditor();
         m_editor->initialise();
+        m_guiDispatchThread.run(100);
         return true;
     }
 
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::guiDestroy() noexcept {
+        m_guiDispatchThread.stop();
         m_editor.reset();
     }
 
