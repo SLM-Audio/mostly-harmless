@@ -22,7 +22,7 @@ namespace mostly_harmless::utils {
         void perform();
 
         /**
-         * Sleeps the thread until `wake` is called. <b>Only call this from the thread!</b>
+         * Sleeps the thread until wake() is called. <b>Only call this from the thread!</b>
          */
         void sleep();
 
