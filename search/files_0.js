@@ -36,5 +36,6 @@ var searchData=
   ['mostlyharmless_5fnamespacedocs_2eh_33',['mostlyharmless_NamespaceDocs.h',['../mostlyharmless__NamespaceDocs_8h.html',1,'']]],
   ['mostlyharmless_5fparameters_2eh_34',['mostlyharmless_Parameters.h',['../mostlyharmless__Parameters_8h.html',1,'']]],
   ['mostlyharmless_5fplugin_2eh_35',['mostlyharmless_Plugin.h',['../mostlyharmless__Plugin_8h.html',1,'']]],
-  ['mostlyharmless_5fwebvieweditor_2eh_36',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]]
+  ['mostlyharmless_5ftaskthread_2eh_36',['mostlyharmless_TaskThread.h',['../mostlyharmless__TaskThread_8h.html',1,'']]],
+  ['mostlyharmless_5fwebvieweditor_2eh_37',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]]
 ];

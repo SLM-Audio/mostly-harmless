@@ -17,5 +17,6 @@ var searchData=
   ['mostly_5fharmless_14',['mostly_harmless',['../namespacemostly__harmless.html',1,'']]],
   ['mostly_5fharmless_3a_3agui_15',['gui',['../namespacemostly__harmless_1_1gui.html',1,'mostly_harmless']]],
   ['mostly_5fharmless_3a_3agui_3a_3ahelpers_16',['helpers',['../namespacemostly__harmless_1_1gui_1_1helpers.html',1,'mostly_harmless::gui']]],
-  ['mostly_5fharmless_3a_3agui_3a_3ahelpers_3a_3amacos_17',['macos',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html',1,'mostly_harmless::gui::helpers']]]
+  ['mostly_5fharmless_3a_3agui_3a_3ahelpers_3a_3amacos_17',['macos',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html',1,'mostly_harmless::gui::helpers']]],
+  ['mostly_5fharmless_3a_3autils_18',['utils',['../namespacemostly__harmless_1_1utils.html',1,'mostly_harmless']]]
 ];
