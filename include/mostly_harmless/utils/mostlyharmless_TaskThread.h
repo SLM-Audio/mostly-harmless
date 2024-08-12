@@ -6,6 +6,7 @@
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_TASKTHREAD_H
 #include <functional>
 #include <atomic>
+#include <mutex>
 namespace mostly_harmless::utils {
     /**
      * \brief Wrapper around a std::thread to perform a single action, then exit.
@@ -19,6 +20,16 @@ namespace mostly_harmless::utils {
          * Starts the thread, with the user provided `action` lambda if it has been assigned - if it hasn't, asserts false and exits.
          */
         void perform();
+
+        /**
+         * Sleeps the thread until `wake` is called. <b>Only call this from the thread!</b>
+         */
+        void sleep();
+
+        /**
+         * Wakes a thread previously suspended with `sleep()`.
+         */
+        void wake();
 
         /**
          * Sets an internal atomic bool to specify that the thread should exit, accessible through `threadShouldExit`. Note that this doesn't actually kill the thread,
@@ -41,8 +52,12 @@ namespace mostly_harmless::utils {
          */
         std::function<void(void)> action{ nullptr };
     private:
+        std::mutex m_mutex;
+        std::condition_variable m_conditionVariable;
+        std::atomic<bool> m_canWakeUp{ false };
         std::atomic<bool> m_isThreadRunning{ false };
         std::atomic<bool> m_threadShouldExit{ false };
+
     };
 }
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_TASKTHREAD_H

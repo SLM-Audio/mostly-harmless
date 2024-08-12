@@ -116,6 +116,19 @@ install(
 #     DESTINATION "${MOSTLYHARMLESS_INSTALL_DEST}"
 #     COMPONENT MostlyHarmless
 # )
+if(TESTS)
+    set(CMAKE_DEBUG_POSTFIX "")
+    FetchContent_Declare(Catch2
+    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+    GIT_TAG v3.0.1
+    GIT_SHALLOW ON)
+    FetchContent_MakeAvailable(Catch2)
+    add_subdirectory(tests)
+    add_executable(mostly-harmless-tests)
+    target_sources(mostly-harmless-tests PRIVATE ${MOSTLYHARMLESS_TEST_SOURCE})
+    target_link_libraries(mostly-harmless-tests PUBLIC MostlyHarmless Catch2::Catch2WithMain)
+
+endif()
 
 if(${PROJECT_IS_TOP_LEVEL})
     add_subdirectory(docs)
