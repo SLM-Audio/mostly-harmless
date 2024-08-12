@@ -15,7 +15,7 @@ namespace mostly_harmless::utils {
     class Timer {
     public:
         /**
-         * Attempts to stop the timer if its running - note that this won't be instanteous (see stop() )
+         * Attempts to stop the timer if its running - note that this won't be instantaneous (see stop() )
          */
         ~Timer() noexcept;
         /**
@@ -29,7 +29,7 @@ namespace mostly_harmless::utils {
          */
         void run(double frequency);
         /**
-         * Signals the timer thread that it should stop. The thread checks the flag every millisecond, so account for a worst case delay of around that.
+         * Signals the timer thread that it should stop. The thread checks the flag every millisecond, so account for a worst case delay of ~that.
          */
         void stop();
 
