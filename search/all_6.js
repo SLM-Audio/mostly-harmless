@@ -21,9 +21,9 @@ var searchData=
   ['getremainingsamples_18',['getRemainingSamples',['../classmarvin_1_1utils_1_1SmoothedValue.html#a83cf07f07698cda928c8e576e5faff88',1,'marvin::utils::SmoothedValue']]],
   ['getsize_19',['getSize',['../structmostly__harmless_1_1gui_1_1IEditor.html#a449a71dec2dccbae3ecdd1ce351491fc',1,'mostly_harmless::gui::IEditor::getSize()'],['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a221faeb3b9344d5dcc7a1f8e21e4789a',1,'mostly_harmless::gui::WebviewEditor::getSize()']]],
   ['gettargetvalue_20',['getTargetValue',['../classmarvin_1_1utils_1_1SmoothedValue.html#a88ee864101dfdc9f24846af37a25df2d',1,'marvin::utils::SmoothedValue']]],
-  ['getting_20started_21',['Getting Started',['../index.html#autotoc_md5',1,'']]],
+  ['getting_20started_21',['Getting Started',['../index.html#autotoc_md6',1,'']]],
   ['getvaluetype_22',['getValueType',['../structmarvin_1_1dsp_1_1spectral_1_1getValueType.html',1,'marvin::dsp::spectral']]],
   ['getvaluetype_3c_20t_20_3e_23',['getValueType&lt; T &gt;',['../structmarvin_1_1dsp_1_1spectral_1_1getValueType_3_01T_01_4.html',1,'marvin::dsp::spectral']]],
   ['getviewsize_24',['getViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9',1,'mostly_harmless::gui::helpers::macos']]],
-  ['gui_25',['gui',['../index.html#autotoc_md4',1,'']]]
+  ['gui_25',['gui',['../index.html#autotoc_md5',1,'']]]
 ];

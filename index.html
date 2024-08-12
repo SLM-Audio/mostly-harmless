@@ -94,23 +94,25 @@ About</h1>
 <p>&zwj;If you're compiling VST3 targets, the responsibility to ensure you're adhering to the Steinberg VST3 License agreement is firmly on you!</p>
 <p></p>
 </blockquote>
-<p>## Documentation Documentation is built automatically, and hosted <a href="https://mostly-harmless.pages.dev">here</a>. For convenience, it also includes the documentation for marvin.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
+Documentation</h1>
+<p>Documentation is built automatically, and hosted <a href="https://mostly-harmless.pages.dev">here</a>. For convenience, it also includes the documentation for marvin.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Features</h1>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 dsp</h2>
 <p>While the framework itself doesn't provide anything in the way of audio helpers ala something like JUCE, it ships with our sibling dsp library <a href="https://github.com/MeijisIrlnd/marvin">marvin</a>, should you need some convenience helpers and basic audio features.</p>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 gui</h2>
 <p>The goal of the framework was to provide the bare minimum we (as in SLM Audio) need to write a plugin - and as such we don't provide any kind of gui framework of our own. We do, however, provide a thin wrapper around <a href="https://github.com/Tracktion/choc">choc</a>'s WebView, and plan to implement similar minimal wrappers around a couple of other frameworks.<br  />
  We also provide an interface with hooks for you to implement your framework of choice, in <code>mostly_harmless::gui::IEffect</code>.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Getting Started</h1>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Building</h2>
 <p>Firstly, we'd recommend taking a look in the <code>examples</code> directory for a real-world use case, in the absence of actual tutorials (which are planned). <br  />
  mostly harmless is built with CMake, and supports Windows and macOS (Linux support is on the roadmap). It can be consumed either as a git submodule, or as a FetchContent dependency. </p>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Adding to your project</h2>
 <div class="fragment"><div class="line">include(FetchContent)</div>
 <div class="line">FetchContent_Declare(mostly_harmless</div>
@@ -121,7 +123,7 @@ Adding to your project</h2>
 <div class="line">FetchContent_MakeAvailable(mostly_harmless)</div>
 </div><!-- fragment --><p> <br  />
  </p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Adding a plugin target</h2>
 <p>We provide a convenience function to set up your plugin targets, <code>mostly_harmless_add_plugin</code>. This function will create CLAP, VST3, AU and Standalone targets, and set up linkage with mostly harmless and marvin. </p><div class="fragment"><div class="line">mostly_harmless_add_plugin(YourTarget </div>
 <div class="line">ID &quot;com.whatever&quot;</div>
@@ -130,10 +132,10 @@ Adding a plugin target</h2>
 <div class="line">FEATURES &quot;audio-effect&quot;)</div>
 </div><!-- fragment --><p> <br  />
  </p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 The actual plugin code</h2>
 <p>We've included the boilerplate for various projects in the <code>boilerplate</code> directory - these should serve as a good starting point for your plugin sources. As previously mentioned, you can also check out the <code>examples</code> directory for more inspiration.</p>
-<h1><a class="anchor" id="autotoc_md10"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Dependencies</h1>
 <p>mostly harmless depends on the following libraries:</p>
 <ul>

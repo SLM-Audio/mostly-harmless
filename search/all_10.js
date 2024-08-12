@@ -1,9 +1,9 @@
 var searchData=
 [
   ['tap_0',['tap',['../classmarvin_1_1dsp_1_1filters_1_1LatticeAPF.html#a95465a08f4f4cdba56144b5128f8e9f9',1,'marvin::dsp::filters::LatticeAPF']]],
-  ['target_1',['target',['../index.html#autotoc_md8',1,'Adding a plugin target'],['../classmarvin_1_1dsp_1_1filters_1_1SmoothedBiquadCoefficients.html#ad37122727b33c2ee6a0d39be163f7052',1,'marvin::dsp::filters::SmoothedBiquadCoefficients::target()']]],
-  ['the_20actual_20plugin_20code_2',['The actual plugin code',['../index.html#autotoc_md9',1,'']]],
-  ['to_20your_20project_3',['Adding to your project',['../index.html#autotoc_md7',1,'']]],
+  ['target_1',['target',['../index.html#autotoc_md9',1,'Adding a plugin target'],['../classmarvin_1_1dsp_1_1filters_1_1SmoothedBiquadCoefficients.html#ad37122727b33c2ee6a0d39be163f7052',1,'marvin::dsp::filters::SmoothedBiquadCoefficients::target()']]],
+  ['the_20actual_20plugin_20code_2',['The actual plugin code',['../index.html#autotoc_md10',1,'']]],
+  ['to_20your_20project_3',['Adding to your project',['../index.html#autotoc_md8',1,'']]],
   ['triangle_4',['Triangle',['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#ac43911d9178f41514a0c48a9a80de28ca5e5500cb2b82eb72d550de644bd1b64b',1,'marvin::dsp::oscillators::MultiOscillator']]],
   ['trioscillator_5',['TriOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html',1,'marvin::dsp::oscillators']]],
   ['trioscillator_3c_20sampletype_2c_20bandlimiting_3a_3aoff_20_3e_6',['TriOscillator&lt; SampleType, Bandlimiting::Off &gt;',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html',1,'marvin::dsp::oscillators']]],
