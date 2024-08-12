@@ -17,7 +17,8 @@ namespace mostly_harmless::testing {
             };
             taskThread.action = std::move(task);
             taskThread.perform();
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            // give it a bit of time to spin up.. (remember that this is a syscall)
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
             REQUIRE(taskThread.isThreadRunning());
             // Sleep for a ms so the task has a chance to acquire the mutex..
             std::this_thread::sleep_for(std::chrono::milliseconds(1));

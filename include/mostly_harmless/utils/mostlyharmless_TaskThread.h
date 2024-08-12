@@ -18,6 +18,8 @@ namespace mostly_harmless::utils {
     public:
         /**
          * Starts the thread, with the user provided `action` lambda if it has been assigned - if it hasn't, asserts false and exits.
+         * Note that launching a thread is a syscall, and thus can take an unbounded amount of time - so this is *not* realtime safe,
+         * and you can't really make any assumptions about how long until isThreadRunning() will return true.
          */
         void perform();
 
