@@ -20,6 +20,9 @@ namespace mostly_harmless::events {
         double value;
     };
 
+    /**
+     * \brief POD type representing a param change event from the gui, to be passed to the audio thread.
+     */
     struct GuiToProcParamEvent {
         /**
          * Represents the type of event sent by the gui.
