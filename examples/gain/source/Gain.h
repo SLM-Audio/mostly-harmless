@@ -21,7 +21,7 @@ namespace examples::gain {
         void process(marvin::containers::BufferView<float> buffer, mostly_harmless::events::InputEventContext eventContext) noexcept override;
         void flushParams(mostly_harmless::events::InputEventContext eventContext) noexcept override;
         void reset() noexcept override;
-        std::unique_ptr<mostly_harmless::gui::IEditor> createEditor(mostly_harmless::gui::EditorContext context) noexcept override;
+        std::unique_ptr<mostly_harmless::gui::IEditor> createEditor() noexcept override;
 
     private:
         Parameters m_params;

@@ -39,8 +39,8 @@ namespace examples::gain {
 
     }
 
-    std::unique_ptr<mostly_harmless::gui::IEditor> Gain::createEditor(mostly_harmless::gui::EditorContext context) noexcept {
-        return std::make_unique<GainEditor>(std::move(context), 500, 500);
+    std::unique_ptr<mostly_harmless::gui::IEditor> Gain::createEditor() noexcept {
+        return std::make_unique<GainEditor>(500, 500);
     }
 
 

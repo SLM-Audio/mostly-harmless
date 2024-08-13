@@ -9,8 +9,8 @@
 namespace examples::gain {
     class GainEditor : public mostly_harmless::gui::WebviewEditor {
     public:
-        GainEditor(mostly_harmless::gui::EditorContext context, std::uint32_t width, std::uint32_t height);
-        void initialise() override;
+        GainEditor(std::uint32_t width, std::uint32_t height);
+        void initialise(mostly_harmless::gui::EditorContext context) override;
         void onParamEvent(mostly_harmless::events::ProcToGuiParamEvent event) override;
     };
 } // namespace examples::gain

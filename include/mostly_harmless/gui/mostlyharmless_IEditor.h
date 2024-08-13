@@ -6,26 +6,22 @@
 #include <cstdint>
 namespace mostly_harmless::gui {
     /**
-     * \brief (Almost) interface for custom gui editors to implement.
+     * \brief Interface for custom gui editors to implement.
      *
      * To use a framework of your choosing, you'll need to subclass this interface, and implement all its methods.
-     * Provides a pointer to a rt/thread safe fifo for messaging between the message thread and the audio thread.
      */
     struct IEditor {
-        /**
-         * The non abstract part - We need some additional context to set up gui to proc communication, and a hook into the clap host, to request param flushes.
-         * In practice, this means your derived class will need to call this contructor in its init list.
-         * \param context An editor context with the necessary state - use the one provided by Plugin::createEditor()!
-         */
-        explicit IEditor(EditorContext context);
         /**
          * Virtual destructor.
          */
         virtual ~IEditor() noexcept = default;
         /**
          * Called immediately after the gui is created, any setup should be done here.
+         * We pass in an EditorContext here, for access to the guiToProcQueue, and a hook to request the host flushes params.
+         * You can do whatever you like with the context (including keeping it as a member variable).
+         * \param context The editor context (see EditorContext for more details).
          */
-        virtual void initialise() = 0;
+        virtual void initialise(EditorContext context) = 0;
         /**
          * Called when the editor is closed.
          */
@@ -60,12 +56,6 @@ namespace mostly_harmless::gui {
          * Called via the internal gui dispatch thread when a new parameter event is sent by the host - use this hook to sync the changes with the gui!
          */
         virtual void onParamEvent(events::ProcToGuiParamEvent event) = 0;
-
-    protected:
-        /**
-         * An instance of EditorContext containing the additional data necessary for comms with the audio thread - see the EditorContext struct's docs for more info.
-         */
-        EditorContext m_context;
     };
 } // namespace mostly_harmless::gui
 
