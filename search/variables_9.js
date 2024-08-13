@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['paramid_0',['paramId',['../structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html#a3290160cca2e4520d5974538f031d053',1,'mostly_harmless::events::ProcToGuiParamEvent::paramId'],['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a2e5f82a1a4547ce65eb468f83d29181d',1,'mostly_harmless::events::GuiToProcParamEvent::paramId']]],
-  ['pid_1',['pid',['../structmostly__harmless_1_1Parameter.html#a7d58630afd519a2f36f7543748f884e0',1,'mostly_harmless::Parameter']]]
+  ['name_0',['name',['../structmostly__harmless_1_1Parameter.html#a155799ccb04b1c10b66d035ec1d323c8',1,'mostly_harmless::Parameter']]],
+  ['normalisedbandpass_1',['normalisedBandpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#aded88e35933d10bb8e4b46a2942e85e2',1,'marvin::dsp::filters::SVFResult']]],
+  ['notch_2',['notch',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#abe540699d1380e009c83b32fb2c2285b',1,'marvin::dsp::filters::SVFResult']]]
 ];

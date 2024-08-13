@@ -26,5 +26,6 @@ var searchData=
   ['getvaluetype_3c_20t_20_3e_23',['getValueType&lt; T &gt;',['../structmarvin_1_1dsp_1_1spectral_1_1getValueType_3_01T_01_4.html',1,'marvin::dsp::spectral']]],
   ['getviewsize_24',['getViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9',1,'mostly_harmless::gui::helpers::macos']]],
   ['gui_25',['gui',['../index.html#autotoc_md5',1,'']]],
-  ['guitoprocparamevent_26',['GuiToProcParamEvent',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html',1,'mostly_harmless::events']]]
+  ['guitoprocparamevent_26',['GuiToProcParamEvent',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html',1,'mostly_harmless::events']]],
+  ['guitoprocqueue_27',['guiToProcQueue',['../structmostly__harmless_1_1gui_1_1EditorContext.html#a6b5d167c9f763dcc1beff24e4bff52f4',1,'mostly_harmless::gui::EditorContext']]]
 ];

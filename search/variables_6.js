@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lowpass_0',['lowpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#a4e103160cfae22ce40888bdc66db80ba',1,'marvin::dsp::filters::SVFResult']]],
-  ['lowshelf_1',['lowShelf',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#ac48f3579d2f5c7edaac1485818f8b647',1,'marvin::dsp::filters::SVFResult']]]
+  ['highpass_0',['highpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#afb48a3e840e231dac88e3174baaa2387',1,'marvin::dsp::filters::SVFResult']]],
+  ['highshelf_1',['highShelf',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#a56a0cf977c2569d42a807237d5d1321b',1,'marvin::dsp::filters::SVFResult']]]
 ];
