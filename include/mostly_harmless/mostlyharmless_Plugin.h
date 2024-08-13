@@ -1,7 +1,7 @@
 #ifndef MOSTLYHARMLESS_PLUGIN_H
 #define MOSTLYHARMLESS_PLUGIN_H
 #include <mostly_harmless/mostlyharmless_Descriptor.h>
-#include <mostly_harmless/mostlyharmless_EventContext.h>
+#include "mostly_harmless/events/mostlyharmless_InputEventContext.h"
 #include <mostly_harmless/mostlyharmless_Parameters.h>
 #include <mostly_harmless/gui/mostlyharmless_IEditor.h>
 #include <mostly_harmless/utils/mostlyharmless_Timer.h>
@@ -79,14 +79,14 @@ namespace mostly_harmless {
          * The main audio processing function (will run on the audio thread). All audio process should be done in (or called from) this function.
          * We provide a convenience function to handle the events in the EventContext, for more info see Plugin::pollEventQueue.
          * \param buffer A non owning view into the host provided buffer.
-         * \param eventContext A trivially copyable wrapper around the host provided clap event queue.
+         * \param inputEventTonext A trivially copyable wrapper around the host provided clap input event queue.
          */
-        virtual void process(marvin::containers::BufferView<SampleType> buffer, EventContext eventContext) noexcept = 0;
+        virtual void process(marvin::containers::BufferView<SampleType> buffer, InputEventContext inputEventContext) noexcept = 0;
         /**
          * Called when audio processing is bypassed, to allow param updates to continue to update the gui.
-         * \param eventContext A trivially copyable wrapper around the host provided clap event queue.
+         * \param inputEventContext A trivially copyable wrapper around the host provided clap event queue.
          */
-        virtual void flushParams(EventContext eventContext) noexcept = 0;
+        virtual void flushParams(InputEventContext inputEventContext) noexcept = 0;
 
         /**
          * Called to clear all audio buffers, and state, etc.
@@ -110,15 +110,15 @@ namespace mostly_harmless {
         /**
             Convenience function to handle incoming events for the current sample
             \param currentSample The index of the current sample into the block.
-            \param context The EventContext containing the event queue.
+            \param context The InputEventContext containing the event queue.
          */
-        void pollEventQueue(size_t currentSample, EventContext context) noexcept;
+        void pollEventQueue(size_t currentSample, InputEventContext context) noexcept;
 
         /**
          *  Convenience function to handle all incoming events for the current block.
-         *  \param eventContext The EventContext containing the event queue.
+         *  \param context InputEventContext containing the event queue.
          */
-        void pollEventQueue(EventContext context) noexcept;
+        void pollEventQueue(InputEventContext context) noexcept;
 
         /**
             Called Internally by pollEventQueue when a midi note on message is received.
@@ -144,6 +144,7 @@ namespace mostly_harmless {
         clap_process_status process(const clap_process* processContext) noexcept override;
         void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
         void handleEvent(const clap_event_header_t* event) noexcept;
+        void handleGuiEvents(const clap_output_events_t* outputQueue) noexcept;
 
         [[nodiscard]] bool implementsParams() const noexcept override;
         [[nodiscard]] bool isValidParamId(clap_id paramId) const noexcept override;
@@ -172,10 +173,19 @@ namespace mostly_harmless {
     private:
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
-        marvin::containers::fifos::SPSC<events::ParamEvent> m_procToGuiQueue;
         utils::Timer m_guiDispatchThread;
-
         std::unique_ptr<gui::IEditor> m_editor{ nullptr };
+    protected:
+        /**
+         * Realtime/thread-safe fifo used for posting param updates to the gui thread. Used internally by both overloads of pollEventQueue().
+         */
+        marvin::containers::fifos::SPSC<events::ProcToGuiParamEvent> m_procToGuiQueue;
+        /**
+         * Realtime/thread-safe fifo used for posting param updates from the gui to the audio thread. gui::IEditor gets a pointer to this queue.
+         */
+        marvin::containers::fifos::SPSC<events::GuiToProcParamEvent> m_guiToProcQueue;
+
+
     };
 } // namespace mostly_harmless
 #endif

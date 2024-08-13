@@ -1,24 +1,24 @@
-#ifndef MOSTLYHARMLESS_EVENTCONTEXT_H
-#define MOSTLYHARMLESS_EVENTCONTEXT_H
+#ifndef MOSTLYHARMLESS_INPUTEVENTCONTEXT_H
+#define MOSTLYHARMLESS_INPUTEVENTCONTEXT_H
 #include "clap/events.h"
 namespace mostly_harmless {
     /**
      * \brief Trivially copyable wrapper around the clap-api provided `clap_input_events` queue, for easier iterating.
      *
      */
-    struct EventContext {
+    struct InputEventContext {
         /**
          * \param inputEventQueue The clap provided clap_input_events queue.
          */
-        explicit EventContext(const clap_input_events_t* inputEventQueue);
+        explicit InputEventContext(const clap_input_events_t* inputEventQueue);
         /**
          * Prefix increment - Advances the internal iterator to the next event in the queue.
          */
-        EventContext& operator++();
+        InputEventContext& operator++();
         /**
          * Postfix increment - Advances the internal iterator to the next event in the queue.
          */
-        EventContext operator++(int);
+        InputEventContext operator++(int);
 
         /**
          * Attempts to access the next event in the queue - note that this could be a nullptr.

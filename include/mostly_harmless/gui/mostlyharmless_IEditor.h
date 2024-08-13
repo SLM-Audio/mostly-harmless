@@ -1,12 +1,14 @@
 #ifndef MOSTLYHARMLESS_IEDITOR_H
 #define MOSTLYHARMLESS_IEDITOR_H
 #include <mostly_harmless/events/mostlyharmless_ParamEvent.h>
+#include <marvin/containers/marvin_FIFO.h>
 #include <cstdint>
 namespace mostly_harmless::gui {
     /**
      * \brief Interface for custom gui editors to implement.
      *
      * To use a framework of your choosing, you'll need to subclass this interface, and implement all its methods.
+     * Provides a pointer to a rt/thread safe fifo for messaging between the message thread and the audio thread.
      */
     struct IEditor {
         /**
@@ -50,7 +52,16 @@ namespace mostly_harmless::gui {
         /**
          * Called via the internal gui dispatch thread when a new parameter event is sent by the host - use this hook to sync the changes with the gui!
          */
-        virtual void onParamEvent(events::ParamEvent event) = 0;
+        virtual void onParamEvent(events::ProcToGuiParamEvent event) = 0;
+
+        /// \private
+        void setGuiToProcQueue(marvin::containers::fifos::SPSC<events::GuiToProcParamEvent>* queue);
+    protected:
+        /**
+         * A pointer to a realtime-safe, thread-safe fifo, for pushing param events from the gui back to the audio thread.
+         * This will be assigned *before* initialise() is called.
+         */
+        marvin::containers::fifos::SPSC<events::GuiToProcParamEvent>* m_guiToProcQueue{ nullptr };
     };
 } // namespace mostly_harmless::gui
 

@@ -9,7 +9,8 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     Plugin<SampleType>::Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
                                                                                                      m_indexedParams(std::move(params)),
-                                                                                                     m_procToGuiQueue(100) {
+                                                                                                     m_procToGuiQueue(100),
+                                                                                                     m_guiToProcQueue(100){
         for (auto& p : m_indexedParams) {
             m_idParams.emplace(p.pid, &p);
         }
@@ -39,10 +40,11 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     clap_process_status Plugin<SampleType>::process(const clap_process* processContext) noexcept {
-        EventContext context{ processContext->in_events };
+        InputEventContext context{ processContext->in_events };
         if (processContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
+        handleGuiEvents(processContext->out_events);
         // If our input data != our output data, do a copy..
         const auto* inputData = processContext->audio_inputs;
         auto* outputData = processContext->audio_outputs;
@@ -64,7 +66,7 @@ namespace mostly_harmless {
                 std::memcpy(outDataPtr[i], inDataPtr[i], sizeof(SampleType) * processContext->frames_count);
             }
         }
-        // Okay cool - thats taken care of, now make a BufferView..
+        // Okay cool - that's taken care of, now make a BufferView..
         marvin::containers::BufferView<SampleType> bufferView{ outDataPtr, outputData->channel_count, processContext->frames_count };
         // and then call the virtual process function..
         process(bufferView, context);
@@ -73,12 +75,12 @@ namespace mostly_harmless {
 
     template<marvin::FloatType SampleType>
     void Plugin<SampleType>::paramsFlush(const clap_input_events* in, const clap_output_events* /*out*/) noexcept { // TODO: OUTPUT!
-        EventContext inContext{ in };
+        InputEventContext inContext{ in };
         flushParams(inContext);
     }
 
     template <marvin::FloatType SampleType>
-    void Plugin<SampleType>::pollEventQueue(size_t currentSample, EventContext context) noexcept {
+    void Plugin<SampleType>::pollEventQueue(size_t currentSample, InputEventContext context) noexcept {
         while (context.next() && context.next()->time == currentSample) {
             handleEvent(context.next());
             ++context;
@@ -86,10 +88,51 @@ namespace mostly_harmless {
     }
 
     template<marvin::FloatType SampleType>
-    void Plugin<SampleType>::pollEventQueue(mostly_harmless::EventContext context) noexcept {
+    void Plugin<SampleType>::pollEventQueue(mostly_harmless::InputEventContext context) noexcept {
         while(context.next()) {
             handleEvent(context.next());
             ++context;
+        }
+    }
+
+    template<marvin::FloatType SampleType>
+    void Plugin<SampleType>::handleGuiEvents(const clap_output_events_t* outputQueue) noexcept {
+        using EventType = events::GuiToProcParamEvent::Type;
+        while(auto guiEvent = m_guiToProcQueue.tryPop()) {
+            [[maybe_unused]] const auto [type, id, value] = *guiEvent;
+            switch(type) {
+                case EventType::Begin: [[fallthrough]];
+                case EventType::End: {
+                    auto ev = clap_event_param_gesture();
+                    ev.header.size = sizeof(clap_event_param_gesture);
+                    ev.header.type = type == EventType::Begin ? static_cast<std::uint16_t>(CLAP_EVENT_PARAM_GESTURE_BEGIN) : static_cast<std::uint16_t>(CLAP_EVENT_PARAM_GESTURE_END);
+                    ev.header.time = 0;
+                    ev.header.space_id = CLAP_CORE_EVENT_SPACE_ID;
+                    ev.header.flags = 0;
+                    ev.param_id = id;
+                    outputQueue->try_push(outputQueue, &ev.header);
+                    // then push this into the output queue.
+                    break;
+                }
+                case EventType::Adjust: {
+                    auto* param = m_idParams.at(id);
+                    param->value = static_cast<SampleType>(value);
+
+                    // And then tell the host..
+                    auto ev = clap_event_param_value();
+                    ev.header.size = sizeof(clap_event_param_value);
+                    ev.header.type = static_cast<std::uint16_t>(CLAP_EVENT_PARAM_VALUE);
+                    ev.header.time = 0; // clap-saw-demo has an ominous "for now..." here, so TODO: find out why
+                    ev.header.space_id = CLAP_CORE_EVENT_SPACE_ID;
+                    ev.header.flags = 0;
+                    ev.param_id = id;
+                    ev.value = value;
+                    outputQueue->try_push(outputQueue, &ev.header);
+                    // Then push this into the output queue.
+
+                }
+                default: break;
+            }
         }
     }
 
@@ -101,7 +144,11 @@ namespace mostly_harmless {
                 const auto v = reinterpret_cast<const clap_event_param_value*>(event);
                 const auto id = v->param_id;
                 const auto paramValue = v->value;
-                m_idParams.at(id)->value = static_cast<SampleType>(paramValue);
+                auto* param = static_cast<Parameter<SampleType>*>(v->cookie);
+                if(!param) [[unlikely]] {
+                    param = m_idParams.at(id);
+                }
+                param->value = static_cast<SampleType>(paramValue);
                 // Also inform the UI
                 m_procToGuiQueue.tryPush({id, paramValue});
                 break;
@@ -162,7 +209,7 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::paramsInfo(std::uint32_t paramIndex, clap_param_info* info) const noexcept {
         if (paramIndex >= m_indexedParams.size()) return false;
-        const auto& param = m_indexedParams[paramIndex];
+        auto& param = m_indexedParams[paramIndex];
         info->id = param.pid;
         info->flags = param.flags;
         strncpy(info->name, param.name.c_str(), CLAP_NAME_SIZE);
@@ -171,6 +218,7 @@ namespace mostly_harmless {
         info->min_value = min;
         info->max_value = max;
         info->default_value = param.defaultValue;
+        info->cookie = (void*)&param;
         return true;
     }
 
@@ -301,8 +349,9 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiCreate(const char* /*api*/, bool /*isFloating*/) noexcept {
         m_editor = createEditor();
+        m_editor->setGuiToProcQueue(&m_guiToProcQueue);
         m_editor->initialise();
-        m_guiDispatchThread.run(100);
+        m_guiDispatchThread.run(1);
         return true;
     }
 

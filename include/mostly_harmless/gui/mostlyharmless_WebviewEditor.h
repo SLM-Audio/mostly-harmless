@@ -58,7 +58,7 @@ namespace mostly_harmless::gui {
          * Still pure virtual - you need to implement this to send data to your webview.
          * see IEditor::onParamEvent() for more details.
          */
-        void onParamEvent(events::ParamEvent event) override = 0;
+        void onParamEvent(events::ProcToGuiParamEvent event) override = 0;
 
 
     private:
