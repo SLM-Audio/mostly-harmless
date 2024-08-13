@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ieditor_0',['IEditor',['../structmostly__harmless_1_1gui_1_1IEditor.html',1,'mostly_harmless::gui']]],
-  ['iterator_1',['iterator',['../classmarvin_1_1containers_1_1StrideView_1_1iterator.html',1,'marvin::containers::StrideView']]]
+  ['latticeapf_0',['LatticeAPF',['../classmarvin_1_1dsp_1_1filters_1_1LatticeAPF.html',1,'marvin::dsp::filters']]],
+  ['leakyintegrator_1',['LeakyIntegrator',['../classmarvin_1_1math_1_1LeakyIntegrator.html',1,'marvin::math']]],
+  ['lpf_2',['LPF',['../classmarvin_1_1dsp_1_1filters_1_1LPF.html',1,'marvin::dsp::filters']]]
 ];

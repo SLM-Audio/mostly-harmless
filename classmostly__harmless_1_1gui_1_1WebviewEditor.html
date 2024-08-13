@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a72e3c5f89a2f1c71fb412faa89120a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66967191f5c07628faad58b680698962" id="r_a66967191f5c07628faad58b680698962"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66967191f5c07628faad58b680698962">hide</a> () override</td></tr>
 <tr class="separator:a66967191f5c07628faad58b680698962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a335da478644cfef672a5b7b1e8627bfd" id="r_a335da478644cfef672a5b7b1e8627bfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a335da478644cfef672a5b7b1e8627bfd">onParamEvent</a> (<a class="el" href="structmostly__harmless_1_1events_1_1ParamEvent.html">events::ParamEvent</a> event) override=0</td></tr>
-<tr class="separator:a335da478644cfef672a5b7b1e8627bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a935764965046b22ecf1cc45fb8722835" id="r_a935764965046b22ecf1cc45fb8722835"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a935764965046b22ecf1cc45fb8722835">onParamEvent</a> (<a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> event) override=0</td></tr>
+<tr class="separator:a935764965046b22ecf1cc45fb8722835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structmostly__harmless_1_1gui_1_1IEditor"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structmostly__harmless_1_1gui_1_1IEditor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html">mostly_harmless::gui::IEditor</a></td></tr>
 <tr class="memitem:a5b2af5e5e8fa4048caffb6dc63695f08 inherit pub_methods_structmostly__harmless_1_1gui_1_1IEditor" id="r_a5b2af5e5e8fa4048caffb6dc63695f08"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a5b2af5e5e8fa4048caffb6dc63695f08">~IEditor</a> () noexcept=default</td></tr>
 <tr class="separator:a5b2af5e5e8fa4048caffb6dc63695f08 inherit pub_methods_structmostly__harmless_1_1gui_1_1IEditor"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,6 +140,9 @@ Public Member Functions</h2></td></tr>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a53781d868c90bee7fb84ea5c6e896e88" id="r_a53781d868c90bee7fb84ea5c6e896e88"><td class="memItemLeft" align="right" valign="top">choc::ui::WebView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53781d868c90bee7fb84ea5c6e896e88">m_internalWebview</a> { nullptr }</td></tr>
 <tr class="separator:a53781d868c90bee7fb84ea5c6e896e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_structmostly__harmless_1_1gui_1_1IEditor"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_structmostly__harmless_1_1gui_1_1IEditor')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html">mostly_harmless::gui::IEditor</a></td></tr>
+<tr class="memitem:a7ca907a78616812bce80db8699ef1b14 inherit pro_attribs_structmostly__harmless_1_1gui_1_1IEditor" id="r_a7ca907a78616812bce80db8699ef1b14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a7ca907a78616812bce80db8699ef1b14">m_guiToProcQueue</a> { nullptr }</td></tr>
+<tr class="separator:a7ca907a78616812bce80db8699ef1b14 inherit pro_attribs_structmostly__harmless_1_1gui_1_1IEditor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Convenience wrapper layer implementing the creation and management of a <code>choc::ui::WebView</code>. </p>
@@ -316,8 +319,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a335da478644cfef672a5b7b1e8627bfd" name="a335da478644cfef672a5b7b1e8627bfd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a335da478644cfef672a5b7b1e8627bfd">&#9670;&#160;</a></span>onParamEvent()</h2>
+<a id="a935764965046b22ecf1cc45fb8722835" name="a935764965046b22ecf1cc45fb8722835"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a935764965046b22ecf1cc45fb8722835">&#9670;&#160;</a></span>onParamEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -328,7 +331,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void mostly_harmless::gui::WebviewEditor::onParamEvent </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1ParamEvent.html">events::ParamEvent</a></td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a></td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -338,9 +341,9 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Still pure virtual - you need to implement this to send data to your webview. see <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a55fc5d5088a5ad03a61699df11f77d7e">IEditor::onParamEvent()</a> for more details. </p>
+<p>Still pure virtual - you need to implement this to send data to your webview. see <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ad337fb3843ff8f8df44acbd45876c928">IEditor::onParamEvent()</a> for more details. </p>
 
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a55fc5d5088a5ad03a61699df11f77d7e">mostly_harmless::gui::IEditor</a>.</p>
+<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ad337fb3843ff8f8df44acbd45876c928">mostly_harmless::gui::IEditor</a>.</p>
 
 </div>
 </div>

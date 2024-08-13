@@ -91,6 +91,7 @@ $(function(){ initResizable(false); });
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classmostly__harmless_1_1Plugin-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">mostly_harmless::Plugin&lt; SampleType &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
@@ -115,10 +116,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3ef8af0e6428160331a1bac46f712b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a401b593740d7d5e79040cc82b44a004f" id="r_a401b593740d7d5e79040cc82b44a004f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a401b593740d7d5e79040cc82b44a004f">initialise</a> (double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept=0</td></tr>
 <tr class="separator:a401b593740d7d5e79040cc82b44a004f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98b811fae66d4c1179bf9d4c6f33f6f7" id="r_a98b811fae66d4c1179bf9d4c6f33f6f7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98b811fae66d4c1179bf9d4c6f33f6f7">process</a> (<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt; buffer, <a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a> eventContext) noexcept=0</td></tr>
-<tr class="separator:a98b811fae66d4c1179bf9d4c6f33f6f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a576f45853dc4db28a8c0cd73a4c54f40" id="r_a576f45853dc4db28a8c0cd73a4c54f40"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a576f45853dc4db28a8c0cd73a4c54f40">flushParams</a> (<a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a> eventContext) noexcept=0</td></tr>
-<tr class="separator:a576f45853dc4db28a8c0cd73a4c54f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad258e7a47e4341034aeacb6b3770fe61" id="r_ad258e7a47e4341034aeacb6b3770fe61"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad258e7a47e4341034aeacb6b3770fe61">process</a> (<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt; buffer, <a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a> inputEventContext) noexcept=0</td></tr>
+<tr class="separator:ad258e7a47e4341034aeacb6b3770fe61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce23b52084f34c859780b06f7e2be93" id="r_a8ce23b52084f34c859780b06f7e2be93"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ce23b52084f34c859780b06f7e2be93">flushParams</a> (<a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a> inputEventContext) noexcept=0</td></tr>
+<tr class="separator:a8ce23b52084f34c859780b06f7e2be93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2991930a537becc59d0d4e781f6b9d3a" id="r_a2991930a537becc59d0d4e781f6b9d3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2991930a537becc59d0d4e781f6b9d3a">reset</a> () noexcept override=0</td></tr>
 <tr class="separator:a2991930a537becc59d0d4e781f6b9d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ec42aac320bd9909ef150958861121f" id="r_a5ec42aac320bd9909ef150958861121f"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html">gui::IEditor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ec42aac320bd9909ef150958861121f">createEditor</a> () noexcept=0</td></tr>
@@ -128,14 +129,21 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a87aaf0cab05e489ec01a78c5b2829799" id="r_a87aaf0cab05e489ec01a78c5b2829799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmostly__harmless_1_1Parameter.html">Parameter</a>&lt; SampleType &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87aaf0cab05e489ec01a78c5b2829799">getParameter</a> (clap_id id) noexcept</td></tr>
 <tr class="separator:a87aaf0cab05e489ec01a78c5b2829799"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70f06fae59c5b03897b6e9093d235cc9" id="r_a70f06fae59c5b03897b6e9093d235cc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70f06fae59c5b03897b6e9093d235cc9">pollEventQueue</a> (size_t currentSample, <a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a> context) noexcept</td></tr>
-<tr class="separator:a70f06fae59c5b03897b6e9093d235cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae06a0d6d7ec531fd122d22fbf09d4d8" id="r_aae06a0d6d7ec531fd122d22fbf09d4d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae06a0d6d7ec531fd122d22fbf09d4d8">pollEventQueue</a> (<a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a> context) noexcept</td></tr>
-<tr class="separator:aae06a0d6d7ec531fd122d22fbf09d4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac960b9c13c3b65379fcccc2e754d25f2" id="r_ac960b9c13c3b65379fcccc2e754d25f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac960b9c13c3b65379fcccc2e754d25f2">pollEventQueue</a> (size_t currentSample, <a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a> context) noexcept</td></tr>
+<tr class="separator:ac960b9c13c3b65379fcccc2e754d25f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb68c6f1284c0dcfd5348db4566251a" id="r_a6cb68c6f1284c0dcfd5348db4566251a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cb68c6f1284c0dcfd5348db4566251a">pollEventQueue</a> (<a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a> context) noexcept</td></tr>
+<tr class="separator:a6cb68c6f1284c0dcfd5348db4566251a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac57c1551038a2c3b29e92088a8b7d4c5" id="r_ac57c1551038a2c3b29e92088a8b7d4c5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac57c1551038a2c3b29e92088a8b7d4c5">handleNoteOn</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity)</td></tr>
 <tr class="separator:ac57c1551038a2c3b29e92088a8b7d4c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850e13473b306db92b9ed7799f92fbf7" id="r_a850e13473b306db92b9ed7799f92fbf7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a850e13473b306db92b9ed7799f92fbf7">handleNoteOff</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity)</td></tr>
 <tr class="separator:a850e13473b306db92b9ed7799f92fbf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a025d6e0586046f61609ccbd48b0fd86f" id="r_a025d6e0586046f61609ccbd48b0fd86f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a025d6e0586046f61609ccbd48b0fd86f">m_procToGuiQueue</a></td></tr>
+<tr class="separator:a025d6e0586046f61609ccbd48b0fd86f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb54739e3a984b00349d490de1922dd8" id="r_adb54739e3a984b00349d490de1922dd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb54739e3a984b00349d490de1922dd8">m_guiToProcQueue</a></td></tr>
+<tr class="separator:adb54739e3a984b00349d490de1922dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt;<br />
@@ -251,8 +259,8 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 
 </div>
 </div>
-<a id="a576f45853dc4db28a8c0cd73a4c54f40" name="a576f45853dc4db28a8c0cd73a4c54f40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a576f45853dc4db28a8c0cd73a4c54f40">&#9670;&#160;</a></span>flushParams()</h2>
+<a id="a8ce23b52084f34c859780b06f7e2be93" name="a8ce23b52084f34c859780b06f7e2be93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ce23b52084f34c859780b06f7e2be93">&#9670;&#160;</a></span>flushParams()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +273,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="memname">virtual void <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::flushParams </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a></td>          <td class="paramname"><span class="paramname"><em>eventContext</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a></td>          <td class="paramname"><span class="paramname"><em>inputEventContext</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -277,7 +285,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 </div><div class="memdoc">
 <p>Called when audio processing is bypassed, to allow param updates to continue to update the gui. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">eventContext</td><td>A trivially copyable wrapper around the host provided clap event queue. </td></tr>
+    <tr><td class="paramname">inputEventContext</td><td>A trivially copyable wrapper around the host provided clap event queue. </td></tr>
   </table>
   </dd>
 </dl>
@@ -462,8 +470,8 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 
 </div>
 </div>
-<a id="aae06a0d6d7ec531fd122d22fbf09d4d8" name="aae06a0d6d7ec531fd122d22fbf09d4d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae06a0d6d7ec531fd122d22fbf09d4d8">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[1/2]</span></h2>
+<a id="a6cb68c6f1284c0dcfd5348db4566251a" name="a6cb68c6f1284c0dcfd5348db4566251a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb68c6f1284c0dcfd5348db4566251a">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -476,7 +484,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="memname">void <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::pollEventQueue </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -488,15 +496,15 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 </div><div class="memdoc">
 <p>Convenience function to handle all incoming events for the current block. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">eventContext</td><td>The <a class="el" href="structmostly__harmless_1_1EventContext.html" title="Trivially copyable wrapper around the clap-api provided clap_input_events queue, for easier iterating...">EventContext</a> containing the event queue. </td></tr>
+    <tr><td class="paramname">context</td><td><a class="el" href="structmostly__harmless_1_1InputEventContext.html" title="Trivially copyable wrapper around the clap-api provided clap_input_events queue, for easier iterating...">InputEventContext</a> containing the event queue. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a70f06fae59c5b03897b6e9093d235cc9" name="a70f06fae59c5b03897b6e9093d235cc9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70f06fae59c5b03897b6e9093d235cc9">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[2/2]</span></h2>
+<a id="ac960b9c13c3b65379fcccc2e754d25f2" name="ac960b9c13c3b65379fcccc2e754d25f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac960b9c13c3b65379fcccc2e754d25f2">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -514,7 +522,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -526,15 +534,15 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 <p>Convenience function to handle incoming events for the current sample </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">currentSample</td><td>The index of the current sample into the block. </td></tr>
-    <tr><td class="paramname">context</td><td>The <a class="el" href="structmostly__harmless_1_1EventContext.html" title="Trivially copyable wrapper around the clap-api provided clap_input_events queue, for easier iterating...">EventContext</a> containing the event queue. </td></tr>
+    <tr><td class="paramname">context</td><td>The <a class="el" href="structmostly__harmless_1_1InputEventContext.html" title="Trivially copyable wrapper around the clap-api provided clap_input_events queue, for easier iterating...">InputEventContext</a> containing the event queue. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a98b811fae66d4c1179bf9d4c6f33f6f7" name="a98b811fae66d4c1179bf9d4c6f33f6f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98b811fae66d4c1179bf9d4c6f33f6f7">&#9670;&#160;</a></span>process()</h2>
+<a id="ad258e7a47e4341034aeacb6b3770fe61" name="ad258e7a47e4341034aeacb6b3770fe61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad258e7a47e4341034aeacb6b3770fe61">&#9670;&#160;</a></span>process()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -552,7 +560,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1EventContext.html">EventContext</a></td>          <td class="paramname"><span class="paramname"><em>eventContext</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1InputEventContext.html">InputEventContext</a></td>          <td class="paramname"><span class="paramname"><em>inputEventContext</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -561,10 +569,10 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The main audio processing function (will run on the audio thread). All audio process should be done in (or called from) this function. We provide a convenience function to handle the events in the <a class="el" href="structmostly__harmless_1_1EventContext.html" title="Trivially copyable wrapper around the clap-api provided clap_input_events queue, for easier iterating...">EventContext</a>, for more info see <a class="el" href="#a70f06fae59c5b03897b6e9093d235cc9">Plugin::pollEventQueue</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The main audio processing function (will run on the audio thread). All audio process should be done in (or called from) this function. We provide a convenience function to handle the events in the EventContext, for more info see <a class="el" href="#ac960b9c13c3b65379fcccc2e754d25f2">Plugin::pollEventQueue</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buffer</td><td>A non owning view into the host provided buffer. </td></tr>
-    <tr><td class="paramname">eventContext</td><td>A trivially copyable wrapper around the host provided clap event queue. </td></tr>
+    <tr><td class="paramname">inputEventTonext</td><td>A trivially copyable wrapper around the host provided clap input event queue. </td></tr>
   </table>
   </dd>
 </dl>
@@ -596,6 +604,57 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 </table>
 </div><div class="memdoc">
 <p>Called to clear all audio buffers, and state, etc. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="adb54739e3a984b00349d490de1922dd8" name="adb54739e3a984b00349d490de1922dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb54739e3a984b00349d490de1922dd8">&#9670;&#160;</a></span>m_guiToProcQueue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt;<a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a>&gt; <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::m_guiToProcQueue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Realtime/thread-safe fifo used for posting param updates from the gui to the audio thread. <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html" title="Interface for custom gui editors to implement.">gui::IEditor</a> gets a pointer to this queue. </p>
+
+</div>
+</div>
+<a id="a025d6e0586046f61609ccbd48b0fd86f" name="a025d6e0586046f61609ccbd48b0fd86f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a025d6e0586046f61609ccbd48b0fd86f">&#9670;&#160;</a></span>m_procToGuiQueue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt;<a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a>&gt; <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::m_procToGuiQueue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Realtime/thread-safe fifo used for posting param updates to the gui thread. Used internally by both overloads of <a class="el" href="#ac960b9c13c3b65379fcccc2e754d25f2">pollEventQueue()</a>. </p>
 
 </div>
 </div>

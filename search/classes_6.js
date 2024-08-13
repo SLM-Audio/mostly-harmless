@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['hadamard_0',['Hadamard',['../classmarvin_1_1math_1_1Hadamard.html',1,'marvin::math']]],
-  ['householder_1',['Householder',['../classmarvin_1_1math_1_1Householder.html',1,'marvin::math']]]
+  ['ieditor_0',['IEditor',['../structmostly__harmless_1_1gui_1_1IEditor.html',1,'mostly_harmless::gui']]],
+  ['inputeventcontext_1',['InputEventContext',['../structmostly__harmless_1_1InputEventContext.html',1,'mostly_harmless']]],
+  ['iterator_2',['iterator',['../classmarvin_1_1containers_1_1StrideView_1_1iterator.html',1,'marvin::containers::StrideView']]]
 ];
