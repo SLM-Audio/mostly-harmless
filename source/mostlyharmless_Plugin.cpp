@@ -40,7 +40,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     clap_process_status Plugin<SampleType>::process(const clap_process* processContext) noexcept {
-        InputEventContext context{ processContext->in_events };
+       events::InputEventContext context{ processContext->in_events };
         if (processContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
@@ -75,12 +75,12 @@ namespace mostly_harmless {
 
     template<marvin::FloatType SampleType>
     void Plugin<SampleType>::paramsFlush(const clap_input_events* in, const clap_output_events* /*out*/) noexcept { // TODO: OUTPUT!
-        InputEventContext inContext{ in };
+        events::InputEventContext inContext{ in };
         flushParams(inContext);
     }
 
     template <marvin::FloatType SampleType>
-    void Plugin<SampleType>::pollEventQueue(size_t currentSample, InputEventContext context) noexcept {
+    void Plugin<SampleType>::pollEventQueue(size_t currentSample, events::InputEventContext context) noexcept {
         while (context.next() && context.next()->time == currentSample) {
             handleEvent(context.next());
             ++context;
@@ -88,7 +88,7 @@ namespace mostly_harmless {
     }
 
     template<marvin::FloatType SampleType>
-    void Plugin<SampleType>::pollEventQueue(mostly_harmless::InputEventContext context) noexcept {
+    void Plugin<SampleType>::pollEventQueue(events::InputEventContext context) noexcept {
         while(context.next()) {
             handleEvent(context.next());
             ++context;

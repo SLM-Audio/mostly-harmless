@@ -18,7 +18,7 @@ namespace examples::gain {
     void Gain::initialise(double, std::uint32_t, std::uint32_t) noexcept {
     }
 
-    void Gain::process(marvin::containers::BufferView<float> buffer, mostly_harmless::InputEventContext eventContext) noexcept {
+    void Gain::process(marvin::containers::BufferView<float> buffer, mostly_harmless::events::InputEventContext eventContext) noexcept {
         using namespace marvin::literals;
         const auto* const* read = buffer.getArrayOfReadPointers();
         auto* const* write = buffer.getArrayOfWritePointers();
@@ -31,7 +31,7 @@ namespace examples::gain {
         }
     }
 
-    void Gain::flushParams(mostly_harmless::InputEventContext eventContext) noexcept {
+    void Gain::flushParams(mostly_harmless::events::InputEventContext eventContext) noexcept {
         pollEventQueue(eventContext);
     }
 

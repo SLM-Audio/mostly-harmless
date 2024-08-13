@@ -18,8 +18,8 @@ namespace examples::gain {
         explicit Gain(const clap_host* host);
         ~Gain() noexcept override = default;
         void initialise(double sampleRate, std::uint32_t minFrames, std::uint32_t maxFrames) noexcept override;
-        void process(marvin::containers::BufferView<float> buffer, mostly_harmless::InputEventContext eventContext) noexcept override;
-        void flushParams(mostly_harmless::InputEventContext eventContext) noexcept override;
+        void process(marvin::containers::BufferView<float> buffer, mostly_harmless::events::InputEventContext eventContext) noexcept override;
+        void flushParams(mostly_harmless::events::InputEventContext eventContext) noexcept override;
         void reset() noexcept override;
         std::unique_ptr<mostly_harmless::gui::IEditor> createEditor() noexcept override;
 

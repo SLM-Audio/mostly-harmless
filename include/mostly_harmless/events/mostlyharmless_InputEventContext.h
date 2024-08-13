@@ -1,7 +1,7 @@
 #ifndef MOSTLYHARMLESS_INPUTEVENTCONTEXT_H
 #define MOSTLYHARMLESS_INPUTEVENTCONTEXT_H
 #include "clap/events.h"
-namespace mostly_harmless {
+namespace mostly_harmless::events {
     /**
      * \brief Trivially copyable wrapper around the clap-api provided `clap_input_events` queue, for easier iterating.
      *

@@ -81,12 +81,12 @@ namespace mostly_harmless {
          * \param buffer A non owning view into the host provided buffer.
          * \param inputEventTonext A trivially copyable wrapper around the host provided clap input event queue.
          */
-        virtual void process(marvin::containers::BufferView<SampleType> buffer, InputEventContext inputEventContext) noexcept = 0;
+        virtual void process(marvin::containers::BufferView<SampleType> buffer, events::InputEventContext inputEventContext) noexcept = 0;
         /**
          * Called when audio processing is bypassed, to allow param updates to continue to update the gui.
          * \param inputEventContext A trivially copyable wrapper around the host provided clap event queue.
          */
-        virtual void flushParams(InputEventContext inputEventContext) noexcept = 0;
+        virtual void flushParams(events::InputEventContext inputEventContext) noexcept = 0;
 
         /**
          * Called to clear all audio buffers, and state, etc.
@@ -112,13 +112,13 @@ namespace mostly_harmless {
             \param currentSample The index of the current sample into the block.
             \param context The InputEventContext containing the event queue.
          */
-        void pollEventQueue(size_t currentSample, InputEventContext context) noexcept;
+        void pollEventQueue(size_t currentSample, events::InputEventContext context) noexcept;
 
         /**
          *  Convenience function to handle all incoming events for the current block.
          *  \param context InputEventContext containing the event queue.
          */
-        void pollEventQueue(InputEventContext context) noexcept;
+        void pollEventQueue(events::InputEventContext context) noexcept;
 
         /**
             Called Internally by pollEventQueue when a midi note on message is received.

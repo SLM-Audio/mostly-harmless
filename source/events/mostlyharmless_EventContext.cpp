@@ -2,7 +2,7 @@
 // Created by Syl on 11/08/2024.
 //
 #include "mostly_harmless/events/mostlyharmless_InputEventContext.h"
-namespace mostly_harmless {
+namespace mostly_harmless::events {
     InputEventContext::InputEventContext(const clap_input_events_t* inputEventQueue) : m_inputEventQueue(inputEventQueue) {
         m_inputEventQueueSize = m_inputEventQueue->size(m_inputEventQueue);
         if (m_inputEventQueueSize == 0) return;
