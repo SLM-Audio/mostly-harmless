@@ -15,7 +15,10 @@ namespace examples::gain {
         m_params.gainParam = getParameter(ParamIds::kGain);
     }
 
-    void Gain::initialise(double, std::uint32_t, std::uint32_t) noexcept {
+    void Gain::initialise(double sampleRate, std::uint32_t, std::uint32_t) noexcept {
+        m_paramUpdateRate = static_cast<int>(m_paramUpdateRateSeconds * sampleRate);
+        m_smoothedGain.reset(m_paramUpdateRate);
+        m_smoothedGain.setCurrentAndTargetValue(m_params.gainParam->defaultValue);
     }
 
     void Gain::process(marvin::containers::BufferView<float> buffer, mostly_harmless::events::InputEventContext eventContext) noexcept {
@@ -24,7 +27,8 @@ namespace examples::gain {
         auto* const* write = buffer.getArrayOfWritePointers();
         for (auto sample = 0_sz; sample < buffer.getNumSamples(); ++sample) {
             pollEventQueue(sample, eventContext);
-            const marvin::FloatType auto gain = m_params.gainParam->value;
+            checkParameters();
+            const auto gain = m_smoothedGain();
             for (auto channel = 0_sz; channel < buffer.getNumChannels(); ++channel) {
                 write[channel][sample] = read[channel][sample] * gain;
             }
@@ -36,13 +40,19 @@ namespace examples::gain {
     }
 
     void Gain::reset() noexcept {
-
     }
 
     std::unique_ptr<mostly_harmless::gui::IEditor> Gain::createEditor() noexcept {
         return std::make_unique<GainEditor>(500, 500);
     }
 
+    void Gain::checkParameters() {
+        if (m_samplesUntilParamUpdate == 0) {
+            m_smoothedGain.setTargetValue(m_params.gainParam->value);
+            m_samplesUntilParamUpdate = m_paramUpdateRate;
+        }
+        --m_samplesUntilParamUpdate;
+    }
 
 } // namespace examples::gain
 MOSTLYHARMLESS_REGISTER(examples::gain::Gain)

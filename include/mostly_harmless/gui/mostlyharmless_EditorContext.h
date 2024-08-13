@@ -22,6 +22,7 @@ namespace mostly_harmless::gui {
          * This should be called after dispatching an event into the guiToProcQueue.
          */
         std::function<void(void)> requestParamFlush{ nullptr };
+
     };
 }
 

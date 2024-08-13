@@ -5,6 +5,7 @@
 #ifndef MOSTLYHARMLESS_GAINEDITOR_H
 #define MOSTLYHARMLESS_GAINEDITOR_H
 
+#include "Parameters.h"
 #include <mostly_harmless/gui/mostlyharmless_WebviewEditor.h>
 namespace examples::gain {
     class GainEditor : public mostly_harmless::gui::WebviewEditor {

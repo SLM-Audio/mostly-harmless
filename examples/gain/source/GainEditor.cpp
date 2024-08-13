@@ -6,6 +6,7 @@
 #include <fmt/core.h>
 #include <iostream>
 #include <sstream>
+#include <magic_enum.hpp>
 #include "Gain.h"
 
 namespace examples::gain {
@@ -13,44 +14,51 @@ namespace examples::gain {
     }
 
     void GainEditor::initialise(mostly_harmless::gui::EditorContext context) {
+
         mostly_harmless::gui::WebviewEditor::initialise(context);
         auto beginParamGestureCallback = [context](const choc::value::ValueView& args) -> choc::value::Value {
-            if(!context.guiToProcQueue) return{};
+            if (!context.guiToProcQueue) return {};
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
             // Value doesn't matter here..
             context.guiToProcQueue->tryPush({ .type = mostly_harmless::events::GuiToProcParamEvent::Type::Begin,
-                .paramId = paramId,
-                .value = 0.0
-            });
+                                              .paramId = paramId,
+                                              .value = 0.0 });
             context.requestParamFlush();
             return {};
         };
 
-        auto paramChangeCallback = [context] ( const choc::value::ValueView& args) -> choc::value::Value {
-            if(!context.guiToProcQueue) return{};
+        auto paramChangeCallback = [context](const choc::value::ValueView& args) -> choc::value::Value {
+            if (!context.guiToProcQueue) return {};
             [[maybe_unused]] const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
             [[maybe_unused]] const auto value = std::stod(args[0]["value"].toString());
-            context.guiToProcQueue->tryPush({
-              .type = mostly_harmless::events::GuiToProcParamEvent::Type::Adjust,
-              .paramId = paramId,
-              .value = value
-            });
+            context.guiToProcQueue->tryPush({ .type = mostly_harmless::events::GuiToProcParamEvent::Type::Adjust,
+                                              .paramId = paramId,
+                                              .value = value });
             context.requestParamFlush();
-            return choc::value::Value{ choc::json::toString(args) };
+            return choc::value::Value{ "aaaa" };
         };
 
-        auto endParamGestureCallback = [context] (const choc::value::ValueView& args) -> choc::value::Value {
-            if(!context.guiToProcQueue) return {};
+        auto endParamGestureCallback = [context](const choc::value::ValueView& args) -> choc::value::Value {
+            if (!context.guiToProcQueue) return {};
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
-            context.guiToProcQueue->tryPush({
-                .type = mostly_harmless::events::GuiToProcParamEvent::Type::End,
-                .paramId = paramId,
-                .value = 0.0
-            });
+            context.guiToProcQueue->tryPush({ .type = mostly_harmless::events::GuiToProcParamEvent::Type::End,
+                                              .paramId = paramId,
+                                              .value = 0.0 });
             context.requestParamFlush();
             return {};
         };
 
+
+        // a map of paramEnum : paramId will be available in `window.params`.
+        std::stringstream initialDataStream;
+        initialDataStream << "window.params = { \n";
+        for (std::uint32_t i = 0; i < static_cast<std::uint32_t>(ParamIds::kNumParams); ++i) {
+            const auto asEnum = static_cast<ParamIds>(i);
+            const auto asStr = magic_enum::enum_name(asEnum);
+            initialDataStream << "    " << asStr << ": " << i << ",\n";
+        }
+        initialDataStream << "};";
+        m_internalWebview->addInitScript(initialDataStream.str());
         m_internalWebview->navigate("http://localhost:5173");
         m_internalWebview->bind("beginParamGesture", std::move(beginParamGestureCallback));
         m_internalWebview->bind("setParamValue", std::move(paramChangeCallback));

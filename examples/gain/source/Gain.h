@@ -1,18 +1,12 @@
 #ifndef GAIN_H
 #define GAIN_H
+#include "Parameters.h"
 #include <mostly_harmless/gui/mostlyharmless_IEditor.h>
 #include <mostly_harmless/mostlyharmless_Plugin.h>
+#include <marvin/utils/marvin_SmoothedValue.h>
 #include "marvin/containers/marvin_BufferView.h"
 
 namespace examples::gain {
-    enum ParamIds : std::uint32_t {
-        kGain,
-        kNumParams
-    };
-
-    struct Parameters final {
-        mostly_harmless::Parameter<float>* gainParam{ nullptr };
-    };
     class Gain : public mostly_harmless::Plugin<float> {
     public:
         explicit Gain(const clap_host* host);
@@ -24,7 +18,14 @@ namespace examples::gain {
         std::unique_ptr<mostly_harmless::gui::IEditor> createEditor() noexcept override;
 
     private:
+        void checkParameters();
         Parameters m_params;
+        // KR = 100 at 44.1
+        constexpr static auto m_paramUpdateRateSeconds{ 100.0 / 44100.0 };
+        int m_paramUpdateRate{};
+        int m_samplesUntilParamUpdate{ 0 };
+
+        marvin::utils::SmoothedValue<float, marvin::utils::SmoothingType::Linear> m_smoothedGain{};
     };
 } // namespace examples::gain
 #endif
