@@ -9,42 +9,45 @@
 #include "Gain.h"
 
 namespace examples::gain {
-    GainEditor::GainEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height) {
+    GainEditor::GainEditor(mostly_harmless::gui::EditorContext context, std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(std::move(context), width, height) {
     }
 
     void GainEditor::initialise() {
         mostly_harmless::gui::WebviewEditor::initialise();
         auto beginParamGestureCallback = [this](const choc::value::ValueView& args) -> choc::value::Value {
-            if(!m_guiToProcQueue) return{};
+            if(!m_context.guiToProcQueue) return{};
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
             // Value doesn't matter here..
-            m_guiToProcQueue->tryPush({ .type = mostly_harmless::events::GuiToProcParamEvent::Type::Begin,
+            m_context.guiToProcQueue->tryPush({ .type = mostly_harmless::events::GuiToProcParamEvent::Type::Begin,
                 .paramId = paramId,
                 .value = 0.0
             });
+            m_context.requestParamFlush();
             return {};
         };
 
         auto paramChangeCallback = [this] ( const choc::value::ValueView& args) -> choc::value::Value {
-            if(!m_guiToProcQueue) return{};
+            if(!m_context.guiToProcQueue) return{};
             [[maybe_unused]] const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
             [[maybe_unused]] const auto value = std::stod(args[0]["value"].toString());
-                      m_guiToProcQueue->tryPush({
-                          .type = mostly_harmless::events::GuiToProcParamEvent::Type::Adjust,
-                          .paramId = paramId,
-                          .value = value
-                      });
+            m_context.guiToProcQueue->tryPush({
+              .type = mostly_harmless::events::GuiToProcParamEvent::Type::Adjust,
+              .paramId = paramId,
+              .value = value
+            });
+            m_context.requestParamFlush();
             return choc::value::Value{ choc::json::toString(args) };
         };
 
         auto endParamGestureCallback = [this] (const choc::value::ValueView& args) -> choc::value::Value {
-            if(!m_guiToProcQueue) return {};
+            if(!m_context.guiToProcQueue) return {};
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
-            m_guiToProcQueue->tryPush({
+            m_context.guiToProcQueue->tryPush({
                 .type = mostly_harmless::events::GuiToProcParamEvent::Type::End,
                 .paramId = paramId,
                 .value = 0.0
             });
+            m_context.requestParamFlush();
             return {};
         };
 

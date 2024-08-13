@@ -3,7 +3,7 @@
 //
 #include <mostly_harmless/gui/mostlyharmless_IEditor.h>
 namespace mostly_harmless::gui {
-   void IEditor::setGuiToProcQueue(marvin::containers::fifos::SPSC<events::GuiToProcParamEvent>* queue) {
-       m_guiToProcQueue = queue;
-   }
+    IEditor::IEditor(mostly_harmless::gui::EditorContext context) : m_context(context) {
+
+    }
 }

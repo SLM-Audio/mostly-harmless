@@ -74,9 +74,10 @@ namespace mostly_harmless {
     }
 
     template<marvin::FloatType SampleType>
-    void Plugin<SampleType>::paramsFlush(const clap_input_events* in, const clap_output_events* /*out*/) noexcept { // TODO: OUTPUT!
+    void Plugin<SampleType>::paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept {
         events::InputEventContext inContext{ in };
         flushParams(inContext);
+        handleGuiEvents(out);
     }
 
     template <marvin::FloatType SampleType>
@@ -348,8 +349,13 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiCreate(const char* /*api*/, bool /*isFloating*/) noexcept {
-        m_editor = createEditor();
-        m_editor->setGuiToProcQueue(&m_guiToProcQueue);
+        auto requestFlushCallback = [this]() -> void {
+           if(_host.canUseParams()) {
+               _host.paramsRequestFlush();
+           }
+        };
+
+        m_editor = createEditor({.guiToProcQueue = &m_guiToProcQueue, .requestParamFlush = std::move(requestFlushCallback)});
         m_editor->initialise();
         m_guiDispatchThread.run(1);
         return true;

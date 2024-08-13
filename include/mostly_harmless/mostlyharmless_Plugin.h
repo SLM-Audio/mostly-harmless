@@ -95,9 +95,10 @@ namespace mostly_harmless {
         /**
             Implement this to supply your own custom gui editor using a framework of your choice.
             Called internally when the gui is created,  - we internally take ownership of the pointer allocated here.
+            \param context The state needed to construct a class deriving from IEditor.
             \return An allocated editor class deriving from `gui::IEditor`, for us to take ownership of.
         */
-        virtual std::unique_ptr<gui::IEditor> createEditor() noexcept = 0;
+        virtual std::unique_ptr<gui::IEditor> createEditor(gui::EditorContext context) noexcept = 0;
 
     protected:
         /**

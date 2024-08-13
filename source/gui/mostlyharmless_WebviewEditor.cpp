@@ -126,7 +126,7 @@ namespace mostly_harmless::gui {
     static_assert(false);
 #endif
 
-    WebviewEditor::WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight) {
+    WebviewEditor::WebviewEditor(EditorContext context, std::uint32_t initialWidth, std::uint32_t initialHeight) : IEditor(std::move(context)) {
         m_impl = std::make_unique<WebviewEditor::Impl>(initialWidth, initialHeight);
     }
     WebviewEditor::~WebviewEditor() noexcept {

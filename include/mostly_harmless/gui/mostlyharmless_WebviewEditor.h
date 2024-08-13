@@ -17,10 +17,11 @@ namespace mostly_harmless::gui {
     class WebviewEditor : public IEditor {
     public:
         /**
+         * \param context The editor context provided by `Plugin::createEditor()`.
          * \param initialWidth The initial width for the webview.
          * \param initialHeight The initial height for the webview.
          */
-        WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight);
+        WebviewEditor(EditorContext context, std::uint32_t initialWidth, std::uint32_t initialHeight);
         /**
          * Non default destructor for pimpl
          */

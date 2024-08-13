@@ -1,16 +1,23 @@
 #ifndef MOSTLYHARMLESS_IEDITOR_H
 #define MOSTLYHARMLESS_IEDITOR_H
+#include <mostly_harmless/gui/mostlyharmless_EditorContext.h>
 #include <mostly_harmless/events/mostlyharmless_ParamEvent.h>
 #include <marvin/containers/marvin_FIFO.h>
 #include <cstdint>
 namespace mostly_harmless::gui {
     /**
-     * \brief Interface for custom gui editors to implement.
+     * \brief (Almost) interface for custom gui editors to implement.
      *
      * To use a framework of your choosing, you'll need to subclass this interface, and implement all its methods.
      * Provides a pointer to a rt/thread safe fifo for messaging between the message thread and the audio thread.
      */
     struct IEditor {
+        /**
+         * The non abstract part - We need some additional context to set up gui to proc communication, and a hook into the clap host, to request param flushes.
+         * In practice, this means your derived class will need to call this contructor in its init list.
+         * \param context An editor context with the necessary state - use the one provided by Plugin::createEditor()!
+         */
+        explicit IEditor(EditorContext context);
         /**
          * Virtual destructor.
          */
@@ -54,14 +61,11 @@ namespace mostly_harmless::gui {
          */
         virtual void onParamEvent(events::ProcToGuiParamEvent event) = 0;
 
-        /// \private
-        void setGuiToProcQueue(marvin::containers::fifos::SPSC<events::GuiToProcParamEvent>* queue);
     protected:
         /**
-         * A pointer to a realtime-safe, thread-safe fifo, for pushing param events from the gui back to the audio thread.
-         * This will be assigned *before* initialise() is called.
+         * An instance of EditorContext containing the additional data necessary for comms with the audio thread - see the EditorContext struct's docs for more info.
          */
-        marvin::containers::fifos::SPSC<events::GuiToProcParamEvent>* m_guiToProcQueue{ nullptr };
+        EditorContext m_context;
     };
 } // namespace mostly_harmless::gui
 
