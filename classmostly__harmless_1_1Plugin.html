@@ -122,8 +122,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6b11500945a361398a683f9d85db0432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2991930a537becc59d0d4e781f6b9d3a" id="r_a2991930a537becc59d0d4e781f6b9d3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2991930a537becc59d0d4e781f6b9d3a">reset</a> () noexcept override=0</td></tr>
 <tr class="separator:a2991930a537becc59d0d4e781f6b9d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ec42aac320bd9909ef150958861121f" id="r_a5ec42aac320bd9909ef150958861121f"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html">gui::IEditor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ec42aac320bd9909ef150958861121f">createEditor</a> () noexcept=0</td></tr>
-<tr class="separator:a5ec42aac320bd9909ef150958861121f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d28dd78a1d0bfd8d09564c68d785f0b" id="r_a3d28dd78a1d0bfd8d09564c68d785f0b"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html">gui::IEditor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d28dd78a1d0bfd8d09564c68d785f0b">createEditor</a> (gui::EditorContext context) noexcept=0</td></tr>
+<tr class="separator:a3d28dd78a1d0bfd8d09564c68d785f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -231,8 +231,8 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5ec42aac320bd9909ef150958861121f" name="a5ec42aac320bd9909ef150958861121f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ec42aac320bd9909ef150958861121f">&#9670;&#160;</a></span>createEditor()</h2>
+<a id="a3d28dd78a1d0bfd8d09564c68d785f0b" name="a3d28dd78a1d0bfd8d09564c68d785f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d28dd78a1d0bfd8d09564c68d785f0b">&#9670;&#160;</a></span>createEditor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -245,7 +245,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="memname">virtual std::unique_ptr&lt; <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html">gui::IEditor</a> &gt; <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::createEditor </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">gui::EditorContext</td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -255,7 +255,13 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implement this to supply your own custom gui editor using a framework of your choice. Called internally when the gui is created, - we internally take ownership of the pointer allocated here. </p><dl class="section return"><dt>Returns</dt><dd>An allocated editor class deriving from <code><a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html" title="Interface for custom gui editors to implement.">gui::IEditor</a></code>, for us to take ownership of. </dd></dl>
+<p>Implement this to supply your own custom gui editor using a framework of your choice. Called internally when the gui is created, - we internally take ownership of the pointer allocated here. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The state needed to construct a class deriving from IEditor. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An allocated editor class deriving from <code><a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html" title="(Almost) interface for custom gui editors to implement.">gui::IEditor</a></code>, for us to take ownership of. </dd></dl>
 
 </div>
 </div>
@@ -629,7 +635,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Realtime/thread-safe fifo used for posting param updates from the gui to the audio thread. <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html" title="Interface for custom gui editors to implement.">gui::IEditor</a> gets a pointer to this queue. </p>
+<p>Realtime/thread-safe fifo used for posting param updates from the gui to the audio thread. <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html" title="(Almost) interface for custom gui editors to implement.">gui::IEditor</a> gets a pointer to this queue. </p>
 
 </div>
 </div>
