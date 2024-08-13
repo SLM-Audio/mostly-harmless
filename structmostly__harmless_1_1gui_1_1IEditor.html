@@ -90,13 +90,12 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="structmostly__harmless_1_1gui_1_1IEditor-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">mostly_harmless::gui::IEditor Struct Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>(Almost) interface for custom gui editors to implement.  
+<p>Interface for custom gui editors to implement.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="mostlyharmless__IEditor_8h_source.html">mostlyharmless_IEditor.h</a>&gt;</code></p>
@@ -112,12 +111,10 @@ Inheritance diagram for mostly_harmless::gui::IEditor:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acf6c0c10ebee98f3e6fdb034f8acb09a" id="r_acf6c0c10ebee98f3e6fdb034f8acb09a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf6c0c10ebee98f3e6fdb034f8acb09a">IEditor</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> context)</td></tr>
-<tr class="separator:acf6c0c10ebee98f3e6fdb034f8acb09a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b2af5e5e8fa4048caffb6dc63695f08" id="r_a5b2af5e5e8fa4048caffb6dc63695f08"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b2af5e5e8fa4048caffb6dc63695f08">~IEditor</a> () noexcept=default</td></tr>
 <tr class="separator:a5b2af5e5e8fa4048caffb6dc63695f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a07cd5568b7d78d64ec03a6b692983a" id="r_a2a07cd5568b7d78d64ec03a6b692983a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a07cd5568b7d78d64ec03a6b692983a">initialise</a> ()=0</td></tr>
-<tr class="separator:a2a07cd5568b7d78d64ec03a6b692983a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ccbeb8a5ae79a26cebccf06f20fc159" id="r_a4ccbeb8a5ae79a26cebccf06f20fc159"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ccbeb8a5ae79a26cebccf06f20fc159">initialise</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> context)=0</td></tr>
+<tr class="separator:a4ccbeb8a5ae79a26cebccf06f20fc159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a724f29ef48e7de638841524409ac03fe" id="r_a724f29ef48e7de638841524409ac03fe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a724f29ef48e7de638841524409ac03fe">destroy</a> ()=0</td></tr>
 <tr class="separator:a724f29ef48e7de638841524409ac03fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8acf4d870e795a7205132246d26d22ab" id="r_a8acf4d870e795a7205132246d26d22ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8acf4d870e795a7205132246d26d22ab">setSize</a> (std::uint32_t width, std::uint32_t height)=0</td></tr>
@@ -132,47 +129,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab104e5c92f4d37e09f7866a0083dcbcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad337fb3843ff8f8df44acbd45876c928" id="r_ad337fb3843ff8f8df44acbd45876c928"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad337fb3843ff8f8df44acbd45876c928">onParamEvent</a> (<a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> event)=0</td></tr>
 <tr class="separator:ad337fb3843ff8f8df44acbd45876c928"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:ac0094a2f5a736521d0ed08dd65cab8b0" id="r_ac0094a2f5a736521d0ed08dd65cab8b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0094a2f5a736521d0ed08dd65cab8b0">m_context</a></td></tr>
-<tr class="separator:ac0094a2f5a736521d0ed08dd65cab8b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>(Almost) interface for custom gui editors to implement. </p>
-<p>To use a framework of your choosing, you'll need to subclass this interface, and implement all its methods. Provides a pointer to a rt/thread safe fifo for messaging between the message thread and the audio thread. </p>
+<div class="textblock"><p>Interface for custom gui editors to implement. </p>
+<p>To use a framework of your choosing, you'll need to subclass this interface, and implement all its methods. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="acf6c0c10ebee98f3e6fdb034f8acb09a" name="acf6c0c10ebee98f3e6fdb034f8acb09a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf6c0c10ebee98f3e6fdb034f8acb09a">&#9670;&#160;</a></span>IEditor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">mostly_harmless::gui::IEditor::IEditor </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The non abstract part - We need some additional context to set up gui to proc communication, and a hook into the clap host, to request param flushes. In practice, this means your derived class will need to call this contructor in its init list. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">context</td><td>An editor context with the necessary state - use the one provided by <a class="el" href="classmostly__harmless_1_1Plugin.html#a3d28dd78a1d0bfd8d09564c68d785f0b">Plugin::createEditor()</a>! </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a5b2af5e5e8fa4048caffb6dc63695f08" name="a5b2af5e5e8fa4048caffb6dc63695f08"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5b2af5e5e8fa4048caffb6dc63695f08">&#9670;&#160;</a></span>~IEditor()</h2>
 
@@ -294,8 +255,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2a07cd5568b7d78d64ec03a6b692983a" name="a2a07cd5568b7d78d64ec03a6b692983a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a07cd5568b7d78d64ec03a6b692983a">&#9670;&#160;</a></span>initialise()</h2>
+<a id="a4ccbeb8a5ae79a26cebccf06f20fc159" name="a4ccbeb8a5ae79a26cebccf06f20fc159"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ccbeb8a5ae79a26cebccf06f20fc159">&#9670;&#160;</a></span>initialise()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,7 +267,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void mostly_harmless::gui::IEditor::initialise </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -316,9 +277,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Called immediately after the gui is created, any setup should be done here. </p>
+<p>Called immediately after the gui is created, any setup should be done here. We pass in an <a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html" title="Trivially copyable struct containing extra necessary context for a gui.">EditorContext</a> here, for access to the guiToProcQueue, and a hook to request the host flushes params. You can do whatever you like with the context (including keeping it as a member variable). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The editor context (see <a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html" title="Trivially copyable struct containing extra necessary context for a gui.">EditorContext</a> for more details). </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Implemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#a1f971ab269931475d34d5dca242f563d">mostly_harmless::gui::WebviewEditor</a>.</p>
+<p>Implemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#a9929190bcb6915a7954aed634b2f8fc3">mostly_harmless::gui::WebviewEditor</a>.</p>
 
 </div>
 </div>
@@ -446,30 +412,6 @@ Protected Attributes</h2></td></tr>
 <p>Called when the editor should show. </p>
 
 <p>Implemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#a72e3c5f89a2f1c71fb412faa89120a33">mostly_harmless::gui::WebviewEditor</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="ac0094a2f5a736521d0ed08dd65cab8b0" name="ac0094a2f5a736521d0ed08dd65cab8b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0094a2f5a736521d0ed08dd65cab8b0">&#9670;&#160;</a></span>m_context</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> mostly_harmless::gui::IEditor::m_context</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>An instance of <a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html" title="Trivially copyable struct containing extra necessary context for a gui.">EditorContext</a> containing the additional data necessary for comms with the audio thread - see the <a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html" title="Trivially copyable struct containing extra necessary context for a gui.">EditorContext</a> struct's docs for more info. </p>
 
 </div>
 </div>

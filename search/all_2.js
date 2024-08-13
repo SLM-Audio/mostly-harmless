@@ -9,7 +9,7 @@ var searchData=
   ['copy_6',['copy',['../namespacemarvin_1_1math_1_1vecops.html#a328afb54f699886f5ebc72ee129d7b66',1,'marvin::math::vecops::copy(T *lhs, const T *rhs, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a9b62331cc96d37a0b23dcf1e9e987a65',1,'marvin::math::vecops::copy(T &amp;lhs, const T &amp;rhs) noexcept']]],
   ['cosinesum_7',['CosineSum',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58aff6515b2beac74a8d6313fb9cc579ce7',1,'marvin::math::windows']]],
   ['cosinesum_8',['cosineSum',['../namespacemarvin_1_1math_1_1windows.html#a00a224366c4eac9fb994c301a68cc384',1,'marvin::math::windows']]],
-  ['createeditor_9',['createEditor',['../classmostly__harmless_1_1Plugin.html#a3d28dd78a1d0bfd8d09564c68d785f0b',1,'mostly_harmless::Plugin']]],
+  ['createeditor_9',['createEditor',['../classmostly__harmless_1_1Plugin.html#a5ec42aac320bd9909ef150958861121f',1,'mostly_harmless::Plugin']]],
   ['credits_10',['Credits',['../index.html#autotoc_md12',1,'']]],
   ['current_11',['current',['../classmarvin_1_1dsp_1_1filters_1_1SmoothedBiquadCoefficients.html#aafe9fb98271c1acd5a8cf579af49b53b',1,'marvin::dsp::filters::SmoothedBiquadCoefficients']]]
 ];
