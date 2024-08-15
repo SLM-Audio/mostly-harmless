@@ -137,6 +137,10 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ac57c1551038a2c3b29e92088a8b7d4c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850e13473b306db92b9ed7799f92fbf7" id="r_a850e13473b306db92b9ed7799f92fbf7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a850e13473b306db92b9ed7799f92fbf7">handleNoteOff</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity)</td></tr>
 <tr class="separator:a850e13473b306db92b9ed7799f92fbf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4d661607ff2d385de3f3add1b4aefee" id="r_af4d661607ff2d385de3f3add1b4aefee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4d661607ff2d385de3f3add1b4aefee">saveState</a> (std::ostringstream &amp;stream)=0</td></tr>
+<tr class="separator:af4d661607ff2d385de3f3add1b4aefee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e45b9855c4abf1549f7e1af7a25609" id="r_ae3e45b9855c4abf1549f7e1af7a25609"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3e45b9855c4abf1549f7e1af7a25609">loadState</a> (std::string_view loaded)=0</td></tr>
+<tr class="separator:ae3e45b9855c4abf1549f7e1af7a25609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -470,6 +474,39 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 
 </div>
 </div>
+<a id="ae3e45b9855c4abf1549f7e1af7a25609" name="ae3e45b9855c4abf1549f7e1af7a25609"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3e45b9855c4abf1549f7e1af7a25609">&#9670;&#160;</a></span>loadState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::loadState </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view</td>          <td class="paramname"><span class="paramname"><em>loaded</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called when the host has loaded a plugin's state. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A vector of unsigned chars holding the loaded data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="aea56eb19b7831ab222a4971339c7ba9a" name="aea56eb19b7831ab222a4971339c7ba9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aea56eb19b7831ab222a4971339c7ba9a">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[1/2]</span></h2>
 
@@ -604,6 +641,39 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 </table>
 </div><div class="memdoc">
 <p>Called to clear all audio buffers, and state, etc. </p>
+
+</div>
+</div>
+<a id="af4d661607ff2d385de3f3add1b4aefee" name="af4d661607ff2d385de3f3add1b4aefee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4d661607ff2d385de3f3add1b4aefee">&#9670;&#160;</a></span>saveState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::saveState </td>
+          <td>(</td>
+          <td class="paramtype">std::ostringstream &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called when the host needs to serialize the plugin's current state. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>An (uninitialised) vector of unsigned chars to write your state to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
