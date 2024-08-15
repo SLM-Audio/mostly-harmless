@@ -64,6 +64,7 @@ function(mostly_harmless_add_plugin)
     target_link_libraries(${PLUGIN_NAME}_CLAP PUBLIC ${PLUGIN_NAME}_SharedCode)
     if (APPLE)
         set_target_properties(${PLUGIN_NAME}_CLAP PROPERTIES
+                OUTPUT_NAME ${PLUGIN_NAME}
                 BUNDLE True
                 BUNDLE_EXTENSION clap
                 MACOSX_BUNDLE_GUI_IDENTIFIER "com.slm-audio.${PLUGIN_NAME}"
