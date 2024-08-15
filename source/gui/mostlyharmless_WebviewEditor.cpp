@@ -25,7 +25,7 @@ namespace mostly_harmless::gui {
             m_window->setMinimumSize(iWidth, iHeight);
             m_window->setMinimumSize(iWidth, iHeight);
             m_window->setWindowTitle("Test");
-            m_webview = std::make_unique<choc::ui::WebView>(choc::ui::WebView::Options{ .enableDebugMode=true} );
+            m_webview = std::make_unique<choc::ui::WebView>(choc::ui::WebView::Options{ .enableDebugMode = true });
             m_window->setContent(m_webview->getViewHandle());
         }
 
@@ -85,13 +85,12 @@ namespace mostly_harmless::gui {
 
 
         void create() {
-            m_webview = std::make_unique<choc::ui::WebView>(choc::ui::WebView::Options{ .enableDebugMode=true} );
+            m_webview = std::make_unique<choc::ui::WebView>(choc::ui::WebView::Options{ .enableDebugMode = true });
             helpers::macos::setViewSize(m_webview->getViewHandle(), m_initialWidth, m_initialHeight);
         }
 
         void destroy() {
             helpers::macos::removeFromParentView(m_webview->getViewHandle());
-            m_webview = nullptr;
         }
 
         void getSize(std::uint32_t* width, std::uint32_t* height) {
