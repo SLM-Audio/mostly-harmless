@@ -70,7 +70,7 @@ function(mostly_harmless_add_plugin)
                 MACOSX_BUNDLE_BUNDLE_NAME ${PLUGIN_NAME}
                 MACOSX_BUNDLE_BUNDLE_VERSION "0.0.1"
                 MACOSX_BUNDLE_SHORT_VERSION_STRING "0.0.1"
-                MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/cmake/mostly_harmless.plist.in
+                MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
         )
     elseif (WIN32)
         set_target_properties(${PLUGIN_NAME}_CLAP
@@ -90,12 +90,18 @@ function(mostly_harmless_add_plugin)
     target_link_libraries(${PLUGIN_NAME}_VST3 PUBLIC ${PLUGIN_NAME}_SharedCode)
 
     if (APPLE)
-        add_library(${PLUGIN_NAME}_AU MODULE)
-        target_add_auv2_wrapper(
-                TARGET ${PLUGIN_NAME}_AU
-                OUTPUT_NAME ${PLUGIN_NAME}
-        )
-        target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME}_SharedCode})
+        #TODO: AU
+        #        add_library(${PLUGIN_NAME}_AU MODULE)
+        #        target_add_auv2_wrapper(
+        #                TARGET ${PLUGIN_NAME}_AU
+        #                OUTPUT_NAME ${PLUGIN_NAME}
+        #                BUNDLE_IDENTIFIER "com.${PLUGIN_VENDOR}.${PLUGIN_NAME}"
+        #                BUNDLE_VERSION "1"
+        #
+        #                MANUFACTURER_NAME ${PLUGIN_VENDOR}
+        #                MANUFACTURER_CODE
+        #        )
+        #        target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME}_SharedCode})
     endif ()
 
     add_executable(${PLUGIN_NAME}_Standalone)
