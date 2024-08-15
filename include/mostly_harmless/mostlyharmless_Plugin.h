@@ -139,6 +139,18 @@ namespace mostly_harmless {
          */
         virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) { assert(false); }
 
+        /**
+         * Called when the host needs to serialize the plugin's current state.
+         * \param data An (uninitialised) vector of unsigned chars to write your state to.
+         */
+        virtual void saveState(std::ostringstream& stream) = 0;
+
+        /**
+         * Called when the host has loaded a plugin's state.
+         * \param data A vector of unsigned chars holding the loaded data.
+         */
+        virtual void loadState(std::string_view loaded) = 0;
+
     private:
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
         clap_process_status process(const clap_process* processContext) noexcept override;
@@ -159,6 +171,10 @@ namespace mostly_harmless {
         [[nodiscard]] std::uint32_t notePortsCount(bool isInput) const noexcept override;
         [[nodiscard]] bool notePortsInfo(std::uint32_t index, bool isInput, clap_note_port_info* info) const noexcept override;
 
+        [[nodiscard]] bool implementsState() const noexcept override;
+        [[nodiscard]] bool stateSave(const clap_ostream* stream) noexcept override;
+        [[nodiscard]] bool stateLoad(const clap_istream* stream) noexcept override;
+
         [[nodiscard]] bool implementsGui() const noexcept override;
         [[nodiscard]] bool guiIsApiSupported(const char* api, bool isFloating) noexcept override;
         [[nodiscard]] bool guiCreate(const char* api, bool isFloating) noexcept override;
@@ -170,11 +186,13 @@ namespace mostly_harmless {
         [[nodiscard]] bool guiSetSize(std::uint32_t width, std::uint32_t height) noexcept override;
         [[nodiscard]] bool guiGetSize(std::uint32_t* width, std::uint32_t* height) noexcept override;
 
+
     private:
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
         utils::Timer m_guiDispatchThread;
         std::unique_ptr<gui::IEditor> m_editor{ nullptr };
+
     protected:
         /**
          * Realtime/thread-safe fifo used for posting param updates to the gui thread. Used internally by both overloads of pollEventQueue().
@@ -184,8 +202,6 @@ namespace mostly_harmless {
          * Realtime/thread-safe fifo used for posting param updates from the gui to the audio thread. gui::IEditor gets a pointer to this queue.
          */
         marvin::containers::fifos::SPSC<events::GuiToProcParamEvent> m_guiToProcQueue;
-
-
     };
 } // namespace mostly_harmless
 #endif

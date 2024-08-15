@@ -3,6 +3,7 @@
 #include "clap/ext/params.h"
 #include "marvin/containers/marvin_BufferView.h"
 #include "marvin/library/marvin_Literals.h"
+#include <nlohmann/json.hpp>
 #include <iostream>
 namespace examples::gain {
     std::vector<mostly_harmless::Parameter<float>> createParameters() {
@@ -40,6 +41,29 @@ namespace examples::gain {
     }
 
     void Gain::reset() noexcept {
+    }
+
+    void Gain::loadState(std::string_view loaded) {
+        using namespace nlohmann;
+        const auto j = json::parse(loaded);
+        auto paramView = m_params.toView();
+        for (auto* param : paramView) {
+            const auto pid = param->pid;
+            const auto value = j[std::to_string(pid)].get<float>();
+            param->value = value;
+        }
+    }
+
+    void Gain::saveState(std::ostringstream& dest) {
+        using namespace nlohmann;
+        json j;
+        auto paramView = m_params.toView();
+        for (auto* param : paramView) {
+            const auto pid = param->pid;
+            const auto value = param->value;
+            j[std::to_string(pid)] = value;
+        }
+        dest << std::setw(4) << j;
     }
 
     std::unique_ptr<mostly_harmless::gui::IEditor> Gain::createEditor() noexcept {

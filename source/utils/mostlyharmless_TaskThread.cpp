@@ -6,7 +6,8 @@
 #include <thread>
 namespace mostly_harmless::utils {
     void TaskThread::perform() {
-        if(!action) {
+        if (m_isThreadRunning) return;
+        if (!action) {
             assert(false);
             return;
         }
@@ -15,7 +16,7 @@ namespace mostly_harmless::utils {
             action();
             m_isThreadRunning.store(false);
         };
-
+        m_threadShouldExit = false;
         std::thread worker{ std::move(actionWrapper) };
         worker.detach();
     }
@@ -23,7 +24,7 @@ namespace mostly_harmless::utils {
     void TaskThread::sleep() {
         m_canWakeUp = false;
         std::unique_lock<std::mutex> lock(m_mutex);
-        m_conditionVariable.wait(lock, [this]() -> bool{ return m_canWakeUp; });
+        m_conditionVariable.wait(lock, [this]() -> bool { return m_canWakeUp; });
     }
 
     void TaskThread::wake() {
@@ -43,4 +44,4 @@ namespace mostly_harmless::utils {
     bool TaskThread::isThreadRunning() const noexcept {
         return m_isThreadRunning;
     }
-}
+} // namespace mostly_harmless::utils

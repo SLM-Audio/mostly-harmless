@@ -27,7 +27,7 @@ namespace examples::gain {
             return {};
         };
 
-        auto paramChangeCallback = [context](const choc::value::ValueView& args) -> choc::value::Value {
+        auto paramChangeCallback = [this, context](const choc::value::ValueView& args) -> choc::value::Value {
             if (!context.guiToProcQueue) return {};
             [[maybe_unused]] const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
             [[maybe_unused]] const auto value = std::stod(args[0]["value"].toString());
@@ -35,7 +35,8 @@ namespace examples::gain {
                                               .paramId = paramId,
                                               .value = value });
             context.requestParamFlush();
-            return choc::value::Value{ "aaaa" };
+            m_internalWebview->evaluateJavascript("console.log(\"Hello world!\");");
+            return {};
         };
 
         auto endParamGestureCallback = [context](const choc::value::ValueView& args) -> choc::value::Value {
@@ -67,7 +68,7 @@ namespace examples::gain {
 
     void GainEditor::onParamEvent(mostly_harmless::events::ProcToGuiParamEvent event) {
         std::stringstream stream;
-        stream << "event = new CustomEvent(\"param-event\", {\n";
+        stream << "event = new CustomEvent(\"param\", {\n";
         stream << "    detail: { \n";
         stream << "        paramId: " << event.paramId << ",\n";
         stream << "        value: " << event.value << "\n";

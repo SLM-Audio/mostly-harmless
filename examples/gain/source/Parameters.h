@@ -16,10 +16,11 @@ namespace examples::gain {
     struct Parameters final {
         mostly_harmless::Parameter<float>* gainParam{ nullptr };
 
-        auto asArray() {
-            std::array<mostly_harmless::Parameter<float>*, static_cast<size_t>(kNumParams)> res;
-            std::memcpy(res.data(), this, sizeof(Parameters));
-            return res;
+        // Evil reinterpret cast - only works because every element is the same type
+        std::span<mostly_harmless::Parameter<float>*> toView() {
+            auto** thisAsArray = reinterpret_cast<mostly_harmless::Parameter<float>**>(this);
+            std::span<mostly_harmless::Parameter<float>*> paramView{ thisAsArray, static_cast<size_t>(ParamIds::kNumParams) };
+            return paramView;
         }
     };
 

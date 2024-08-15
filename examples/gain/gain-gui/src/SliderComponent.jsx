@@ -3,8 +3,10 @@ import {useEffect, useState} from "react";
 function SliderComponent({pid, name, min, max}) {
     const [val, setVal] = useState(0.0);
     useEffect(() => {
-        window.addEventListener("param-event", (ev) => {
+        addEventListener("param", (ev) => {
+            console.log("Param event");
             const eventPid = ev.detail.paramId;
+            console.log(ev);
             if (eventPid !== pid) return;
             setVal(parseFloat(ev.detail.value));
         });

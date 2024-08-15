@@ -10,16 +10,16 @@ namespace mostly_harmless {
     Plugin<SampleType>::Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
                                                                                                      m_indexedParams(std::move(params)),
                                                                                                      m_procToGuiQueue(1024),
-                                                                                                     m_guiToProcQueue(1024){
+                                                                                                     m_guiToProcQueue(1024) {
         for (auto& p : m_indexedParams) {
             m_idParams.emplace(p.pid, &p);
         }
         auto guiDispatchCallback = [this]() -> void {
             auto messageThreadCallback = [this]() -> void {
-              while(auto nextEvent = m_procToGuiQueue.tryPop()) {
-                  if(!m_editor) continue;
-                  m_editor->onParamEvent(*nextEvent);
-              }
+                while (auto nextEvent = m_procToGuiQueue.tryPop()) {
+                    if (!m_editor) continue;
+                    m_editor->onParamEvent(*nextEvent);
+                }
             };
             runOnMainThread(std::move(messageThreadCallback));
         };
@@ -40,7 +40,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     clap_process_status Plugin<SampleType>::process(const clap_process* processContext) noexcept {
-       events::InputEventContext context{ processContext->in_events };
+        events::InputEventContext context{ processContext->in_events };
         if (processContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
@@ -73,7 +73,7 @@ namespace mostly_harmless {
         return CLAP_PROCESS_SLEEP;
     }
 
-    template<marvin::FloatType SampleType>
+    template <marvin::FloatType SampleType>
     void Plugin<SampleType>::paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept {
         events::InputEventContext inContext{ in };
         flushParams(inContext);
@@ -88,20 +88,20 @@ namespace mostly_harmless {
         }
     }
 
-    template<marvin::FloatType SampleType>
+    template <marvin::FloatType SampleType>
     void Plugin<SampleType>::pollEventQueue(events::InputEventContext context) noexcept {
-        while(context.next()) {
+        while (context.next()) {
             handleEvent(context.next());
             ++context;
         }
     }
 
-    template<marvin::FloatType SampleType>
+    template <marvin::FloatType SampleType>
     void Plugin<SampleType>::handleGuiEvents(const clap_output_events_t* outputQueue) noexcept {
         using EventType = events::GuiToProcParamEvent::Type;
-        while(auto guiEvent = m_guiToProcQueue.tryPop()) {
+        while (auto guiEvent = m_guiToProcQueue.tryPop()) {
             [[maybe_unused]] const auto [type, id, value] = *guiEvent;
-            switch(type) {
+            switch (type) {
                 case EventType::Begin: [[fallthrough]];
                 case EventType::End: {
                     auto ev = clap_event_param_gesture();
@@ -130,7 +130,6 @@ namespace mostly_harmless {
                     ev.value = value;
                     outputQueue->try_push(outputQueue, &ev.header);
                     // Then push this into the output queue.
-
                 }
                 default: break;
             }
@@ -146,12 +145,12 @@ namespace mostly_harmless {
                 const auto id = v->param_id;
                 const auto paramValue = v->value;
                 auto* param = static_cast<Parameter<SampleType>*>(v->cookie);
-                if(!param) [[unlikely]] {
+                if (!param) [[unlikely]] {
                     param = m_idParams.at(id);
                 }
                 param->value = static_cast<SampleType>(paramValue);
                 // Also inform the UI
-                m_procToGuiQueue.tryPush({id, paramValue});
+                m_procToGuiQueue.tryPush({ id, paramValue });
                 break;
             }
             case CLAP_EVENT_NOTE_ON: {
@@ -327,6 +326,48 @@ namespace mostly_harmless {
         return false;
     }
 
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::implementsState() const noexcept {
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::stateSave(const clap_ostream* stream) noexcept {
+        std::ostringstream dest;
+        saveState(dest);
+        const auto asString = dest.str();
+        auto bytesRemaining{ asString.size() };
+        auto* write = asString.c_str();
+        while (bytesRemaining > 0) {
+            const auto actualBytesWritten = stream->write(stream, (void*)write, bytesRemaining);
+            bytesRemaining -= actualBytesWritten;
+            write += actualBytesWritten;
+        }
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::stateLoad(const clap_istream* stream) noexcept {
+        // set up a buffer..
+        constexpr static auto maxSize{ static_cast<size_t>(4096 * 8) };
+        std::vector<char> buffer(maxSize);
+        constexpr static auto blockSize{ 64U };
+        auto bytesRead{ 0U };
+        auto inferredSize{ 0U };
+        auto* read = buffer.data();
+        while ((bytesRead = stream->read(stream, (void*)read, blockSize)) > 0) {
+            read += bytesRead;
+            inferredSize += bytesRead;
+        }
+        std::string asStr{ buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(inferredSize) };
+        loadState(asStr);
+        for (auto& param : m_indexedParams) {
+            const auto pid = param.pid;
+            const auto value = param.value;
+            m_procToGuiQueue.tryPush({ .paramId = pid, .value = value });
+        }
+        return true;
+    }
     //===========================================================================================
     // Here be gui
 
@@ -350,13 +391,13 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiCreate(const char* /*api*/, bool /*isFloating*/) noexcept {
         auto requestFlushCallback = [this]() -> void {
-           if(_host.canUseParams()) {
-               _host.paramsRequestFlush();
-           }
+            if (_host.canUseParams()) {
+                _host.paramsRequestFlush();
+            }
         };
 
         m_editor = createEditor();
-        m_editor->initialise({.guiToProcQueue = &m_guiToProcQueue, .requestParamFlush = std::move(requestFlushCallback)});
+        m_editor->initialise({ .guiToProcQueue = &m_guiToProcQueue, .requestParamFlush = std::move(requestFlushCallback) });
         m_guiDispatchThread.run(1);
         return true;
     }
