@@ -17,6 +17,7 @@ mostly_harmless_add_plugin(
         NAME "Gain"
         SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp ${CMAKE_CURRENT_SOURCE_DIR}/source/GainEditor.cpp
         FEATURES "audio-effect"
+        BINARY_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder.txt ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder2.txt ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder3.txt
 )
 
 target_include_directories(Gain_SharedCode PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

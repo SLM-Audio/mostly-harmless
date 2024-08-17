@@ -8,9 +8,11 @@
 #include <sstream>
 #include <magic_enum.hpp>
 #include "Gain.h"
+#include <BinaryData.h>
 
 namespace examples::gain {
     GainEditor::GainEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height) {
+        [[maybe_unused]] const auto& placeholder2 = binary_data::placeholder2;
     }
 
     void GainEditor::initialise(mostly_harmless::gui::EditorContext context) {
