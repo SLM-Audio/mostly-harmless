@@ -10,11 +10,13 @@ public:
     PluginProcessor(const clap_host* host);
     ~PluginProcessor() noexcept override = default;
     void initialise(double sampleRate, std::uint32_t minFrames, std::uint32_t maxFrames) noexcept override;
-    void process(marvin::containers::BufferView<float> bufferView, mostly_harmless::EventContext eventContext) noexcept override;
-    void flushParams(mostly_harmless::EventContext eventContext) noexcept override;
+    void process(marvin::containers::BufferView<float> bufferView, mostly_harmless::events::InputEventContext eventContext) noexcept override;
+    void flushParams(mostly_harmless::events::InputEventContext eventContext) noexcept override;
     void reset() noexcept override;
+    void loadState(std::string_view loaded) override;
+    void saveState(std::ostringstream& dest) override;
     std::unique_ptr<mostly_harmless::gui::IEditor> createEditor() noexcept override;
-private:
 
+private:
 };
-#endif //PLUGINPROCESSOR_H
+#endif // PLUGINPROCESSOR_H

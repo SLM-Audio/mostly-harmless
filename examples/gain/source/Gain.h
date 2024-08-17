@@ -19,7 +19,6 @@ namespace examples::gain {
         void saveState(std::ostringstream& dest) override;
         std::unique_ptr<mostly_harmless::gui::IEditor> createEditor() noexcept override;
 
-
     private:
         void checkParameters();
         Parameters m_params;
