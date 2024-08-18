@@ -8,6 +8,8 @@ function(mostly_harmless_add_plugin)
             SUPPORT_URL
             VERSION
             DESCRIPTION
+            # Can be FX or Instrument
+            TYPE
     )
 
     set(LIST_ARGS
@@ -153,17 +155,18 @@ function(mostly_harmless_add_plugin)
 
     if (APPLE)
         #TODO: AU
-        #        add_library(${PLUGIN_NAME}_AU MODULE)
-        #        target_add_auv2_wrapper(
-        #                TARGET ${PLUGIN_NAME}_AU
-        #                OUTPUT_NAME ${PLUGIN_NAME}
-        #                BUNDLE_IDENTIFIER "com.${PLUGIN_VENDOR}.${PLUGIN_NAME}"
-        #                BUNDLE_VERSION "1"
-        #
-        #                MANUFACTURER_NAME ${PLUGIN_VENDOR}
-        #                MANUFACTURER_CODE
-        #        )
-        #        target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME}_SharedCode})
+        add_library(${PLUGIN_NAME}_AU MODULE)
+        target_add_auv2_wrapper(
+                TARGET ${PLUGIN_NAME}_AU
+                OUTPUT_NAME ${PLUGIN_NAME}
+                BUNDLE_IDENTIFIER "com.${PLUGIN_VENDOR}.${PLUGIN_NAME}"
+                BUNDLE_VERSION "1"
+                MANUFACTURER_NAME ${PLUGIN_VENDOR}
+                MANUFACTURER_CODE "Slma"
+                SUBTYPE_CODE "Test"
+                INSTRUMENT_TYPE " aufx"
+        )
+        target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME}_SharedCode})
     endif ()
 
     add_executable(${PLUGIN_NAME}_Standalone)

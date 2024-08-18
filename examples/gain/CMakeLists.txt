@@ -14,7 +14,8 @@ FetchContent_Declare(magic_enum
 FetchContent_MakeAvailable(magic_enum)
 mostly_harmless_add_plugin(
         ID "slma.gain"
-        NAME "Gain"
+        NAME Gain
+        VENDOR "SLM Audio"
         SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp ${CMAKE_CURRENT_SOURCE_DIR}/source/GainEditor.cpp
         FEATURES "audio-effect"
         BINARY_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder.txt ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder2.txt ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder3.txt
