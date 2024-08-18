@@ -24,6 +24,7 @@ namespace mostly_harmless::gui::helpers::macos {
         auto* child = static_cast<NSView*>(childViewHandle);
         child.frame = parent.bounds;
         [parent addSubview:child];
+        [[maybe_unused]] const auto converted = [parent.window.contentView convertRect:child.frame fromView:child];
     }
 
     void showView(void* viewHandle) {
@@ -35,4 +36,4 @@ namespace mostly_harmless::gui::helpers::macos {
         auto* asView = static_cast<NSView*>(viewHandle);
         asView.hidden = true;
     }
-} // namespace mostly_harmless::gui::helpers
+} // namespace mostly_harmless::gui::helpers::macos

@@ -8,6 +8,7 @@
 #include <cassert>
 #include <fstream>
 #include <cstdint>
+#include <sstream>
 #include <fmt/core.h>
 
 constexpr static auto headerStart =

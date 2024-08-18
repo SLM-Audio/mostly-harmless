@@ -90,7 +90,8 @@ namespace mostly_harmless::gui {
         }
 
         void destroy() {
-            helpers::macos::removeFromParentView(m_webview->getViewHandle());
+            //            helpers::macos::removeFromParentView(m_webview->getViewHandle());
+            m_webview.reset();
         }
 
         void getSize(std::uint32_t* width, std::uint32_t* height) {
