@@ -7,6 +7,8 @@
 *.pkg
 build
 [cmake-build-debug-visual-studio]
+[cmake-build-debug]
+[cmake-build-debug-xc]
 .idea
 test-builds
 ### C++ ###

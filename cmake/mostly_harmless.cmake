@@ -79,11 +79,25 @@ function(mostly_harmless_add_plugin)
         add_executable(serialiser ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/serialise.cpp)
         # and link it to its deps.
         target_link_libraries(serialiser PRIVATE fmt::fmt-header-only)
+        message(STATUS "GENERATOR: ${CMAKE_GENERATOR}")
+        if (${CMAKE_GENERATOR} STREQUAL "Xcode")
+            message(STATUS "USING XC")
+            #depends on build type
+            set(SERIALISER_EXE_PATH
+                    $<IF:$<CONFIG:DEBUG>,${CMAKE_CURRENT_BINARY_DIR}/Debug,${CMAKE_CURRENT_BINARY_DIR}/Release>
+            )
+
+        else ()
+            message(STATUS "NOT USING XC")
+            set(SERIALISER_EXE_PATH ${CMAKE_CURRENT_BINARY_DIR})
+
+        endif ()
         # Seem to need a custom command to only recompile the binary data if files change - not sure why..
         add_custom_command(
                 OUTPUT ${BINARY_RESOURCE_DEST}/BinaryData.h
                 COMMAND echo Recompiling binary data
-                COMMAND ${CMAKE_CURRENT_BINARY_DIR}/serialiser ${BINARY_RESOURCE_DEST} "BinaryData" ${PLUGIN_BINARY_RESOURCES}
+                COMMAND ${SERIALISER_EXE_PATH}/serialiser ${BINARY_RESOURCE_DEST} "BinaryData" ${PLUGIN_BINARY_RESOURCES}
+                #                COMMAND ${CMAKE_CURRENT_BINARY_DIR}/serialiser ${BINARY_RESOURCE_DEST} "BinaryData" ${PLUGIN_BINARY_RESOURCES}
                 DEPENDS ${PLUGIN_BINARY_RESOURCES}
         )
         # Add a custom target, which checks for changes in our binary sources, and runs the serialiser if any of them have changed..

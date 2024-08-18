@@ -352,8 +352,8 @@ namespace mostly_harmless {
         constexpr static auto maxSize{ static_cast<size_t>(4096 * 8) };
         std::vector<char> buffer(maxSize);
         constexpr static auto blockSize{ 64U };
-        auto bytesRead{ 0U };
-        auto inferredSize{ 0U };
+        std::int64_t bytesRead{ 0U };
+        std::int64_t inferredSize{ 0U };
         auto* read = buffer.data();
         while ((bytesRead = stream->read(stream, (void*)read, blockSize)) > 0) {
             read += bytesRead;
