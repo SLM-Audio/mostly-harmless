@@ -73,11 +73,11 @@ function(mostly_harmless_add_plugin targetName)
             NEEDS_AUDIO_IN_BUS # OPTIONAL, DEFAULT TRUE
             NEEDS_AUDIO_OUT_BUS # OPTIONAL, DEFAULT TRUE
 
-            AU_BUNDLE_ID # REQUIRED IF AUV2
-            AU_BUNDLE_VERSION # REQUIRED IF AUV2
-            MANUFACTURER_CODE # REQUIRED IF AUV2
-            SUBTYPE_CODE # REQUIRED IF AUV2
-            AU_TYPE # REQUIRED IF AUV2
+            AU_BUNDLE_ID # REQUIRED IF AU
+            AU_BUNDLE_VERSION # REQUIRED IF AU
+            MANUFACTURER_CODE # REQUIRED IF AU
+            SUBTYPE_CODE # REQUIRED IF AU
+            AU_TYPE # REQUIRED IF AU
     )
 
     set(LIST_ARGS
@@ -94,7 +94,7 @@ function(mostly_harmless_add_plugin targetName)
     )
     set(PLUGIN_NAME ${targetName})
     if (NOT PLUGIN_FORMATS)
-        message(FATAL_ERROR "No formats provided! Options are: CLAP VST3 AUV2 Standalone")
+        message(FATAL_ERROR "No formats provided! Options are: CLAP VST3 AU Standalone")
     endif ()
     if (NOT PLUGIN_NEEDS_NOTE_IN_BUS)
         set(PLUGIN_NEEDS_NOTE_IN_BUS FALSE)
@@ -188,26 +188,26 @@ function(mostly_harmless_add_plugin targetName)
         )
         target_link_libraries(${PLUGIN_NAME}_VST3 PUBLIC ${PLUGIN_NAME})
     endif ()
-    list(FIND PLUGIN_FORMATS "AUV2" INDEX)
+    list(FIND PLUGIN_FORMATS "AU" INDEX)
     if (${INDEX} GREATER -1)
         if (APPLE)
             if (NOT PLUGIN_AU_BUNDLE_ID)
-                message(FATAL_ERROR "AUV2 requires a bundle id!")
+                message(FATAL_ERROR "AU requires a bundle id!")
             endif ()
             if (NOT PLUGIN_AU_BUNDLE_VERSION)
-                message(FATAL_ERROR "AUV2 requires a bundle version!")
+                message(FATAL_ERROR "AU requires a bundle version!")
             endif ()
             if (NOT PLUGIN_VENDOR)
-                message(FATAL_ERROR "AUV2 requires you specify a vendor!")
+                message(FATAL_ERROR "AU requires you specify a vendor!")
             endif ()
             if (NOT PLUGIN_MANUFACTURER_CODE)
-                message(FATAL_ERROR "AUV2 requires a manufacturer code!")
+                message(FATAL_ERROR "AU requires a manufacturer code!")
             endif ()
             if (NOT PLUGIN_SUBTYPE_CODE)
-                message(FATAL_ERROR "AUV2 requires a plugin subtype code!")
+                message(FATAL_ERROR "AU requires a plugin subtype code!")
             endif ()
             if (NOT PLUGIN_AU_TYPE)
-                message(FATAL_ERROR "AUV2 requires a type")
+                message(FATAL_ERROR "AU requires a type")
             endif ()
             add_library(${PLUGIN_NAME}_AU MODULE)
             target_add_auv2_wrapper(
