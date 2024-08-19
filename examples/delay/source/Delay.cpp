@@ -9,12 +9,18 @@ namespace examples::delay {
     void Delay<SampleType>::intialise(double sampleRate, Parameters params) noexcept {
         m_sampleRate = sampleRate;
         m_paramUpdateRate = static_cast<int>(m_paramUpdateRateSeconds * sampleRate);
+        const auto currentDelaySamples = static_cast<SampleType>(params.delayTimeParam->value) * static_cast<SampleType>(sampleRate);
         m_smoothedDelayTime.reset(m_paramUpdateRate);
-        m_smoothedDelayTime.setCurrentAndTargetValue(static_cast<SampleType>(params.delayTimeParam->value));
+        m_smoothedDelayTime.setCurrentAndTargetValue(currentDelaySamples);
         m_smoothedFeedback.reset(m_paramUpdateRate);
         m_smoothedFeedback.setCurrentAndTargetValue(static_cast<SampleType>(params.feedbackParam->value));
         m_smoothedDryWet.reset(m_paramUpdateRate);
         m_smoothedDryWet.setCurrentAndTargetValue(static_cast<SampleType>(params.dryWetParam->value));
+        const auto maxDelaySamples = static_cast<int>(params.delayTimeParam->range.max * static_cast<float>(sampleRate));
+        for (auto& d : m_delayLines) {
+            d.initialise(sampleRate);
+            d.setMaximumDelayInSamples(maxDelaySamples + 1);
+        }
     }
 
     template <marvin::FloatType SampleType>
@@ -24,7 +30,7 @@ namespace examples::delay {
         auto* const* write = buffer.getArrayOfWritePointers();
         for (auto sample = 0_sz; sample < buffer.getNumSamples(); ++sample) {
             checkParameters(params);
-            const auto delaySamples = m_smoothedDelayTime() * static_cast<SampleType>(m_sampleRate);
+            const auto delaySamples = m_smoothedDelayTime();
             const auto feedback = m_smoothedFeedback();
             const auto dryWet = m_smoothedDryWet();
             for (auto channel = 0_sz; channel < buffer.getNumChannels(); ++channel) {
@@ -46,11 +52,15 @@ namespace examples::delay {
     template <marvin::FloatType SampleType>
     void Delay<SampleType>::checkParameters(examples::delay::Parameters params) noexcept {
         if (m_samplesUntilParamUpdate == 0) {
-            m_smoothedDelayTime.setTargetValue(static_cast<SampleType>(params.delayTimeParam->value));
+            const auto currentDelaySamples = static_cast<SampleType>(params.delayTimeParam->value) * static_cast<SampleType>(m_sampleRate);
+            m_smoothedDelayTime.setTargetValue(currentDelaySamples);
             m_smoothedFeedback.setTargetValue(static_cast<SampleType>(params.feedbackParam->value));
             m_smoothedDryWet.setTargetValue(static_cast<SampleType>(params.dryWetParam->value));
             m_samplesUntilParamUpdate = m_paramUpdateRate;
         }
         --m_samplesUntilParamUpdate;
     }
+
+    template class Delay<float>;
+    template class Delay<double>;
 }; // namespace examples::delay

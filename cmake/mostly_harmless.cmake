@@ -146,6 +146,9 @@ function(mostly_harmless_add_plugin targetName)
     if (NOT PLUGIN_NAME)
         message(FATAL_ERROR "A name is required")
     endif ()
+    if (NOT PLUGIN_FEATURES)
+        message(FATAL_ERROR "At least one feature is required")
+    endif ()
     configure_file(
             ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostlyharmless_Descriptor.cpp
             ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp
@@ -153,6 +156,7 @@ function(mostly_harmless_add_plugin targetName)
     add_library(${PLUGIN_NAME} STATIC)
     target_sources(${PLUGIN_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp)
     target_link_libraries(${PLUGIN_NAME} PUBLIC MostlyHarmless)
+    set_target_properties(${PLUGIN_NAME} PROPERTIES OUTPUT_NAME ${PLUGIN_NAME}_SharedCode)
 
     list(FIND PLUGIN_FORMATS "CLAP" INDEX)
     if (${INDEX} GREATER -1)

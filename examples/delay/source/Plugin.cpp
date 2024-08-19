@@ -3,14 +3,22 @@
 //
 
 #include "Plugin.h"
+#include "PluginEditor.h"
 #include <mostly_harmless/audio/mostlyharmless_AudioHelpers.h>
 
 namespace examples::delay {
     std::vector<mostly_harmless::Parameter<float>> createParams() {
-        return {};
+        return {
+            { ParamIds::kDelayTime, "Delay", "plugin/", { 0.01f, 2.0f }, 0.2f, CLAP_PARAM_IS_AUTOMATABLE },
+            { ParamIds::kFeedback, "Feedback", "plugin/", { 0.0f, 0.9f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE },
+            { ParamIds::kDryWet, "DryWet", "plugin/", { 0.0f, 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE }
+        };
     }
 
     Plugin::Plugin(const clap_host* host) : mostly_harmless::Plugin<float>(host, createParams()) {
+        m_parameters.delayTimeParam = getParameter(ParamIds::kDelayTime);
+        m_parameters.feedbackParam = getParameter(ParamIds::kFeedback);
+        m_parameters.dryWetParam = getParameter(ParamIds::kDryWet);
     }
 
     void Plugin::initialise(double sampleRate, std::uint32_t minFrames, std::uint32_t maxFrames) noexcept {
@@ -30,6 +38,7 @@ namespace examples::delay {
     }
 
     void Plugin::flushParams(mostly_harmless::events::InputEventContext context) noexcept {
+        pollEventQueue(context);
     }
 
     void Plugin::reset() noexcept {
@@ -37,12 +46,13 @@ namespace examples::delay {
     }
 
     std::unique_ptr<mostly_harmless::gui::IEditor> Plugin::createEditor() noexcept {
-        return nullptr;
+        return std::make_unique<PluginEditor>(500, 500);
     }
 
-    void Plugin::loadState(std::string_view loadedState) {
+    void Plugin::loadState(std::string_view /*loadedState*/) {
     }
 
-    void Plugin::saveState(std::ostringstream& stream) {
+    void Plugin::saveState(std::ostringstream& /*stream*/) {
     }
 } // namespace examples::delay
+MOSTLYHARMLESS_REGISTER(examples::delay::Plugin);

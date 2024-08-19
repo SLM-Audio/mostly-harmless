@@ -20,11 +20,11 @@ namespace examples::delay {
     private:
         void checkParameters(Parameters params) noexcept;
         double m_sampleRate{};
-        constexpr static auto m_paramUpdateRateSeconds{ 100.0 / 44100.0 };
+        constexpr static auto m_paramUpdateRateSeconds{ 500.0 / 44100.0 };
         int m_paramUpdateRate{ 0 };
         int m_samplesUntilParamUpdate{ 0 };
-        std::array<marvin::dsp::DelayLine<SampleType, marvin::dsp::DelayLineInterpolationType::Linear>, 2> m_delayLines;
-        marvin::utils::SmoothedValue<SampleType, marvin::utils::SmoothingType::Linear> m_smoothedDelayTime, m_smoothedFeedback, m_smoothedDryWet;
+        std::array<marvin::dsp::DelayLine<SampleType, marvin::dsp::DelayLineInterpolationType::Lagrange3rd>, 2> m_delayLines;
+        marvin::utils::SmoothedValue<SampleType, marvin::utils::SmoothingType::Exponential> m_smoothedDelayTime, m_smoothedFeedback, m_smoothedDryWet;
     };
 } // namespace examples::delay
 #endif // MOSTLYHARMLESS_DELAY_H

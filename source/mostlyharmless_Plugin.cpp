@@ -437,6 +437,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiSetSize(std::uint32_t width, std::uint32_t height) noexcept {
+        if (!m_editor) return false;
         m_editor->setSize(width, height);
         return true;
     }
