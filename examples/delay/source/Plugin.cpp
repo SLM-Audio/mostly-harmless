@@ -14,7 +14,7 @@ namespace examples::delay {
     }
 
     void Plugin::initialise(double sampleRate, std::uint32_t minFrames, std::uint32_t maxFrames) noexcept {
-        m_delay.intialise(sampleRate);
+        m_delay.intialise(sampleRate, m_parameters);
     }
 
     void Plugin::process(marvin::containers::BufferView<float> buffer, mostly_harmless::events::InputEventContext context) noexcept {
@@ -23,10 +23,10 @@ namespace examples::delay {
         };
 
         auto onAudio = [this](marvin::containers::BufferView<float> buffer) -> void {
-            m_delay.process(buffer);
+            m_delay.process(buffer, m_parameters);
         };
 
-        mostly_harmless::runBlockDispatch(buffer, context, std::move(onEvent), std::forward<std::function<void(marvin::containers::BufferView<float>)>>(std::move(onAudio)));
+        mostly_harmless::runBlockDispatch<float>(buffer, context, std::move(onEvent), std::move(onAudio));
     }
 
     void Plugin::flushParams(mostly_harmless::events::InputEventContext context) noexcept {

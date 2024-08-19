@@ -21,6 +21,7 @@ namespace examples::delay {
     private:
         void loadState(std::string_view loadedState) override;
         void saveState(std::ostringstream& stream) override;
+        Parameters m_parameters;
         Delay<float> m_delay;
     };
 } // namespace examples::delay
