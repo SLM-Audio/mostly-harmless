@@ -151,11 +151,16 @@ namespace mostly_harmless {
          */
         virtual void loadState(std::string_view loaded) = 0;
 
+        /**
+         * Called internally to handle a midi or parameter event.
+         * \param event The event to process.
+         */
+        void handleEvent(const clap_event_header_t* event) noexcept;
+
     private:
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
         clap_process_status process(const clap_process* processContext) noexcept override;
         void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
-        void handleEvent(const clap_event_header_t* event) noexcept;
         void handleGuiEvents(const clap_output_events_t* outputQueue) noexcept;
 
         [[nodiscard]] bool implementsParams() const noexcept override;
