@@ -98,7 +98,7 @@ target_sources(YourTarget PRIVATE
 
 [1] - See [here](https://github.com/free-audio/clap/blob/main/include/clap/plugin-features.h) for a full list of
 available features.<br>
-[2] These are the au specific 4 letter idents you get when you scan with auval - options are as follows:
+[2] - These are the au specific 4 letter idents you get when you scan with auval - options are as follows:
 
 ```
     aufx - audio effect
@@ -186,6 +186,8 @@ mostly harmless depends on the following libraries:
 - [marvin](https://github.com/MeijisIrlnd/marvin) (and its dependencies)
 - [clap](https://github.com/free-audio/clap), [clap-helpers](https://github.com/free-audio/clap-helpers), [clap-wrapper](https://github.com/free-audio/clap-wrapper)
 - [choc](https://github.com/Tracktion/choc)
+- [fmtlib](https://github.com/fmtlib/fmt)
+- [json](https://github.com/nlohmann/json)
 - [catch2](https://github.com/catchorg/Catch2)
 
 ## Credits
