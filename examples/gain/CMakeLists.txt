@@ -13,13 +13,28 @@ FetchContent_Declare(magic_enum
         GIT_SHALLOW ON)
 FetchContent_MakeAvailable(magic_enum)
 mostly_harmless_add_plugin(
+        Gain
         ID "slma.gain"
-        NAME Gain
         VENDOR "SLM Audio"
-        SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp ${CMAKE_CURRENT_SOURCE_DIR}/source/GainEditor.cpp
+        FORMATS CLAP AU VST3 Standalone
+        AU_BUNDLE_ID "com.yourcompany.gain"
+        AU_BUNDLE_VERSION "1"
+        MANUFACTURER_CODE "Exmp"
+        SUBTYPE_CODE "Gpl1"
+        AU_TYPE "aufx"
         FEATURES "audio-effect"
-        BINARY_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder.txt ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder2.txt ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder3.txt
 )
 
-target_include_directories(Gain_SharedCode PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(Gain_SharedCode PUBLIC magic_enum::magic_enum nlohmann_json)
+mostly_harmless_add_binary_data(Gain
+        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder.txt
+        ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder2.txt
+        ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder3.txt
+)
+
+target_sources(Gain PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/GainEditor.cpp
+)
+
+target_include_directories(Gain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(Gain PUBLIC magic_enum::magic_enum nlohmann_json)
