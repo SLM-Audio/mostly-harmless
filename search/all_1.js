@@ -10,11 +10,12 @@ var searchData=
   ['bandshelf_7',['bandShelf',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#a09516ebf813241e46fccc87a2f5fdd28',1,'marvin::dsp::filters::SVFResult']]],
   ['begin_8',['Begin',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a1a06729125544cab7cee73195fc044f0',1,'mostly_harmless::events::GuiToProcParamEvent']]],
   ['begin_9',['begin',['../classmarvin_1_1containers_1_1StrideView.html#ad9eb1c57ae577a378322225c3707503c',1,'marvin::containers::StrideView::begin()'],['../classmarvin_1_1containers_1_1StrideView.html#ad16dff206a78e7268f279bc71c22829f',1,'marvin::containers::StrideView::begin() const']]],
-  ['biquad_10',['Biquad',['../classmarvin_1_1dsp_1_1filters_1_1Biquad.html',1,'marvin::dsp::filters']]],
-  ['biquadcoefficients_11',['BiquadCoefficients',['../structmarvin_1_1dsp_1_1filters_1_1BiquadCoefficients.html',1,'marvin::dsp::filters']]],
-  ['blackmanharris_12',['BlackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58a7c83be4d47a76f1b8b9657d7e6a00c00',1,'marvin::math::windows']]],
-  ['blackmanharris_13',['blackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#a478bc2e574a36a1e1a6a6ab9edd29b65',1,'marvin::math::windows']]],
-  ['bufferview_14',['BufferView',['../structmarvin_1_1containers_1_1BufferView.html',1,'marvin::containers::BufferView&lt; SampleType &gt;'],['../structmarvin_1_1containers_1_1BufferView.html#a2619bfffb10e61e489c698673a017352',1,'marvin::containers::BufferView::BufferView()']]],
-  ['building_15',['Building',['../index.html#autotoc_md7',1,'']]],
-  ['busconfig_16',['BusConfig',['../namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6',1,'mostly_harmless']]]
+  ['binary_20data_10',['Binary Data',['../index.html#autotoc_md10',1,'']]],
+  ['biquad_11',['Biquad',['../classmarvin_1_1dsp_1_1filters_1_1Biquad.html',1,'marvin::dsp::filters']]],
+  ['biquadcoefficients_12',['BiquadCoefficients',['../structmarvin_1_1dsp_1_1filters_1_1BiquadCoefficients.html',1,'marvin::dsp::filters']]],
+  ['blackmanharris_13',['BlackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58a7c83be4d47a76f1b8b9657d7e6a00c00',1,'marvin::math::windows']]],
+  ['blackmanharris_14',['blackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#a478bc2e574a36a1e1a6a6ab9edd29b65',1,'marvin::math::windows']]],
+  ['bufferview_15',['BufferView',['../structmarvin_1_1containers_1_1BufferView.html',1,'marvin::containers::BufferView&lt; SampleType &gt;'],['../structmarvin_1_1containers_1_1BufferView.html#a2619bfffb10e61e489c698673a017352',1,'marvin::containers::BufferView::BufferView()']]],
+  ['building_16',['Building',['../index.html#autotoc_md7',1,'']]],
+  ['busconfig_17',['BusConfig',['../namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6',1,'mostly_harmless']]]
 ];

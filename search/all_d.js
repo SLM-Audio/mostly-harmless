@@ -7,7 +7,7 @@ var searchData=
   ['perform_4',['perform',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ae82139117b54e99df9de0ee5cfe5a1a5',1,'mostly_harmless::utils::TaskThread']]],
   ['pid_5',['pid',['../structmostly__harmless_1_1Parameter.html#a7d58630afd519a2f36f7543748f884e0',1,'mostly_harmless::Parameter']]],
   ['plugin_6',['Plugin',['../classmostly__harmless_1_1Plugin.html',1,'mostly_harmless::Plugin&lt; SampleType &gt;'],['../classmostly__harmless_1_1Plugin.html#a13d95f39f0ae8ab29bfe2fab9a4a14e4',1,'mostly_harmless::Plugin::Plugin()']]],
-  ['plugin_20code_7',['The actual plugin code',['../index.html#autotoc_md10',1,'']]],
+  ['plugin_20code_7',['The actual plugin code',['../index.html#autotoc_md11',1,'']]],
   ['plugin_20target_8',['Adding a plugin target',['../index.html#autotoc_md9',1,'']]],
   ['pointer_9',['pointer',['../classmarvin_1_1containers_1_1StrideView_1_1iterator.html#a19ab2b0a51b0a685657b7f6b54e0dce4',1,'marvin::containers::StrideView::iterator::pointer'],['../classmarvin_1_1containers_1_1StrideView_1_1const__iterator.html#a5a39b73d389ef581f91734d6111c2336',1,'marvin::containers::StrideView::const_iterator::pointer']]],
   ['polleventqueue_10',['pollEventQueue',['../classmostly__harmless_1_1Plugin.html#a5e8436edb21ffc110d942e1dc61282f4',1,'mostly_harmless::Plugin::pollEventQueue(size_t currentSample, events::InputEventContext context) noexcept'],['../classmostly__harmless_1_1Plugin.html#aea56eb19b7831ab222a4971339c7ba9a',1,'mostly_harmless::Plugin::pollEventQueue(events::InputEventContext context) noexcept']]],

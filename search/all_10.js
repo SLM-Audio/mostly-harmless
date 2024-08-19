@@ -3,7 +3,7 @@ var searchData=
   ['tap_0',['tap',['../classmarvin_1_1dsp_1_1filters_1_1LatticeAPF.html#a95465a08f4f4cdba56144b5128f8e9f9',1,'marvin::dsp::filters::LatticeAPF']]],
   ['target_1',['target',['../index.html#autotoc_md9',1,'Adding a plugin target'],['../classmarvin_1_1dsp_1_1filters_1_1SmoothedBiquadCoefficients.html#ad37122727b33c2ee6a0d39be163f7052',1,'marvin::dsp::filters::SmoothedBiquadCoefficients::target()']]],
   ['taskthread_2',['TaskThread',['../classmostly__harmless_1_1utils_1_1TaskThread.html',1,'mostly_harmless::utils']]],
-  ['the_20actual_20plugin_20code_3',['The actual plugin code',['../index.html#autotoc_md10',1,'']]],
+  ['the_20actual_20plugin_20code_3',['The actual plugin code',['../index.html#autotoc_md11',1,'']]],
   ['threadshouldexit_4',['threadShouldExit',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a7c42f5bbc3b914dbcb1d1c7a152f434e',1,'mostly_harmless::utils::TaskThread']]],
   ['timer_5',['Timer',['../classmostly__harmless_1_1utils_1_1Timer.html',1,'mostly_harmless::utils']]],
   ['to_20your_20project_6',['Adding to your project',['../index.html#autotoc_md8',1,'']]],

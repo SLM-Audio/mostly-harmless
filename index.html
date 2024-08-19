@@ -91,8 +91,7 @@ $(function(){ initResizable(false); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 About</h1>
 <p>mostly harmless is a minimal audio plugin framework for C++20. It's first and foremost a wrapper around the CLAP API, capable of building CLAP, VST3, Audio Unit and Standalone targets. </p><blockquote class="doxtable">
-<p>&zwj;If you're compiling VST3 targets, the responsibility to ensure you're adhering to the Steinberg VST3 License agreement is firmly on you!</p>
-<p></p>
+<p>&zwj;If you're compiling VST3 targets, the responsibility to ensure you're adhering to the Steinberg VST3 License agreement is firmly on you! </p>
 </blockquote>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Documentation</h1>
@@ -111,31 +110,107 @@ Getting Started</h1>
 <h2><a class="anchor" id="autotoc_md7"></a>
 Building</h2>
 <p>Firstly, we'd recommend taking a look in the <code>examples</code> directory for a real-world use case, in the absence of actual tutorials (which are planned). <br  />
- mostly harmless is built with CMake, and supports Windows and macOS (Linux support is on the roadmap). It can be consumed either as a git submodule, or as a FetchContent dependency. </p>
+ mostly harmless is built with CMake, and supports Windows and macOS (Linux support is on the roadmap). It can be consumed either as a git submodule, or as a FetchContent dependency.</p>
 <h2><a class="anchor" id="autotoc_md8"></a>
 Adding to your project</h2>
-<div class="fragment"><div class="line">include(FetchContent)</div>
+<div class="fragment"><div class="line"> include(FetchContent)</div>
 <div class="line">FetchContent_Declare(mostly_harmless</div>
-<div class="line">GIT_REPOSITORY &quot;https://github.com/SLM-Audio/mostly-harmless.git</div>
-<div class="line">GIT_TAG main </div>
-<div class="line">GIT_SHALLOW ON)</div>
+<div class="line">        GIT_REPOSITORY &quot;https://github.com/SLM-Audio/mostly-harmless.git</div>
+<div class="line"> GIT_TAG main </div>
+<div class="line"> GIT_SHALLOW ON)</div>
 <div class="line"> </div>
-<div class="line">FetchContent_MakeAvailable(mostly_harmless)</div>
+<div class="line"> FetchContent_MakeAvailable(mostly_harmless)</div>
 </div><!-- fragment --><p> <br  />
- </p>
+</p>
 <h2><a class="anchor" id="autotoc_md9"></a>
 Adding a plugin target</h2>
-<p>We provide a convenience function to set up your plugin targets, <code>mostly_harmless_add_plugin</code>. This function will create CLAP, VST3, AU and Standalone targets, and set up linkage with mostly harmless and marvin. </p><div class="fragment"><div class="line">mostly_harmless_add_plugin(YourTarget </div>
-<div class="line">ID &quot;com.whatever&quot;</div>
-<div class="line">NAME &quot;YourPluginName&quot;</div>
-<div class="line">SOURCES ${YOUR_SOURCES}</div>
-<div class="line">FEATURES &quot;audio-effect&quot;)</div>
+<p>We provide a convenience function to set up your plugin targets, <code>mostly_harmless_add_plugin</code>. This function will create targets for the specified formats, and link them to the necessary dependencies. Note that if you specify the AU format, a few more arguments become neccessary - the arguments are detailed below.</p>
+<div class="fragment"><div class="line"> mostly_harmless_add_plugin(YourTarget</div>
+<div class="line">        FORMATS CLAP # REQUIRED - At least one of: CLAP, VST3, AU or STANDALONE</div>
+<div class="line">        ID &quot;com.whatever&quot; # REQUIRED - The ID for your plugin</div>
+<div class="line">        FEATURES &quot;audio-effect&quot; # REQUIRED - The CLAP features your plugin uses. [1]</div>
+<div class="line">        VERSION &quot;1.0.0&quot; # OPTIONAL - Your plugin&#39;s verson.</div>
+<div class="line">        DESCRIPTION &quot;We are trapped in the belly of this horrible machine&quot; # OPTIONAL </div>
+<div class="line">        #                                            - A description for your plugin</div>
+<div class="line">        URL &quot;https://slm-audio.com&quot; # OPTIONAL - A link to your website.</div>
+<div class="line">        MANUAL_URL &quot;https://slm-audio.com/manual&quot; # OPTIONAL - A link to your manual.</div>
+<div class="line">        SUPPORT_URL &quot;https://slm-audio.com/hr&quot; # OPTIONAL - A link to your support page.</div>
+<div class="line"> </div>
+<div class="line">        NEEDS_NOTE_IN_BUS FALSE # OPTIONAL, DEFAULTS TO FALSE - Whether your plugin accepts midi/note input.</div>
+<div class="line">        NEEDS_NOTE_OUT_BUS FALSE # OPTIONAL, DEFAULTS TO FALSE - Whether your plugin produces midi/note output.</div>
+<div class="line">        NEEDS_AUDIO_IN_BUS TRUE # OPTIONAL, DEFAULTS TO TRUE - Whether your plugin accepts audio input.</div>
+<div class="line">        NEEDS_AUDIO_OUT_BUS TRUE # OPTIONAL, DEFAULTS TO TRUE - Whether your plugin produces audio output.</div>
+<div class="line"> </div>
+<div class="line">        VENDOR &quot;YourCompany&quot; # REQUIRED FOR AU, OPTIONAL OTHERWISE - The name of your company.</div>
+<div class="line">        AU_BUNDLE_ID &quot;com.yourcompany.plugin&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - A company id for the AU bundle.</div>
+<div class="line">        AU_BUNDLE_VERSION &quot;1&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - A version for the AU bundle.</div>
+<div class="line">        MANUFACTURER_CODE &quot;Brat&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - Your unique 4 character manufacturer code.</div>
+<div class="line">        SUBTYPE_CODE &quot;Bpi1&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - A 4 character identifier for your plugin.</div>
+<div class="line">        AU_TYPE &quot;aufx&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - The AU plugin type for your plugin. [2]</div>
+<div class="line">)</div>
 </div><!-- fragment --><p> <br  />
- </p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+</p>
+<p><code>mostly_harmless_add_plugin</code> will create several targets based on the arguments provided to the <code>FORMATS</code> field. Internally, we create a static library named based on the value you provide to the <code>YourTarget</code> argument, with linkage to the library dependencies, and then link our format targets to that - so after the call to <code>mostly_harmless_add_plugin</code>, the usual cmake rules and techniques apply to the shared target.<br  />
+ For example, to add some sources to the target:</p>
+<div class="fragment"><div class="line">target_sources(YourTarget PRIVATE</div>
+<div class="line">        ${CMAKE_CURRENT_SOURCE_DIR}/source/Plugin.cpp</div>
+<div class="line">        ${CMAKE_CURRENT_SOURCE_DIR}/source/PluginEditor.cpp</div>
+<div class="line">)</div>
+</div><!-- fragment --><p>[1] - See <a href="https://github.com/free-audio/clap/blob/main/include/clap/plugin-features.h">here</a> for a full list of available features.<br  />
+ [2] These are the au specific 4 letter idents you get when you scan with auval - options are as follows:</p>
+<div class="fragment"><div class="line">aufx - audio effect</div>
+<div class="line">aufc - format converter</div>
+<div class="line">augn - audio generator</div>
+<div class="line">aumi - midi processor</div>
+<div class="line">aumx - mixer </div>
+<div class="line">aumu - music device</div>
+<div class="line">aumf - music effect</div>
+<div class="line">auol - offline effect</div>
+<div class="line">auou - output</div>
+<div class="line">aupn - panner</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+Binary Data</h2>
+<p>We also provide a helper to embed assets into your binary, and a corresponding cmake function to call this, <code>mostly_harmless_add_binary_data</code>.</p>
+<div class="fragment"><div class="line">    mostly_harmless_add_binary_data(YourTarget</div>
+<div class="line">        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3</div>
+<div class="line">        ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav</div>
+<div class="line">)</div>
+</div><!-- fragment --><p>This will generate a static library internally called binary-data, compile your sources into cpp files, and link your target to said library. It also generates a header, <code>BinaryData.h</code>, and ensures it's on your plugin's include path.<br  />
+ The header contains extern declarations of type <code>BinaryResource</code> for the generated resources, within the <code>binary_data</code> namespace. The <code>BinaryResource</code> struct is as follows:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>BinaryResource {</div>
+<div class="line">    std::string originalFilename; <span class="comment">// The original filename on disk (excluding the leading path, but including the extension).</span></div>
+<div class="line">    std::vector&lt;char&gt; data; <span class="comment">// The raw bytes in the file.</span></div>
+<div class="line">};</div>
+</div><!-- fragment --><p>which is hopefully relatively self explanatory. <br  />
+ With our example call to <code>mostly_harmless_add_binary_data</code> from above, the generated header would be:</p>
+<div class="fragment"><div class="line"><span class="comment">// This file is auto generated!</span></div>
+<div class="line"><span class="preprocessor">#ifndef BINARYDATA_H</span></div>
+<div class="line"><span class="preprocessor">#define BINARYDATA_H</span></div>
+<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><span class="keyword">namespace </span>binary_data {</div>
+<div class="line">    <span class="keyword">struct </span>BinaryResource {</div>
+<div class="line">        std::string originalFilename;</div>
+<div class="line">        std::vector&lt;char&gt; data;</div>
+<div class="line">    };</div>
+<div class="line">    <span class="keyword">extern</span> BinaryResource VonDutch128;</div>
+<div class="line">    <span class="keyword">extern</span> BinaryResource JamesJoyceReads_TheJungleBook;</div>
+<div class="line">}</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+</div><!-- fragment --><p>To access a some data from it from some imaginary class,</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;BinaryData.h&gt;</span></div>
+<div class="line"><span class="keyword">class </span>ImaginaryClass final {</div>
+<div class="line"><span class="keyword">public</span>: </div>
+<div class="line">    ImaginaryClass() { </div>
+<div class="line">        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; importantListening = binary_data::JamesJoyceReads_TheJungleBook; </div>
+<div class="line">        <span class="comment">// Access the data with importantListening.data()..</span></div>
+<div class="line">    }</div>
+<div class="line">    </div>
+<div class="line">};</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
 The actual plugin code</h2>
 <p>We've included the boilerplate for various projects in the <code>boilerplate</code> directory - these should serve as a good starting point for your plugin sources. As previously mentioned, you can also check out the <code>examples</code> directory for more inspiration.</p>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Dependencies</h1>
 <p>mostly harmless depends on the following libraries:</p>
 <ul>
@@ -144,7 +219,7 @@ Dependencies</h1>
 <li><a href="https://github.com/Tracktion/choc">choc</a></li>
 <li><a href="https://github.com/catchorg/Catch2">catch2</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Credits</h1>
 <p>This framework wouldn't exist without the advice, moral support and help of <a href="https://github.com/mthierman">mthierman</a>, <a href="https://github.com/benthevining">Ben Vining</a>, <a href="https://signalsmith-audio.co.uk/">Signalsmith</a> and the legions of incredible people in <a href="https://discord.gg/v5Rs8h6aGF">The Audio Programmer Discord</a>.<b></b></p>
 <p><b>SLM Audio Brat Summer 2024, all rights reserved. </b></p>
