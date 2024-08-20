@@ -9,6 +9,31 @@
 #include "marvin/containers/marvin_BufferView.h"
 #include <functional>
 namespace mostly_harmless {
+    /**
+     * \brief Splits an input buffer into chunks and dispatches them, allowing for block based processing.
+     *
+     * As parameter and note events are sample accurate, and passed via a single queue, naively doing block based processing with the entire
+     * input buffer would mean only having one param / note update event per block. To get around this, this function handles chunking the audio
+     * between events, and calling some process function with that chunk.
+     * For example:
+     * ```cpp
+     * void Plugin::process(marvin::containers::ByfferView<float> buffer, mostly_harmless::events::InputEventContext context) {
+     *     runBlockDispatch(buffer, context,
+     *         [this](const clap_event_header* event) -> void {
+     *             handleEvent(event);
+     *         },
+     *         [this](marvin::containers::BufferView<float> chunk) -> void {
+     *             // assuming a member called m_processor
+     *             m_processor.process(chunk);
+     *         }
+     *     );
+     * }
+     * ```
+     * \param buffer The entire buffer for this block
+     * \param eventCallback The input event queue for this block.
+     * \param eventCallback A callback to invoke on a new event.
+     * \param blockCallback A callback to invoke on a new chunk.
+     */
     template <marvin::FloatType SampleType>
     void runBlockDispatch(marvin::containers::BufferView<SampleType> buffer,
                           mostly_harmless::events::InputEventContext eventContext,
