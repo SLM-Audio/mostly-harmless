@@ -22,8 +22,8 @@ namespace mostly_harmless {
             namespace macos {
 
             }
-        }
-    }
+        } // namespace helpers
+    } // namespace gui
     /**
      * \brief Contains general purpose utility classes & functions
      */
@@ -36,5 +36,12 @@ namespace mostly_harmless {
     namespace events {
 
     }
-}
+
+    /**
+     * \brief Contains audio helpers and utilities
+     */
+    namespace audio {
+
+    }
+} // namespace mostly_harmless
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_NAMESPACEDOCS_H
