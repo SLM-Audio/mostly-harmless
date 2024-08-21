@@ -128,7 +128,7 @@ namespace mostly_harmless {
             \param note The midi note value
             \param velocity The midi velocity value
          */
-        virtual void handleNoteOn([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) { assert(false); }
+        virtual void handleNoteOn([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}
         /**
             Called Internally by pollEventQueue when a midi note off message is received.
             If note off functionality is required, make sure you override this function!
@@ -137,7 +137,7 @@ namespace mostly_harmless {
             \param note The midi note value
             \param velocity The midi velocity value
          */
-        virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) { assert(false); }
+        virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}
 
         /**
          * Called when the host needs to serialize the plugin's current state.
