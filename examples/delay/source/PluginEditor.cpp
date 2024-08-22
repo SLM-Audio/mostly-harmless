@@ -21,7 +21,7 @@ namespace examples::delay {
             return {};
         };
 
-        auto paramChangeCallback = [this, context](const choc::value::ValueView& args) -> choc::value::Value {
+        auto paramChangeCallback = [context](const choc::value::ValueView& args) -> choc::value::Value {
             if (!context.guiToProcQueue) return {};
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
             const auto value = std::stod(args[0]["value"].toString());

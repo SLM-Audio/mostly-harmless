@@ -21,7 +21,7 @@ namespace examples::delay {
         m_parameters.dryWetParam = getParameter(ParamIds::kDryWet);
     }
 
-    void Plugin::initialise(double sampleRate, std::uint32_t minFrames, std::uint32_t maxFrames) noexcept {
+    void Plugin::initialise(double sampleRate, std::uint32_t /*minFrames*/, std::uint32_t /*maxFrames*/) noexcept {
         m_delay.intialise(sampleRate, m_parameters);
     }
 
