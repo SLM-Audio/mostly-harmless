@@ -43,9 +43,9 @@ namespace mostly_harmless {
         auto** channelArray = static_cast<SampleType**>(alloca(sizeof(SampleType*) * numChannels));
         size_t lastEventIndex{ 0 };
         auto* const* rawBuff = buffer.getArrayOfWritePointers();
-        for (auto i = 0; i < buffer.getNumSamples(); ++i) {
-            if (eventContext.next() && eventContext.next()->time == i) {
-                while (eventContext.next() && eventContext.next()->time == i) {
+        for (size_t i = 0; i < buffer.getNumSamples(); ++i) {
+            if (eventContext.next() && eventContext.next()->time == static_cast<std::uint32_t>(i)) {
+                while (eventContext.next() && eventContext.next()->time == static_cast<std::uint32_t>(i)) {
                     eventCallback(eventContext.next());
                     ++eventContext;
                 }
