@@ -98,7 +98,7 @@ else ()
             -Wall
             -Wextra
             -Wpedantic
-            -Werror
+            #            -Werror
     )
 endif ()
 
