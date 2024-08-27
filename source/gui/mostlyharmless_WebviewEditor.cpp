@@ -21,21 +21,17 @@ namespace mostly_harmless::gui {
         void create() {
             const auto iWidth = static_cast<int>(m_initialWidth);
             const auto iHeight = static_cast<int>(m_initialHeight);
-            m_window = std::make_unique<choc::ui::DesktopWindow>(choc::ui::Bounds{ 0, 0, iWidth, iHeight });
-            m_window->setMinimumSize(iWidth, iHeight);
-            m_window->setMinimumSize(iWidth, iHeight);
-            m_window->setWindowTitle("Test");
             m_webview = std::make_unique<choc::ui::WebView>(choc::ui::WebView::Options{ .enableDebugMode = true });
-            m_window->setContent(m_webview->getViewHandle());
+            auto* hwnd = static_cast<::HWND>(m_webview->getViewHandle());
+            ::SetWindowPos(hwnd, NULL, 0, 0, iWidth, iHeight, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOMOVE | SWP_FRAMECHANGED);
         }
 
         void destroy() {
             m_webview.reset();
-            m_window.reset();
         }
 
         void getSize(std::uint32_t* width, std::uint32_t* height) {
-            auto* handle = static_cast<HWND>(m_window->getWindowHandle());
+            auto* handle = static_cast<HWND>(m_webview->getViewHandle());
             ::RECT rect;
             ::GetClientRect(handle, &rect);
             *width = static_cast<std::uint32_t>(rect.right - rect.left);
@@ -43,25 +39,24 @@ namespace mostly_harmless::gui {
         }
 
         void setSize(std::uint32_t width, std::uint32_t height) {
-            m_window->setBounds({ 0, 0, static_cast<int>(width), static_cast<int>(height) });
+            auto* hwnd = static_cast<::HWND>(m_webview->getViewHandle());
+            ::SetWindowPos(hwnd, NULL, 0, 0, static_cast<int>(width), static_cast<int>(height), SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOMOVE | SWP_FRAMECHANGED);
         }
 
         void setParent(void* parentHandle) {
             auto* parentHwnd = static_cast<HWND>(parentHandle);
-            auto* handle = static_cast<HWND>(m_window->getWindowHandle());
+            auto* handle = static_cast<::HWND>(m_webview->getViewHandle());
             ::SetWindowLongPtrW(handle, GWL_STYLE, WS_CHILD);
             ::SetParent(handle, parentHwnd);
             show();
         }
 
         void show() {
-            m_window->setVisible(true);
             auto* webviewHwnd = static_cast<HWND>(m_webview->getViewHandle());
             ::ShowWindow(webviewHwnd, SW_SHOW);
         }
 
         void hide() {
-            m_window->setVisible(false);
             auto* webviewHwnd = static_cast<HWND>(m_webview->getViewHandle());
             ::ShowWindow(webviewHwnd, SW_HIDE);
         }
@@ -72,7 +67,6 @@ namespace mostly_harmless::gui {
 
     private:
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
-        std::unique_ptr<choc::ui::DesktopWindow> m_window{ nullptr };
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
     };
 

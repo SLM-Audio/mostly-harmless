@@ -427,7 +427,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiCanResize() const noexcept {
-        return true; // TODO
+        return false; // TODO
     }
 
     template <marvin::FloatType SampleType>
