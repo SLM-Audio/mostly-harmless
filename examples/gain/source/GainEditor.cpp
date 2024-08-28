@@ -11,8 +11,46 @@
 #include <BinaryData.h>
 
 namespace examples::gain {
+    [[nodiscard]] Resource createResourceFor(const std::string& name) {
+        auto* res = binary_data::getNamedResource(name);
+        assert(res);
+        auto mimeType = mostly_harmless::gui::getMimeType(res->originalFilename);
+        assert(mimeType);
+        // Evil evil evil evil evil evil (but safe I think)
+        auto* asUnsigned = reinterpret_cast<std::uint8_t*>(res->data.data());
+        std::vector<std::uint8_t> data{ asUnsigned, asUnsigned + res->data.size() };
+        Resource temp;
+        temp.data = std::move(data);
+        temp.mimeType = *mimeType;
+        return temp;
+    }
+
     GainEditor::GainEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height) {
         [[maybe_unused]] const auto& placeholder2 = binary_data::placeholder2_txt;
+        m_resources.emplace("/index.html", createResourceFor("index.html"));
+        m_resources.emplace("/index.css", createResourceFor("index.css"));
+        m_resources.emplace("/index.js", createResourceFor("index.js"));
+        auto fetchResourceCallback = [this](const std::string& url) -> std::optional<Resource> {
+            const auto requested = url == "/" ? "/index.html" : url;
+            const auto it = m_resources.find(requested);
+            if (it == m_resources.end()) return {};
+            auto resource = it->second;
+            return resource;
+        };
+        // a map of paramEnum : paramId will be available in `window.params`.
+        std::stringstream initialDataStream;
+        initialDataStream << "window.params = { \n";
+        for (std::uint32_t i = 0; i < static_cast<std::uint32_t>(ParamIds::kNumParams); ++i) {
+            const auto asEnum = static_cast<ParamIds>(i);
+            const auto asStr = magic_enum::enum_name(asEnum);
+            initialDataStream << "    " << asStr << ": " << i << ",\n";
+        }
+        initialDataStream << "};";
+#if defined(GAIN_HOT_RELOAD)
+        this->setOptions({ .enableDebugMode = true, .initScript = initialDataStream.str() });
+#else
+        this->setOptions({ .enableDebugMode = true, .fetchResource = std::move(fetchResourceCallback), .initScript = initialDataStream.str() });
+#endif
     }
 
     void GainEditor::initialise(mostly_harmless::gui::EditorContext context) {
@@ -52,17 +90,10 @@ namespace examples::gain {
         };
 
 
-        // a map of paramEnum : paramId will be available in `window.params`.
-        std::stringstream initialDataStream;
-        initialDataStream << "window.params = { \n";
-        for (std::uint32_t i = 0; i < static_cast<std::uint32_t>(ParamIds::kNumParams); ++i) {
-            const auto asEnum = static_cast<ParamIds>(i);
-            const auto asStr = magic_enum::enum_name(asEnum);
-            initialDataStream << "    " << asStr << ": " << i << ",\n";
-        }
-        initialDataStream << "};";
-        m_internalWebview->addInitScript(initialDataStream.str());
+//        m_internalWebview->addInitScript(initialDataStream.str());
+#if defined(GAIN_HOT_RELOAD)
         m_internalWebview->navigate("http://localhost:5173");
+#endif
         m_internalWebview->bind("beginParamGesture", std::move(beginParamGestureCallback));
         m_internalWebview->bind("setParamValue", std::move(paramChangeCallback));
         m_internalWebview->bind("endParamGesture", std::move(endParamGestureCallback));

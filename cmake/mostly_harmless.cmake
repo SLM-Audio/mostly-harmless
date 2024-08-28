@@ -15,6 +15,7 @@ function(mostly_harmless_add_binary_data pluginTarget)
     set(BINARY_RESOURCE_DEST "${CMAKE_CURRENT_BINARY_DIR}/binary_data")
     # and create it if necessary.
     file(MAKE_DIRECTORY ${BINARY_RESOURCE_DEST})
+    set(BINARY_INPUT_SOURCES ${BINARY_RESOURCE_DEST}/BinaryData.cpp)
     # Now iterate over the sources the user provided..
     foreach (RESOURCE IN LISTS PLUGIN_BINARY_SOURCES)
         # and get the filename without path or extension.

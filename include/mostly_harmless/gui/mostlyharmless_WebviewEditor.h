@@ -6,8 +6,17 @@
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_WEBVIEWEDITOR_H
 #include <mostly_harmless/gui/mostlyharmless_IEditor.h>
 #include <choc/gui/choc_WebView.h>
+#include <optional>
+#include <string>
 #include <memory>
 namespace mostly_harmless::gui {
+    /**
+     * \brief Tries to retrieve the MIME type for a given filename.
+     * \param filename The filename to retrieve the MIME type for
+     * \return The associated MIME type for the given filename if found, std::nullopt otherwise.
+     */
+    [[nodiscard]] std::optional<std::string> getMimeType(const std::string& filename);
+
     /**
      * \brief Convenience wrapper layer implementing the creation and management of a `choc::ui::WebView`.
      *
@@ -25,6 +34,11 @@ namespace mostly_harmless::gui {
          * Non default destructor for pimpl
          */
         ~WebviewEditor() noexcept override;
+        /**
+         * Specify some options to pass to the internal webview's constructor - note that this *must* be called *before* initialise (ie in your constructor) for them to get picked up.
+         * \param opts The options to pass to the internal webview
+         */
+        void setOptions(choc::ui::WebView::Options&& opts) noexcept;
         /**
          * Implementation of mostly_harmless::gui::IEditor::initialise().
          * \param context The editor context (see IEditor::initialise() and EditorContext for more details).

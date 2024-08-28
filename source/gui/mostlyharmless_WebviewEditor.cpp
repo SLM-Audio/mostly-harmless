@@ -11,17 +11,75 @@
 #include <winuser.h>
 #endif
 #include <cassert>
+#include <filesystem>
 namespace mostly_harmless::gui {
+    static std::unordered_map<std::string, std::string> s_mimeTypes = {
+        { "aac", "audio/aac" },
+        { "aif", "audio/aiff" },
+        { "aiff", "audio/aiff" },
+        { "avif", "image/avif" },
+        { "bmp", "image/bmp" },
+        { "css", "text/css" },
+        { "csv", "text/csv" },
+        { "flac", "audio/flac" },
+        { "gif", "image/gif" },
+        { "htm", "text/html" },
+        { "html", "text/html" },
+        { "ico", "image/vnd.microsoft.icon" },
+        { "jpeg", "image/jpeg" },
+        { "jpg", "image/jpeg" },
+        { "js", "text/javascript" },
+        { "json", "application/json" },
+        { "md", "text/markdown" },
+        { "mid", "audio/midi" },
+        { "midi", "audio/midi" },
+        { "mjs", "text/javascript" },
+        { "mp3", "audio/mpeg" },
+        { "mp4", "video/mp4" },
+        { "mpeg", "video/mpeg" },
+        { "ogg", "audio/ogg" },
+        { "otf", "font/otf" },
+        { "pdf", "application/pdf" },
+        { "png", "image/png" },
+        { "rtf", "application/rtf" },
+        { "svg", "image/svg+xml" },
+        { "svgz", "image/svg+xml" },
+        { "tif", "image/tiff" },
+        { "tiff", "image/tiff" },
+        { "ttf", "font/ttf" },
+        { "txt", "text/plain" },
+        { "wasm", "application/wasm" },
+        { "wav", "audio/wav" },
+        { "weba", "audio/webm" },
+        { "webm", "video/webm" },
+        { "webp", "image/webp" },
+        { "woff", "font/woff" },
+        { "woff2", "font/woff2" },
+        { "xml", "application/xml" },
+        { "zip", "application/zip" },
+    };
+
+    std::optional<std::string> getMimeType(const std::string& filename) {
+        const auto ext = std::filesystem::path{ filename }.extension().string().substr(1);
+        auto it = s_mimeTypes.find(ext);
+        if (it == s_mimeTypes.end()) return {};
+        return s_mimeTypes[ext];
+    }
+
 #if defined(MOSTLY_HARMLESS_WINDOWS)
     class WebviewEditor::Impl {
     public:
         Impl(std::uint32_t initialWidth, std::uint32_t initialHeight) : m_initialWidth(initialWidth), m_initialHeight(initialHeight) {
         }
 
+        void setOptions(choc::ui::WebView::Options&& opts) {
+            m_options = std::move(opts);
+        }
+
         void create() {
             const auto iWidth = static_cast<int>(m_initialWidth);
             const auto iHeight = static_cast<int>(m_initialHeight);
-            m_webview = std::make_unique<choc::ui::WebView>(choc::ui::WebView::Options{ .enableDebugMode = true });
+            m_webview = std::make_unique<choc::ui::WebView>(m_options);
             auto* hwnd = static_cast<::HWND>(m_webview->getViewHandle());
             ::SetWindowPos(hwnd, NULL, 0, 0, iWidth, iHeight, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOMOVE | SWP_FRAMECHANGED);
         }
@@ -67,6 +125,7 @@ namespace mostly_harmless::gui {
 
     private:
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
+        choc::ui::WebView::Options m_options;
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
     };
 
@@ -77,9 +136,12 @@ namespace mostly_harmless::gui {
                                                                         m_initialHeight(initialHeight) {
         }
 
+        void setOptions(choc::ui::WebView::Options&& opts) {
+            m_options = std::move(opts);
+        }
 
         void create() {
-            m_webview = std::make_unique<choc::ui::WebView>(choc::ui::WebView::Options{ .enableDebugMode = true });
+            m_webview = std::make_unique<choc::ui::WebView>(m_options);
             helpers::macos::setViewSize(m_webview->getViewHandle(), m_initialWidth, m_initialHeight);
         }
 
@@ -114,6 +176,7 @@ namespace mostly_harmless::gui {
 
     private:
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
+        choc::ui::WebView::Options m_options;
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
     };
 #else
@@ -124,6 +187,10 @@ namespace mostly_harmless::gui {
         m_impl = std::make_unique<WebviewEditor::Impl>(initialWidth, initialHeight);
     }
     WebviewEditor::~WebviewEditor() noexcept {
+    }
+
+    void WebviewEditor::setOptions(choc::ui::WebView::Options&& opts) noexcept {
+        m_impl->setOptions(std::move(opts));
     }
 
     void WebviewEditor::initialise(EditorContext /*context*/) {

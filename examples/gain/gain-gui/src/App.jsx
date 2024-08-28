@@ -7,7 +7,7 @@ function App() {
         <>
             <div>
                 <p className="label">Gain</p>
-                <SliderComponent pid={window.params.kGain} name={"Gain"} min={0} max={1}/>
+                <SliderComponent pid={window.params.kGain} name={"hello"} min={0} max={1}/>
             </div>
         </>
     )

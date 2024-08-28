@@ -21,19 +21,31 @@ constexpr static auto headerStart =
     "    struct BinaryResource {\n"
     "        std::string originalFilename;\n"
     "        std::vector<char> data;\n"
-    "    };\n";
+    "    };\n"
+    "    [[nodiscard]] BinaryResource* getNamedResource(const std::string& name);\n";
+
 constexpr static auto headerEnd =
     "}\n"
     "#endif";
 
 constexpr static auto sourceEnd =
     "}\n";
-void addFile(const std::filesystem::path& path, std::ofstream& headerStream, std::ofstream& sourceStream) {
+
+constexpr static auto mainSourceEnd =
+    "\n    };\n"
+    "    BinaryResource* getNamedResource(const std::string& name) {\n"
+    "        const auto it = s_resourceMap.find(name);\n"
+    "        if(it == s_resourceMap.end()) return nullptr;\n"
+    "        return s_resourceMap[name];\n"
+    "    }\n"
+    "}";
+
+void addFile(const std::filesystem::path& path, std::ofstream& headerStream, std::ofstream& sourceStream, std::ofstream& mainSourceStream) {
     const auto nameWithoutExtension = path.stem().string();
     // Need the extension too..
     const auto extension = path.extension().string().substr(1);
     headerStream << "    extern BinaryResource " << nameWithoutExtension << "_" << extension << ";\n";
-
+    mainSourceStream << "        { \"" << path.filename().string() << "\", &" << nameWithoutExtension << "_" << extension << " }";
     sourceStream << "    BinaryResource " << nameWithoutExtension << "_" << extension << " {\n";
     sourceStream << "        .originalFilename = " << path.filename() << ",\n";
     // Now - load *all* the data from the file as a char[]..
@@ -81,17 +93,28 @@ int main(int argc, char** argv) {
     sourceStartStream << "#include \"" << headerNameStem << ".h\"\n";
     sourceStartStream << "namespace binary_data {\n";
     const auto sourceStart = sourceStartStream.str();
+    std::ofstream mainSourceStream{ fmt::format("{}/{}.cpp", destPath.string(), headerNameStem), std::ios::out };
+    mainSourceStream << "#include \"" << headerNameStem << ".h\"\n";
+    mainSourceStream << "#include <unordered_map>\n";
+    mainSourceStream << "namespace binary_data {\n";
+    mainSourceStream << "    static std::unordered_map<std::string, BinaryResource*> s_resourceMap = {\n";
+
     for (auto i = 3; i < argc; ++i) {
         std::filesystem::path asPath{ argv[i] };
         const auto extension = asPath.extension().string().substr(1);
         std::ofstream currentSourceStream{ fmt::format("{}/{}_{}.cpp", destPath.string(), asPath.stem().string(), extension) };
         currentSourceStream << sourceStart;
-        addFile(asPath, headerStream, currentSourceStream);
+        addFile(asPath, headerStream, currentSourceStream, mainSourceStream);
+        if (i != argc - 1) {
+            mainSourceStream << ",\n";
+        }
         currentSourceStream << sourceEnd;
         currentSourceStream.flush();
     }
 
     headerStream << headerEnd;
     headerStream.flush();
+    mainSourceStream << mainSourceEnd;
+    mainSourceStream.flush();
     return 0;
 }

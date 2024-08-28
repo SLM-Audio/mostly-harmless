@@ -67,6 +67,7 @@ mostly_harmless_add_binary_data(Gain
         ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder2.txt
         ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder3.txt
 )
+add_dependencies(binary-data Vite)
 
 target_sources(Gain PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp
@@ -75,3 +76,4 @@ target_sources(Gain PRIVATE
 
 target_include_directories(Gain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(Gain PUBLIC magic_enum::magic_enum nlohmann_json)
+#target_compile_definitions(Gain PUBLIC GAIN_HOT_RELOAD)
