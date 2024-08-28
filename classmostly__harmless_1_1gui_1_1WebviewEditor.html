@@ -116,6 +116,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5268fb5e2287f1cdc39addce5ebceb1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d95b0ea1803ab68b16d4e8b302c5ffa" id="r_a9d95b0ea1803ab68b16d4e8b302c5ffa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d95b0ea1803ab68b16d4e8b302c5ffa">~WebviewEditor</a> () noexcept override</td></tr>
 <tr class="separator:a9d95b0ea1803ab68b16d4e8b302c5ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eaa6d25cd111fe9fc2565ffcc487145" id="r_a4eaa6d25cd111fe9fc2565ffcc487145"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eaa6d25cd111fe9fc2565ffcc487145">setOptions</a> (choc::ui::WebView::Options &amp;&amp;opts) noexcept</td></tr>
+<tr class="separator:a4eaa6d25cd111fe9fc2565ffcc487145"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9929190bcb6915a7954aed634b2f8fc3" id="r_a9929190bcb6915a7954aed634b2f8fc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9929190bcb6915a7954aed634b2f8fc3">initialise</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> context) override</td></tr>
 <tr class="separator:a9929190bcb6915a7954aed634b2f8fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af648c6c40f4106a4f3905b4afa0d727e" id="r_af648c6c40f4106a4f3905b4afa0d727e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af648c6c40f4106a4f3905b4afa0d727e">destroy</a> () override</td></tr>
@@ -346,6 +348,37 @@ Protected Attributes</h2></td></tr>
 <p>Still pure virtual - you need to implement this to send data to your webview. see <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ad337fb3843ff8f8df44acbd45876c928">IEditor::onParamEvent()</a> for more details. </p>
 
 <p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ad337fb3843ff8f8df44acbd45876c928">mostly_harmless::gui::IEditor</a>.</p>
+
+</div>
+</div>
+<a id="a4eaa6d25cd111fe9fc2565ffcc487145" name="a4eaa6d25cd111fe9fc2565ffcc487145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eaa6d25cd111fe9fc2565ffcc487145">&#9670;&#160;</a></span>setOptions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::gui::WebviewEditor::setOptions </td>
+          <td>(</td>
+          <td class="paramtype">choc::ui::WebView::Options &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>opts</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Specify some options to pass to the internal webview's constructor - note that this <em>must</em> be called <em>before</em> initialise (ie in your constructor) for them to get picked up. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opts</td><td>The options to pass to the internal webview </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
