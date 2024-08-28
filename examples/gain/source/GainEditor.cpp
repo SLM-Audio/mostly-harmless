@@ -12,7 +12,7 @@
 
 namespace examples::gain {
     GainEditor::GainEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height) {
-        [[maybe_unused]] const auto& placeholder2 = binary_data::placeholder2;
+        [[maybe_unused]] const auto& placeholder2 = binary_data::placeholder2_txt;
     }
 
     void GainEditor::initialise(mostly_harmless::gui::EditorContext context) {

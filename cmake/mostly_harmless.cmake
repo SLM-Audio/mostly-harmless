@@ -19,8 +19,11 @@ function(mostly_harmless_add_binary_data pluginTarget)
     foreach (RESOURCE IN LISTS PLUGIN_BINARY_SOURCES)
         # and get the filename without path or extension.
         cmake_path(GET RESOURCE STEM CURRENT_STEM)
+        cmake_path(GET RESOURCE EXTENSION LAST_ONLY CURRENT_EXTENSION)
+        # strip the "."
+        string(REPLACE "." "" STRIPPED_EXTENSION ${CURRENT_EXTENSION})
         # Reconstitute the path to be where we want our compiled cpp to live..
-        set(CURRENT "${BINARY_RESOURCE_DEST}/${CURRENT_STEM}.cpp")
+        set(CURRENT "${BINARY_RESOURCE_DEST}/${CURRENT_STEM}_${STRIPPED_EXTENSION}.cpp")
         # And add that path to the list of sources.
         list(APPEND BINARY_INPUT_SOURCES ${CURRENT})
         # Tell cmake that this source is generated at compile time.

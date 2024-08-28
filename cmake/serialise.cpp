@@ -30,9 +30,11 @@ constexpr static auto sourceEnd =
     "}\n";
 void addFile(const std::filesystem::path& path, std::ofstream& headerStream, std::ofstream& sourceStream) {
     const auto nameWithoutExtension = path.stem().string();
-    headerStream << "    extern BinaryResource " << nameWithoutExtension << ";\n";
+    // Need the extension too..
+    const auto extension = path.extension().string().substr(1);
+    headerStream << "    extern BinaryResource " << nameWithoutExtension << "_" << extension << ";\n";
 
-    sourceStream << "    BinaryResource " << nameWithoutExtension << " {\n";
+    sourceStream << "    BinaryResource " << nameWithoutExtension << "_" << extension << " {\n";
     sourceStream << "        .originalFilename = " << path.filename() << ",\n";
     // Now - load *all* the data from the file as a char[]..
     std::ifstream inStream{ path, std::ios::in | std::ios::binary };
@@ -81,7 +83,8 @@ int main(int argc, char** argv) {
     const auto sourceStart = sourceStartStream.str();
     for (auto i = 3; i < argc; ++i) {
         std::filesystem::path asPath{ argv[i] };
-        std::ofstream currentSourceStream{ fmt::format("{}/{}.cpp", destPath.string(), asPath.stem().string()) };
+        const auto extension = asPath.extension().string().substr(1);
+        std::ofstream currentSourceStream{ fmt::format("{}/{}_{}.cpp", destPath.string(), asPath.stem().string(), extension) };
         currentSourceStream << sourceStart;
         addFile(asPath, headerStream, currentSourceStream);
         currentSourceStream << sourceEnd;

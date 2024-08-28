@@ -25,8 +25,45 @@ mostly_harmless_add_plugin(
         FEATURES "audio-effect"
 )
 
+set(GAIN_GUI_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/gain-gui)
+file(GLOB_RECURSE GAIN_GUI_SOURCES "${GAIN_GUI_ROOT}/*" FORCE)
+set(GAIN_GUI_OUTPUT
+        ${PROJECT_BINARY_DIR}/gain-gui/index.html
+        ${PROJECT_BINARY_DIR}/gain-gui/index.css
+        ${PROJECT_BINARY_DIR}/gain-gui/index.js
+)
+if (WIN32)
+    add_custom_command(
+            OUTPUT ${GAIN_GUI_OUTPUT}
+            COMMAND npm run build
+            COMMAND powershell del ${PROJECT_BINARY_DIR}/gain-gui
+            COMMAND powershell Move-Item -Force "./dist" ${PROJECT_BINARY_DIR}/gain-gui
+            WORKING_DIRECTORY ${GAIN_GUI_ROOT}
+            DEPENDS ${GUI_SOURCES}
+            USES_TERMINAL
+    )
+else ()
+    add_custom_command(
+            OUTPUT ${GAIN_GUI_OUTPUT}
+            COMMAND npm run build
+            COMMAND rm -rf ${PROJECT_BINARY_DIR}/gain-gui
+            COMMAND mv ./dist ${PROJECT_BINARY_DIR}/gain-gui
+            WORKING_DIRECTORY ${GAIN_GUI_ROOT}
+            DEPENDS ${GUI_SOURCES}
+            USES_TERMINAL
+    )
+endif ()
+
+add_custom_target(
+        Vite
+        ALL
+        DEPENDS ${GAIN_GUI_OUTPUT}
+)
+
 mostly_harmless_add_binary_data(Gain
-        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder.txt
+        BINARY_SOURCES
+        ${GAIN_GUI_OUTPUT}
+        ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder.txt
         ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder2.txt
         ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder3.txt
 )
