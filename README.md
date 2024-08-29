@@ -115,63 +115,62 @@ available features.<br>
 
 ### Binary Data
 
-We also provide a helper to embed assets into your binary, and a corresponding cmake function to call
+We also provide a helper to embed assets into your binary, (essentially sugar around `CMRC`) and a corresponding cmake function to call
 this, `mostly_harmless_add_binary_data`.
 
 ```cmake 
     mostly_harmless_add_binary_data(YourTarget
+        TARGET_NAME BinaryData 
+        ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources
         BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3
         ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav
 )
 ```
-
-This will generate a static library internally called binary-data, compile your sources into cpp files, and link your
-target to said library.
-It also generates a header, `BinaryData.h`, and ensures it's on your plugin's include path.<br>
-The header contains extern declarations of type `BinaryResource` for the generated resources, within the `binary_data`
-namespace.
-The `BinaryResource` struct is as follows:
-
+This will create a static library called `BinaryData` containing your resources, and add the resulting header to your include path. 
+The value you pass to the `TARGET_NAME` parameters will dictate the name of the generated static library, the resulting filename (prefixed by `mostly_harmless`),
+and the namespace the binary resources are contained in (also prefixed by mostly_harmless). <br><br>
+The generated header provides a free function, `getNamedResource()` to access binary resources through, which takes a (relative to root) path to a resource, and returns a `std::optional<BinaryResource>`, 
+where `BinaryResource` is defined as:
 ```cpp
-    struct BinaryResource {
-        std::string originalFilename; // The original filename on disk (excluding the leading path, but including the extension).
-        std::vector<char> data; // The raw bytes in the file.
+    struct BinaryResource final { 
+        const char* data;
+        size_t size;
     };
 ```
-
-which is hopefully relatively self explanatory. <br>
-With our example call to `mostly_harmless_add_binary_data` from above, the generated header would be:
-
-```cpp
-// This file is auto generated!
-#ifndef BINARYDATA_H
-#define BINARYDATA_H
-#include <vector>
-#include <string>
-namespace binary_data {
-    struct BinaryResource {
-        std::string originalFilename;
-        std::vector<char> data;
-    };
-    extern BinaryResource VonDutch128;
-    extern BinaryResource JamesJoyceReads_TheJungleBook;
-}
-#endif
+If the queried resource isn't found, `getNamedResource()` will return `std::nullopt`.<br>
+As mentioned above, the pathing to the resource is relative to the value you passed to the `ROOT` parameter in CMake. For example, for a dir structure 
 ```
-
-To access a some data from it from some imaginary class,
+project
+    resources
+        images
+            BottomText.png
+        text 
+            Placeholder.txt
+    CMakeLists.txt
+```
+if `ROOT` is set to `${CMAKE_CURRENT_SOURCE_DIR}/resources`, then to access `BottomText.png`:
+```cpp
+    auto resourceOpt = mostly_harmless::BinaryData::getNamedResource("images/BottomText.png");
+```
+<br>
+A full usage example then: 
 
 ```cpp
-#include <BinaryData.h>
-class ImaginaryClass final {
-public: 
-    ImaginaryClass() { 
-        const auto& importantListening = binary_data::JamesJoyceReads_TheJungleBook; 
-        // Access the data with importantListening.data()..
+    #include <mostlyharmless_BinaryData.h>
+    int main() { 
+        auto bottomText = mostly_harmless::BinaryData::getNamedResource("images/BottomText.png");
+        assert(bottomText);
+        auto [imgData, imgSize] = *bottomText; // const char*, size_t
+        ...
+        auto placeholder = mostly_harmless::BinaryData::getNamedResource("text/Placeholder.txt");
+        assert(placeholder);
+        auto [textData, textSize] = *placeholder;
+        ...
+        return 0;
     }
-    
-};
 ```
+
+You're not limited to a single library of binary resources either, which could be useful for separating resources of a different category or purpose into different headers, etc etc etc.
 
 ### The actual plugin code
 
@@ -186,6 +185,7 @@ mostly harmless depends on the following libraries:
 - [marvin](https://github.com/MeijisIrlnd/marvin) (and its dependencies)
 - [clap](https://github.com/free-audio/clap), [clap-helpers](https://github.com/free-audio/clap-helpers), [clap-wrapper](https://github.com/free-audio/clap-wrapper)
 - [choc](https://github.com/Tracktion/choc)
+- [cmrc](https://github.com/vector-of-bool/cmrc)
 - [fmtlib](https://github.com/fmtlib/fmt)
 - [json](https://github.com/nlohmann/json)
 - [catch2](https://github.com/catchorg/Catch2)

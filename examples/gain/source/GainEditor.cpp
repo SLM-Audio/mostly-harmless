@@ -8,25 +8,24 @@
 #include <sstream>
 #include <magic_enum.hpp>
 #include "Gain.h"
-#include <BinaryData.h>
+#include <mostlyharmless_WebResources.h>
 
 namespace examples::gain {
     [[nodiscard]] Resource createResourceFor(const std::string& name) {
-        auto* res = binary_data::getNamedResource(name);
-        assert(res);
-        auto mimeType = mostly_harmless::gui::getMimeType(res->originalFilename);
+        auto resOpt = mostly_harmless::WebResources::getNamedResource(name);
+        assert(resOpt);
+        auto [data, size] = *resOpt;
+        auto mimeType = mostly_harmless::gui::getMimeType(name);
         assert(mimeType);
         // Evil evil evil evil evil evil (but safe I think)
-        auto* asUnsigned = reinterpret_cast<std::uint8_t*>(res->data.data());
-        std::vector<std::uint8_t> data{ asUnsigned, asUnsigned + res->data.size() };
+        auto* asUnsigned = reinterpret_cast<const std::uint8_t*>(data);
         Resource temp;
-        temp.data = std::move(data);
+        temp.data = { asUnsigned, asUnsigned + size };
         temp.mimeType = *mimeType;
         return temp;
     }
 
     GainEditor::GainEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height) {
-        [[maybe_unused]] const auto& placeholder2 = binary_data::placeholder2_txt;
         m_resources.emplace("/index.html", createResourceFor("index.html"));
         m_resources.emplace("/index.css", createResourceFor("index.css"));
         m_resources.emplace("/index.js", createResourceFor("index.js"));

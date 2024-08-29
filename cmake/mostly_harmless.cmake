@@ -6,6 +6,12 @@ function(mostly_harmless_add_binary_data pluginTarget)
     )
     set(LIST_ARGS BINARY_SOURCES)
     cmake_parse_arguments(ARG "" "${ARGS}" "${LIST_ARGS}" ${ARGN})
+    if(NOT ARG_TARGET_NAME)
+        message(FATAL_ERROR "TARGET_NAME is required!")
+    endif()
+    if(NOT ARG_ROOT)
+        message(FATAL_ERROR "ROOT is required!")
+    endif()
     file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${ARG_TARGET_NAME})
     configure_file(
             ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostlyharmless_BinaryData.h

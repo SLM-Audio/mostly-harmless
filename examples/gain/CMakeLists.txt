@@ -59,15 +59,12 @@ add_custom_target(
         ALL
         DEPENDS ${GAIN_GUI_OUTPUT}
 )
-
 mostly_harmless_add_binary_data(Gain
-        BINARY_SOURCES
-        ${GAIN_GUI_OUTPUT}
-        ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder.txt
-        ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder2.txt
-        ${CMAKE_CURRENT_SOURCE_DIR}/resources/placeholder3.txt
+        TARGET_NAME WebResources
+        ROOT ${PROJECT_BINARY_DIR}/gain-gui
+        BINARY_SOURCES ${GAIN_GUI_OUTPUT}
 )
-add_dependencies(binary-data Vite)
+add_dependencies(WebResources Vite)
 
 target_sources(Gain PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp
