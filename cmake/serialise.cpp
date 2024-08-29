@@ -17,10 +17,12 @@ constexpr static auto headerStart =
     "#define BINARYDATA_H\n"
     "#include <vector>\n"
     "#include <string>\n"
+    "#include <cstdint>\n"
     "namespace binary_data {\n"
     "    struct BinaryResource {\n"
     "        std::string originalFilename;\n"
-    "        std::vector<char> data;\n"
+    "        size_t size;\n"
+    "        int* data;\n"
     "    };\n"
     "    [[nodiscard]] BinaryResource* getNamedResource(const std::string& name);\n";
 
@@ -55,12 +57,14 @@ void addFile(const std::filesystem::path& path, std::ofstream& headerStream, std
     inStream.seekg(0, std::ios::beg);
     std::vector<char> data(len);
     inStream.read(data.data(), len);
-    sourceStream << "        .data = {\n";
+    sourceStream << "        .size = " << len << ",\n";
+    sourceStream << "        .data = int[]{\n";
     sourceStream << "            ";
     for (size_t i = 0; i < data.size(); ++i) {
-        sourceStream << "0x" << std::hex << ((int)data[i] & 0xFF);
+        sourceStream << ((std::int8_t)data[i] & 0xFF);
+        //        sourceStream << "0x" << std::hex << ((std::int8_t)data[i] & 0xFF);
         if (i != data.size() - 1) {
-            sourceStream << ", ";
+            sourceStream << ",";
         }
     }
     sourceStream << "\n"
@@ -102,7 +106,7 @@ int main(int argc, char** argv) {
     for (auto i = 3; i < argc; ++i) {
         std::filesystem::path asPath{ argv[i] };
         const auto extension = asPath.extension().string().substr(1);
-        std::ofstream currentSourceStream{ fmt::format("{}/{}_{}.cpp", destPath.string(), asPath.stem().string(), extension) };
+        std::ofstream currentSourceStream{ fmt::format("{}/{}_{}.cpp", destPath.string(), asPath.stem().string(), extension), std::ios::out };
         currentSourceStream << sourceStart;
         addFile(asPath, headerStream, currentSourceStream, mainSourceStream);
         if (i != argc - 1) {

@@ -1,64 +1,25 @@
 
-# USAGE mostly_harmless_add_binary_data(YourTarget BINARY_SOURCES ...)
 function(mostly_harmless_add_binary_data pluginTarget)
-    set(LIST_ARGS
-            BINARY_SOURCES
+    set(ARGS
+            TARGET_NAME
+            ROOT
     )
-    cmake_parse_arguments(PLUGIN "" "" "${LIST_ARGS}" ${ARGN})
-    if (NOT pluginTarget)
-        message(FATAL_ERROR " mostly_harmless_add_binary_data called with invalid target!")
-    endif ()
-    if (NOT PLUGIN_BINARY_SOURCES)
-        message(FATAL_ERROR "mostly_harmless_add_binary_data called with no sources, aborting!")
-    endif ()
-    # set an output dir for the resulting files to live in..
-    set(BINARY_RESOURCE_DEST "${CMAKE_CURRENT_BINARY_DIR}/binary_data")
-    # and create it if necessary.
-    file(MAKE_DIRECTORY ${BINARY_RESOURCE_DEST})
-    set(BINARY_INPUT_SOURCES ${BINARY_RESOURCE_DEST}/BinaryData.cpp)
-    set_property(SOURCE ${BINARY_RESOURCE_DEST}/BinaryData.cpp PROPERTY GENERATED 1)
-    # Now iterate over the sources the user provided..
-    foreach (RESOURCE IN LISTS PLUGIN_BINARY_SOURCES)
-        # and get the filename without path or extension.
-        cmake_path(GET RESOURCE STEM CURRENT_STEM)
-        cmake_path(GET RESOURCE EXTENSION LAST_ONLY CURRENT_EXTENSION)
-        # strip the "."
-        string(REPLACE "." "" STRIPPED_EXTENSION ${CURRENT_EXTENSION})
-        # Reconstitute the path to be where we want our compiled cpp to live..
-        set(CURRENT "${BINARY_RESOURCE_DEST}/${CURRENT_STEM}_${STRIPPED_EXTENSION}.cpp")
-        # And add that path to the list of sources.
-        list(APPEND BINARY_INPUT_SOURCES ${CURRENT})
-        # Tell cmake that this source is generated at compile time.
-        set_property(SOURCE ${CURRENT} PROPERTY GENERATED 1)
-    endforeach ()
-    if (NOT TARGET serialiser)
-        # Compile our serialiser..
-        add_executable(serialiser ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/serialise.cpp)
-        # and link it to its deps.
-        target_link_libraries(serialiser PRIVATE fmt::fmt-header-only)
-    endif ()
-    # Seem to need a custom command to only recompile the binary data if files change - not sure why..
-    add_custom_command(
-            OUTPUT ${BINARY_RESOURCE_DEST}/BinaryData.h
-            COMMAND echo recompiling binary data..
-            COMMAND serialiser ${BINARY_RESOURCE_DEST} "BinaryData" ${PLUGIN_BINARY_SOURCES}
-            DEPENDS ${PLUGIN_BINARY_SOURCES}
+    set(LIST_ARGS BINARY_SOURCES)
+    cmake_parse_arguments(ARG "" "${ARGS}" "${LIST_ARGS}" ${ARGN})
+    file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${ARG_TARGET_NAME})
+    configure_file(
+            ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostlyharmless_BinaryData.h
+            ${CMAKE_CURRENT_BINARY_DIR}/${ARG_TARGET_NAME}/mostlyharmless_${ARG_TARGET_NAME}.h
     )
-    # Add a custom target, which checks for changes in our binary sources, and runs the serialiser if any of them have changed..
-    add_custom_target(binary-data-intermediate
-            DEPENDS ${BINARY_RESOURCE_DEST}/BinaryData.h
+    configure_file(
+            ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostlyharmless_BinaryData.cpp
+            ${CMAKE_CURRENT_BINARY_DIR}/${ARG_TARGET_NAME}/mostlyharmless_${ARG_TARGET_NAME}.cpp
     )
-    # Now add a static library for our compiled deps to live in..
-    add_library(binary-data STATIC)
-    # and set the sources to be the generated ones from earlier.
-    target_sources(binary-data PRIVATE ${BINARY_INPUT_SOURCES})
-    # Ensure the intermediate target has run before compiling this target
-    add_dependencies(binary-data binary-data-intermediate)
-    # Include the dir with the resulting header in the shared code target (publicly, as it needs to propagate)
-    target_include_directories(${pluginTarget} PUBLIC ${BINARY_RESOURCE_DEST})
-    # Link our shared code target to the binary-data lib.
-    target_link_libraries(${pluginTarget} PRIVATE binary-data)
-
+    target_sources(${pluginTarget} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/${ARG_TARGET_NAME}/mostlyharmless_${ARG_TARGET_NAME}.cpp)
+    target_include_directories(${pluginTarget} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/${ARG_TARGET_NAME})
+    include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/CMakeRC.cmake)
+    cmrc_add_resource_library(${ARG_TARGET_NAME} WHENCE ${ARG_ROOT} ${ARG_BINARY_SOURCES})
+    target_link_libraries(${pluginTarget} PRIVATE ${ARG_TARGET_NAME})
 endfunction()
 
 # USAGE
@@ -92,7 +53,7 @@ function(mostly_harmless_add_plugin targetName)
 
     cmake_parse_arguments(
             PLUGIN
-            ""
+            " "
             "${ARGS}"
             "${LIST_ARGS}"
             ${ARGN}
@@ -142,7 +103,7 @@ function(mostly_harmless_add_plugin targetName)
         endif ()
     endif ()
 
-    list(TRANSFORM PLUGIN_FEATURES REPLACE "(.+)" "\"\\1\"" OUTPUT_VARIABLE PLUGIN_FEATURES)
+    list(TRANSFORM PLUGIN_FEATURES REPLACE "(.+)" " \"\\1\"" OUTPUT_VARIABLE PLUGIN_FEATURES)
     list(JOIN PLUGIN_FEATURES ", " PLUGIN_FEATURES)
 
     if (NOT PLUGIN_ID)
