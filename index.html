@@ -170,44 +170,44 @@ Adding a plugin target</h2>
 <div class="line">aupn - panner</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
 Binary Data</h2>
-<p>We also provide a helper to embed assets into your binary, and a corresponding cmake function to call this, <code>mostly_harmless_add_binary_data</code>.</p>
-<div class="fragment"><div class="line">    mostly_harmless_add_binary_data(YourTarget</div>
-<div class="line">        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3</div>
-<div class="line">        ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav</div>
+<p>We also provide a helper to embed assets into your binary, (essentially sugar around <code>CMRC</code>) and a corresponding cmake function to call this, <code>mostly_harmless_add_binary_data</code>.</p>
+<div class="fragment"><div class="line">mostly_harmless_add_binary_data(YourTarget</div>
+<div class="line">    TARGET_NAME BinaryData </div>
+<div class="line">    ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources</div>
+<div class="line">    BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3</div>
+<div class="line">    ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav</div>
 <div class="line">)</div>
-</div><!-- fragment --><p>This will generate a static library internally called binary-data, compile your sources into cpp files, and link your target to said library. It also generates a header, <code>BinaryData.h</code>, and ensures it's on your plugin's include path.<br  />
- The header contains extern declarations of type <code>BinaryResource</code> for the generated resources, within the <code>binary_data</code> namespace. The <code>BinaryResource</code> struct is as follows:</p>
-<div class="fragment"><div class="line"><span class="keyword">struct </span>BinaryResource {</div>
-<div class="line">    std::string originalFilename; <span class="comment">// The original filename on disk (excluding the leading path, but including the extension).</span></div>
-<div class="line">    std::vector&lt;char&gt; data; <span class="comment">// The raw bytes in the file.</span></div>
+</div><!-- fragment --><p> This will create a static library called <code>BinaryData</code> containing your resources, and add the resulting header to your include path. The value you pass to the <code>TARGET_NAME</code> parameters will dictate the name of the generated static library, the resulting filename (prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>), and the namespace the binary resources are contained in (also prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>). <br  />
+<br  />
+ The generated header provides a free function, <code>getNamedResource()</code> to access binary resources through, which takes a (relative to root) path to a resource, and returns a <code>std::optional&lt;BinaryResource&gt;</code>, where <code>BinaryResource</code> is defined as: </p><div class="fragment"><div class="line"><span class="keyword">struct </span>BinaryResource final { </div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* data;</div>
+<div class="line">    <span class="keywordtype">size_t</span> size;</div>
 <div class="line">};</div>
-</div><!-- fragment --><p>which is hopefully relatively self explanatory. <br  />
- With our example call to <code>mostly_harmless_add_binary_data</code> from above, the generated header would be:</p>
-<div class="fragment"><div class="line"><span class="comment">// This file is auto generated!</span></div>
-<div class="line"><span class="preprocessor">#ifndef BINARYDATA_H</span></div>
-<div class="line"><span class="preprocessor">#define BINARYDATA_H</span></div>
-<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><span class="keyword">namespace </span>binary_data {</div>
-<div class="line">    <span class="keyword">struct </span>BinaryResource {</div>
-<div class="line">        std::string originalFilename;</div>
-<div class="line">        std::vector&lt;char&gt; data;</div>
-<div class="line">    };</div>
-<div class="line">    <span class="keyword">extern</span> BinaryResource VonDutch128;</div>
-<div class="line">    <span class="keyword">extern</span> BinaryResource JamesJoyceReads_TheJungleBook;</div>
+</div><!-- fragment --><p> If the queried resource isn't found, <code>getNamedResource()</code> will return <code>std::nullopt</code>.<br  />
+ As mentioned above, the pathing to the resource is relative to the value you passed to the <code>ROOT</code> parameter in CMake. For example, for a dir structure </p><div class="fragment"><div class="line">project</div>
+<div class="line">    resources</div>
+<div class="line">        images</div>
+<div class="line">            BottomText.png</div>
+<div class="line">        text </div>
+<div class="line">            Placeholder.txt</div>
+<div class="line">    CMakeLists.txt</div>
+</div><!-- fragment --><p> if <code>ROOT</code> is set to <code>${CMAKE_CURRENT_SOURCE_DIR}/resources</code>, then to access <code>BottomText.png</code>: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> resourceOpt = mostly_harmless::BinaryData::getNamedResource(<span class="stringliteral">&quot;images/BottomText.png&quot;</span>);</div>
+</div><!-- fragment --><p> <br  />
+ A full usage example then:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;mostlyharmless_BinaryData.h&gt;</span></div>
+<div class="line"><span class="keywordtype">int</span> main() { </div>
+<div class="line">    <span class="keyword">auto</span> bottomText = mostly_harmless::BinaryData::getNamedResource(<span class="stringliteral">&quot;images/BottomText.png&quot;</span>);</div>
+<div class="line">    assert(bottomText);</div>
+<div class="line">    <span class="keyword">auto</span> [imgData, imgSize] = *bottomText; <span class="comment">// const char*, size_t</span></div>
+<div class="line">    ...</div>
+<div class="line">    <span class="keyword">auto</span> placeholder = mostly_harmless::BinaryData::getNamedResource(<span class="stringliteral">&quot;text/Placeholder.txt&quot;</span>);</div>
+<div class="line">    assert(placeholder);</div>
+<div class="line">    <span class="keyword">auto</span> [textData, textSize] = *placeholder;</div>
+<div class="line">    ...</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="line"><span class="preprocessor">#endif</span></div>
-</div><!-- fragment --><p>To access a some data from it from some imaginary class,</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;BinaryData.h&gt;</span></div>
-<div class="line"><span class="keyword">class </span>ImaginaryClass final {</div>
-<div class="line"><span class="keyword">public</span>: </div>
-<div class="line">    ImaginaryClass() { </div>
-<div class="line">        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; importantListening = binary_data::JamesJoyceReads_TheJungleBook; </div>
-<div class="line">        <span class="comment">// Access the data with importantListening.data()..</span></div>
-<div class="line">    }</div>
-<div class="line">    </div>
-<div class="line">};</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><p>You're not limited to a single library of binary resources either, which could be useful for separating resources of a different category or purpose into different headers, etc etc etc.</p>
+<h2><a class="anchor" id="autotoc_md11"></a>
 The actual plugin code</h2>
 <p>We've included the boilerplate for various projects in the <code>boilerplate</code> directory - these should serve as a good starting point for your plugin sources. As previously mentioned, you can also check out the <code>examples</code> directory for more inspiration.</p>
 <h1><a class="anchor" id="autotoc_md12"></a>
@@ -217,6 +217,7 @@ Dependencies</h1>
 <li><a href="https://github.com/MeijisIrlnd/marvin">marvin</a> (and its dependencies)</li>
 <li><a href="https://github.com/free-audio/clap">clap</a>, <a href="https://github.com/free-audio/clap-helpers">clap-helpers</a>, <a href="https://github.com/free-audio/clap-wrapper">clap-wrapper</a></li>
 <li><a href="https://github.com/Tracktion/choc">choc</a></li>
+<li><a href="https://github.com/vector-of-bool/cmrc">cmrc</a></li>
 <li><a href="https://github.com/fmtlib/fmt">fmtlib</a></li>
 <li><a href="https://github.com/nlohmann/json">json</a></li>
 <li><a href="https://github.com/catchorg/Catch2">catch2</a></li>
