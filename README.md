@@ -119,23 +119,23 @@ We also provide a helper to embed assets into your binary, (essentially sugar ar
 this, `mostly_harmless_add_binary_data`.
 
 ```cmake 
-    mostly_harmless_add_binary_data(YourTarget
-        TARGET_NAME BinaryData 
-        ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources
-        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3
-        ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav
+mostly_harmless_add_binary_data(YourTarget
+    TARGET_NAME BinaryData 
+    ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources
+    BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav
 )
 ```
 This will create a static library called `BinaryData` containing your resources, and add the resulting header to your include path. 
 The value you pass to the `TARGET_NAME` parameters will dictate the name of the generated static library, the resulting filename (prefixed by `mostly_harmless`),
-and the namespace the binary resources are contained in (also prefixed by mostly_harmless). <br><br>
+and the namespace the binary resources are contained in (also prefixed by `mostly_harmless`). <br><br>
 The generated header provides a free function, `getNamedResource()` to access binary resources through, which takes a (relative to root) path to a resource, and returns a `std::optional<BinaryResource>`, 
 where `BinaryResource` is defined as:
 ```cpp
-    struct BinaryResource final { 
-        const char* data;
-        size_t size;
-    };
+struct BinaryResource final { 
+    const char* data;
+    size_t size;
+};
 ```
 If the queried resource isn't found, `getNamedResource()` will return `std::nullopt`.<br>
 As mentioned above, the pathing to the resource is relative to the value you passed to the `ROOT` parameter in CMake. For example, for a dir structure 
@@ -150,24 +150,24 @@ project
 ```
 if `ROOT` is set to `${CMAKE_CURRENT_SOURCE_DIR}/resources`, then to access `BottomText.png`:
 ```cpp
-    auto resourceOpt = mostly_harmless::BinaryData::getNamedResource("images/BottomText.png");
+auto resourceOpt = mostly_harmless::BinaryData::getNamedResource("images/BottomText.png");
 ```
 <br>
 A full usage example then: 
 
 ```cpp
-    #include <mostlyharmless_BinaryData.h>
-    int main() { 
-        auto bottomText = mostly_harmless::BinaryData::getNamedResource("images/BottomText.png");
-        assert(bottomText);
-        auto [imgData, imgSize] = *bottomText; // const char*, size_t
-        ...
-        auto placeholder = mostly_harmless::BinaryData::getNamedResource("text/Placeholder.txt");
-        assert(placeholder);
-        auto [textData, textSize] = *placeholder;
-        ...
-        return 0;
-    }
+#include <mostlyharmless_BinaryData.h>
+int main() { 
+    auto bottomText = mostly_harmless::BinaryData::getNamedResource("images/BottomText.png");
+    assert(bottomText);
+    auto [imgData, imgSize] = *bottomText; // const char*, size_t
+    ...
+    auto placeholder = mostly_harmless::BinaryData::getNamedResource("text/Placeholder.txt");
+    assert(placeholder);
+    auto [textData, textSize] = *placeholder;
+    ...
+    return 0;
+}
 ```
 
 You're not limited to a single library of binary resources either, which could be useful for separating resources of a different category or purpose into different headers, etc etc etc.
