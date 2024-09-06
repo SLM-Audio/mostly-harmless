@@ -79,6 +79,7 @@ namespace mostly_harmless::gui {
         void create() {
             const auto iWidth = static_cast<int>(m_initialWidth);
             const auto iHeight = static_cast<int>(m_initialHeight);
+            ::SetEnvironmentVariable("WEBVIEW2_DEFAULT_BACKGROUND_COLOR", "0");
             m_webview = std::make_unique<choc::ui::WebView>(m_options);
             auto* hwnd = static_cast<::HWND>(m_webview->getViewHandle());
             ::SetWindowPos(hwnd, NULL, 0, 0, iWidth, iHeight, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOMOVE | SWP_FRAMECHANGED);
