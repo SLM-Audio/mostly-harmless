@@ -93,6 +93,8 @@ About</h1>
 <p>mostly harmless is a minimal audio plugin framework for C++20. It's first and foremost a wrapper around the CLAP API, capable of building CLAP, VST3, Audio Unit and Standalone targets. </p><blockquote class="doxtable">
 <p>&zwj;If you're compiling VST3 targets, the responsibility to ensure you're adhering to the Steinberg VST3 License agreement is firmly on you! </p>
 </blockquote>
+<p>The framework is in active development, alongside some of our own plug-ins, and there are some notable missing features (resizable gui being one of them..), so if you're thinking of giving it a go, please bear in mind that we're still working on it.<br  />
+ If you have any questions, the best way to reach me is via <a href="https://discord.gg/v5Rs8h6aGF">The Audio Programmer Discord</a>, I'm @Meijis.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Documentation</h1>
 <p>Documentation is built automatically, and hosted <a href="https://mostly-harmless.pages.dev">here</a>. For convenience, it also includes the documentation for marvin.</p>
@@ -172,27 +174,30 @@ Adding a plugin target</h2>
 Binary Data</h2>
 <p>We also provide a helper to embed assets into your binary, (essentially sugar around <code>CMRC</code>) and a corresponding cmake function to call this, <code>mostly_harmless_add_binary_data</code>.</p>
 <div class="fragment"><div class="line">mostly_harmless_add_binary_data(YourTarget</div>
-<div class="line">    TARGET_NAME BinaryData </div>
-<div class="line">    ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources</div>
-<div class="line">    BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3</div>
-<div class="line">    ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav</div>
+<div class="line">        TARGET_NAME BinaryData</div>
+<div class="line">        ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources</div>
+<div class="line">        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3</div>
+<div class="line">        ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav</div>
 <div class="line">)</div>
-</div><!-- fragment --><p> This will create a static library called <code>BinaryData</code> containing your resources, and add the resulting header to your include path. The value you pass to the <code>TARGET_NAME</code> parameters will dictate the name of the generated static library, the resulting filename (prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>), and the namespace the binary resources are contained in (also prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>). <br  />
+</div><!-- fragment --><p>This will create a static library called <code>BinaryData</code> containing your resources, and add the resulting header to your include path. The value you pass to the <code>TARGET_NAME</code> parameters will dictate the name of the generated static library, the resulting filename (prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>), and the namespace the binary resources are contained in (also prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>). <br  />
 <br  />
- The generated header provides a free function, <code>getNamedResource()</code> to access binary resources through, which takes a (relative to root) path to a resource, and returns a <code>std::optional&lt;BinaryResource&gt;</code>, where <code>BinaryResource</code> is defined as: </p><div class="fragment"><div class="line"><span class="keyword">struct </span>BinaryResource final { </div>
+ The generated header provides a free function, <code>getNamedResource()</code> to access binary resources through, which takes a ( relative to root) path to a resource, and returns a <code>std::optional&lt;BinaryResource&gt;</code>, where <code>BinaryResource</code> is defined as:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>BinaryResource final { </div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span>* data;</div>
 <div class="line">    <span class="keywordtype">size_t</span> size;</div>
 <div class="line">};</div>
-</div><!-- fragment --><p> If the queried resource isn't found, <code>getNamedResource()</code> will return <code>std::nullopt</code>.<br  />
- As mentioned above, the pathing to the resource is relative to the value you passed to the <code>ROOT</code> parameter in CMake. For example, for a dir structure </p><div class="fragment"><div class="line">project</div>
+</div><!-- fragment --><p>If the queried resource isn't found, <code>getNamedResource()</code> will return <code>std::nullopt</code>.<br  />
+ As mentioned above, the pathing to the resource is relative to the value you passed to the <code>ROOT</code> parameter in CMake. For example, for a dir structure</p>
+<div class="fragment"><div class="line">project</div>
 <div class="line">    resources</div>
 <div class="line">        images</div>
 <div class="line">            BottomText.png</div>
 <div class="line">        text </div>
 <div class="line">            Placeholder.txt</div>
 <div class="line">    CMakeLists.txt</div>
-</div><!-- fragment --><p> if <code>ROOT</code> is set to <code>${CMAKE_CURRENT_SOURCE_DIR}/resources</code>, then to access <code>BottomText.png</code>: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> resourceOpt = mostly_harmless::BinaryData::getNamedResource(<span class="stringliteral">&quot;images/BottomText.png&quot;</span>);</div>
-</div><!-- fragment --><p> <br  />
+</div><!-- fragment --><p>if <code>ROOT</code> is set to <code>${CMAKE_CURRENT_SOURCE_DIR}/resources</code>, then to access <code>BottomText.png</code>:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> resourceOpt = mostly_harmless::BinaryData::getNamedResource(<span class="stringliteral">&quot;images/BottomText.png&quot;</span>);</div>
+</div><!-- fragment --><p><br  />
  A full usage example then:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;mostlyharmless_BinaryData.h&gt;</span></div>
 <div class="line"><span class="keywordtype">int</span> main() { </div>
