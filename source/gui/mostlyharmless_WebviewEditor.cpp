@@ -160,7 +160,7 @@ namespace mostly_harmless::gui {
         }
 
         void setParent(void* parentHandle) {
-            helpers::macos::reparentView(parentHandle, m_webview->getViewHandle());
+            helpers::macos::reparentView(parentHandle, m_webview->getViewHandle(), m_options.backgroundColour);
         }
 
         void show() {

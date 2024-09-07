@@ -30,7 +30,7 @@ namespace mostly_harmless::gui::helpers::macos {
      * \param parentViewHandle A void* to the NSView to add the child view to.
      * \param childViewHandle A void* to the NSView to add to the parent view.
      */
-    void reparentView(void* parentViewHandle, void* childViewHandle);
+    void reparentView(void* parentViewHandle, void* childViewHandle, std::uint32_t backgroundColour);
     /**
      * Sets an NSView as visible.
      * \param viewHandle A void* to the NSView to set visible.
