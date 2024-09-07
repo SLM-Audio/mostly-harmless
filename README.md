@@ -7,6 +7,12 @@ capable of building CLAP, VST3, Audio Unit and Standalone targets.
 > If you're compiling VST3 targets, the responsibility to ensure you're adhering to the Steinberg VST3 License agreement
 > is firmly on you!
 
+The framework is in active development, alongside some of our own plug-ins, and there are some notable missing features
+(resizable gui being one of them..), so if you're thinking of giving it a go, please bear in mind that we're still
+working on it.<br>
+If you have any questions, the best way to reach me is
+via [The Audio Programmer Discord](https://discord.gg/v5Rs8h6aGF), I'm @Meijis.
+
 ## Documentation
 
 Documentation is built automatically, and hosted [here](https://mostly-harmless.pages.dev). For convenience, it also
@@ -115,30 +121,39 @@ available features.<br>
 
 ### Binary Data
 
-We also provide a helper to embed assets into your binary, (essentially sugar around `CMRC`) and a corresponding cmake function to call
+We also provide a helper to embed assets into your binary, (essentially sugar around `CMRC`) and a corresponding cmake
+function to call
 this, `mostly_harmless_add_binary_data`.
 
 ```cmake 
 mostly_harmless_add_binary_data(YourTarget
-    TARGET_NAME BinaryData 
-    ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources
-    BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3
-    ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav
+        TARGET_NAME BinaryData
+        ROOT ${CMAKE_CURRENT_SOURCE_DIR}/resources
+        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3
+        ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav
 )
 ```
-This will create a static library called `BinaryData` containing your resources, and add the resulting header to your include path. 
-The value you pass to the `TARGET_NAME` parameters will dictate the name of the generated static library, the resulting filename (prefixed by `mostly_harmless`),
+
+This will create a static library called `BinaryData` containing your resources, and add the resulting header to your
+include path.
+The value you pass to the `TARGET_NAME` parameters will dictate the name of the generated static library, the resulting
+filename (prefixed by `mostly_harmless`),
 and the namespace the binary resources are contained in (also prefixed by `mostly_harmless`). <br><br>
-The generated header provides a free function, `getNamedResource()` to access binary resources through, which takes a (relative to root) path to a resource, and returns a `std::optional<BinaryResource>`, 
+The generated header provides a free function, `getNamedResource()` to access binary resources through, which takes a (
+relative to root) path to a resource, and returns a `std::optional<BinaryResource>`,
 where `BinaryResource` is defined as:
+
 ```cpp
 struct BinaryResource final { 
     const char* data;
     size_t size;
 };
 ```
+
 If the queried resource isn't found, `getNamedResource()` will return `std::nullopt`.<br>
-As mentioned above, the pathing to the resource is relative to the value you passed to the `ROOT` parameter in CMake. For example, for a dir structure 
+As mentioned above, the pathing to the resource is relative to the value you passed to the `ROOT` parameter in CMake.
+For example, for a dir structure
+
 ```
 project
     resources
@@ -148,10 +163,13 @@ project
             Placeholder.txt
     CMakeLists.txt
 ```
+
 if `ROOT` is set to `${CMAKE_CURRENT_SOURCE_DIR}/resources`, then to access `BottomText.png`:
+
 ```cpp
 auto resourceOpt = mostly_harmless::BinaryData::getNamedResource("images/BottomText.png");
 ```
+
 <br>
 A full usage example then: 
 
@@ -170,7 +188,8 @@ int main() {
 }
 ```
 
-You're not limited to a single library of binary resources either, which could be useful for separating resources of a different category or purpose into different headers, etc etc etc.
+You're not limited to a single library of binary resources either, which could be useful for separating resources of a
+different category or purpose into different headers, etc etc etc.
 
 ### The actual plugin code
 
