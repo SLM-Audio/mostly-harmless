@@ -69,7 +69,7 @@ namespace mostly_harmless::gui {
              * If not serving from ram, leave this as a nullptr, and call `navigate` instead.<br>
              * If serving the content from ram, the webview will query the backend for files to load, with a call to this lambda.<br>
              * As mentioned in the docs for Resource, you should load these at construction, and keep a map `route:Resource` on hand. This lambda then, should query that map for the requested route, and return the associated resource if
-             * it exists, std::nullopt otherwise. Assuming a `std::unordered_map<std::string, mostly_harmless::gui::WebviewEditor::Resource>` called `m_resourceMap`, an implementation could be along the lines of:
+             * it exists, std::nullopt otherwise. Assuming a `std::unordered_map<std::string, mostly_harmless::gui::WebviewEditor::Resource>` called `m_resources`, an implementation could be along the lines of:
              *
              * ```cpp
              * const auto requested = url == "/" ? "/index.html" : url;
