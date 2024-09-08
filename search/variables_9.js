@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['name_0',['name',['../structmostly__harmless_1_1Parameter.html#a155799ccb04b1c10b66d035ec1d323c8',1,'mostly_harmless::Parameter']]],
-  ['normalisedbandpass_1',['normalisedBandpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#aded88e35933d10bb8e4b46a2942e85e2',1,'marvin::dsp::filters::SVFResult']]],
-  ['notch_2',['notch',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#abe540699d1380e009c83b32fb2c2285b',1,'marvin::dsp::filters::SVFResult']]]
+  ['lowpass_0',['lowpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#a4e103160cfae22ce40888bdc66db80ba',1,'marvin::dsp::filters::SVFResult']]],
+  ['lowshelf_1',['lowShelf',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#ac48f3579d2f5c7edaac1485818f8b647',1,'marvin::dsp::filters::SVFResult']]]
 ];
