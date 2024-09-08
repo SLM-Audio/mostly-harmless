@@ -9,7 +9,7 @@ var searchData=
   ['readme_2emd_6',['README.md',['../README_8md.html',1,'']]],
   ['recursiveunscaled_7',['recursiveUnscaled',['../classmarvin_1_1math_1_1Hadamard.html#a41604cbb76da29c7a256222462cb50de',1,'marvin::math::Hadamard']]],
   ['reference_8',['reference',['../classmarvin_1_1containers_1_1StrideView_1_1iterator.html#aa6ec296d716ccd098fcd67ea0d370e38',1,'marvin::containers::StrideView::iterator::reference'],['../classmarvin_1_1containers_1_1StrideView_1_1const__iterator.html#a35dbf1308807482d4a6fb2f8bd196200',1,'marvin::containers::StrideView::const_iterator::reference']]],
-  ['remap_9',['remap',['../namespacemarvin_1_1math.html#a8622695b9c617d47eb67981b8aebf619',1,'marvin::math::remap(T x, T newMin, T newMax)'],['../namespacemarvin_1_1math.html#a593ac57e25503d44c65ffe3e068d9df9',1,'marvin::math::remap(T x, T srcMin, T srcMax, T newMin, T newMax)']]],
+  ['remap_9',['remap',['../namespacemarvin_1_1math.html#a593ac57e25503d44c65ffe3e068d9df9',1,'marvin::math']]],
   ['removefromparentview_10',['removeFromParentView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#afdae1ffa2ffabbf08beea34d8e4ca287',1,'mostly_harmless::gui::helpers::macos']]],
   ['reparentview_11',['reparentView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a87fa1b8e1575ec5042e754e7094db323',1,'mostly_harmless::gui::helpers::macos']]],
   ['requestparamflush_12',['requestParamFlush',['../structmostly__harmless_1_1gui_1_1EditorContext.html#a7f9dd8134b7d401e3aa6286deb411840',1,'mostly_harmless::gui::EditorContext']]],

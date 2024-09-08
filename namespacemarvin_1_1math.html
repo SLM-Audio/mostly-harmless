@@ -133,9 +133,6 @@ Functions</h2></td></tr>
 <tr class="memitem:aa1bc6e54bd3d8abb587555b24648353b" id="r_aa1bc6e54bd3d8abb587555b24648353b"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
 <tr class="memitem:aa1bc6e54bd3d8abb587555b24648353b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa1bc6e54bd3d8abb587555b24648353b">gainToDb</a> (T gain, T minusInfDb=static_cast&lt; T &gt;(-100.0)) noexcept</td></tr>
 <tr class="separator:aa1bc6e54bd3d8abb587555b24648353b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8622695b9c617d47eb67981b8aebf619" id="r_a8622695b9c617d47eb67981b8aebf619"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
-<tr class="memitem:a8622695b9c617d47eb67981b8aebf619"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8622695b9c617d47eb67981b8aebf619">remap</a> (T x, T newMin, T newMax)</td></tr>
-<tr class="separator:a8622695b9c617d47eb67981b8aebf619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a593ac57e25503d44c65ffe3e068d9df9" id="r_a593ac57e25503d44c65ffe3e068d9df9"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
 <tr class="memitem:a593ac57e25503d44c65ffe3e068d9df9"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a593ac57e25503d44c65ffe3e068d9df9">remap</a> (T x, T srcMin, T srcMax, T newMin, T newMax)</td></tr>
 <tr class="separator:a593ac57e25503d44c65ffe3e068d9df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -346,53 +343,8 @@ template&lt;FloatType T&gt; </div>
 
 </div>
 </div>
-<a id="a8622695b9c617d47eb67981b8aebf619" name="a8622695b9c617d47eb67981b8aebf619"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8622695b9c617d47eb67981b8aebf619">&#9670;&#160;</a></span>remap() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;FloatType T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T marvin::math::remap </td>
-          <td>(</td>
-          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>newMin</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>newMax</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Takes a value in range 0 to 1, and rescales it to be in range <code>newMin</code> to <code>newMax</code>. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>The value to remap. </td></tr>
-    <tr><td class="paramname">newMin</td><td>The new range's min. </td></tr>
-    <tr><td class="paramname">newMax</td><td>The new range's max. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The rescaled value. </dd></dl>
-
-</div>
-</div>
 <a id="a593ac57e25503d44c65ffe3e068d9df9" name="a593ac57e25503d44c65ffe3e068d9df9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a593ac57e25503d44c65ffe3e068d9df9">&#9670;&#160;</a></span>remap() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a593ac57e25503d44c65ffe3e068d9df9">&#9670;&#160;</a></span>remap()</h2>
 
 <div class="memitem">
 <div class="memproto">
