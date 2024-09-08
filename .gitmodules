@@ -4,3 +4,6 @@
 [submodule "modules/clap-wrapper"]
 	path = modules/clap-wrapper
 	url = https://github.com/free-audio/clap-wrapper.git
+[submodule "modules/choc"]
+	path = modules/choc
+	url = https://github.com/SLM-Audio/choc.git
