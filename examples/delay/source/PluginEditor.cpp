@@ -6,7 +6,7 @@
 #include "Parameters.h"
 #include <magic_enum.hpp>
 namespace examples::delay {
-    PluginEditor::PluginEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height) {
+    PluginEditor::PluginEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height, mostly_harmless::gui::Colour{ 0xFF89CC04 }) {
     }
 
     void PluginEditor::initialise(mostly_harmless::gui::EditorContext context) {

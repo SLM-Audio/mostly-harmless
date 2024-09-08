@@ -20,13 +20,14 @@ namespace mostly_harmless::gui::helpers::macos {
         *height = static_cast<std::uint32_t>(bounds.size.height);
     }
 
-    void reparentView(void* parentViewHandle, void* childViewHandle, std::uint32_t backgroundColour) {
+    void reparentView(void* parentViewHandle, void* childViewHandle, Colour backgroundColour) {
         auto* parent = static_cast<NSView*>(parentViewHandle);
         [parent setWantsLayer:true];
-        const auto r = (backgroundColour >> 16) & 0xFF;
-        const auto g = (backgroundColour >> 8) & 0xFF;
-        const auto b = backgroundColour & 0xFF;
-        auto* color = [NSColor colorWithCalibratedRed:r green:g blue:b alpha:1];
+        [[maybe_unused]] const auto [a, r, g, b] = backgroundColour;
+        CGFloat f32R = static_cast<CGFloat>(r) / 255.0f;
+        CGFloat f32G = static_cast<CGFloat>(g) / 255.0f;
+        CGFloat f32B = static_cast<CGFloat>(b) / 255.0f;
+        auto* color = [NSColor colorWithCalibratedRed:f32R green:f32G blue:f32B alpha:1];
         [[parent layer] setBackgroundColor:color.CGColor];
         auto* child = static_cast<NSView*>(childViewHandle);
         child.frame = parent.bounds;

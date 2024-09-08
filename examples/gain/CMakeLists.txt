@@ -55,7 +55,7 @@ else ()
 endif ()
 
 add_custom_target(
-        Vite
+        gain-vite
         ALL
         DEPENDS ${GAIN_GUI_OUTPUT}
 )
@@ -64,7 +64,7 @@ mostly_harmless_add_binary_data(Gain
         ROOT ${PROJECT_BINARY_DIR}/gain-gui
         BINARY_SOURCES ${GAIN_GUI_OUTPUT}
 )
-add_dependencies(WebResources Vite)
+add_dependencies(WebResources gain-vite)
 
 target_sources(Gain PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp
