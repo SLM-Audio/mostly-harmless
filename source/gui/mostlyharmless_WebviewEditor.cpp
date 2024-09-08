@@ -66,20 +66,44 @@ namespace mostly_harmless::gui {
         return s_mimeTypes[ext];
     }
 
+    WebviewEditor::Resource::Resource(std::string_view content, std::string mimeType_) : mimeType(std::move(mimeType_)) {
+        if (!content.empty()) {
+            auto src = content.data();
+            data.insert(data.end(), src, src + content.length());
+        }
+    }
+
 #if defined(MOSTLY_HARMLESS_WINDOWS)
     class WebviewEditor::Impl {
     public:
-        Impl(std::uint32_t initialWidth, std::uint32_t initialHeight) : m_initialWidth(initialWidth), m_initialHeight(initialHeight) {
+        Impl(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) : m_initialWidth(initialWidth),
+                                                                                                 m_initialHeight(initialHeight) {
+            m_brush = ::CreateSolidBrush(RGB(backgroundColour.r, backgroundColour.g, backgroundColour.b));
         }
 
-        void setOptions(choc::ui::WebView::Options&& opts) {
-            m_options = std::move(opts);
+        ~Impl() noexcept {
+            ::DeleteObject(m_brush);
+        }
+
+        void setOptions(Options&& options) {
+            m_options.enableDebugMode = options.enableDebug;
+            m_options.initScript = options.initScript;
+            if (options.contentProvider) {
+                auto wrapper = [options](const std::string& toFind) -> std::optional<choc::ui::WebView::Options::Resource> {
+                    auto res = options.contentProvider(toFind);
+                    if (!res) return {};
+                    choc::ui::WebView::Options::Resource resource;
+                    resource.data = std::move(res->data);
+                    resource.mimeType = std::move(res->mimeType);
+                    return resource;
+                };
+                m_options.fetchResource = std::move(wrapper);
+            };
         }
 
         void create() {
             const auto iWidth = static_cast<int>(m_initialWidth);
             const auto iHeight = static_cast<int>(m_initialHeight);
-            ::SetEnvironmentVariable("WEBVIEW2_DEFAULT_BACKGROUND_COLOR", "0");
             m_webview = std::make_unique<choc::ui::WebView>(m_options);
             auto* hwnd = static_cast<::HWND>(m_webview->getViewHandle());
             ::SetWindowPos(hwnd, NULL, 0, 0, iWidth, iHeight, SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOMOVE | SWP_FRAMECHANGED);
@@ -102,9 +126,12 @@ namespace mostly_harmless::gui {
             ::SetWindowPos(hwnd, NULL, 0, 0, static_cast<int>(width), static_cast<int>(height), SWP_NOZORDER | SWP_NOACTIVATE | SWP_NOMOVE | SWP_FRAMECHANGED);
         }
 
+
         void setParent(void* parentHandle) {
             auto* parentHwnd = static_cast<HWND>(parentHandle);
             auto* handle = static_cast<::HWND>(m_webview->getViewHandle());
+            ::SetClassLongPtrW(parentHwnd, GCLP_HBRBACKGROUND, (::LONG_PTR)m_brush);
+            ::InvalidateRect(parentHwnd, NULL, false);
             ::SetWindowLongPtrW(handle, GWL_STYLE, WS_CHILD);
             ::SetParent(handle, parentHwnd);
             show();
@@ -126,7 +153,11 @@ namespace mostly_harmless::gui {
 
     private:
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
-        choc::ui::WebView::Options m_options;
+        ::HBRUSH m_brush{ nullptr };
+        choc::ui::WebView::Options m_options{
+            .enableDebugMode = false,
+            .transparentBackground = true,
+        };
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
     };
 
@@ -184,14 +215,15 @@ namespace mostly_harmless::gui {
     static_assert(false);
 #endif
 
-    WebviewEditor::WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight) {
-        m_impl = std::make_unique<WebviewEditor::Impl>(initialWidth, initialHeight);
+    WebviewEditor::WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) {
+        m_impl = std::make_unique<WebviewEditor::Impl>(initialWidth, initialHeight, backgroundColour);
     }
     WebviewEditor::~WebviewEditor() noexcept {
     }
 
-    void WebviewEditor::setOptions(choc::ui::WebView::Options&& opts) noexcept {
-        m_impl->setOptions(std::move(opts));
+    void WebviewEditor::setOptions(Options&& options) noexcept {
+
+        m_impl->setOptions(std::move(options));
     }
 
     void WebviewEditor::initialise(EditorContext /*context*/) {

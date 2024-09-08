@@ -11,7 +11,7 @@
 #include <mostlyharmless_WebResources.h>
 
 namespace examples::gain {
-    [[nodiscard]] Resource createResourceFor(const std::string& name) {
+    [[nodiscard]] mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
         auto resOpt = mostly_harmless::WebResources::getNamedResource(name);
         assert(resOpt);
         auto [data, size] = *resOpt;
@@ -19,17 +19,17 @@ namespace examples::gain {
         assert(mimeType);
         // Evil evil evil evil evil evil (but safe I think)
         auto* asUnsigned = reinterpret_cast<const std::uint8_t*>(data);
-        Resource temp;
+        mostly_harmless::gui::WebviewEditor::Resource temp;
         temp.data = { asUnsigned, asUnsigned + size };
         temp.mimeType = *mimeType;
         return temp;
     }
 
-    GainEditor::GainEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height) {
+    GainEditor::GainEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height, mostly_harmless::gui::Colour(0xFF89CC04)) {
         m_resources.emplace("/index.html", createResourceFor("index.html"));
         m_resources.emplace("/index.css", createResourceFor("index.css"));
         m_resources.emplace("/index.js", createResourceFor("index.js"));
-        auto fetchResourceCallback = [this](const std::string& url) -> std::optional<Resource> {
+        auto contentProvider = [this](const std::string& url) -> std::optional<mostly_harmless::gui::WebviewEditor::Resource> {
             const auto requested = url == "/" ? "/index.html" : url;
             const auto it = m_resources.find(requested);
             if (it == m_resources.end()) return {};
@@ -46,9 +46,9 @@ namespace examples::gain {
         }
         initialDataStream << "};";
 #if defined(GAIN_HOT_RELOAD)
-        this->setOptions({ .enableDebugMode = true, .initScript = initialDataStream.str() });
+        this->setOptions({ .enableDebug = true, .initScript = initialDataStream.str() });
 #else
-        this->setOptions({ .enableDebugMode = true, .fetchResource = std::move(fetchResourceCallback), .initScript = initialDataStream.str() });
+        this->setOptions({ .enableDebug = true, .contentProvider = std::move(contentProvider), .initScript = initialDataStream.str() });
 #endif
     }
 
