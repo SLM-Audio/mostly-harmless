@@ -4,6 +4,7 @@
 
 #ifndef MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
+#include <mostly_harmless/gui/mostlyharmless_Colour.h>
 #include <cstdint>
 namespace mostly_harmless::gui::helpers::macos {
     /**
@@ -30,7 +31,7 @@ namespace mostly_harmless::gui::helpers::macos {
      * \param parentViewHandle A void* to the NSView to add the child view to.
      * \param childViewHandle A void* to the NSView to add to the parent view.
      */
-    void reparentView(void* parentViewHandle, void* childViewHandle, std::uint32_t backgroundColour);
+    void reparentView(void* parentViewHandle, void* childViewHandle, Colour backgroundColour);
     /**
      * Sets an NSView as visible.
      * \param viewHandle A void* to the NSView to set visible.

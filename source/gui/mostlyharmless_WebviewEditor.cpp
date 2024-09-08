@@ -164,12 +164,25 @@ namespace mostly_harmless::gui {
 #elif defined(MOSTLY_HARMLESS_MACOS)
     class WebviewEditor::Impl {
     public:
-        Impl(std::uint32_t initialWidth, std::uint32_t initialHeight) : m_initialWidth(initialWidth),
-                                                                        m_initialHeight(initialHeight) {
+        Impl(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) : m_initialWidth(initialWidth),
+                                                                        m_initialHeight(initialHeight),
+                                                                        m_backgroundColour(backgroundColour){
         }
 
-        void setOptions(choc::ui::WebView::Options&& opts) {
-            m_options = std::move(opts);
+        void setOptions(Options&& options) {
+            m_options.enableDebugMode = options.enableDebug;
+            m_options.initScript = options.initScript;
+            if (options.contentProvider) {
+                auto wrapper = [options](const std::string& toFind) -> std::optional<choc::ui::WebView::Options::Resource> {
+                  auto res = options.contentProvider(toFind);
+                  if (!res) return {};
+                  choc::ui::WebView::Options::Resource resource;
+                  resource.data = std::move(res->data);
+                  resource.mimeType = std::move(res->mimeType);
+                  return resource;
+                };
+                m_options.fetchResource = std::move(wrapper);
+            };
         }
 
         void create() {
@@ -191,7 +204,7 @@ namespace mostly_harmless::gui {
         }
 
         void setParent(void* parentHandle) {
-            helpers::macos::reparentView(parentHandle, m_webview->getViewHandle(), m_options.backgroundColour);
+            helpers::macos::reparentView(parentHandle, m_webview->getViewHandle(), m_backgroundColour);
         }
 
         void show() {
@@ -208,8 +221,12 @@ namespace mostly_harmless::gui {
 
     private:
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
-        choc::ui::WebView::Options m_options;
+        choc::ui::WebView::Options m_options {
+          .enableDebugMode = false,
+          .transparentBackground = true
+        };
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
+        Colour m_backgroundColour;
     };
 #else
     static_assert(false);
