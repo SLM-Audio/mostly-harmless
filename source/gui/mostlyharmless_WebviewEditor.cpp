@@ -130,8 +130,8 @@ namespace mostly_harmless::gui {
         void setParent(void* parentHandle) {
             auto* parentHwnd = static_cast<HWND>(parentHandle);
             auto* handle = static_cast<::HWND>(m_webview->getViewHandle());
-            ::SetClassLongPtrW(parentHwnd, GCLP_HBRBACKGROUND, (::LONG_PTR)m_brush);
-            ::InvalidateRect(parentHwnd, NULL, false);
+            ::SetClassLongPtrW(handle, GCLP_HBRBACKGROUND, (::LONG_PTR)m_brush);
+            ::InvalidateRect(handle, NULL, false);
             ::SetWindowLongPtrW(handle, GWL_STYLE, WS_CHILD);
             ::SetParent(handle, parentHwnd);
             show();
@@ -165,8 +165,8 @@ namespace mostly_harmless::gui {
     class WebviewEditor::Impl {
     public:
         Impl(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) : m_initialWidth(initialWidth),
-                                                                        m_initialHeight(initialHeight),
-                                                                        m_backgroundColour(backgroundColour){
+                                                                                                 m_initialHeight(initialHeight),
+                                                                                                 m_backgroundColour(backgroundColour) {
         }
 
         void setOptions(Options&& options) {
@@ -174,12 +174,12 @@ namespace mostly_harmless::gui {
             m_options.initScript = options.initScript;
             if (options.contentProvider) {
                 auto wrapper = [options](const std::string& toFind) -> std::optional<choc::ui::WebView::Options::Resource> {
-                  auto res = options.contentProvider(toFind);
-                  if (!res) return {};
-                  choc::ui::WebView::Options::Resource resource;
-                  resource.data = std::move(res->data);
-                  resource.mimeType = std::move(res->mimeType);
-                  return resource;
+                    auto res = options.contentProvider(toFind);
+                    if (!res) return {};
+                    choc::ui::WebView::Options::Resource resource;
+                    resource.data = std::move(res->data);
+                    resource.mimeType = std::move(res->mimeType);
+                    return resource;
                 };
                 m_options.fetchResource = std::move(wrapper);
             };
@@ -221,9 +221,9 @@ namespace mostly_harmless::gui {
 
     private:
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
-        choc::ui::WebView::Options m_options {
-          .enableDebugMode = false,
-          .transparentBackground = true
+        choc::ui::WebView::Options m_options{
+            .enableDebugMode = false,
+            .transparentBackground = true
         };
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
         Colour m_backgroundColour;
