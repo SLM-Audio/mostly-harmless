@@ -4,6 +4,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <mostly_harmless/utils/mostlyharmless_Timer.h>
 #include <iostream>
+#include <cmath>
 
 namespace mostly_harmless::tests {
     TEST_CASE("Test Timer") {

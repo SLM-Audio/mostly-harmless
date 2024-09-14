@@ -4,6 +4,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <mostly_harmless/utils/mostlyharmless_TaskThread.h>
 #include <mutex>
+#include <thread>
 namespace mostly_harmless::testing {
     TEST_CASE("Test TaskThread") {
         std::mutex mutex;

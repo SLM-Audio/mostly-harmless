@@ -99,6 +99,12 @@ namespace mostly_harmless {
         */
         virtual std::unique_ptr<gui::IEditor> createEditor() noexcept = 0;
 
+        /// @private
+        bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
+        /// @private
+        clap_process_status process(const clap_process* processContext) noexcept override;
+        /// @private
+        void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
     protected:
         /**
             Retrieves a parameter by its param id was constructed with.
@@ -158,9 +164,6 @@ namespace mostly_harmless {
         void handleEvent(const clap_event_header_t* event) noexcept;
 
     private:
-        bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
-        clap_process_status process(const clap_process* processContext) noexcept override;
-        void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
         void handleGuiEvents(const clap_output_events_t* outputQueue) noexcept;
 
         [[nodiscard]] bool implementsParams() const noexcept override;
