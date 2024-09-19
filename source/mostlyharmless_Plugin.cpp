@@ -97,6 +97,11 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
+    void Plugin<SampleType>::callOnMainThread(std::function<void()>&& callback) noexcept {
+        runOnMainThread(std::move(callback));
+    }
+
+    template <marvin::FloatType SampleType>
     void Plugin<SampleType>::handleGuiEvents(const clap_output_events_t* outputQueue) noexcept {
         using EventType = events::GuiToProcParamEvent::Type;
         while (auto guiEvent = m_guiToProcQueue.tryPop()) {
@@ -191,7 +196,7 @@ namespace mostly_harmless {
         }
     }
 
-    template<marvin::FloatType SampleType>
+    template <marvin::FloatType SampleType>
     std::span<Parameter<SampleType>> Plugin<SampleType>::getParamView() noexcept {
         return m_indexedParams;
     }
@@ -364,7 +369,7 @@ namespace mostly_harmless {
             read += bytesRead;
             inferredSize += bytesRead;
         }
-        if(inferredSize == 0) return false;
+        if (inferredSize == 0) return false;
         std::string asStr{ buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(inferredSize) };
         loadState(asStr);
         for (auto& param : m_indexedParams) {
@@ -402,8 +407,14 @@ namespace mostly_harmless {
             }
         };
 
+        auto _callOnMainThread = [this](std::function<void(void)>&& callback) -> void {
+            runOnMainThread(std::move(callback));
+        };
+
         m_editor = createEditor();
-        m_editor->initialise({ .guiToProcQueue = &m_guiToProcQueue, .requestParamFlush = std::move(requestFlushCallback) });
+        m_editor->initialise({ .guiToProcQueue = &m_guiToProcQueue,
+                               .requestParamFlush = std::move(requestFlushCallback),
+                               .callOnMainThread = std::move(_callOnMainThread) });
         m_guiDispatchThread.run(1);
         return true;
     }

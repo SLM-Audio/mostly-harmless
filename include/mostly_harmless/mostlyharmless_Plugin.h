@@ -106,8 +106,8 @@ namespace mostly_harmless {
         clap_process_status process(const clap_process* processContext) noexcept override;
         /// @private
         void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
-    protected:
 
+    protected:
         /**
          * Retrieves a non owning flat view into the internal params struct - useful for iterating over params, etc etc
          * \return A non owning view into the internal params.
@@ -171,6 +171,12 @@ namespace mostly_harmless {
          */
         void handleEvent(const clap_event_header_t* event) noexcept;
 
+        /**
+         * Queues a callback to be invoked on the message thread.<br>
+         * Literally just a wrapper around the internal clap `runOnMainThread` function, and exists solely so I can document it...
+         * \param callback The callback to invoke on the main thread.
+         */
+        void callOnMainThread(std::function<void(void)>&& callback) noexcept;
 
     private:
         void handleGuiEvents(const clap_output_events_t* outputQueue) noexcept;

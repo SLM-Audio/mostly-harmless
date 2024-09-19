@@ -23,6 +23,13 @@ namespace mostly_harmless::gui {
          */
         std::function<void(void)> requestParamFlush{ nullptr };
 
+        /**
+         * A lambda for invoking functions from a background thread on the gui thread.
+         * Passed for convenience, should you be running timers on the gui thread, etc etc.
+         * Takes an rvalue ref to a lambda to invoke.
+         **/
+        std::function<void(std::function<void(void)>&&)> callOnMainThread{ nullptr };
+
     };
 }
 
