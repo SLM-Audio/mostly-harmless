@@ -364,7 +364,7 @@ namespace mostly_harmless {
             read += bytesRead;
             inferredSize += bytesRead;
         }
-        if(inferredSize == 0) return true;
+        if(inferredSize == 0) return false;
         std::string asStr{ buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(inferredSize) };
         loadState(asStr);
         for (auto& param : m_indexedParams) {
