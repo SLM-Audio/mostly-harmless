@@ -73,4 +73,4 @@ target_sources(Gain PRIVATE
 
 target_include_directories(Gain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(Gain PUBLIC magic_enum::magic_enum nlohmann_json)
-#target_compile_definitions(Gain PUBLIC GAIN_HOT_RELOAD)
+target_compile_definitions(Gain PUBLIC GAIN_HOT_RELOAD)
