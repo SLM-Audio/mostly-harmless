@@ -6,7 +6,10 @@
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_WEBVIEWEDITOR_H
 #include <mostly_harmless/gui/mostlyharmless_IEditor.h>
 #include <mostly_harmless/gui/mostlyharmless_Colour.h>
+#include <mostly_harmless/events/mostlyharmless_WebEvent.h>
+#include <marvin/library/marvin_Concepts.h>
 #include <choc/gui/choc_WebView.h>
+#include <nlohmann/json.hpp>
 #include <optional>
 #include <string>
 #include <memory>
@@ -136,7 +139,9 @@ namespace mostly_harmless::gui {
          * Still pure virtual - you need to implement this to send data to your webview.
          * see IEditor::onParamEvent() for more details.
          */
-        void onParamEvent(events::ProcToGuiParamEvent event) override = 0;
+        void onParamEvent(events::ProcToGuiParamEvent event) override;
+
+        virtual void sendEvent(events::WebEvent&& event) noexcept;
 
 
     private:

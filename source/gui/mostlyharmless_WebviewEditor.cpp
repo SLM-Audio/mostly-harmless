@@ -274,4 +274,19 @@ namespace mostly_harmless::gui {
         m_impl->hide();
     }
 
+
+    void WebviewEditor::onParamEvent(events::ProcToGuiParamEvent event) {
+        sendEvent(events::WebEvent{ event });
+    }
+
+    void WebviewEditor::sendEvent(events::WebEvent&& event) noexcept {
+        std::stringstream stream;
+        stream << "event = new CustomEvent(\"" << event.id << "\", {\n";
+        stream << event.content << "\n";
+        stream << "});\n";
+        stream << "window.dispatchEvent(event);";
+        m_internalWebview->evaluateJavascript(stream.str(), {});
+    }
+
+
 } // namespace mostly_harmless::gui
