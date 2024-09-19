@@ -99,6 +99,7 @@ namespace mostly_harmless {
         */
         virtual std::unique_ptr<gui::IEditor> createEditor() noexcept = 0;
 
+
         /// @private
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
         /// @private
@@ -106,6 +107,13 @@ namespace mostly_harmless {
         /// @private
         void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
     protected:
+
+        /**
+         * Retrieves a non owning flat view into the internal params struct - useful for iterating over params, etc etc
+         * \return A non owning view into the internal params.
+         */
+        [[nodiscard]] std::span<Parameter<SampleType>> getParamView() noexcept;
+
         /**
             Retrieves a parameter by its param id was constructed with.
             \param id The id to retrieve
@@ -162,6 +170,7 @@ namespace mostly_harmless {
          * \param event The event to process.
          */
         void handleEvent(const clap_event_header_t* event) noexcept;
+
 
     private:
         void handleGuiEvents(const clap_output_events_t* outputQueue) noexcept;

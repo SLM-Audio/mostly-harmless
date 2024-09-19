@@ -191,6 +191,11 @@ namespace mostly_harmless {
         }
     }
 
+    template<marvin::FloatType SampleType>
+    std::span<Parameter<SampleType>> Plugin<SampleType>::getParamView() noexcept {
+        return m_indexedParams;
+    }
+
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::implementsParams() const noexcept {
         return true;
