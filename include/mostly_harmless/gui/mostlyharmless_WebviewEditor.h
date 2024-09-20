@@ -136,11 +136,63 @@ namespace mostly_harmless::gui {
         void hide() override;
 
         /**
-         * Still pure virtual - you need to implement this to send data to your webview.
-         * see IEditor::onParamEvent() for more details.
+         * Called when the host sends a param update, to inform the gui that a change has occurred.\n
+         * Actually gets invoked from a timer thread, on the message thread. \n
+         * This is still virtual, and can be overridden as you like, but the default implementation will call sendEvent() with a WebEvent constructed from the
+         * event passed from the param queue - see `sendEvent()` for more details.
+         * \param event An event specifying
          */
         void onParamEvent(events::ProcToGuiParamEvent event) override;
 
+        /**
+         * Sends a javascript event to the internal webview.\n
+         * The structure of the event in the default implementation is:
+         *
+         * ```js
+         * event = new CustomEvent("the event's id", {
+         *     detail: {
+         *          the event's content
+         *     }
+         * });
+         * window.dispatchEvent(event);
+         * ```
+         *
+         * So to respond to this, you can register an event listener:
+         *
+         * ```js
+         * let callback = (ev) => {
+         *      // your code here, details are accessible through ev.detail
+         * };
+         * addEventListener("the event's id", callback);
+         * // to unsubscribe (do this for cleanup!)
+         * removeEventListener("the event's id", callback);
+         * ```
+         *
+         * This function is called by the default implementation of onParamEvent(). The event is structured as:
+         *
+         * ```
+         * CustomEvent("param", {
+         *     detail: {
+         *         "paramId": "the param id",
+         *         "value": the param's value
+         *     }
+         * });
+         * ```
+         *
+         * for example,
+         *
+         * ```js
+         * let callback = (ev) => {
+         *     const paramId = ev.detail.paramId;
+         *     const value = parseFloat(ev.detail.value);
+         *     // .... do something with this data....
+         * };
+         * addEventListener("param", callback);
+         * ```
+         *
+         * You're also totally free to overload this if you don't like the default impl - see events::WebEvent for details about the WebEvent structure.
+         * \param event An rvalue ref to the event to dispatch - you can create arbitrary custom types of event.
+         */
         virtual void sendEvent(events::WebEvent&& event) noexcept;
 
 
