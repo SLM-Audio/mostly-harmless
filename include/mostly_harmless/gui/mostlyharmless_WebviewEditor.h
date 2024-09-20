@@ -15,6 +15,13 @@
 namespace mostly_harmless::gui {
 
     /**
+     * \brief An opinionated subclass of WebviewBase, providing default impls for bidirectional comms.
+     *
+     * Where WebviewBase handles lower level things like window creation / management, this class handles slightly higher level
+     * details - namely, an event system, and param updates.
+     *
+     * To use it, you'll probably want to still subclass it, but the boilerplate will be fairly minimal. See WebviewBase for more fine grained details,
+     * and onParamEvent() and sendEvent() for specifics on how the data is organised.
      */
     class WebviewEditor : public WebviewBase {
     public:
@@ -26,7 +33,11 @@ namespace mostly_harmless::gui {
         WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour);
         ~WebviewEditor() noexcept override = default;
         /**
-         * Implementation of mostly_harmless::gui::IEditor::initialise().
+         * Called when the webview is created, immediately after construction.
+         * Our default implementation here establishes bindings for 3 javascript functions - beginParamGesture(), setParamValue(), and endParamGesture().
+         * You should call these in your javascript code at the appropriate times to send param updates to the backend.
+         * These events are expected to take
+         * `
          * \param context The editor context (see IEditor::initialise() and EditorContext for more details).
          */
         void initialise(EditorContext context) override;
@@ -92,9 +103,9 @@ namespace mostly_harmless::gui {
 
 
     protected:
-        virtual choc::value::Value beginParamChangeGestureCallback(EditorContext context, const choc::value::ValueView& args) noexcept;
-        virtual choc::value::Value paramChangeGestureCallback(EditorContext context, const choc::value::ValueView& args) noexcept;
-        virtual choc::value::Value endParamChangeGestureCallback(EditorContext context, const choc::value::ValueView& args) noexcept;
+        virtual choc::value::Value beginParamChangeGestureCallback(EditorContext context, const choc::value::ValueView& args);
+        virtual choc::value::Value paramChangeGestureCallback(EditorContext context, const choc::value::ValueView& args);
+        virtual choc::value::Value endParamChangeGestureCallback(EditorContext context, const choc::value::ValueView& args);
     };
 } // namespace mostly_harmless::gui
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_WEBVIEWEDITOR_H

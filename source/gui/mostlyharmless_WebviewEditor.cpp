@@ -48,7 +48,7 @@ namespace mostly_harmless::gui {
         m_internalWebview->evaluateJavascript(stream.str(), {});
     }
 
-    choc::value::Value WebviewEditor::beginParamChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) noexcept {
+    choc::value::Value WebviewEditor::beginParamChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) {
         if (!context.guiToProcQueue) return {};
         try {
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
@@ -62,7 +62,7 @@ namespace mostly_harmless::gui {
         return {};
     }
 
-    choc::value::Value WebviewEditor::paramChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) noexcept {
+    choc::value::Value WebviewEditor::paramChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) {
         if (!context.guiToProcQueue) return {};
         try {
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
@@ -77,7 +77,7 @@ namespace mostly_harmless::gui {
         return {};
     }
 
-    choc::value::Value WebviewEditor::endParamChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) noexcept {
+    choc::value::Value WebviewEditor::endParamChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) {
         if (!context.guiToProcQueue) return {};
         try {
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
