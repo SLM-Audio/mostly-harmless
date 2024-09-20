@@ -10,8 +10,7 @@ namespace mostly_harmless::events {
 
     WebEvent::WebEvent(mostly_harmless::events::ProcToGuiParamEvent event) {
         id = "param";
-        auto& detail = content["detail"];
-        detail["paramId"] = std::to_string(event.paramId);
-        detail["value"] = std::to_string(event.value);
+        content["paramId"] = std::to_string(event.paramId);
+        content["value"] = std::to_string(event.value);
     }
 } // namespace mostly_harmless::events

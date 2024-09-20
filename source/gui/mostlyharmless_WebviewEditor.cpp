@@ -281,7 +281,7 @@ namespace mostly_harmless::gui {
 
     void WebviewEditor::sendEvent(events::WebEvent&& event) noexcept {
         std::stringstream stream;
-        stream << "event = new CustomEvent(\"" << event.id << "\", {\n";
+        stream << "event = new CustomEvent(\"" << event.id << "\", {\n detail:  \n";
         stream << event.content << "\n";
         stream << "});\n";
         stream << "window.dispatchEvent(event);";
