@@ -186,33 +186,33 @@ namespace mostly_harmless::gui {
         }
 
         void create() {
+            m_clientView = helpers::macos::createView(m_initialWidth, m_initialHeight);
             m_webview = std::make_unique<choc::ui::WebView>(m_options);
-            helpers::macos::setViewSize(m_webview->getViewHandle(), m_initialWidth, m_initialHeight);
+            helpers::macos::setViewSize(m_clientView, m_initialWidth, m_initialHeight);
         }
 
         void destroy() {
-            //            helpers::macos::removeFromParentView(m_webview->getViewHandle());
             m_webview.reset();
         }
 
         void getSize(std::uint32_t* width, std::uint32_t* height) {
-            helpers::macos::getViewSize(m_webview->getViewHandle(), width, height);
+            helpers::macos::getViewSize(m_clientView, width, height);
         }
 
         void setSize(std::uint32_t width, std::uint32_t height) {
-            helpers::macos::setViewSize(m_webview->getViewHandle(), width, height);
+            helpers::macos::setViewSize(m_clientView, width, height);
         }
 
         void setParent(void* parentHandle) {
-            helpers::macos::reparentView(parentHandle, m_webview->getViewHandle(), m_backgroundColour);
+            helpers::macos::reparentView(parentHandle, m_clientView, m_webview->getViewHandle(), m_backgroundColour);
         }
 
         void show() {
-            helpers::macos::showView(m_webview->getViewHandle());
+            helpers::macos::showView(m_clientView);
         }
 
         void hide() {
-            helpers::macos::hideView(m_webview->getViewHandle());
+            helpers::macos::hideView(m_clientView);
         }
 
         [[nodiscard]] choc::ui::WebView* getWebview() noexcept {
@@ -225,6 +225,7 @@ namespace mostly_harmless::gui {
             .enableDebugMode = false,
             .transparentBackground = true
         };
+        void* m_clientView{ nullptr };
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
         Colour m_backgroundColour;
     };

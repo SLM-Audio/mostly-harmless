@@ -7,6 +7,7 @@
 #include <mostly_harmless/gui/mostlyharmless_Colour.h>
 #include <cstdint>
 namespace mostly_harmless::gui::helpers::macos {
+    void* createView(std::uint32_t width, std::uint32_t height);
     /**
      * Removes an NSView from its parent NSView.
      * \param viewHandle A void* to the NSView to remove.
@@ -31,7 +32,7 @@ namespace mostly_harmless::gui::helpers::macos {
      * \param parentViewHandle A void* to the NSView to add the child view to.
      * \param childViewHandle A void* to the NSView to add to the parent view.
      */
-    void reparentView(void* parentViewHandle, void* childViewHandle, Colour backgroundColour);
+    void reparentView(void* hostViewHandle, void* clientViewHandle, void* childViewHandle, Colour backgroundColour);
     /**
      * Sets an NSView as visible.
      * \param viewHandle A void* to the NSView to set visible.
@@ -42,5 +43,5 @@ namespace mostly_harmless::gui::helpers::macos {
      * \param viewHandle A void* to the NSView to set hidden.
      */
     void hideView(void* viewHandle);
-} // namespace mostly_harmless::gui::helpers
+} // namespace mostly_harmless::gui::helpers::macos
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H

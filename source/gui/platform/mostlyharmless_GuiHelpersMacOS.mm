@@ -3,6 +3,15 @@
 #include <AppKit/AppKit.h>
 #include <CoreGraphics/CoreGraphics.h>
 namespace mostly_harmless::gui::helpers::macos {
+    void* createView(std::uint32_t width, std::uint32_t height) {
+        const auto fwidth = static_cast<CGFloat>(width);
+        const auto fheight = static_cast<CGFloat>(height);
+        auto rect = NSMakeRect(0.0, 0.0, fwidth, fheight);
+        auto* view = [NSView alloc];
+        [view initWithFrame:rect];
+        return view;
+    }
+
     void removeFromParentView(void* viewHandle) {
         auto* asView = static_cast<NSView*>(viewHandle);
         [asView removeFromSuperview];
@@ -20,18 +29,23 @@ namespace mostly_harmless::gui::helpers::macos {
         *height = static_cast<std::uint32_t>(bounds.size.height);
     }
 
-    void reparentView(void* parentViewHandle, void* childViewHandle, Colour backgroundColour) {
-        auto* parent = static_cast<NSView*>(parentViewHandle);
-        [parent setWantsLayer:true];
+    void reparentView(void* hostViewHandle, void* clientViewHandle, void* childViewHandle, Colour backgroundColour) {
+        createView(0, 0);
+        auto* host = static_cast<NSView*>(hostViewHandle);
+        auto* client = static_cast<NSView*>(clientViewHandle);
+        auto* child = static_cast<NSView*>(childViewHandle);
+        [client setWantsLayer:true];
+
         [[maybe_unused]] const auto [a, r, g, b] = backgroundColour;
         CGFloat f32R = static_cast<CGFloat>(r) / 255.0f;
         CGFloat f32G = static_cast<CGFloat>(g) / 255.0f;
         CGFloat f32B = static_cast<CGFloat>(b) / 255.0f;
         auto* color = [NSColor colorWithCalibratedRed:f32R green:f32G blue:f32B alpha:1];
-        [[parent layer] setBackgroundColor:color.CGColor];
-        auto* child = static_cast<NSView*>(childViewHandle);
-        child.frame = parent.bounds;
-        [parent addSubview:child];
+        [[client layer] setBackgroundColor:color.CGColor];
+        client.frame = host.bounds;
+        child.frame = host.bounds;
+        [client addSubview:child];
+        [host addSubview:client];
     }
 
     void showView(void* viewHandle) {
