@@ -10,7 +10,6 @@ namespace examples::delay {
     public:
         PluginEditor(std::uint32_t width, std::uint32_t height);
         void initialise(mostly_harmless::gui::EditorContext context) override;
-        void onParamEvent(mostly_harmless::events::ProcToGuiParamEvent event) override;
     };
 } // namespace examples::delay
 #endif // MOSTLYHARMLESS_PLUGINEDITOR_H

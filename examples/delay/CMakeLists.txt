@@ -4,7 +4,9 @@ FetchContent_Declare(magic_enum
         GIT_REPOSITORY https://github.com/Neargye/magic_enum.git
         GIT_TAG master
         GIT_SHALLOW ON)
+
 FetchContent_MakeAvailable(magic_enum)
+
 mostly_harmless_add_plugin(delay
         FORMATS CLAP VST3 Standalone
         ID "delay"
