@@ -12,7 +12,6 @@ namespace examples::gain {
     public:
         GainEditor(std::uint32_t width, std::uint32_t height);
         void initialise(mostly_harmless::gui::EditorContext context) override;
-        void onParamEvent(mostly_harmless::events::ProcToGuiParamEvent event) override;
 
     private:
         // Usually I'd have this as a static in the TU, but because the underlying map `getNamedResource()` queries is also static, it leads to weird issues with init-order

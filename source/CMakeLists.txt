@@ -10,6 +10,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Plugin.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_EventContext.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_WebEvent.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewBase.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewEditor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Colour.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_TaskThread.cpp

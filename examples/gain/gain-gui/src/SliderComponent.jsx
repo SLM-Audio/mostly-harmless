@@ -22,7 +22,7 @@ function SliderComponent({pid, name, min, max}) {
         setVal(v.target.value);
         const args = {
             paramId: 0,
-            value: v.target.value
+            value: parseFloat(v.target.value)
         };
         setParamValue(args).then((res) => console.log(res));
     };
