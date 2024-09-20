@@ -57,7 +57,8 @@ namespace mostly_harmless::gui {
                                               .value = 0.0 });
             context.requestParamFlush();
         } catch (std::exception& e) {
-            throw std::runtime_error(e.what());
+            assert(false);
+            return choc::value::Value{ e.what() };
         }
         return {};
     }
@@ -66,13 +67,14 @@ namespace mostly_harmless::gui {
         if (!context.guiToProcQueue) return {};
         try {
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
-            const auto value = args[0]["value"].get<float>();
+            const auto value = args[0].get<float>();
             context.guiToProcQueue->tryPush({ .type = events::GuiToProcParamEvent::Type::Adjust,
                                               .paramId = paramId,
                                               .value = value });
             context.requestParamFlush();
         } catch (std::exception& e) {
-            throw std::runtime_error(e.what());
+            assert(false);
+            return choc::value::Value{ e.what() };
         }
         return {};
     }
@@ -86,7 +88,8 @@ namespace mostly_harmless::gui {
                                               .value = 0.0 });
             context.requestParamFlush();
         } catch (std::exception& e) {
-            throw std::runtime_error(e.what());
+            std::cout << e.what();
+            assert(false);
         }
         return {};
     }
