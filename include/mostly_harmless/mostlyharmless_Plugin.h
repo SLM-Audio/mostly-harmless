@@ -100,6 +100,8 @@ namespace mostly_harmless {
         virtual std::unique_ptr<gui::IEditor> createEditor() noexcept = 0;
 
 
+        // TODO: These are public for unit testing purposes - I hate that...
+
         /// @private
         bool activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept override;
         /// @private
