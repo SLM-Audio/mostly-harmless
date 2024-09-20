@@ -67,7 +67,7 @@ namespace mostly_harmless::gui {
         if (!context.guiToProcQueue) return {};
         try {
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
-            const auto value = args[0].get<float>();
+            const auto value = args[0]["value"].get<float>();
             context.guiToProcQueue->tryPush({ .type = events::GuiToProcParamEvent::Type::Adjust,
                                               .paramId = paramId,
                                               .value = value });
