@@ -2,14 +2,18 @@ import {useEffect, useState} from "react";
 
 function SliderComponent({pid, name, min, max}) {
     const [val, setVal] = useState(0.0);
+    const paramCallback = (ev) => {
+        const eventPid = ev.detail.paramId;
+        // console.log(ev);
+        if(parseInt(eventPid) !== pid) return;
+        const value = parseFloat(ev.detail.value);
+        setVal(value);
+    }
     useEffect(() => {
-        addEventListener("param", (ev) => {
-            console.log("Param event");
-            const eventPid = ev.detail.paramId;
-            console.log(ev);
-            if (eventPid !== pid) return;
-            setVal(parseFloat(ev.detail.value));
-        });
+        addEventListener("param", paramCallback);
+        return function cleanup() {
+            removeEventListener("param", paramCallback);
+        }
     }, []);
 
     const sliderDragStarted = (v) => {
