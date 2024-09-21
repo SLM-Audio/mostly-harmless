@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MostlyHarmless: /home/runner/work/mostly-harmless/mostly-harmless/include/mostly_harmless/gui/mostlyharmless_WebviewEditor.h File Reference</title>
+<title>MostlyHarmless: /home/runner/work/mostly-harmless/mostly-harmless/include/mostly_harmless/gui/mostlyharmless_WebviewBase.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,25 +90,27 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
-  <div class="headertitle"><div class="title">mostlyharmless_WebviewEditor.h File Reference</div></div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">mostlyharmless_WebviewBase.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="mostlyharmless__WebviewBase_8h_source.html">mostly_harmless/gui/mostlyharmless_WebviewBase.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="mostlyharmless__WebEvent_8h_source.html">mostly_harmless/events/mostlyharmless_WebEvent.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="marvin__Concepts_8h_source.html">marvin/library/marvin_Concepts.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="mostlyharmless__IEditor_8h_source.html">mostly_harmless/gui/mostlyharmless_IEditor.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="mostlyharmless__Colour_8h_source.html">mostly_harmless/gui/mostlyharmless_Colour.h</a>&gt;</code><br />
 <code>#include &lt;choc/gui/choc_WebView.h&gt;</code><br />
-<code>#include &lt;nlohmann/json.hpp&gt;</code><br />
-<code>#include &lt;optional&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-<code>#include &lt;memory&gt;</code><br />
 </div>
-<p><a href="mostlyharmless__WebviewEditor_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="mostlyharmless__WebviewBase_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html">mostly_harmless::gui::WebviewEditor</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An opinionated subclass of <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a>, providing default impls for bidirectional comms.  <a href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html">mostly_harmless::gui::WebviewBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience wrapper layer implementing the creation and management of a <code>choc::ui::WebView</code>. Still abstract, as <code>setParams</code> is left up to the user to implement in a way they see fit.  <a href="classmostly__harmless_1_1gui_1_1WebviewBase.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html">mostly_harmless::gui::WebviewBase::Resource</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tiny container struct for web resources.  <a href="structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html">mostly_harmless::gui::WebviewBase::Options</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains a set of options to construct the internal webview with.  <a href="structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -119,6 +121,12 @@ Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemostly__harmless_1_1gui.html">mostly_harmless::gui</a></td></tr>
 <tr class="memdesc:namespacemostly__harmless_1_1gui"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains GUI related classes &amp; functions. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a8855535e755f2b2934ea13613ac12c58" id="r_a8855535e755f2b2934ea13613ac12c58"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemostly__harmless_1_1gui.html#a8855535e755f2b2934ea13613ac12c58">mostly_harmless::gui::getMimeType</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a8855535e755f2b2934ea13613ac12c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to retrieve the MIME type for a given filename.  <br /></td></tr>
+<tr class="separator:a8855535e755f2b2934ea13613ac12c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

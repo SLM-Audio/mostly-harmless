@@ -127,6 +127,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:ab4930a6a7b33f561eb5d177283f87cf7" id="r_ab4930a6a7b33f561eb5d177283f87cf7"><td class="memItemLeft" align="right" valign="top">std::span&lt; <a class="el" href="structmostly__harmless_1_1Parameter.html">Parameter</a>&lt; SampleType &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4930a6a7b33f561eb5d177283f87cf7">getParamView</a> () noexcept</td></tr>
+<tr class="separator:ab4930a6a7b33f561eb5d177283f87cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87aaf0cab05e489ec01a78c5b2829799" id="r_a87aaf0cab05e489ec01a78c5b2829799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmostly__harmless_1_1Parameter.html">Parameter</a>&lt; SampleType &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87aaf0cab05e489ec01a78c5b2829799">getParameter</a> (clap_id id) noexcept</td></tr>
 <tr class="separator:a87aaf0cab05e489ec01a78c5b2829799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e8436edb21ffc110d942e1dc61282f4" id="r_a5e8436edb21ffc110d942e1dc61282f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e8436edb21ffc110d942e1dc61282f4">pollEventQueue</a> (size_t currentSample, <a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> context) noexcept</td></tr>
@@ -143,6 +145,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ae3e45b9855c4abf1549f7e1af7a25609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c61b977581cedcc41e4861df7a07310" id="r_a1c61b977581cedcc41e4861df7a07310"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c61b977581cedcc41e4861df7a07310">handleEvent</a> (const clap_event_header_t *event) noexcept</td></tr>
 <tr class="separator:a1c61b977581cedcc41e4861df7a07310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2f3cd8c4a80c1cf2e9fd6f678d0718" id="r_a1a2f3cd8c4a80c1cf2e9fd6f678d0718"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a2f3cd8c4a80c1cf2e9fd6f678d0718">callOnMainThread</a> (std::function&lt; void(void)&gt; &amp;&amp;callback) noexcept</td></tr>
+<tr class="separator:a1a2f3cd8c4a80c1cf2e9fd6f678d0718"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -238,6 +242,40 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1a2f3cd8c4a80c1cf2e9fd6f678d0718" name="a1a2f3cd8c4a80c1cf2e9fd6f678d0718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a2f3cd8c4a80c1cf2e9fd6f678d0718">&#9670;&#160;</a></span>callOnMainThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::callOnMainThread </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void(void)&gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>callback</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Queues a callback to be invoked on the message thread.<br  />
+ Literally just a wrapper around the internal clap <code>runOnMainThread</code> function, and exists solely so I can document it... </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>The callback to invoke on the main thread. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5ec42aac320bd9909ef150958861121f" name="a5ec42aac320bd9909ef150958861121f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ec42aac320bd9909ef150958861121f">&#9670;&#160;</a></span>createEditor()</h2>
 
@@ -330,6 +368,34 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the associated parameter. </dd></dl>
+
+</div>
+</div>
+<a id="ab4930a6a7b33f561eb5d177283f87cf7" name="ab4930a6a7b33f561eb5d177283f87cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4930a6a7b33f561eb5d177283f87cf7">&#9670;&#160;</a></span>getParamView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::span&lt; <a class="el" href="structmostly__harmless_1_1Parameter.html">Parameter</a>&lt; SampleType &gt; &gt; <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::getParamView </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span><span class="mlabel">protected</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Retrieves a non owning flat view into the internal params struct - useful for iterating over params, etc etc </p><dl class="section return"><dt>Returns</dt><dd>A non owning view into the internal params. </dd></dl>
 
 </div>
 </div>

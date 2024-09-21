@@ -1,7 +1,7 @@
 var searchData=
 [
   ['m_5fguitoprocqueue_0',['m_guiToProcQueue',['../classmostly__harmless_1_1Plugin.html#adb54739e3a984b00349d490de1922dd8',1,'mostly_harmless::Plugin']]],
-  ['m_5finternalwebview_1',['m_internalWebview',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a53781d868c90bee7fb84ea5c6e896e88',1,'mostly_harmless::gui::WebviewEditor']]],
+  ['m_5finternalwebview_1',['m_internalWebview',['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a8b78207d8126ebc74b59799029210385',1,'mostly_harmless::gui::WebviewBase']]],
   ['m_5fphase_2',['m_phase',['../classmarvin_1_1dsp_1_1oscillators_1_1OscillatorBase.html#a69fef5c911de40b184cb9db4f1e09152',1,'marvin::dsp::oscillators::OscillatorBase']]],
   ['m_5fphaseincrement_3',['m_phaseIncrement',['../classmarvin_1_1dsp_1_1oscillators_1_1OscillatorBase.html#a88f893e7d68b25f40c4b8a76ee881f57',1,'marvin::dsp::oscillators::OscillatorBase']]],
   ['m_5fphaseoffset_4',['m_phaseOffset',['../classmarvin_1_1dsp_1_1oscillators_1_1OscillatorBase.html#a4398d26aebc713930d84e3baf613540f',1,'marvin::dsp::oscillators::OscillatorBase']]],
@@ -58,7 +58,7 @@ var searchData=
   ['marvin_5fvecops_2eh_55',['marvin_VecOps.h',['../marvin__VecOps_8h.html',1,'']]],
   ['marvin_5fwindows_2eh_56',['marvin_Windows.h',['../marvin__Windows_8h.html',1,'']]],
   ['max_57',['max',['../structmarvin_1_1utils_1_1Range.html#a39231b7dba2ae081ec28ebe1248f9175',1,'marvin::utils::Range']]],
-  ['mimetype_58',['mimeType',['../structmostly__harmless_1_1gui_1_1WebviewEditor_1_1Resource.html#afd3c1c654220247532cc9c6e5696e2cd',1,'mostly_harmless::gui::WebviewEditor::Resource']]],
+  ['mimetype_58',['mimeType',['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#af51bda90a40a638cde22fff8d0498cba',1,'mostly_harmless::gui::WebviewBase::Resource']]],
   ['min_59',['min',['../structmarvin_1_1utils_1_1Range.html#aed9c1b198944fc7be0a6f8461414e27c',1,'marvin::utils::Range']]],
   ['mostly_20harmless_60',['mostly harmless',['../index.html',1,'']]],
   ['mostly_5fharmless_61',['mostly_harmless',['../namespacemostly__harmless.html',1,'']]],
@@ -83,7 +83,9 @@ var searchData=
   ['mostlyharmless_5fregister_80',['MOSTLYHARMLESS_REGISTER',['../mostlyharmless__Plugin_8h.html#a786f208bfabc6dd074d516fad6651983',1,'mostlyharmless_Plugin.h']]],
   ['mostlyharmless_5ftaskthread_2eh_81',['mostlyharmless_TaskThread.h',['../mostlyharmless__TaskThread_8h.html',1,'']]],
   ['mostlyharmless_5ftimer_2eh_82',['mostlyharmless_Timer.h',['../mostlyharmless__Timer_8h.html',1,'']]],
-  ['mostlyharmless_5fwebvieweditor_2eh_83',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]],
-  ['multioscillator_84',['MultiOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html',1,'marvin::dsp::oscillators::MultiOscillator&lt; SampleType, Bandlimit &gt;'],['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#a8e89b3210455031f37a67615ab30191e',1,'marvin::dsp::oscillators::MultiOscillator::MultiOscillator(std::random_device &amp;rd)'],['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#ae3e20a3990019f8edc376dce506e566a',1,'marvin::dsp::oscillators::MultiOscillator::MultiOscillator(std::random_device &amp;rd, Shape shape)']]],
-  ['multiply_85',['multiply',['../namespacemarvin_1_1math_1_1vecops.html#a2845f70102fa5d759018ecea01b3c962',1,'marvin::math::vecops::multiply(T *lhs, const T *rhs, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a3984f4b762b221de1f7f87f14cd214e6',1,'marvin::math::vecops::multiply(T *arr, T scalar, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a44926d08fce64b70b50fe48c0f48bd37',1,'marvin::math::vecops::multiply(T &amp;lhs, const T &amp;rhs) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a3f143c994f28843ece109a61e0666b9b',1,'marvin::math::vecops::multiply(T &amp;arr, typename T::value_type scalar) noexcept']]]
+  ['mostlyharmless_5fwebevent_2eh_83',['mostlyharmless_WebEvent.h',['../mostlyharmless__WebEvent_8h.html',1,'']]],
+  ['mostlyharmless_5fwebviewbase_2eh_84',['mostlyharmless_WebviewBase.h',['../mostlyharmless__WebviewBase_8h.html',1,'']]],
+  ['mostlyharmless_5fwebvieweditor_2eh_85',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]],
+  ['multioscillator_86',['MultiOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html',1,'marvin::dsp::oscillators::MultiOscillator&lt; SampleType, Bandlimit &gt;'],['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#a8e89b3210455031f37a67615ab30191e',1,'marvin::dsp::oscillators::MultiOscillator::MultiOscillator(std::random_device &amp;rd)'],['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#ae3e20a3990019f8edc376dce506e566a',1,'marvin::dsp::oscillators::MultiOscillator::MultiOscillator(std::random_device &amp;rd, Shape shape)']]],
+  ['multiply_87',['multiply',['../namespacemarvin_1_1math_1_1vecops.html#a2845f70102fa5d759018ecea01b3c962',1,'marvin::math::vecops::multiply(T *lhs, const T *rhs, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a3984f4b762b221de1f7f87f14cd214e6',1,'marvin::math::vecops::multiply(T *arr, T scalar, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a44926d08fce64b70b50fe48c0f48bd37',1,'marvin::math::vecops::multiply(T &amp;lhs, const T &amp;rhs) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a3f143c994f28843ece109a61e0666b9b',1,'marvin::math::vecops::multiply(T &amp;arr, typename T::value_type scalar) noexcept']]]
 ];

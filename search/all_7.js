@@ -9,7 +9,7 @@ var searchData=
   ['hann_6',['Hann',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58a0218ace760f65b32ad5b254bf7a95ab5',1,'marvin::math::windows']]],
   ['hann_7',['hann',['../namespacemarvin_1_1math_1_1windows.html#a8b0f4e506555cbf059716b84966c599d',1,'marvin::math::windows']]],
   ['harmless_8',['mostly harmless',['../index.html',1,'']]],
-  ['hide_9',['hide',['../structmostly__harmless_1_1gui_1_1IEditor.html#ab104e5c92f4d37e09f7866a0083dcbcb',1,'mostly_harmless::gui::IEditor::hide()'],['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a66967191f5c07628faad58b680698962',1,'mostly_harmless::gui::WebviewEditor::hide()']]],
+  ['hide_9',['hide',['../structmostly__harmless_1_1gui_1_1IEditor.html#ab104e5c92f4d37e09f7866a0083dcbcb',1,'mostly_harmless::gui::IEditor::hide()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a8208c0343578e42c04cc1e2fe24e7d7f',1,'mostly_harmless::gui::WebviewBase::hide()']]],
   ['hideview_10',['hideView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8ae69eea9aecfc8ac734d56213687048',1,'mostly_harmless::gui::helpers::macos']]],
   ['highpass_11',['Highpass',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289a124600c5e81d846f402aab6727296cd5',1,'marvin::dsp::filters::SVF']]],
   ['highpass_12',['highpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#afb48a3e840e231dac88e3174baaa2387',1,'marvin::dsp::filters::SVFResult::highpass'],['../namespacemarvin_1_1dsp_1_1filters_1_1rbj.html#a524c1e3b92f0ce3057830a6b22f48d6f',1,'marvin::dsp::filters::rbj::highpass()']]],

@@ -19,8 +19,9 @@ var searchData=
   ['getnumchannels_16',['getNumChannels',['../structmarvin_1_1containers_1_1BufferView.html#ad3dea043fb077d4c5f0365cf1e999df4',1,'marvin::containers::BufferView']]],
   ['getnumsamples_17',['getNumSamples',['../structmarvin_1_1containers_1_1BufferView.html#aea666b0b126d02e58d302bf884200a0e',1,'marvin::containers::BufferView']]],
   ['getparameter_18',['getParameter',['../classmostly__harmless_1_1Plugin.html#a87aaf0cab05e489ec01a78c5b2829799',1,'mostly_harmless::Plugin']]],
-  ['getremainingsamples_19',['getRemainingSamples',['../classmarvin_1_1utils_1_1SmoothedValue.html#a83cf07f07698cda928c8e576e5faff88',1,'marvin::utils::SmoothedValue']]],
-  ['getsize_20',['getSize',['../structmostly__harmless_1_1gui_1_1IEditor.html#a449a71dec2dccbae3ecdd1ce351491fc',1,'mostly_harmless::gui::IEditor::getSize()'],['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a221faeb3b9344d5dcc7a1f8e21e4789a',1,'mostly_harmless::gui::WebviewEditor::getSize()']]],
-  ['gettargetvalue_21',['getTargetValue',['../classmarvin_1_1utils_1_1SmoothedValue.html#a88ee864101dfdc9f24846af37a25df2d',1,'marvin::utils::SmoothedValue']]],
-  ['getviewsize_22',['getViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9',1,'mostly_harmless::gui::helpers::macos']]]
+  ['getparamview_19',['getParamView',['../classmostly__harmless_1_1Plugin.html#ab4930a6a7b33f561eb5d177283f87cf7',1,'mostly_harmless::Plugin']]],
+  ['getremainingsamples_20',['getRemainingSamples',['../classmarvin_1_1utils_1_1SmoothedValue.html#a83cf07f07698cda928c8e576e5faff88',1,'marvin::utils::SmoothedValue']]],
+  ['getsize_21',['getSize',['../structmostly__harmless_1_1gui_1_1IEditor.html#a449a71dec2dccbae3ecdd1ce351491fc',1,'mostly_harmless::gui::IEditor::getSize()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#ae306effd98b26be4e9540548337e9d5c',1,'mostly_harmless::gui::WebviewBase::getSize()']]],
+  ['gettargetvalue_22',['getTargetValue',['../classmarvin_1_1utils_1_1SmoothedValue.html#a88ee864101dfdc9f24846af37a25df2d',1,'marvin::utils::SmoothedValue']]],
+  ['getviewsize_23',['getViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9',1,'mostly_harmless::gui::helpers::macos']]]
 ];

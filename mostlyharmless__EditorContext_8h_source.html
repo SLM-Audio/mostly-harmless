@@ -108,12 +108,14 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structmostly__harmless_1_1gui_1_1EditorContext.html#a7f9dd8134b7d401e3aa6286deb411840">   24</a></span>        std::function&lt;void(<span class="keywordtype">void</span>)&gt; <a class="code hl_variable" href="structmostly__harmless_1_1gui_1_1EditorContext.html#a7f9dd8134b7d401e3aa6286deb411840">requestParamFlush</a>{ <span class="keyword">nullptr</span> };</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structmostly__harmless_1_1gui_1_1EditorContext.html#afb8b0bd6252688539b0994b908971401">   31</a></span>        std::function&lt;void(std::function&lt;<span class="keywordtype">void</span>(<span class="keywordtype">void</span>)&gt;&amp;&amp;)&gt; <a class="code hl_variable" href="structmostly__harmless_1_1gui_1_1EditorContext.html#afb8b0bd6252688539b0994b908971401">callOnMainThread</a>{ <span class="keyword">nullptr</span> };</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    };</div>
 </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
 </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif </span><span class="comment">// MOSTLYHARMLESS_MOSTLYHARMLESS_EDITORCONTEXT_H</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif </span><span class="comment">// MOSTLYHARMLESS_MOSTLYHARMLESS_EDITORCONTEXT_H</span></div>
 <div class="ttc" id="aclassmarvin_1_1containers_1_1fifos_1_1SPSC_html"><div class="ttname"><a href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a></div><div class="ttdoc">A thread-safe, realtime-safe single producer single consumer fifo.</div><div class="ttdef"><b>Definition</b> marvin_FIFO.h:42</div></div>
 <div class="ttc" id="amarvin__FIFO_8h_html"><div class="ttname"><a href="marvin__FIFO_8h.html">marvin_FIFO.h</a></div></div>
 <div class="ttc" id="amostlyharmless__ParamEvent_8h_html"><div class="ttname"><a href="mostlyharmless__ParamEvent_8h.html">mostlyharmless_ParamEvent.h</a></div></div>
@@ -121,6 +123,7 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="astructmostly__harmless_1_1gui_1_1EditorContext_html"><div class="ttname"><a href="structmostly__harmless_1_1gui_1_1EditorContext.html">mostly_harmless::gui::EditorContext</a></div><div class="ttdoc">Trivially copyable struct containing extra necessary context for a gui.</div><div class="ttdef"><b>Definition</b> mostlyharmless_EditorContext.h:14</div></div>
 <div class="ttc" id="astructmostly__harmless_1_1gui_1_1EditorContext_html_a6b5d167c9f763dcc1beff24e4bff52f4"><div class="ttname"><a href="structmostly__harmless_1_1gui_1_1EditorContext.html#a6b5d167c9f763dcc1beff24e4bff52f4">mostly_harmless::gui::EditorContext::guiToProcQueue</a></div><div class="ttdeci">marvin::containers::fifos::SPSC&lt; events::GuiToProcParamEvent &gt; * guiToProcQueue</div><div class="ttdef"><b>Definition</b> mostlyharmless_EditorContext.h:18</div></div>
 <div class="ttc" id="astructmostly__harmless_1_1gui_1_1EditorContext_html_a7f9dd8134b7d401e3aa6286deb411840"><div class="ttname"><a href="structmostly__harmless_1_1gui_1_1EditorContext.html#a7f9dd8134b7d401e3aa6286deb411840">mostly_harmless::gui::EditorContext::requestParamFlush</a></div><div class="ttdeci">std::function&lt; void(void)&gt; requestParamFlush</div><div class="ttdef"><b>Definition</b> mostlyharmless_EditorContext.h:24</div></div>
+<div class="ttc" id="astructmostly__harmless_1_1gui_1_1EditorContext_html_afb8b0bd6252688539b0994b908971401"><div class="ttname"><a href="structmostly__harmless_1_1gui_1_1EditorContext.html#afb8b0bd6252688539b0994b908971401">mostly_harmless::gui::EditorContext::callOnMainThread</a></div><div class="ttdeci">std::function&lt; void(std::function&lt; void(void)&gt; &amp;&amp;)&gt; callOnMainThread</div><div class="ttdef"><b>Definition</b> mostlyharmless_EditorContext.h:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

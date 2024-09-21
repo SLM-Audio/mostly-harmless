@@ -99,14 +99,16 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a164a8658c908d901c4b4c27c974f7f73" id="r_a164a8658c908d901c4b4c27c974f7f73"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a164a8658c908d901c4b4c27c974f7f73">createView</a> (std::uint32_t width, std::uint32_t height)</td></tr>
+<tr class="separator:a164a8658c908d901c4b4c27c974f7f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdae1ffa2ffabbf08beea34d8e4ca287" id="r_afdae1ffa2ffabbf08beea34d8e4ca287"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdae1ffa2ffabbf08beea34d8e4ca287">removeFromParentView</a> (void *viewHandle)</td></tr>
 <tr class="separator:afdae1ffa2ffabbf08beea34d8e4ca287"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e6b76e81afa3152032ffa6de869c796" id="r_a8e6b76e81afa3152032ffa6de869c796"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e6b76e81afa3152032ffa6de869c796">setViewSize</a> (void *viewHandle, std::uint32_t width, std::uint32_t height)</td></tr>
 <tr class="separator:a8e6b76e81afa3152032ffa6de869c796"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7732cb067ff73c5fb879edaa11137b9" id="r_aa7732cb067ff73c5fb879edaa11137b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7732cb067ff73c5fb879edaa11137b9">getViewSize</a> (void *viewHandle, std::uint32_t *width, std::uint32_t *height)</td></tr>
 <tr class="separator:aa7732cb067ff73c5fb879edaa11137b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87fa1b8e1575ec5042e754e7094db323" id="r_a87fa1b8e1575ec5042e754e7094db323"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87fa1b8e1575ec5042e754e7094db323">reparentView</a> (void *parentViewHandle, void *childViewHandle, <a class="el" href="structmostly__harmless_1_1gui_1_1Colour.html">Colour</a> backgroundColour)</td></tr>
-<tr class="separator:a87fa1b8e1575ec5042e754e7094db323"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ae94c9f73385a702c0b5320bf4278fa" id="r_a4ae94c9f73385a702c0b5320bf4278fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ae94c9f73385a702c0b5320bf4278fa">reparentView</a> (void *hostViewHandle, void *clientViewHandle, void *childViewHandle, <a class="el" href="structmostly__harmless_1_1gui_1_1Colour.html">Colour</a> backgroundColour)</td></tr>
+<tr class="separator:a4ae94c9f73385a702c0b5320bf4278fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8fef1567c0547ce6195b09c95cb4a73" id="r_ac8fef1567c0547ce6195b09c95cb4a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8fef1567c0547ce6195b09c95cb4a73">showView</a> (void *viewHandle)</td></tr>
 <tr class="separator:ac8fef1567c0547ce6195b09c95cb4a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ae69eea9aecfc8ac734d56213687048" id="r_a8ae69eea9aecfc8ac734d56213687048"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ae69eea9aecfc8ac734d56213687048">hideView</a> (void *viewHandle)</td></tr>
@@ -115,6 +117,27 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>macOS specific gui helper functions </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a164a8658c908d901c4b4c27c974f7f73" name="a164a8658c908d901c4b4c27c974f7f73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a164a8658c908d901c4b4c27c974f7f73">&#9670;&#160;</a></span>createView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * mostly_harmless::gui::helpers::macos::createView </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa7732cb067ff73c5fb879edaa11137b9" name="aa7732cb067ff73c5fb879edaa11137b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa7732cb067ff73c5fb879edaa11137b9">&#9670;&#160;</a></span>getViewSize()</h2>
 
@@ -195,8 +218,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a87fa1b8e1575ec5042e754e7094db323" name="a87fa1b8e1575ec5042e754e7094db323"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87fa1b8e1575ec5042e754e7094db323">&#9670;&#160;</a></span>reparentView()</h2>
+<a id="a4ae94c9f73385a702c0b5320bf4278fa" name="a4ae94c9f73385a702c0b5320bf4278fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae94c9f73385a702c0b5320bf4278fa">&#9670;&#160;</a></span>reparentView()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,7 +227,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void mostly_harmless::gui::helpers::macos::reparentView </td>
           <td>(</td>
-          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>parentViewHandle</em></span>, </td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>hostViewHandle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>clientViewHandle</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

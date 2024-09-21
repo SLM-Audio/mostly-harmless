@@ -89,15 +89,14 @@ $(function(){ initResizable(false); });
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classmostly__harmless_1_1gui_1_1WebviewEditor-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">mostly_harmless::gui::WebviewEditor Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">mostly_harmless::gui::WebviewEditor Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Convenience wrapper layer implementing the creation and management of a <code>choc::ui::WebView</code>.  
+<p>An opinionated subclass of <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a>, providing default impls for bidirectional comms.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="mostlyharmless__WebviewEditor_8h_source.html">mostlyharmless_WebviewEditor.h</a>&gt;</code></p>
@@ -107,57 +106,100 @@ Inheritance diagram for mostly_harmless::gui::WebviewEditor:</div>
  <div class="center">
   <img src="classmostly__harmless_1_1gui_1_1WebviewEditor.png" usemap="#mostly_5Fharmless::gui::WebviewEditor_map" alt=""/>
   <map id="mostly_5Fharmless::gui::WebviewEditor_map" name="mostly_5Fharmless::gui::WebviewEditor_map">
+<area href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView...." alt="mostly_harmless::gui::WebviewBase" shape="rect" coords="0,56,217,80"/>
 <area href="structmostly__harmless_1_1gui_1_1IEditor.html" title="Interface for custom gui editors to implement." alt="mostly_harmless::gui::IEditor" shape="rect" coords="0,0,217,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostly__harmless_1_1gui_1_1WebviewEditor_1_1Options.html">Options</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains a set of options to construct the internal webview with.  <a href="structmostly__harmless_1_1gui_1_1WebviewEditor_1_1Options.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostly__harmless_1_1gui_1_1WebviewEditor_1_1Resource.html">Resource</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tiny container struct for web resources.  <a href="structmostly__harmless_1_1gui_1_1WebviewEditor_1_1Resource.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8aa4710ab813d14314e8a2edfa26409" id="r_ab8aa4710ab813d14314e8a2edfa26409"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8aa4710ab813d14314e8a2edfa26409">WebviewEditor</a> (std::uint32_t initialWidth, std::uint32_t initialHeight, <a class="el" href="structmostly__harmless_1_1gui_1_1Colour.html">Colour</a> backgroundColour)</td></tr>
 <tr class="separator:ab8aa4710ab813d14314e8a2edfa26409"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d95b0ea1803ab68b16d4e8b302c5ffa" id="r_a9d95b0ea1803ab68b16d4e8b302c5ffa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d95b0ea1803ab68b16d4e8b302c5ffa">~WebviewEditor</a> () noexcept override</td></tr>
-<tr class="separator:a9d95b0ea1803ab68b16d4e8b302c5ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28d04417c98c3a32891d47aa799a9f04" id="r_a28d04417c98c3a32891d47aa799a9f04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28d04417c98c3a32891d47aa799a9f04">setOptions</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1WebviewEditor_1_1Options.html">Options</a> &amp;&amp;options) noexcept</td></tr>
-<tr class="separator:a28d04417c98c3a32891d47aa799a9f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580376c5f0fa560f82745b5c7d923a06" id="r_a580376c5f0fa560f82745b5c7d923a06"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a580376c5f0fa560f82745b5c7d923a06">~WebviewEditor</a> () noexcept override=default</td></tr>
+<tr class="separator:a580376c5f0fa560f82745b5c7d923a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9929190bcb6915a7954aed634b2f8fc3" id="r_a9929190bcb6915a7954aed634b2f8fc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9929190bcb6915a7954aed634b2f8fc3">initialise</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> context) override</td></tr>
 <tr class="separator:a9929190bcb6915a7954aed634b2f8fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af648c6c40f4106a4f3905b4afa0d727e" id="r_af648c6c40f4106a4f3905b4afa0d727e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af648c6c40f4106a4f3905b4afa0d727e">destroy</a> () override</td></tr>
-<tr class="separator:af648c6c40f4106a4f3905b4afa0d727e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a86403ad3b8f570f7f45d4b4a625fda" id="r_a0a86403ad3b8f570f7f45d4b4a625fda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a86403ad3b8f570f7f45d4b4a625fda">setSize</a> (std::uint32_t width, std::uint32_t height) override</td></tr>
-<tr class="separator:a0a86403ad3b8f570f7f45d4b4a625fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a221faeb3b9344d5dcc7a1f8e21e4789a" id="r_a221faeb3b9344d5dcc7a1f8e21e4789a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a221faeb3b9344d5dcc7a1f8e21e4789a">getSize</a> (std::uint32_t *width, std::uint32_t *height) override</td></tr>
-<tr class="separator:a221faeb3b9344d5dcc7a1f8e21e4789a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06af5631ff6f872e11b2703469590a37" id="r_a06af5631ff6f872e11b2703469590a37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06af5631ff6f872e11b2703469590a37">setParent</a> (void *parentHandle) override</td></tr>
-<tr class="separator:a06af5631ff6f872e11b2703469590a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72e3c5f89a2f1c71fb412faa89120a33" id="r_a72e3c5f89a2f1c71fb412faa89120a33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72e3c5f89a2f1c71fb412faa89120a33">show</a> () override</td></tr>
-<tr class="separator:a72e3c5f89a2f1c71fb412faa89120a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66967191f5c07628faad58b680698962" id="r_a66967191f5c07628faad58b680698962"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66967191f5c07628faad58b680698962">hide</a> () override</td></tr>
-<tr class="separator:a66967191f5c07628faad58b680698962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a935764965046b22ecf1cc45fb8722835" id="r_a935764965046b22ecf1cc45fb8722835"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a935764965046b22ecf1cc45fb8722835">onParamEvent</a> (<a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> event) override=0</td></tr>
-<tr class="separator:a935764965046b22ecf1cc45fb8722835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac90eb502e652f38ae5e9a2287b400bc2" id="r_ac90eb502e652f38ae5e9a2287b400bc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac90eb502e652f38ae5e9a2287b400bc2">onParamEvent</a> (<a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> event) override</td></tr>
+<tr class="separator:ac90eb502e652f38ae5e9a2287b400bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65fb335988544d4d5f7d8558d94319fa" id="r_a65fb335988544d4d5f7d8558d94319fa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65fb335988544d4d5f7d8558d94319fa">sendEvent</a> (<a class="el" href="structmostly__harmless_1_1events_1_1WebEvent.html">events::WebEvent</a> &amp;&amp;event) noexcept</td></tr>
+<tr class="separator:a65fb335988544d4d5f7d8558d94319fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html">mostly_harmless::gui::WebviewBase</a></td></tr>
+<tr class="memitem:a6ddd9b2515602bfd9648e248cfcf4807 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a6ddd9b2515602bfd9648e248cfcf4807"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a6ddd9b2515602bfd9648e248cfcf4807">WebviewBase</a> (std::uint32_t initialWidth, std::uint32_t initialHeight, <a class="el" href="structmostly__harmless_1_1gui_1_1Colour.html">Colour</a> backgroundColour)</td></tr>
+<tr class="separator:a6ddd9b2515602bfd9648e248cfcf4807 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c741fc4c617987dbaa79e003b6134c6 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a4c741fc4c617987dbaa79e003b6134c6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a4c741fc4c617987dbaa79e003b6134c6">~WebviewBase</a> () noexcept override</td></tr>
+<tr class="separator:a4c741fc4c617987dbaa79e003b6134c6 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8268fff50997c1bb298a0126665ffc05 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a8268fff50997c1bb298a0126665ffc05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a8268fff50997c1bb298a0126665ffc05">setOptions</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html">Options</a> &amp;&amp;options) noexcept</td></tr>
+<tr class="separator:a8268fff50997c1bb298a0126665ffc05 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ba30b0b50b2a5327e249a81c8b3646 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a29ba30b0b50b2a5327e249a81c8b3646"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a29ba30b0b50b2a5327e249a81c8b3646">destroy</a> () override</td></tr>
+<tr class="separator:a29ba30b0b50b2a5327e249a81c8b3646 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af01a54529b4a4fc66a4874b127fc5c1d inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_af01a54529b4a4fc66a4874b127fc5c1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#af01a54529b4a4fc66a4874b127fc5c1d">setSize</a> (std::uint32_t width, std::uint32_t height) override</td></tr>
+<tr class="separator:af01a54529b4a4fc66a4874b127fc5c1d inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae306effd98b26be4e9540548337e9d5c inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_ae306effd98b26be4e9540548337e9d5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#ae306effd98b26be4e9540548337e9d5c">getSize</a> (std::uint32_t *width, std::uint32_t *height) override</td></tr>
+<tr class="separator:ae306effd98b26be4e9540548337e9d5c inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b99374e6854815fa4c51c1946fe8e1 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a59b99374e6854815fa4c51c1946fe8e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a59b99374e6854815fa4c51c1946fe8e1">setParent</a> (void *parentHandle) override</td></tr>
+<tr class="separator:a59b99374e6854815fa4c51c1946fe8e1 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85cdd02af5eabb7fa6fef7d29da18995 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a85cdd02af5eabb7fa6fef7d29da18995"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a85cdd02af5eabb7fa6fef7d29da18995">show</a> () override</td></tr>
+<tr class="separator:a85cdd02af5eabb7fa6fef7d29da18995 inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8208c0343578e42c04cc1e2fe24e7d7f inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a8208c0343578e42c04cc1e2fe24e7d7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a8208c0343578e42c04cc1e2fe24e7d7f">hide</a> () override</td></tr>
+<tr class="separator:a8208c0343578e42c04cc1e2fe24e7d7f inherit pub_methods_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structmostly__harmless_1_1gui_1_1IEditor"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structmostly__harmless_1_1gui_1_1IEditor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html">mostly_harmless::gui::IEditor</a></td></tr>
 <tr class="memitem:a5b2af5e5e8fa4048caffb6dc63695f08 inherit pub_methods_structmostly__harmless_1_1gui_1_1IEditor" id="r_a5b2af5e5e8fa4048caffb6dc63695f08"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a5b2af5e5e8fa4048caffb6dc63695f08">~IEditor</a> () noexcept=default</td></tr>
 <tr class="separator:a5b2af5e5e8fa4048caffb6dc63695f08 inherit pub_methods_structmostly__harmless_1_1gui_1_1IEditor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a53781d868c90bee7fb84ea5c6e896e88" id="r_a53781d868c90bee7fb84ea5c6e896e88"><td class="memItemLeft" align="right" valign="top">choc::ui::WebView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53781d868c90bee7fb84ea5c6e896e88">m_internalWebview</a> { nullptr }</td></tr>
-<tr class="separator:a53781d868c90bee7fb84ea5c6e896e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a498402862ce7f933fe55e1c5de5170cc" id="r_a498402862ce7f933fe55e1c5de5170cc"><td class="memItemLeft" align="right" valign="top">virtual choc::value::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a498402862ce7f933fe55e1c5de5170cc">beginParamChangeGestureCallback</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> context, const choc::value::ValueView &amp;args)</td></tr>
+<tr class="separator:a498402862ce7f933fe55e1c5de5170cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a975e87d6ee0f9947c30bc0d73cfb3b02" id="r_a975e87d6ee0f9947c30bc0d73cfb3b02"><td class="memItemLeft" align="right" valign="top">virtual choc::value::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a975e87d6ee0f9947c30bc0d73cfb3b02">paramChangeGestureCallback</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> context, const choc::value::ValueView &amp;args)</td></tr>
+<tr class="separator:a975e87d6ee0f9947c30bc0d73cfb3b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd7acb15541a8b58677b8d937c7320c2" id="r_abd7acb15541a8b58677b8d937c7320c2"><td class="memItemLeft" align="right" valign="top">virtual choc::value::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd7acb15541a8b58677b8d937c7320c2">endParamChangeGestureCallback</a> (<a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a> context, const choc::value::ValueView &amp;args)</td></tr>
+<tr class="separator:abd7acb15541a8b58677b8d937c7320c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classmostly__harmless_1_1gui_1_1WebviewBase"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classmostly__harmless_1_1gui_1_1WebviewBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html">mostly_harmless::gui::WebviewBase</a></td></tr>
+<tr class="memitem:a8b78207d8126ebc74b59799029210385 inherit pro_attribs_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a8b78207d8126ebc74b59799029210385"><td class="memItemLeft" align="right" valign="top">choc::ui::WebView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a8b78207d8126ebc74b59799029210385">m_internalWebview</a> { nullptr }</td></tr>
+<tr class="separator:a8b78207d8126ebc74b59799029210385 inherit pro_attribs_classmostly__harmless_1_1gui_1_1WebviewBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Convenience wrapper layer implementing the creation and management of a <code>choc::ui::WebView</code>. </p>
-<p>Provides the basic setup code for the Webview, but you'll likely want to derive from this, and override some of its functions. The underlying <code>choc::ui::WebView</code> can be accessed via the protected <code>m_internalWebview</code> member. If you don't call <code>setOptions</code> before initialise is called, then the internal webview will be constructed with some default options, namely:</p>
-<div class="fragment"><div class="line">enableDebug = <span class="keyword">false</span></div>
-<div class="line">transparentBackground = <span class="keyword">true</span></div>
+<div class="textblock"><p>An opinionated subclass of <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a>, providing default impls for bidirectional comms. </p>
+<p>Where <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a> handles lower level things like window creation / management, this class handles slightly higher level details - namely, an event system, and param updates.</p>
+<p>To use it, you'll probably want to still subclass it, but the boilerplate will be fairly minimal. See <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a> for more fine grained details.</p>
+<p>The default implementation establishes bindings to 3 javascript functions, pertaining to parameter updates. These are: <code>beginParamGesture()</code>, <code>setParamValue()</code>, and <code>endParamGesture()</code>. <br  />
+ Each of these functions take an object as an arg, expected to be formatted as json containing the paramId to affect, and the value to set. For example:</p>
+<div class="fragment"><div class="line">const args = {</div>
+<div class="line">    paramId: 0,</div>
+<div class="line">    value: 0.8</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>beginParamGesture is expected to be called when a slider first begins being dragged, setParamValue while it is being changed, and endParamValue once the user stops dragging. These functions are bound to internal native functions (which you can override if you like), <a class="el" href="#a498402862ce7f933fe55e1c5de5170cc">beginParamChangeGestureCallback()</a>, <a class="el" href="#a975e87d6ee0f9947c30bc0d73cfb3b02">paramChangeGestureCallback()</a>, and <a class="el" href="#abd7acb15541a8b58677b8d937c7320c2">endParamChangeGestureCallback()</a>. These functions are actually promises, which we don't really leverage here, aside from to report errors in the case of an arg-parsing failure. The default implementation will attempt to parse the args (and assert fail if it failed), and then enqueue the param changes to the guiToProcQueue, for the host and audio side to pick up.</p>
+<p>The structure of an event in the default implementation is:</p>
+<div class="fragment"><div class="line">event = new CustomEvent(&quot;the event&#39;s id&quot;, {</div>
+<div class="line">    detail: {</div>
+<div class="line">         the event&#39;s content</div>
+<div class="line">    }</div>
+<div class="line">});</div>
+<div class="line">window.dispatchEvent(event);</div>
+</div><!-- fragment --><p>So to respond to this, you can register an event listener:</p>
+<div class="fragment"><div class="line">let callback = (ev) =&gt; {</div>
+<div class="line">     // your code here, details are accessible through ev.detail</div>
+<div class="line">};</div>
+<div class="line">addEventListener(&quot;the event&#39;s id&quot;, callback);</div>
+<div class="line">// to unsubscribe (do this for cleanup!)</div>
+<div class="line">removeEventListener(&quot;the event&#39;s id&quot;, callback);</div>
+</div><!-- fragment --><p>This function is called by the default implementation of <a class="el" href="#ac90eb502e652f38ae5e9a2287b400bc2">onParamEvent()</a>. The event is structured as:</p>
+<div class="fragment"><div class="line">CustomEvent(<span class="stringliteral">&quot;param&quot;</span>, {</div>
+<div class="line">    detail: {</div>
+<div class="line">        <span class="stringliteral">&quot;paramId&quot;</span>: <span class="stringliteral">&quot;the param id&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;value&quot;</span>: the param<span class="stringliteral">&#39;s value</span></div>
+<div class="line"><span class="stringliteral">    }</span></div>
+<div class="line"><span class="stringliteral">});</span></div>
+</div><!-- fragment --><p>for example,</p>
+<div class="fragment"><div class="line">let callback = (ev) =&gt; {</div>
+<div class="line">    const paramId = ev.detail.paramId;</div>
+<div class="line">    const value = parseFloat(ev.detail.value);</div>
+<div class="line">    // .... do something with this data....</div>
+<div class="line">};</div>
+<div class="line">addEventListener(&quot;param&quot;, callback);</div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab8aa4710ab813d14314e8a2edfa26409" name="ab8aa4710ab813d14314e8a2edfa26409"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8aa4710ab813d14314e8a2edfa26409">&#9670;&#160;</a></span>WebviewEditor()</h2>
@@ -193,8 +235,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9d95b0ea1803ab68b16d4e8b302c5ffa" name="a9d95b0ea1803ab68b16d4e8b302c5ffa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d95b0ea1803ab68b16d4e8b302c5ffa">&#9670;&#160;</a></span>~WebviewEditor()</h2>
+<a id="a580376c5f0fa560f82745b5c7d923a06" name="a580376c5f0fa560f82745b5c7d923a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a580376c5f0fa560f82745b5c7d923a06">&#9670;&#160;</a></span>~WebviewEditor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,17 +253,17 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Non default destructor for pimpl </p>
+<p>Default destructor. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af648c6c40f4106a4f3905b4afa0d727e" name="af648c6c40f4106a4f3905b4afa0d727e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af648c6c40f4106a4f3905b4afa0d727e">&#9670;&#160;</a></span>destroy()</h2>
+<a id="a498402862ce7f933fe55e1c5de5170cc" name="a498402862ce7f933fe55e1c5de5170cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a498402862ce7f933fe55e1c5de5170cc">&#9670;&#160;</a></span>beginParamChangeGestureCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,58 +272,35 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void mostly_harmless::gui::WebviewEditor::destroy </td>
+          <td class="memname">virtual choc::value::Value mostly_harmless::gui::WebviewEditor::beginParamChangeGestureCallback </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implementation of <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a724f29ef48e7de638841524409ac03fe">mostly_harmless::gui::IEditor::destroy()</a>. </p>
-
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a724f29ef48e7de638841524409ac03fe">mostly_harmless::gui::IEditor</a>.</p>
-
-</div>
-</div>
-<a id="a221faeb3b9344d5dcc7a1f8e21e4789a" name="a221faeb3b9344d5dcc7a1f8e21e4789a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a221faeb3b9344d5dcc7a1f8e21e4789a">&#9670;&#160;</a></span>getSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mostly_harmless::gui::WebviewEditor::getSize </td>
-          <td>(</td>
-          <td class="paramtype">std::uint32_t *</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::uint32_t *</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+          <td class="paramtype">const choc::value::ValueView &amp;</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implementation of <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a449a71dec2dccbae3ecdd1ce351491fc">mostly_harmless::gui::IEditor::getSize()</a>. </p>
-
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a449a71dec2dccbae3ecdd1ce351491fc">mostly_harmless::gui::IEditor</a>.</p>
+<p>Called internally by any javascript side calls to <code>beginParamGesture()</code>. Informs the host/audio thread that a change gesture has started. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The editor context. </td></tr>
+    <tr><td class="paramname">args</td><td>The args provided by the frontend. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An empty value if everything went well, the exception message if parsing the args failed. </dd></dl>
 
 </div>
 </div>
-<a id="a66967191f5c07628faad58b680698962" name="a66967191f5c07628faad58b680698962"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66967191f5c07628faad58b680698962">&#9670;&#160;</a></span>hide()</h2>
+<a id="abd7acb15541a8b58677b8d937c7320c2" name="abd7acb15541a8b58677b8d937c7320c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd7acb15541a8b58677b8d937c7320c2">&#9670;&#160;</a></span>endParamChangeGestureCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -290,21 +309,30 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void mostly_harmless::gui::WebviewEditor::hide </td>
+          <td class="memname">virtual choc::value::Value mostly_harmless::gui::WebviewEditor::endParamChangeGestureCallback </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const choc::value::ValueView &amp;</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implementation of <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ab104e5c92f4d37e09f7866a0083dcbcb">mostly_harmless::gui::IEditor::hide()</a>. </p>
-
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ab104e5c92f4d37e09f7866a0083dcbcb">mostly_harmless::gui::IEditor</a>.</p>
+<p>Called internally by any javascript side calls to 'endParamGesture()`. Informs the host/audio thread that a change gesture has ended. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The editor context. </td></tr>
+    <tr><td class="paramname">args</td><td>The args provided by the frontend. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An empty value if everything went well, the exception message if parsing the args failed. </dd></dl>
 
 </div>
 </div>
@@ -330,19 +358,19 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implementation of <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a4ccbeb8a5ae79a26cebccf06f20fc159">mostly_harmless::gui::IEditor::initialise()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Called when the webview is created, immediately after construction. Our default implementation here establishes the bindings for the javascript side param callbacks, so if you are overriding, be sure to call the base implementation manually. See the class description for an overview of what the calls to these functions javascript side should look like. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">context</td><td>The editor context (see <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a4ccbeb8a5ae79a26cebccf06f20fc159">IEditor::initialise()</a> and <a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html" title="Trivially copyable struct containing extra necessary context for a gui.">EditorContext</a> for more details). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a4ccbeb8a5ae79a26cebccf06f20fc159">mostly_harmless::gui::IEditor</a>.</p>
+<p>Reimplemented from <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a261083ff7fb155617f1ba0d5997383a2">mostly_harmless::gui::WebviewBase</a>.</p>
 
 </div>
 </div>
-<a id="a935764965046b22ecf1cc45fb8722835" name="a935764965046b22ecf1cc45fb8722835"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a935764965046b22ecf1cc45fb8722835">&#9670;&#160;</a></span>onParamEvent()</h2>
+<a id="ac90eb502e652f38ae5e9a2287b400bc2" name="ac90eb502e652f38ae5e9a2287b400bc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac90eb502e652f38ae5e9a2287b400bc2">&#9670;&#160;</a></span>onParamEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -359,50 +387,25 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Still pure virtual - you need to implement this to send data to your webview. see <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ad337fb3843ff8f8df44acbd45876c928">IEditor::onParamEvent()</a> for more details. </p>
-
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#ad337fb3843ff8f8df44acbd45876c928">mostly_harmless::gui::IEditor</a>.</p>
-
-</div>
-</div>
-<a id="a28d04417c98c3a32891d47aa799a9f04" name="a28d04417c98c3a32891d47aa799a9f04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28d04417c98c3a32891d47aa799a9f04">&#9670;&#160;</a></span>setOptions()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mostly_harmless::gui::WebviewEditor::setOptions </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1gui_1_1WebviewEditor_1_1Options.html">Options</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>options</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Specify some options to pass to the internal webview's constructor - note that this <em>must</em> be called <em>before</em> initialise (ie in your constructor) for them to get picked up.<br  />
- </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Called when the host sends a param update, to inform the gui that a change has occurred.<br  />
+Actually gets invoked from a timer thread, on the message thread. <br  />
+This is still virtual, and can be overridden as you like, but the default implementation will call <a class="el" href="#a65fb335988544d4d5f7d8558d94319fa">sendEvent()</a> with a WebEvent constructed from the event passed from the param queue - see <code><a class="el" href="#a65fb335988544d4d5f7d8558d94319fa">sendEvent()</a></code> for more details. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">opts</td><td>The options to pass to the internal webview </td></tr>
+    <tr><td class="paramname">event</td><td>An event specifying </td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Implements <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#af3e4dfeaba90df7bb018ea0485c9119c">mostly_harmless::gui::WebviewBase</a>.</p>
+
 </div>
 </div>
-<a id="a06af5631ff6f872e11b2703469590a37" name="a06af5631ff6f872e11b2703469590a37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06af5631ff6f872e11b2703469590a37">&#9670;&#160;</a></span>setParent()</h2>
+<a id="a975e87d6ee0f9947c30bc0d73cfb3b02" name="a975e87d6ee0f9947c30bc0d73cfb3b02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975e87d6ee0f9947c30bc0d73cfb3b02">&#9670;&#160;</a></span>paramChangeGestureCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -411,58 +414,35 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void mostly_harmless::gui::WebviewEditor::setParent </td>
+          <td class="memname">virtual choc::value::Value mostly_harmless::gui::WebviewEditor::paramChangeGestureCallback </td>
           <td>(</td>
-          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>parentHandle</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Implementation of <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a0faf63b69acce1790996b7aad7ac5c8b">mostly_harmless::gui::IEditor::setParent()</a>. </p>
-
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a0faf63b69acce1790996b7aad7ac5c8b">mostly_harmless::gui::IEditor</a>.</p>
-
-</div>
-</div>
-<a id="a0a86403ad3b8f570f7f45d4b4a625fda" name="a0a86403ad3b8f570f7f45d4b4a625fda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a86403ad3b8f570f7f45d4b4a625fda">&#9670;&#160;</a></span>setSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mostly_harmless::gui::WebviewEditor::setSize </td>
-          <td>(</td>
-          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;)</td>
+          <td class="paramtype">const choc::value::ValueView &amp;</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implementation of <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a8acf4d870e795a7205132246d26d22ab">mostly_harmless::gui::IEditor::setSize()</a>. </p>
-
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#a8acf4d870e795a7205132246d26d22ab">mostly_harmless::gui::IEditor</a>.</p>
+<p>Called internally by any javascript side calls to 'setParamValue()`. Informs the host/audio thread that an adjustment was made, as part of a change gesture. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The editor context. </td></tr>
+    <tr><td class="paramname">args</td><td>The args provided by the frontend. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An empty value if everything went well, the exception message if parsing the args failed. </dd></dl>
 
 </div>
 </div>
-<a id="a72e3c5f89a2f1c71fb412faa89120a33" name="a72e3c5f89a2f1c71fb412faa89120a33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72e3c5f89a2f1c71fb412faa89120a33">&#9670;&#160;</a></span>show()</h2>
+<a id="a65fb335988544d4d5f7d8558d94319fa" name="a65fb335988544d4d5f7d8558d94319fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65fb335988544d4d5f7d8558d94319fa">&#9670;&#160;</a></span>sendEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -471,45 +451,25 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void mostly_harmless::gui::WebviewEditor::show </td>
+          <td class="memname">virtual void mostly_harmless::gui::WebviewEditor::sendEvent </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1WebEvent.html">events::WebEvent</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Implementation of <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#acfb132cd318ce098bedac4381435eeec">mostly_harmless::gui::IEditor::show()</a>. </p>
-
-<p>Implements <a class="el" href="structmostly__harmless_1_1gui_1_1IEditor.html#acfb132cd318ce098bedac4381435eeec">mostly_harmless::gui::IEditor</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a53781d868c90bee7fb84ea5c6e896e88" name="a53781d868c90bee7fb84ea5c6e896e88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53781d868c90bee7fb84ea5c6e896e88">&#9670;&#160;</a></span>m_internalWebview</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">choc::ui::WebView* mostly_harmless::gui::WebviewEditor::m_internalWebview { nullptr }</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A pointer to the internal choc::ui::WebView owned by this class, for extension in any derived classes you may write. </p>
+<p>Sends a javascript event to the internal webview.<br  />
+You're also totally free to overload this if you don't like the default impl - see <a class="el" href="structmostly__harmless_1_1events_1_1WebEvent.html" title="An convenience wrapper around an event to send to a webview.">events::WebEvent</a> for details about the WebEvent structure. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>An rvalue ref to the event to dispatch - you can create arbitrary custom types of event. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
