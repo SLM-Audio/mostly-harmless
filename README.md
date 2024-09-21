@@ -64,7 +64,7 @@ you specify the AU format, a few more arguments become neccessary - the argument
 
  ```cmake 
  mostly_harmless_add_plugin(YourTarget
-        FORMATS CLAP # REQUIRED - At least one of: CLAP, VST3, AU or STANDALONE
+        FORMATS CLAP # REQUIRED - At least one of: CLAP, VST3, AU or Standalone
         ID "com.whatever" # REQUIRED - The ID for your plugin
         FEATURES "audio-effect" # REQUIRED - The CLAP features your plugin uses. [1]
         VERSION "1.0.0" # OPTIONAL - Your plugin's verson.
