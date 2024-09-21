@@ -157,7 +157,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="namespacemarvin_1_1math.html#a593ac57e25503d44c65ffe3e068d9df9">   90</a></span>    [[nodiscard]] T <a class="code hl_function" href="namespacemarvin_1_1math.html#a8622695b9c617d47eb67981b8aebf619">remap</a>(T x, T srcMin, T srcMax, T newMin, T newMax) {</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="comment">// (v - mn) / (mx - mn) == v_n</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keyword">const</span> <span class="keyword">auto</span> normalised = (x - srcMin) / (srcMax - srcMin);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacemarvin_1_1math.html#a8622695b9c617d47eb67981b8aebf619">remap&lt;T&gt;</a>(x, newMin, newMax);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacemarvin_1_1math.html#a8622695b9c617d47eb67981b8aebf619">remap&lt;T&gt;</a>(normalised, newMin, newMax);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
 </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
