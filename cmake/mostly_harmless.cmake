@@ -6,12 +6,12 @@ function(mostly_harmless_add_binary_data pluginTarget)
     )
     set(LIST_ARGS BINARY_SOURCES)
     cmake_parse_arguments(ARG "" "${ARGS}" "${LIST_ARGS}" ${ARGN})
-    if(NOT ARG_TARGET_NAME)
+    if (NOT ARG_TARGET_NAME)
         message(FATAL_ERROR "TARGET_NAME is required!")
-    endif()
-    if(NOT ARG_ROOT)
+    endif ()
+    if (NOT ARG_ROOT)
         message(FATAL_ERROR "ROOT is required!")
-    endif()
+    endif ()
     file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${ARG_TARGET_NAME})
     configure_file(
             ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostlyharmless_BinaryData.h
@@ -28,9 +28,22 @@ function(mostly_harmless_add_binary_data pluginTarget)
     target_link_libraries(${pluginTarget} PRIVATE ${ARG_TARGET_NAME})
 endfunction()
 
+function(mostly_harmless_sign_target targetName signId)
+    get_target_property(name ${targetName} OUTPUT_NAME)
+    get_target_property(extension ${targetName} BUNDLE_EXTENSION)
+    set(artefact "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${name}.${extension}")
+    add_custom_command(
+            TARGET ${targetName} POST_BUILD
+            COMMAND codesign --force -s "${signId}" -v "${artefact}" --deep --strict --options=runtime --timestamp VERBATIM
+    )
+
+endfunction()
 # USAGE
 # mostly_harmless_add_plugin(YourTarget FORMATS ... ID ..)
 function(mostly_harmless_add_plugin targetName)
+    set(OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/${targetName}_artefacts)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR})
     set(ARGS
             ID # REQUIRED
             VENDOR # OPTIONAL
@@ -50,6 +63,8 @@ function(mostly_harmless_add_plugin targetName)
             MANUFACTURER_CODE # REQUIRED IF AU
             SUBTYPE_CODE # REQUIRED IF AU
             AU_TYPE # REQUIRED IF AU
+
+            SIGN_ID # OPTIONAL, if provided, will codesign
     )
 
     set(LIST_ARGS
@@ -109,11 +124,11 @@ function(mostly_harmless_add_plugin targetName)
         endif ()
     endif ()
 
-    list(TRANSFORM PLUGIN_FEATURES REPLACE "(.+)" " \"\\1\"" OUTPUT_VARIABLE PLUGIN_FEATURES)
+    list(TRANSFORM PLUGIN_FEATURES REPLACE "(.+)" "\"\\1\"" OUTPUT_VARIABLE PLUGIN_FEATURES)
     list(JOIN PLUGIN_FEATURES ", " PLUGIN_FEATURES)
 
     if (NOT PLUGIN_ID)
-        message(FATAL_ERROR " An ID is required")
+        message(FATAL_ERROR "An ID is required")
     endif ()
     if (NOT PLUGIN_NAME)
         message(FATAL_ERROR "A name is required")
@@ -139,16 +154,21 @@ function(mostly_harmless_add_plugin targetName)
                     OUTPUT_NAME ${PLUGIN_NAME}
                     BUNDLE True
                     BUNDLE_EXTENSION clap
-                    MACOSX_BUNDLE_GUI_IDENTIFIER " com.slm-audio.${PLUGIN_NAME}"
+                    MACOSX_BUNDLE_GUI_IDENTIFIER "com.slm-audio.${PLUGIN_NAME}"
                     MACOSX_BUNDLE_BUNDLE_NAME ${PLUGIN_NAME}
                     MACOSX_BUNDLE_BUNDLE_VERSION "0.0.1"
                     MACOSX_BUNDLE_SHORT_VERSION_STRING "0.0.1"
                     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
             )
+            if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
+                mostly_harmless_sign_target(${PLUGIN_NAME}_CLAP ${PLUGIN_SIGN_ID})
+            endif ()
+
         elseif (WIN32)
             set_target_properties(${PLUGIN_NAME}_CLAP
                     PROPERTIES
                     OUTPUT_NAME ${PLUGIN_NAME}
+
                     PREFIX ""
                     SUFFIX ".clap")
         else ()
@@ -162,6 +182,23 @@ function(mostly_harmless_add_plugin targetName)
                 TARGET ${PLUGIN_NAME}_VST3
                 OUTPUT_NAME ${PLUGIN_NAME}
         )
+        if (APPLE)
+            set_target_properties(${PLUGIN_NAME}_VST3 PROPERTIES
+                    OUTPUT_NAME ${PLUGIN_NAME}
+                    BUNDLE True
+                    BUNDLE_EXTENSION vst3
+                    MACOSX_BUNDLE_GUI_IDENTIFIER "com.slm-audio.${PLUGIN_NAME}"
+                    MACOSX_BUNDLE_BUNDLE_NAME ${PLUGIN_NAME}
+                    MACOSX_BUNDLE_BUNDLE_VERSION "0.0.1"
+                    MACOSX_BUNDLE_SHORT_VERSION_STRING "0.0.1"
+                    MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
+            )
+            if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
+                mostly_harmless_sign_target(${PLUGIN_NAME}_VST3 ${PLUGIN_SIGN_ID})
+            endif ()
+
+        else ()
+        endif ()
         target_link_libraries(${PLUGIN_NAME}_VST3 PUBLIC ${PLUGIN_NAME})
     endif ()
     list(FIND PLUGIN_FORMATS "AU" INDEX)
@@ -196,7 +233,14 @@ function(mostly_harmless_add_plugin targetName)
                     SUBTYPE_CODE ${PLUGIN_SUBTYPE_CODE}
                     INSTRUMENT_TYPE ${PLUGIN_AU_TYPE}
             )
+            set_target_properties(${PLUGIN_NAME}_AU PROPERTIES
+                    OUTPUT_NAME ${PLUGIN_NAME}
+                    BUNDLE_EXTENSION component
+            )
             target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME})
+            if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
+                mostly_harmless_sign_target(${PLUGIN_NAME}_AU ${PLUGIN_SIGN_ID})
+            endif ()
         endif ()
     endif ()
 
