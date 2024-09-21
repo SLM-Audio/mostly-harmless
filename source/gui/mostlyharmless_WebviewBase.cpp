@@ -150,6 +150,7 @@ namespace mostly_harmless::gui {
         ::HBRUSH m_brush{ nullptr };
         choc::ui::WebView::Options m_options{
             .enableDebugMode = false,
+            .acceptsFirstMouseClick = true,
             .transparentBackground = true,
         };
         std::unique_ptr<choc::ui::WebView> m_webview{ nullptr };
@@ -217,6 +218,7 @@ namespace mostly_harmless::gui {
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
         choc::ui::WebView::Options m_options{
             .enableDebugMode = false,
+            .acceptsFirstMouseClick = true,
             .transparentBackground = true
         };
         void* m_clientView{ nullptr };
