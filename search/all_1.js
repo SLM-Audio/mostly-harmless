@@ -17,7 +17,8 @@ var searchData=
   ['biquadcoefficients_14',['BiquadCoefficients',['../structmarvin_1_1dsp_1_1filters_1_1BiquadCoefficients.html',1,'marvin::dsp::filters']]],
   ['blackmanharris_15',['BlackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58a7c83be4d47a76f1b8b9657d7e6a00c00',1,'marvin::math::windows']]],
   ['blackmanharris_16',['blackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#a478bc2e574a36a1e1a6a6ab9edd29b65',1,'marvin::math::windows']]],
-  ['bufferview_17',['BufferView',['../structmarvin_1_1containers_1_1BufferView.html',1,'marvin::containers::BufferView&lt; SampleType &gt;'],['../structmarvin_1_1containers_1_1BufferView.html#a2619bfffb10e61e489c698673a017352',1,'marvin::containers::BufferView::BufferView()']]],
-  ['building_18',['Building',['../index.html#autotoc_md7',1,'']]],
-  ['busconfig_19',['BusConfig',['../namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6',1,'mostly_harmless']]]
+  ['bpm_17',['bpm',['../structmostly__harmless_1_1TransportState.html#a7920024a99c5b38b58bd8274f751099f',1,'mostly_harmless::TransportState']]],
+  ['bufferview_18',['BufferView',['../structmarvin_1_1containers_1_1BufferView.html',1,'marvin::containers::BufferView&lt; SampleType &gt;'],['../structmarvin_1_1containers_1_1BufferView.html#a2619bfffb10e61e489c698673a017352',1,'marvin::containers::BufferView::BufferView()']]],
+  ['building_19',['Building',['../index.html#autotoc_md7',1,'']]],
+  ['busconfig_20',['BusConfig',['../namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6',1,'mostly_harmless']]]
 ];

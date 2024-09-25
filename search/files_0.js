@@ -43,7 +43,8 @@ var searchData=
   ['mostlyharmless_5fplugin_2eh_40',['mostlyharmless_Plugin.h',['../mostlyharmless__Plugin_8h.html',1,'']]],
   ['mostlyharmless_5ftaskthread_2eh_41',['mostlyharmless_TaskThread.h',['../mostlyharmless__TaskThread_8h.html',1,'']]],
   ['mostlyharmless_5ftimer_2eh_42',['mostlyharmless_Timer.h',['../mostlyharmless__Timer_8h.html',1,'']]],
-  ['mostlyharmless_5fwebevent_2eh_43',['mostlyharmless_WebEvent.h',['../mostlyharmless__WebEvent_8h.html',1,'']]],
-  ['mostlyharmless_5fwebviewbase_2eh_44',['mostlyharmless_WebviewBase.h',['../mostlyharmless__WebviewBase_8h.html',1,'']]],
-  ['mostlyharmless_5fwebvieweditor_2eh_45',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]]
+  ['mostlyharmless_5ftransportstate_2eh_43',['mostlyharmless_TransportState.h',['../mostlyharmless__TransportState_8h.html',1,'']]],
+  ['mostlyharmless_5fwebevent_2eh_44',['mostlyharmless_WebEvent.h',['../mostlyharmless__WebEvent_8h.html',1,'']]],
+  ['mostlyharmless_5fwebviewbase_2eh_45',['mostlyharmless_WebviewBase.h',['../mostlyharmless__WebviewBase_8h.html',1,'']]],
+  ['mostlyharmless_5fwebvieweditor_2eh_46',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]]
 ];
