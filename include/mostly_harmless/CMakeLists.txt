@@ -7,6 +7,7 @@ set(MOSTLYHARMLESS_HEADERS
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_BusConfig.h
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Descriptor.h
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Plugin.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_TransportState.h
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_InputEventContext.h
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_WebEvent.h
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_ParamEvent.h

@@ -181,6 +181,11 @@ namespace mostly_harmless {
          */
         void callOnMainThread(std::function<void(void)>&& callback) noexcept;
 
+        /**
+         * Attempts to retrieve the last TransportState set by the host (if applicable). If this data was never set,
+         * be it because the host didn't provide the info, or from cosmic interference, will return std::nullopt.
+         * \return The last set TransportState if valid, std::nullopt otherwise.
+         */
         [[nodiscard]] std::optional<TransportState> getLastTransportState() const;
 
     private:
