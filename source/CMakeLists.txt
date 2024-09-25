@@ -8,6 +8,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Entry.cpp
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Plugin.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_TransportState.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_EventContext.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_WebEvent.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewBase.cpp

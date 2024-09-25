@@ -6,6 +6,7 @@
 #include <mostly_harmless/gui/mostlyharmless_IEditor.h>
 #include <mostly_harmless/utils/mostlyharmless_Timer.h>
 #include <mostly_harmless/events/mostlyharmless_ParamEvent.h>
+#include <mostly_harmless/mostlyharmless_TransportState.h>
 
 #include "clap/events.h"
 #include "clap/ext/gui.h"
@@ -180,6 +181,8 @@ namespace mostly_harmless {
          */
         void callOnMainThread(std::function<void(void)>&& callback) noexcept;
 
+        [[nodiscard]] std::optional<TransportState> getLastTransportState() const;
+
     private:
         void handleGuiEvents(const clap_output_events_t* outputQueue) noexcept;
 
@@ -215,6 +218,7 @@ namespace mostly_harmless {
     private:
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
+        std::optional<TransportState> m_lastTransportState{};
         utils::Timer m_guiDispatchThread;
         std::unique_ptr<gui::IEditor> m_editor{ nullptr };
 

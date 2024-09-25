@@ -44,6 +44,9 @@ namespace mostly_harmless {
         if (processContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
+        if (processContext->transport) {
+            m_lastTransportState = TransportState{ processContext->transport };
+        }
         handleGuiEvents(processContext->out_events);
         // If our input data != our output data, do a copy..
         const auto* inputData = processContext->audio_inputs;
@@ -99,6 +102,11 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::callOnMainThread(std::function<void()>&& callback) noexcept {
         runOnMainThread(std::move(callback));
+    }
+
+    template <marvin::FloatType SampleType>
+    std::optional<TransportState> Plugin<SampleType>::getLastTransportState() const {
+        return m_lastTransportState;
     }
 
     template <marvin::FloatType SampleType>
@@ -189,8 +197,15 @@ namespace mostly_harmless {
                     }
                     default: break; // TODO
                 }
+                break;
             }
-
+            case CLAP_EVENT_TRANSPORT: {
+                if (const auto* transportEvent = reinterpret_cast<const clap_event_transport_t*>(event)) {
+                    TransportState state{ transportEvent };
+                    m_lastTransportState = state;
+                }
+                break;
+            }
             case CLAP_EVENT_PARAM_MOD: [[fallthrough]]; // TODO
             default: break;
         }
