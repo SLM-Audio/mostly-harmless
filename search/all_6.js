@@ -2,7 +2,7 @@ var searchData=
 [
   ['g_0',['g',['../structmostly__harmless_1_1gui_1_1Colour.html#a772582c3a0aa3a36c1562c1217a845da',1,'mostly_harmless::gui::Colour']]],
   ['gaintodb_1',['gainToDb',['../namespacemarvin_1_1math.html#aa1bc6e54bd3d8abb587555b24648353b',1,'marvin::math']]],
-  ['generate_2',['generate',['../classmarvin_1_1utils_1_1Random.html#ae64dd30118e742a805770b3cdba3b42f',1,'marvin::utils::Random']]],
+  ['generate_2',['generate',['../classmarvin_1_1utils_1_1RandomGenerator.html#a6866eeac1030b893927749724f2074aa',1,'marvin::utils::RandomGenerator']]],
   ['get_3',['get',['../classmarvin_1_1library_1_1PropagateConst.html#acb8104a4a6dbf10a979bd490e3fc99cc',1,'marvin::library::PropagateConst::get()'],['../classmarvin_1_1library_1_1PropagateConst.html#a4bd97a733ab2d96a96a7971204ab4630',1,'marvin::library::PropagateConst::get() const']]],
   ['getarrayofreadpointers_4',['getArrayOfReadPointers',['../structmarvin_1_1containers_1_1BufferView.html#a6b8352188eef40456bc4fd483f833111',1,'marvin::containers::BufferView']]],
   ['getarrayofwritepointers_5',['getArrayOfWritePointers',['../structmarvin_1_1containers_1_1BufferView.html#a7a8eb948535412ea473e217bcfe39f48',1,'marvin::containers::BufferView']]],

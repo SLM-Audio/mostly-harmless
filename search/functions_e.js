@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['random_0',['Random',['../classmarvin_1_1utils_1_1Random.html#ac936e9c54ec03042fd16469f5ce7df83',1,'marvin::utils::Random']]],
+  ['randomgenerator_0',['RandomGenerator',['../classmarvin_1_1utils_1_1RandomGenerator.html#abd6fc64c8ac2ffb8e95bfdc52b1e44d1',1,'marvin::utils::RandomGenerator']]],
   ['readbinaryfile_1',['readBinaryFile',['../namespacemarvin_1_1utils.html#aa7a1d22af0c69564055b67ad3fbc6002',1,'marvin::utils']]],
   ['reciprocal_2',['Reciprocal',['../classmarvin_1_1math_1_1Reciprocal.html#a370fb1d8c558172239f2f200c9cd17df',1,'marvin::math::Reciprocal::Reciprocal(ReciprocalRange&lt; T &gt; src, ReciprocalRange&lt; T &gt; dest)'],['../classmarvin_1_1math_1_1Reciprocal.html#a0a7d4a5d00498666ac69681a2931a921',1,'marvin::math::Reciprocal::Reciprocal(ReciprocalRange&lt; T &gt; dest)']]],
   ['recursiveunscaled_3',['recursiveUnscaled',['../classmarvin_1_1math_1_1Hadamard.html#a41604cbb76da29c7a256222462cb50de',1,'marvin::math::Hadamard']]],
