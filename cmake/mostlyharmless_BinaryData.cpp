@@ -12,7 +12,7 @@ namespace mostly_harmless::@ARG_TARGET_NAME@ {
             const auto size = data.end() - data.begin();
             BinaryResource res{ .data = data.begin(), .size = static_cast<size_t>(size) };
             return res;
-        } catch(std::system_error& e) {
+        } catch(std::system_error& /*e*/) {
             return {};
         }
     }

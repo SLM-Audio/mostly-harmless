@@ -7,3 +7,6 @@
 [submodule "modules/choc"]
 	path = modules/choc
 	url = https://github.com/SLM-Audio/choc.git
+[submodule "modules/clap-helpers"]
+	path = modules/clap-helpers
+	url = https://github.com/free-audio/clap-helpers.git
