@@ -12,18 +12,19 @@ namespace mostly_harmless::utils {
         if (!action) return;
         auto weakThis = weak_from_this();
         auto threadAction = [weakThis, intervalMs]() -> void {
-            auto self = weakThis.lock();
-            if (!self) return;
-
             auto startPoint = std::chrono::steady_clock::now();
-            while (!self->m_thread.threadShouldExit()) {
+            while (true) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
-                if (self->m_thread.threadShouldExit()) return;
+
+                auto self = weakThis.lock();
+                if (!self || self->m_thread.threadShouldExit()) return;
+
                 const auto now = std::chrono::steady_clock::now();
                 const auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - startPoint);
                 if (delta < std::chrono::milliseconds(intervalMs)) continue;
+
                 self->action();
-                startPoint = std::chrono::steady_clock::now();
+                startPoint = now;
             }
         };
         m_thread.action = std::move(threadAction);
