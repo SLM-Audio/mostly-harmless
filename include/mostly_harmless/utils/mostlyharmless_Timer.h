@@ -12,7 +12,7 @@ namespace mostly_harmless::utils {
      *
      * Runs on its own thread - so thread safety concerns all apply here.
      */
-    class Timer : public std::enable_shared_from_this<Timer> {
+    class Timer {
     public:
         /**
          * \private
