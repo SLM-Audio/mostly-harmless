@@ -17,6 +17,10 @@ namespace mostly_harmless::utils {
     class TaskThread {
     public:
         /**
+         * \private
+         */
+        TaskThread();
+        /**
          * Starts the thread, with the user provided `action` lambda if it has been assigned - if it hasn't, asserts false and exits.
          * Note that launching a thread is a syscall, and thus can take an unbounded amount of time - so this is *not* realtime safe,
          * and you can't really make any assumptions about how long until isThreadRunning() will return true.
@@ -52,14 +56,11 @@ namespace mostly_harmless::utils {
         /**
          * The action that should actually be performed on the thread.
          */
-        std::function<void(void)> action{ nullptr };
-    private:
-        std::mutex m_mutex;
-        std::condition_variable m_conditionVariable;
-        std::atomic<bool> m_canWakeUp{ false };
-        std::atomic<bool> m_isThreadRunning{ false };
-        std::atomic<bool> m_threadShouldExit{ false };
+        void setAction(std::function<void(void)>&& action) noexcept;
 
+    private:
+        class Impl;
+        std::shared_ptr<Impl> m_impl;
     };
-}
+} // namespace mostly_harmless::utils
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_TASKTHREAD_H

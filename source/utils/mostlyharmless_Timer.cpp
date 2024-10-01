@@ -29,7 +29,7 @@ namespace mostly_harmless::utils {
                     startPoint = now;
                 }
             };
-            m_thread.action = std::move(threadAction);
+            m_thread.setAction(std::move(threadAction));
             m_thread.perform();
         }
 
