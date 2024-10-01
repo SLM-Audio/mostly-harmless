@@ -9,6 +9,7 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     Plugin<SampleType>::Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
                                                                                                      m_indexedParams(std::move(params)),
+                                                                                                     m_guiDispatchThread(utils::Timer::create()),
                                                                                                      m_procToGuiQueue(1024),
                                                                                                      m_guiToProcQueue(1024) {
         for (auto& p : m_indexedParams) {
