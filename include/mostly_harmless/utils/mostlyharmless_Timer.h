@@ -13,18 +13,11 @@ namespace mostly_harmless::utils {
      * Runs on its own thread - so thread safety concerns all apply here.
      */
     class Timer : public std::enable_shared_from_this<Timer> {
-    private:
-        struct Private {
-            explicit Private() = default;
-        };
-
     public:
-        // constructor is only usable by this class
-        explicit Timer(Private) {}
-
-        static std::shared_ptr<Timer> create() {
-            return std::make_shared<Timer>(Private());
-        }
+        /**
+         * \private
+         */
+        Timer();
 
         /**
          * Attempts to stop the timer if its running - note that this won't be instantaneous (see stop() )
@@ -49,15 +42,16 @@ namespace mostly_harmless::utils {
          * \return true if the timer is running, false otherwise.
          */
         [[nodiscard]] bool isTimerRunning() const noexcept;
+
         /**
-         * A user defined callback to be performed periodically by the timer thread. Again, remember that this is *not* happening on the caller thread, so be extremely careful to write thread safe code here.
+         * Sets the action that the timer should perform every interval.
+         * \param action An rvalue ref to the lambda to invoke every interval.
          */
-        std::function<void(void)> action{ nullptr };
+        void setAction(std::function<void(void)>&& action) noexcept;
 
     private:
-        Timer();
-
-        TaskThread m_thread;
+        class Impl;
+        std::shared_ptr<Impl> m_impl;
     };
-}
+} // namespace mostly_harmless::utils
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_TIMER_H

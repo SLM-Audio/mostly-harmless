@@ -224,7 +224,7 @@ namespace mostly_harmless {
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
         std::optional<TransportState> m_lastTransportState{};
-        std::shared_ptr<utils::Timer> m_guiDispatchThread;
+        utils::Timer m_guiDispatchThread;
         std::unique_ptr<gui::IEditor> m_editor{ nullptr };
 
     protected:

@@ -9,7 +9,6 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     Plugin<SampleType>::Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
                                                                                                      m_indexedParams(std::move(params)),
-                                                                                                     m_guiDispatchThread(utils::Timer::create()),
                                                                                                      m_procToGuiQueue(1024),
                                                                                                      m_guiToProcQueue(1024) {
         for (auto& p : m_indexedParams) {
@@ -24,7 +23,7 @@ namespace mostly_harmless {
             };
             runOnMainThread(std::move(messageThreadCallback));
         };
-        m_guiDispatchThread->action = std::move(guiDispatchCallback);
+        m_guiDispatchThread.setAction(std::move(guiDispatchCallback));
     }
 
     template <marvin::FloatType SampleType>
@@ -431,13 +430,13 @@ namespace mostly_harmless {
         m_editor->initialise({ .guiToProcQueue = &m_guiToProcQueue,
                                .requestParamFlush = std::move(requestFlushCallback),
                                .callOnMainThread = std::move(_callOnMainThread) });
-        m_guiDispatchThread->run(1);
+        m_guiDispatchThread.run(1);
         return true;
     }
 
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::guiDestroy() noexcept {
-        m_guiDispatchThread->stop();
+        m_guiDispatchThread.stop();
         m_editor.reset();
     }
 
