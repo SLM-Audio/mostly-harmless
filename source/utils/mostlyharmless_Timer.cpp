@@ -10,15 +10,19 @@ namespace mostly_harmless::utils {
 
     void Timer::run(int intervalMs) {
         if (!action) return;
-        auto threadAction = [this, intervalMs]() -> void {
+        auto weakThis = weak_from_this();
+        auto threadAction = [weakThis, intervalMs]() -> void {
+            auto self = weakThis.lock();
+            if (!self) return;
+
             auto startPoint = std::chrono::steady_clock::now();
-            while (!m_thread.threadShouldExit()) {
+            while (!self->m_thread.threadShouldExit()) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
-                if (m_thread.threadShouldExit()) return;
+                if (self->m_thread.threadShouldExit()) return;
                 const auto now = std::chrono::steady_clock::now();
                 const auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - startPoint);
                 if (delta < std::chrono::milliseconds(intervalMs)) continue;
-                action();
+                self->action();
                 startPoint = std::chrono::steady_clock::now();
             }
         };
@@ -33,9 +37,7 @@ namespace mostly_harmless::utils {
     }
 
     void Timer::stop() {
-        if (m_thread.isThreadRunning()) {
-            m_thread.signalThreadShouldExit();
-        }
+        m_thread.signalThreadShouldExit();
     }
 
     bool Timer::isTimerRunning() const noexcept {

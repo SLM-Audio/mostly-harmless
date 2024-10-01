@@ -23,7 +23,7 @@ namespace mostly_harmless {
             };
             runOnMainThread(std::move(messageThreadCallback));
         };
-        m_guiDispatchThread.action = std::move(guiDispatchCallback);
+        m_guiDispatchThread->action = std::move(guiDispatchCallback);
     }
 
     template <marvin::FloatType SampleType>
@@ -399,13 +399,13 @@ namespace mostly_harmless {
 
         m_editor = createEditor();
         m_editor->initialise({ .guiToProcQueue = &m_guiToProcQueue, .requestParamFlush = std::move(requestFlushCallback) });
-        m_guiDispatchThread.run(1);
+        m_guiDispatchThread->run(1);
         return true;
     }
 
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::guiDestroy() noexcept {
-        m_guiDispatchThread.stop();
+        m_guiDispatchThread->stop();
         m_editor.reset();
     }
 
