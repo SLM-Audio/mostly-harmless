@@ -7,7 +7,7 @@ var searchData=
   ['a2_4',['a2',['../structmarvin_1_1dsp_1_1filters_1_1BiquadCoefficients.html#a10fe346b196851573b801a67a0fe936d',1,'marvin::dsp::filters::BiquadCoefficients']]],
   ['about_5',['About',['../index.html#autotoc_md1',1,'']]],
   ['accelerate_5ffft_6',['Accelerate_FFT',['../namespacemarvin_1_1dsp_1_1spectral.html#a2ffd7367d846aeb0341b2575439079a8a40fbdb1373db81bc08c1b98b04423f48',1,'marvin::dsp::spectral']]],
-  ['action_7',['action',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a1181390e7184820a666e430d58fa0bc7',1,'mostly_harmless::utils::TaskThread']]],
+  ['action_7',['action',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a1181390e7184820a666e430d58fa0bc7',1,'mostly_harmless::utils::TaskThread::action'],['../classmostly__harmless_1_1utils_1_1Timer.html#ad6f2ad60688ec6079e9d8e2d2abe7590',1,'mostly_harmless::utils::Timer::action']]],
   ['actual_20plugin_20code_8',['The actual plugin code',['../index.html#autotoc_md11',1,'']]],
   ['add_9',['add',['../namespacemarvin_1_1math_1_1vecops.html#a723ffb525a7fe290c56da3671f773f7d',1,'marvin::math::vecops::add(T *lhs, const T *rhs, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a45b942a453ab9bcbdaf6cc3e3bef873e',1,'marvin::math::vecops::add(T *arr, T scalar, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a6ff40b370f9bf32f09d88808c584a2d9',1,'marvin::math::vecops::add(T &amp;lhs, T &amp;rhs) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a0e685c3d8a81f0f40f67b0707b7c3e77',1,'marvin::math::vecops::add(T &amp;arr, typename T::value_type scalar) noexcept']]],
   ['adding_20a_20plugin_20target_10',['Adding a plugin target',['../index.html#autotoc_md9',1,'']]],
