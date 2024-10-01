@@ -15,6 +15,11 @@ namespace mostly_harmless::utils {
     class Timer {
     public:
         /**
+         * \private
+         */
+        Timer();
+
+        /**
          * Attempts to stop the timer if its running - note that this won't be instantaneous (see stop() )
          */
         ~Timer() noexcept;
@@ -37,12 +42,16 @@ namespace mostly_harmless::utils {
          * \return true if the timer is running, false otherwise.
          */
         [[nodiscard]] bool isTimerRunning() const noexcept;
+
         /**
-         * A user defined callback to be performed periodically by the timer thread. Again, remember that this is *not* happening on the caller thread, so be extremely careful to write thread safe code here.
+         * Sets the action that the timer should perform every interval.
+         * \param action An rvalue ref to the lambda to invoke every interval.
          */
-        std::function<void(void)> action{ nullptr };
+        void setAction(std::function<void(void)>&& action) noexcept;
+
     private:
-        TaskThread m_thread;
+        class Impl;
+        std::shared_ptr<Impl> m_impl;
     };
-}
+} // namespace mostly_harmless::utils
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_TIMER_H

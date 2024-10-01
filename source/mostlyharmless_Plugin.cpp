@@ -23,7 +23,7 @@ namespace mostly_harmless {
             };
             runOnMainThread(std::move(messageThreadCallback));
         };
-        m_guiDispatchThread.action = std::move(guiDispatchCallback);
+        m_guiDispatchThread.setAction(std::move(guiDispatchCallback));
     }
 
     template <marvin::FloatType SampleType>
