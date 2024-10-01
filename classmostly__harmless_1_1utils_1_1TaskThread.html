@@ -103,6 +103,8 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:abaa418488d213bfed018c54d30b4a1e3" id="r_abaa418488d213bfed018c54d30b4a1e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abaa418488d213bfed018c54d30b4a1e3">~TaskThread</a> () noexcept</td></tr>
+<tr class="separator:abaa418488d213bfed018c54d30b4a1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae82139117b54e99df9de0ee5cfe5a1a5" id="r_ae82139117b54e99df9de0ee5cfe5a1a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae82139117b54e99df9de0ee5cfe5a1a5">perform</a> ()</td></tr>
 <tr class="separator:ae82139117b54e99df9de0ee5cfe5a1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966cb6f9825dfc8c90904791c7cf49b8" id="r_a966cb6f9825dfc8c90904791c7cf49b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966cb6f9825dfc8c90904791c7cf49b8">sleep</a> ()</td></tr>
@@ -124,7 +126,34 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wrapper around a std::thread to perform a single action, then exit. </p>
 <p>Note that <code><a class="el" href="#ae82139117b54e99df9de0ee5cfe5a1a5">perform()</a></code> will detach the thread, so it's no longer joinable - so it's your responsibility to ensure the thread elegantly exits of its own volition. When the action is performed, a wrapper lambda automatically informs and internal atomic that the thread is running, and when the action has completed, it sets it back to false. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abaa418488d213bfed018c54d30b4a1e3" name="abaa418488d213bfed018c54d30b4a1e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaa418488d213bfed018c54d30b4a1e3">&#9670;&#160;</a></span>~TaskThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mostly_harmless::utils::TaskThread::~TaskThread </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The destructor will hang until the thread exits - so MAKE SURE THAT THE THREAD EXITS.. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2dc43b2e8ff9d3e9ce5078d62cbc31ee" name="a2dc43b2e8ff9d3e9ce5078d62cbc31ee"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2dc43b2e8ff9d3e9ce5078d62cbc31ee">&#9670;&#160;</a></span>isThreadRunning()</h2>
 

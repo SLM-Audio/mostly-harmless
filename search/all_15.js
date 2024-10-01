@@ -11,8 +11,9 @@ var searchData=
   ['_7esineoscillator_8',['~SineOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1SineOscillator.html#ab23dae7fbc55fe9da8e26eada295adf4',1,'marvin::dsp::oscillators::SineOscillator']]],
   ['_7esquareoscillator_9',['~SquareOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1SquareOscillator.html#abe20d23ac4302b50fe496e8a8a0228a2',1,'marvin::dsp::oscillators::SquareOscillator']]],
   ['_7eswapbuffer_10',['~SwapBuffer',['../classmarvin_1_1containers_1_1SwapBuffer.html#ad45640bc6d74dd806b999fd1ae660914',1,'marvin::containers::SwapBuffer']]],
-  ['_7etimer_11',['~Timer',['../classmostly__harmless_1_1utils_1_1Timer.html#a8f2e42ac08553a566e02ccd9081dae74',1,'mostly_harmless::utils::Timer']]],
-  ['_7etrioscillator_12',['~TriOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html#a60140b17f8f9db8bbde272ae5033d1e5',1,'marvin::dsp::oscillators::TriOscillator']]],
-  ['_7ewebviewbase_13',['~WebviewBase',['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a4c741fc4c617987dbaa79e003b6134c6',1,'mostly_harmless::gui::WebviewBase']]],
-  ['_7ewebvieweditor_14',['~WebviewEditor',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a580376c5f0fa560f82745b5c7d923a06',1,'mostly_harmless::gui::WebviewEditor']]]
+  ['_7etaskthread_11',['~TaskThread',['../classmostly__harmless_1_1utils_1_1TaskThread.html#abaa418488d213bfed018c54d30b4a1e3',1,'mostly_harmless::utils::TaskThread']]],
+  ['_7etimer_12',['~Timer',['../classmostly__harmless_1_1utils_1_1Timer.html#a8f2e42ac08553a566e02ccd9081dae74',1,'mostly_harmless::utils::Timer']]],
+  ['_7etrioscillator_13',['~TriOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1TriOscillator.html#a60140b17f8f9db8bbde272ae5033d1e5',1,'marvin::dsp::oscillators::TriOscillator']]],
+  ['_7ewebviewbase_14',['~WebviewBase',['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a4c741fc4c617987dbaa79e003b6134c6',1,'mostly_harmless::gui::WebviewBase']]],
+  ['_7ewebvieweditor_15',['~WebviewEditor',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a580376c5f0fa560f82745b5c7d923a06',1,'mostly_harmless::gui::WebviewEditor']]]
 ];
