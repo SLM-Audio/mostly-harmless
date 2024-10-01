@@ -5,17 +5,9 @@
 #include <thread>
 namespace mostly_harmless::utils {
     class Timer::Impl : public std::enable_shared_from_this<Timer::Impl> {
-    private:
-        struct Private final {
-            explicit Private() = default;
-        };
-
     public:
-        // constructor is only usable by this class
-        explicit Impl(Private) {}
-
         static std::shared_ptr<Impl> create() noexcept {
-            return std::make_shared<Impl>(Private{});
+            return std::make_shared<Impl>();
         }
 
         void run(int intervalMs) {
