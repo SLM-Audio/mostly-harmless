@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  tests-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4.1.2
+        with:
+          submodules: true
+      - name: Configure and Build
+        uses: threeal/cmake-action@main
+        with:
+          options: "TESTS=ON"
+          build-args: "--target mostly-harmless-tests"
+      - name: Run tests
+        run: "./build/debug/mostly-harmless-tests.exe"
+
+  tests-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4.1.2
+        with:
+          submodules: true
+      - name: Configure and Build
+        uses: threeal/cmake-action@main
+        with:
+          options: "TESTS=ON"
+          build-args: "--target mostly-harmless-tests"
+      - name: Run tests
+        run: "./build/mostly-harmless-tests"
+
