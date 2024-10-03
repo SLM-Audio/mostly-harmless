@@ -22,7 +22,7 @@ namespace mostly_harmless::testing {
                 taskThread.action = std::move(task);
                 taskThread.perform();
                 // Sleep so the task has a chance to acquire the mutex.. (syscall and all that)
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                std::this_thread::sleep_for(std::chrono::milliseconds(20));
                 std::scoped_lock<std::mutex> sl{ mutex };
                 REQUIRE(x);
                 REQUIRE(!taskThread.isThreadRunning());
