@@ -6,7 +6,7 @@
 #include <thread>
 namespace mostly_harmless::utils {
     TaskThread::~TaskThread() noexcept {
-        while (m_threadAboutToStart || isThreadRunning()) {
+        while (isThreadRunning()) {
             signalThreadShouldExit();
             wake();
         }
@@ -14,6 +14,7 @@ namespace mostly_harmless::utils {
 
     void TaskThread::perform() {
         if (m_isThreadRunning) return;
+        m_threadShouldExit.store(false);
         m_threadAboutToStart = true;
         if (!action) {
             assert(false);
@@ -51,6 +52,6 @@ namespace mostly_harmless::utils {
     }
 
     bool TaskThread::isThreadRunning() const noexcept {
-        return m_isThreadRunning;
+        return m_isThreadRunning || m_threadAboutToStart;
     }
 } // namespace mostly_harmless::utils
