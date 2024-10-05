@@ -131,10 +131,10 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ab4930a6a7b33f561eb5d177283f87cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87aaf0cab05e489ec01a78c5b2829799" id="r_a87aaf0cab05e489ec01a78c5b2829799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmostly__harmless_1_1Parameter.html">Parameter</a>&lt; SampleType &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87aaf0cab05e489ec01a78c5b2829799">getParameter</a> (clap_id id) noexcept</td></tr>
 <tr class="separator:a87aaf0cab05e489ec01a78c5b2829799"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e8436edb21ffc110d942e1dc61282f4" id="r_a5e8436edb21ffc110d942e1dc61282f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e8436edb21ffc110d942e1dc61282f4">pollEventQueue</a> (size_t currentSample, <a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> context) noexcept</td></tr>
-<tr class="separator:a5e8436edb21ffc110d942e1dc61282f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea56eb19b7831ab222a4971339c7ba9a" id="r_aea56eb19b7831ab222a4971339c7ba9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea56eb19b7831ab222a4971339c7ba9a">pollEventQueue</a> (<a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> context) noexcept</td></tr>
-<tr class="separator:aea56eb19b7831ab222a4971339c7ba9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac26c63c8d4b6b16ab351380c5311fd0d" id="r_ac26c63c8d4b6b16ab351380c5311fd0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac26c63c8d4b6b16ab351380c5311fd0d">pollEventQueue</a> (size_t currentSample, <a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> &amp;context) noexcept</td></tr>
+<tr class="separator:ac26c63c8d4b6b16ab351380c5311fd0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eecf3547e2a2efabf22a20dc903e003" id="r_a8eecf3547e2a2efabf22a20dc903e003"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eecf3547e2a2efabf22a20dc903e003">pollEventQueue</a> (<a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> &amp;context) noexcept</td></tr>
+<tr class="separator:a8eecf3547e2a2efabf22a20dc903e003"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac57c1551038a2c3b29e92088a8b7d4c5" id="r_ac57c1551038a2c3b29e92088a8b7d4c5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac57c1551038a2c3b29e92088a8b7d4c5">handleNoteOn</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity)</td></tr>
 <tr class="separator:ac57c1551038a2c3b29e92088a8b7d4c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a850e13473b306db92b9ed7799f92fbf7" id="r_a850e13473b306db92b9ed7799f92fbf7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a850e13473b306db92b9ed7799f92fbf7">handleNoteOff</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity)</td></tr>
@@ -639,8 +639,8 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 
 </div>
 </div>
-<a id="aea56eb19b7831ab222a4971339c7ba9a" name="aea56eb19b7831ab222a4971339c7ba9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea56eb19b7831ab222a4971339c7ba9a">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[1/2]</span></h2>
+<a id="a8eecf3547e2a2efabf22a20dc903e003" name="a8eecf3547e2a2efabf22a20dc903e003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eecf3547e2a2efabf22a20dc903e003">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -653,7 +653,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="memname">void <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::pollEventQueue </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -672,8 +672,8 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 
 </div>
 </div>
-<a id="a5e8436edb21ffc110d942e1dc61282f4" name="a5e8436edb21ffc110d942e1dc61282f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e8436edb21ffc110d942e1dc61282f4">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[2/2]</span></h2>
+<a id="ac26c63c8d4b6b16ab351380c5311fd0d" name="ac26c63c8d4b6b16ab351380c5311fd0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac26c63c8d4b6b16ab351380c5311fd0d">&#9670;&#160;</a></span>pollEventQueue() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -691,7 +691,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a></td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>context</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -738,7 +738,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The main audio processing function (will run on the audio thread). All audio process should be done in (or called from) this function. We provide a convenience function to handle the events in the EventContext, for more info see <a class="el" href="#a5e8436edb21ffc110d942e1dc61282f4">Plugin::pollEventQueue</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The main audio processing function (will run on the audio thread). All audio process should be done in (or called from) this function. We provide a convenience function to handle the events in the EventContext, for more info see <a class="el" href="#ac26c63c8d4b6b16ab351380c5311fd0d">Plugin::pollEventQueue</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buffer</td><td>A non owning view into the host provided buffer. </td></tr>
     <tr><td class="paramname">inputEventTonext</td><td>A trivially copyable wrapper around the host provided clap input event queue. </td></tr>
@@ -856,7 +856,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Realtime/thread-safe fifo used for posting param updates to the gui thread. Used internally by both overloads of <a class="el" href="#a5e8436edb21ffc110d942e1dc61282f4">pollEventQueue()</a>. </p>
+<p>Realtime/thread-safe fifo used for posting param updates to the gui thread. Used internally by both overloads of <a class="el" href="#ac26c63c8d4b6b16ab351380c5311fd0d">pollEventQueue()</a>. </p>
 
 </div>
 </div>
