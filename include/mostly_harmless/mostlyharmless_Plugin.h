@@ -129,13 +129,13 @@ namespace mostly_harmless {
             \param currentSample The index of the current sample into the block.
             \param context The InputEventContext containing the event queue.
          */
-        void pollEventQueue(size_t currentSample, events::InputEventContext context) noexcept;
+        void pollEventQueue(size_t currentSample, events::InputEventContext& context) noexcept;
 
         /**
          *  Convenience function to handle all incoming events for the current block.
          *  \param context InputEventContext containing the event queue.
          */
-        void pollEventQueue(events::InputEventContext context) noexcept;
+        void pollEventQueue(events::InputEventContext& context) noexcept;
 
         /**
             Called Internally by pollEventQueue when a midi note on message is received.

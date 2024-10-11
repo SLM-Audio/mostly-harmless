@@ -84,7 +84,7 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
-    void Plugin<SampleType>::pollEventQueue(size_t currentSample, events::InputEventContext context) noexcept {
+    void Plugin<SampleType>::pollEventQueue(size_t currentSample, events::InputEventContext& context) noexcept {
         while (context.next() && context.next()->time == currentSample) {
             handleEvent(context.next());
             ++context;
@@ -92,7 +92,7 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
-    void Plugin<SampleType>::pollEventQueue(events::InputEventContext context) noexcept {
+    void Plugin<SampleType>::pollEventQueue(events::InputEventContext& context) noexcept {
         while (context.next()) {
             handleEvent(context.next());
             ++context;

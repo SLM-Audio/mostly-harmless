@@ -5,6 +5,7 @@
 #include <mostly_harmless/utils/mostlyharmless_Timer.h>
 #include <iostream>
 #include <cmath>
+#include <thread>
 
 namespace mostly_harmless::tests {
     TEST_CASE("Test Timer") {
@@ -24,9 +25,24 @@ namespace mostly_harmless::tests {
             };
             timer.action = std::move(timerCallback);
             timer.run(static_cast<int>(100));
-            while(callCount < 5);
+            while (callCount < 5)
+                ;
             timer.stop();
             REQUIRE(callCount >= 5);
         }
+
+        SECTION("Test out-of-scope timer") {
+            std::atomic<int> count{ 0 };
+            {
+                mostly_harmless::utils::Timer scopedTimer;
+                auto task = [&count]() -> void {
+                    ++count;
+                };
+                scopedTimer.action = std::move(task);
+                scopedTimer.run(1);
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            REQUIRE(count == 0);
+        }
     }
-}
+} // namespace mostly_harmless::tests

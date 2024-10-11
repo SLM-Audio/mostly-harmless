@@ -5,13 +5,23 @@
 #include <cassert>
 #include <thread>
 namespace mostly_harmless::utils {
+    TaskThread::~TaskThread() noexcept {
+        while (isThreadRunning()) {
+            signalThreadShouldExit();
+            wake();
+        }
+    }
+
     void TaskThread::perform() {
         if (m_isThreadRunning) return;
+        m_threadShouldExit.store(false);
+        m_threadAboutToStart = true;
         if (!action) {
             assert(false);
             return;
         }
         auto actionWrapper = [this]() -> void {
+            m_threadAboutToStart.store(false);
             m_isThreadRunning.store(true);
             action();
             m_isThreadRunning.store(false);
@@ -28,8 +38,8 @@ namespace mostly_harmless::utils {
     }
 
     void TaskThread::wake() {
-        std::lock_guard<std::mutex> guard{ m_mutex };
         m_canWakeUp = true;
+        std::lock_guard<std::mutex> guard{ m_mutex };
         m_conditionVariable.notify_one();
     }
 
@@ -42,6 +52,6 @@ namespace mostly_harmless::utils {
     }
 
     bool TaskThread::isThreadRunning() const noexcept {
-        return m_isThreadRunning;
+        return m_isThreadRunning || m_threadAboutToStart;
     }
 } // namespace mostly_harmless::utils
