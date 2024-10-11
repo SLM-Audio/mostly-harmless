@@ -30,6 +30,7 @@
         const clap_plugin* clap_create_plugin(const clap_plugin_factory* /*f*/, const clap_host* h, const char* id) { \
             auto& desc = getDescriptor();                                                                             \
             if (std::strcmp(desc.id, id) != 0) {                                                                      \
+                std::cout << "Ids did not match!";                                                                    \
                 return nullptr;                                                                                       \
             }                                                                                                         \
             auto* p = new ::ProcessorType(h);                                                                         \

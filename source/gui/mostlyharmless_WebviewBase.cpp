@@ -240,7 +240,7 @@ namespace mostly_harmless::gui {
         m_impl->setOptions(std::move(options));
     }
 
-    void WebviewBase::initialise(mostly_harmless::gui::EditorContext context) {
+    void WebviewBase::initialise(mostly_harmless::gui::EditorContext /*context*/) {
         m_impl->create();
         m_internalWebview = m_impl->getWebview();
     }
