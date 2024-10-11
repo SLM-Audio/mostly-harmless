@@ -107,40 +107,36 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="marvin__Range_8h.html">marvin/utils/marvin_Range.h</a>&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacemarvin_1_1utils.html">marvin::utils</a> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">template</span> &lt;RandomEngineType Engine&gt;</div>
-<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classmarvin_1_1utils_1_1RandomGenerator.html">   30</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classmarvin_1_1utils_1_1RandomGenerator.html">RandomGenerator</a> final {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classmarvin_1_1utils_1_1RandomGenerator.html#abd6fc64c8ac2ffb8e95bfdc52b1e44d1">   36</a></span>        <span class="keyword">explicit</span> <a class="code hl_function" href="classmarvin_1_1utils_1_1RandomGenerator.html#abd6fc64c8ac2ffb8e95bfdc52b1e44d1">RandomGenerator</a>(std::random_device&amp; rd);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keyword">template</span> &lt;NumericType T&gt;</div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classmarvin_1_1utils_1_1RandomGenerator.html#a6866eeac1030b893927749724f2074aa">   44</a></span>        [[nodiscard]] T <a class="code hl_function" href="classmarvin_1_1utils_1_1RandomGenerator.html#a6866eeac1030b893927749724f2074aa">generate</a>(<a class="code hl_struct" href="structmarvin_1_1utils_1_1Range.html">Range&lt;T&gt;</a> range) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            Distribution&lt;T&gt; distribution{ range.min, range.max };</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keyword">const</span> <span class="keyword">auto</span> res = distribution(m_rng);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        }</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classmarvin_1_1utils_1_1Random.html">   22</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classmarvin_1_1utils_1_1Random.html">Random</a> final {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classmarvin_1_1utils_1_1Random.html#ac936e9c54ec03042fd16469f5ce7df83">   28</a></span>        <span class="keyword">explicit</span> <a class="code hl_function" href="classmarvin_1_1utils_1_1Random.html#ac936e9c54ec03042fd16469f5ce7df83">Random</a>(std::random_device&amp; rd);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">template</span> &lt;NumericType T&gt;</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classmarvin_1_1utils_1_1Random.html#ae64dd30118e742a805770b3cdba3b42f">   36</a></span>        [[nodiscard]] T <a class="code hl_function" href="classmarvin_1_1utils_1_1Random.html#ae64dd30118e742a805770b3cdba3b42f">generate</a>(<a class="code hl_struct" href="structmarvin_1_1utils_1_1Range.html">Range&lt;T&gt;</a> range) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            Distribution&lt;T&gt; distribution{ range.min, range.max };</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keyword">const</span> <span class="keyword">auto</span> res = distribution(m_rng);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
 </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">using </span>Distribution = std::conditional_t&lt;std::is_floating_point_v&lt;T&gt;,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                                                std::uniform_real_distribution&lt;T&gt;,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                                                std::uniform_int_distribution&lt;T&gt;&gt;;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        std::mt19937 m_rng;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    };</div>
+</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">using </span>Distribution = std::conditional_t&lt;std::is_floating_point_v&lt;T&gt;,</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                                                std::uniform_real_distribution&lt;T&gt;,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                                                std::uniform_int_distribution&lt;T&gt;&gt;;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        Engine m_rng;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    };</div>
-</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// Default, to not break existing codebases..</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="namespacemarvin_1_1utils.html#ad5d70be25524dd9193cbefe9a02aa65a">   60</a></span>    <span class="keyword">using </span><a class="code hl_class" href="classmarvin_1_1utils_1_1RandomGenerator.html">Random</a> = <a class="code hl_class" href="classmarvin_1_1utils_1_1RandomGenerator.html">RandomGenerator&lt;std::mt19937&gt;</a>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace marvin::utils</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassmarvin_1_1utils_1_1RandomGenerator_html"><div class="ttname"><a href="classmarvin_1_1utils_1_1RandomGenerator.html">marvin::utils::RandomGenerator</a></div><div class="ttdoc">A class for (pseudo) random number generation.</div><div class="ttdef"><b>Definition</b> marvin_Random.h:30</div></div>
-<div class="ttc" id="aclassmarvin_1_1utils_1_1RandomGenerator_html_a6866eeac1030b893927749724f2074aa"><div class="ttname"><a href="classmarvin_1_1utils_1_1RandomGenerator.html#a6866eeac1030b893927749724f2074aa">marvin::utils::RandomGenerator::generate</a></div><div class="ttdeci">T generate(Range&lt; T &gt; range) noexcept</div><div class="ttdef"><b>Definition</b> marvin_Random.h:44</div></div>
-<div class="ttc" id="aclassmarvin_1_1utils_1_1RandomGenerator_html_abd6fc64c8ac2ffb8e95bfdc52b1e44d1"><div class="ttname"><a href="classmarvin_1_1utils_1_1RandomGenerator.html#abd6fc64c8ac2ffb8e95bfdc52b1e44d1">marvin::utils::RandomGenerator::RandomGenerator</a></div><div class="ttdeci">RandomGenerator(std::random_device &amp;rd)</div></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} <span class="comment">// namespace marvin::utils</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassmarvin_1_1utils_1_1Random_html"><div class="ttname"><a href="classmarvin_1_1utils_1_1Random.html">marvin::utils::Random</a></div><div class="ttdoc">A class for (pseudo) random number generation.</div><div class="ttdef"><b>Definition</b> marvin_Random.h:22</div></div>
+<div class="ttc" id="aclassmarvin_1_1utils_1_1Random_html_ac936e9c54ec03042fd16469f5ce7df83"><div class="ttname"><a href="classmarvin_1_1utils_1_1Random.html#ac936e9c54ec03042fd16469f5ce7df83">marvin::utils::Random::Random</a></div><div class="ttdeci">Random(std::random_device &amp;rd)</div></div>
+<div class="ttc" id="aclassmarvin_1_1utils_1_1Random_html_ae64dd30118e742a805770b3cdba3b42f"><div class="ttname"><a href="classmarvin_1_1utils_1_1Random.html#ae64dd30118e742a805770b3cdba3b42f">marvin::utils::Random::generate</a></div><div class="ttdeci">T generate(Range&lt; T &gt; range) noexcept</div><div class="ttdef"><b>Definition</b> marvin_Random.h:36</div></div>
 <div class="ttc" id="amarvin__Concepts_8h_html"><div class="ttname"><a href="marvin__Concepts_8h.html">marvin_Concepts.h</a></div></div>
 <div class="ttc" id="amarvin__Range_8h_html"><div class="ttname"><a href="marvin__Range_8h.html">marvin_Range.h</a></div></div>
 <div class="ttc" id="anamespacemarvin_1_1utils_html"><div class="ttname"><a href="namespacemarvin_1_1utils.html">marvin::utils</a></div><div class="ttdoc">Utility helper functions and classes.</div><div class="ttdef"><b>Definition</b> marvin_Utils.h:21</div></div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MostlyHarmless: marvin::utils::RandomGenerator&lt; Engine &gt; Class Template Reference</title>
+<title>MostlyHarmless: marvin::utils::Random Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,15 +83,15 @@ $(function(){ initResizable(false); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacemarvin.html">marvin</a></li><li class="navelem"><a class="el" href="namespacemarvin_1_1utils.html">utils</a></li><li class="navelem"><a class="el" href="classmarvin_1_1utils_1_1RandomGenerator.html">RandomGenerator</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacemarvin.html">marvin</a></li><li class="navelem"><a class="el" href="namespacemarvin_1_1utils.html">utils</a></li><li class="navelem"><a class="el" href="classmarvin_1_1utils_1_1Random.html">Random</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classmarvin_1_1utils_1_1RandomGenerator-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">marvin::utils::RandomGenerator&lt; Engine &gt; Class Template Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
+<a href="classmarvin_1_1utils_1_1Random-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">marvin::utils::Random Class Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -102,35 +102,27 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abd6fc64c8ac2ffb8e95bfdc52b1e44d1" id="r_abd6fc64c8ac2ffb8e95bfdc52b1e44d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd6fc64c8ac2ffb8e95bfdc52b1e44d1">RandomGenerator</a> (std::random_device &amp;rd)</td></tr>
-<tr class="separator:abd6fc64c8ac2ffb8e95bfdc52b1e44d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6866eeac1030b893927749724f2074aa" id="r_a6866eeac1030b893927749724f2074aa"><td class="memTemplParams" colspan="2">template&lt;NumericType T&gt; </td></tr>
-<tr class="memitem:a6866eeac1030b893927749724f2074aa"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6866eeac1030b893927749724f2074aa">generate</a> (<a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; range) noexcept</td></tr>
-<tr class="separator:a6866eeac1030b893927749724f2074aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac936e9c54ec03042fd16469f5ce7df83" id="r_ac936e9c54ec03042fd16469f5ce7df83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac936e9c54ec03042fd16469f5ce7df83">Random</a> (std::random_device &amp;rd)</td></tr>
+<tr class="separator:ac936e9c54ec03042fd16469f5ce7df83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae64dd30118e742a805770b3cdba3b42f" id="r_ae64dd30118e742a805770b3cdba3b42f"><td class="memTemplParams" colspan="2">template&lt;NumericType T&gt; </td></tr>
+<tr class="memitem:ae64dd30118e742a805770b3cdba3b42f"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae64dd30118e742a805770b3cdba3b42f">generate</a> (<a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; range) noexcept</td></tr>
+<tr class="separator:ae64dd30118e742a805770b3cdba3b42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;RandomEngineType Engine&gt;<br />
-class marvin::utils::RandomGenerator&lt; Engine &gt;</div><p>A class for (pseudo) random number generation. </p>
-<p>This class is a wrapper around the usual modern c++ random approach, with a templated Engine type. Below is a copy pasted excerpt from the cppreference information about the random engine types: number of trade-offs:<br  />
-<br  />
-</p>
-<p>The linear congruential engine (<code>std::minstd_rand</code>, <code>std::minstd_rand0</code>) is moderately fast and has a very small storage requirement for state.<br  />
- The Mersenne twister engine (<code>std::mt19937</code>, std::mt19937_64<code>) is slower and has greater state storage requirements but with the right parameters has the longest non-repeating sequence with the most desirable spectral characteristics (for a given definition of desirable).&lt;br&gt; The subtract with carry engine (</code>std::ranlux24_base<code>, std::ranlux48_base</code>) is very fast even on processors without advanced arithmetic instruction sets, at the expense of greater state storage and sometimes less desirable spectral characteristics.<br  />
- </p>
+<div class="textblock"><p>A class for (pseudo) random number generation. </p>
+<p>Internally, this class is just a wrapper around the <code>std::mt19937</code> Mersenne-Twister engine, for convenience and brevity of typing. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="abd6fc64c8ac2ffb8e95bfdc52b1e44d1" name="abd6fc64c8ac2ffb8e95bfdc52b1e44d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd6fc64c8ac2ffb8e95bfdc52b1e44d1">&#9670;&#160;</a></span>RandomGenerator()</h2>
+<a id="ac936e9c54ec03042fd16469f5ce7df83" name="ac936e9c54ec03042fd16469f5ce7df83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac936e9c54ec03042fd16469f5ce7df83">&#9670;&#160;</a></span>Random()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;RandomEngineType Engine&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmarvin_1_1utils_1_1RandomGenerator.html">marvin::utils::RandomGenerator</a>&lt; Engine &gt;::RandomGenerator </td>
+          <td class="memname">marvin::utils::Random::Random </td>
           <td>(</td>
           <td class="paramtype">std::random_device &amp;</td>          <td class="paramname"><span class="paramname"><em>rd</em></span></td><td>)</td>
           <td></td>
@@ -152,13 +144,11 @@ template&lt;RandomEngineType Engine&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6866eeac1030b893927749724f2074aa" name="a6866eeac1030b893927749724f2074aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6866eeac1030b893927749724f2074aa">&#9670;&#160;</a></span>generate()</h2>
+<a id="ae64dd30118e742a805770b3cdba3b42f" name="ae64dd30118e742a805770b3cdba3b42f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae64dd30118e742a805770b3cdba3b42f">&#9670;&#160;</a></span>generate()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;RandomEngineType Engine&gt; </div>
 <div class="memtemplate">
 template&lt;NumericType T&gt; </div>
 <table class="mlabels">
@@ -166,7 +156,7 @@ template&lt;NumericType T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">T <a class="el" href="classmarvin_1_1utils_1_1RandomGenerator.html">marvin::utils::RandomGenerator</a>&lt; Engine &gt;::generate </td>
+          <td class="memname">T marvin::utils::Random::generate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>range</em></span></td><td>)</td>
           <td></td>

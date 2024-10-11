@@ -153,6 +153,7 @@ Macros</h2></td></tr>
 <div class="line">        <span class="keyword">const</span> clap_plugin* clap_create_plugin(<span class="keyword">const</span> clap_plugin_factory* <span class="comment">/*f*/</span>, <span class="keyword">const</span> clap_host* h, <span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>) { \</div>
 <div class="line">            <span class="keyword">auto</span>&amp; desc = getDescriptor();                                                                             \</div>
 <div class="line">            if (std::strcmp(desc.id, <span class="keywordtype">id</span>) != 0) {                                                                      \</div>
+<div class="line">                std::cout &lt;&lt; <span class="stringliteral">&quot;Ids did not match!&quot;</span>;                                                                    \</div>
 <div class="line">                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;                                                                                       \</div>
 <div class="line">            }                                                                                                         \</div>
 <div class="line">            <span class="keyword">auto</span>* p = new ::ProcessorType(h);                                                                         \</div>
