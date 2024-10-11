@@ -152,6 +152,7 @@ function(mostly_harmless_add_plugin targetName)
         if (APPLE)
             set_target_properties(${PLUGIN_NAME}_CLAP PROPERTIES
                     OUTPUT_NAME ${PLUGIN_NAME}
+                    LIBRARY_OUTPUT_NAME ${PLUGIN_NAME}
                     BUNDLE True
                     BUNDLE_EXTENSION clap
                     MACOSX_BUNDLE_GUI_IDENTIFIER "com.slm-audio.${PLUGIN_NAME}"
@@ -223,8 +224,12 @@ function(mostly_harmless_add_plugin targetName)
                 message(FATAL_ERROR "AU requires a type")
             endif ()
             add_library(${PLUGIN_NAME}_AU MODULE)
+            target_sources(${PLUGIN_NAME}_AU PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp)
+            target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME})
+            add_dependencies(${PLUGIN_NAME}_AU ${PLUGIN_NAME}_CLAP)
             target_add_auv2_wrapper(
                     TARGET ${PLUGIN_NAME}_AU
+                    CLAP_TARGET_FOR_CONFIG ${PLUGIN_NAME}_CLAP
                     OUTPUT_NAME ${PLUGIN_NAME}
                     BUNDLE_IDENTIFIER ${PLUGIN_AU_BUNDLE_ID}
                     BUNDLE_VERSION ${PLUGIN_AU_BUNDLE_VERSION}
@@ -233,11 +238,6 @@ function(mostly_harmless_add_plugin targetName)
                     SUBTYPE_CODE ${PLUGIN_SUBTYPE_CODE}
                     INSTRUMENT_TYPE ${PLUGIN_AU_TYPE}
             )
-            set_target_properties(${PLUGIN_NAME}_AU PROPERTIES
-                    OUTPUT_NAME ${PLUGIN_NAME}
-                    BUNDLE_EXTENSION component
-            )
-            target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME})
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
                 mostly_harmless_sign_target(${PLUGIN_NAME}_AU ${PLUGIN_SIGN_ID})
             endif ()
