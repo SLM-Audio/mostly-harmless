@@ -46,7 +46,7 @@ namespace mostly_harmless {
      * To register your subclassed plugin type with the clap factory, you <b>must</b> call `MOSTLYHARMLESS_REGISTER(YourPluginType)` at the end of your plugin source file.
      */
     template <marvin::FloatType SampleType>
-    class Plugin : public clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Terminate, clap::helpers::CheckingLevel::Maximal> {
+    class Plugin : public clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Ignore, clap::helpers::CheckingLevel::Maximal> {
     public:
         /**
          * To establish parameters with the plugin, create a vector of them, and std::move them into the `params` arg here.
