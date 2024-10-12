@@ -28,10 +28,9 @@ function(mostly_harmless_add_binary_data pluginTarget)
     target_link_libraries(${pluginTarget} PRIVATE ${ARG_TARGET_NAME})
 endfunction()
 
-function(mostly_harmless_sign_target targetName signId)
-    get_target_property(name ${targetName} OUTPUT_NAME)
+function(mostly_harmless_sign_target targetName artefactName signId)
     get_target_property(extension ${targetName} BUNDLE_EXTENSION)
-    set(artefact "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${name}.${extension}")
+    set(artefact "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${artefactName}.${extension}")
     add_custom_command(
             TARGET ${targetName} POST_BUILD
             COMMAND codesign --force -s "${signId}" -v "${artefact}" --deep --strict --options=runtime --timestamp VERBATIM
@@ -162,7 +161,7 @@ function(mostly_harmless_add_plugin targetName)
                     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
             )
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
-                mostly_harmless_sign_target(${PLUGIN_NAME}_CLAP ${PLUGIN_SIGN_ID})
+                mostly_harmless_sign_target(${PLUGIN_NAME}_CLAP ${PLUGIN_NAME} ${PLUGIN_SIGN_ID})
             endif ()
 
         elseif (WIN32)
@@ -195,7 +194,7 @@ function(mostly_harmless_add_plugin targetName)
                     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
             )
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
-                mostly_harmless_sign_target(${PLUGIN_NAME}_VST3 ${PLUGIN_SIGN_ID})
+                mostly_harmless_sign_target(${PLUGIN_NAME}_VST3 ${PLUGIN_NAME} ${PLUGIN_SIGN_ID})
             endif ()
 
         else ()
@@ -231,6 +230,7 @@ function(mostly_harmless_add_plugin targetName)
                     TARGET ${PLUGIN_NAME}_AU
                     CLAP_TARGET_FOR_CONFIG ${PLUGIN_NAME}_CLAP
                     OUTPUT_NAME ${PLUGIN_NAME}
+                    BUNDLE_EXTENSION "component"
                     BUNDLE_IDENTIFIER ${PLUGIN_AU_BUNDLE_ID}
                     BUNDLE_VERSION ${PLUGIN_AU_BUNDLE_VERSION}
                     MANUFACTURER_NAME ${PLUGIN_VENDOR}
@@ -239,7 +239,7 @@ function(mostly_harmless_add_plugin targetName)
                     INSTRUMENT_TYPE ${PLUGIN_AU_TYPE}
             )
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
-                mostly_harmless_sign_target(${PLUGIN_NAME}_AU ${PLUGIN_SIGN_ID})
+                mostly_harmless_sign_target(${PLUGIN_NAME}_AU ${PLUGIN_NAME} ${PLUGIN_SIGN_ID})
             endif ()
         endif ()
     endif ()
