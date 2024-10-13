@@ -69,7 +69,7 @@ namespace mostly_harmless {
          * \param params An rvalue ref to a vector of type mostly_harmless::Parameter.
          */
         explicit Plugin(const clap_host* host, std::vector<Parameter<SampleType>>&& params);
-        ~Plugin() noexcept override = default;
+        ~Plugin() noexcept override;
         /**
          * Called by the host when the audio is getting ready to play - you should do any audio initialisation you need here.
          * \param sampleRate The sample rate we're currently running at.
@@ -212,6 +212,8 @@ namespace mostly_harmless {
         [[nodiscard]] bool implementsGui() const noexcept override;
         [[nodiscard]] bool guiIsApiSupported(const char* api, bool isFloating) noexcept override;
         [[nodiscard]] bool guiCreate(const char* api, bool isFloating) noexcept override;
+        [[nodiscard]] bool guiShow() noexcept override;
+        [[nodiscard]] bool guiHide() noexcept override;
         void guiDestroy() noexcept override;
         [[nodiscard]] bool guiSetParent(const clap_window* window) noexcept override;
         [[nodiscard]] bool guiSetScale(double scale) noexcept override;

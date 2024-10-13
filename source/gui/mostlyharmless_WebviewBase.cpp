@@ -163,6 +163,9 @@ namespace mostly_harmless::gui {
                                                                                                  m_initialHeight(initialHeight),
                                                                                                  m_backgroundColour(backgroundColour) {
         }
+        ~Impl() noexcept {
+            helpers::macos::removeFromParentView(m_clientView);
+        }
 
         void setOptions(Options&& options) {
             m_options.enableDebugMode = options.enableDebug;
