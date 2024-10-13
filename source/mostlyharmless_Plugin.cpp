@@ -1,6 +1,7 @@
 #include "clap/helpers/plugin.hxx"
 #include <mostly_harmless/mostlyharmless_BusConfig.h>
 #include <mostly_harmless/mostlyharmless_Plugin.h>
+#include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #include <sstream>
 #include <string>
 #include <iomanip>
@@ -11,6 +12,7 @@ namespace mostly_harmless {
                                                                                                      m_indexedParams(std::move(params)),
                                                                                                      m_procToGuiQueue(1024),
                                                                                                      m_guiToProcQueue(1024) {
+        MH_LOG("PROC: Creating plugin instance...");
         for (auto& p : m_indexedParams) {
             m_idParams.emplace(p.pid, &p);
         }
@@ -27,7 +29,13 @@ namespace mostly_harmless {
     }
 
     template <marvin::FloatType SampleType>
+    Plugin<SampleType>::~Plugin() noexcept {
+        MH_LOG("PROC: Destroying instance...");
+    }
+
+    template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::activate(double sampleRate, std::uint32_t minFrameCount, std::uint32_t maxFrameCount) noexcept {
+        MH_LOG("PROC: activate()");
         initialise(sampleRate, minFrameCount, maxFrameCount);
         return true;
     }
@@ -218,6 +226,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::implementsParams() const noexcept {
+        MH_LOG("PARAM: implementsParams()");
         return true;
     }
 
@@ -273,12 +282,14 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::implementsAudioPorts() const noexcept {
+        MH_LOG("PROC: implementsAudioPorts()");
         const auto audioBusConfig = getAudioBusConfig();
         return audioBusConfig != BusConfig::None;
     }
 
     template <marvin::FloatType SampleType>
     std::uint32_t Plugin<SampleType>::audioPortsCount(bool isInput) const noexcept {
+        MH_LOG("PROC: audioPortsCount()");
         const auto audioBusConfig = getAudioBusConfig();
         switch (audioBusConfig) {
             case BusConfig::None: {
@@ -299,6 +310,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::audioPortsInfo(std::uint32_t /*index*/, bool isInput, clap_audio_port_info* info) const noexcept {
+        MH_LOG("PROC: audioPortsInfo()");
         const auto audioBusConfig = getAudioBusConfig();
         if (audioBusConfig == BusConfig::InputOutput || (isInput && audioBusConfig == BusConfig::InputOnly) || (!isInput && audioBusConfig == BusConfig::OutputOnly)) {
             info->id = 0;
@@ -314,12 +326,14 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::implementsNotePorts() const noexcept {
+        MH_LOG("PROC: implementsNotePorts()");
         const auto noteBusConfig = getNoteBusConfig();
         return noteBusConfig != BusConfig::None;
     }
 
     template <marvin::FloatType SampleType>
     std::uint32_t Plugin<SampleType>::notePortsCount(bool isInput) const noexcept {
+        MH_LOG("PROC: notePortsCount()");
         const auto noteBusConfig = getNoteBusConfig();
         switch (noteBusConfig) {
             case BusConfig::None: {
@@ -340,6 +354,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::notePortsInfo(std::uint32_t /*index*/, bool isInput, clap_note_port_info* info) const noexcept {
+        MH_LOG("PROC: notePortsInfo()");
         const auto noteBusConfig = getNoteBusConfig();
         if (noteBusConfig == BusConfig::InputOutput || (isInput && noteBusConfig == BusConfig::InputOnly) || (!isInput && noteBusConfig == BusConfig::OutputOnly)) {
             info->id = 1;
@@ -353,11 +368,13 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::implementsState() const noexcept {
+        MH_LOG("STAT: implementsState()");
         return true;
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::stateSave(const clap_ostream* stream) noexcept {
+        MH_LOG("STAT: stateSave()");
         std::ostringstream dest;
         saveState(dest);
         const auto asString = dest.str();
@@ -374,6 +391,7 @@ namespace mostly_harmless {
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::stateLoad(const clap_istream* stream) noexcept {
         // set up a buffer..
+        MH_LOG("STAT: stateLoad()");
         constexpr static auto maxSize{ static_cast<size_t>(4096 * 8) };
         std::vector<char> buffer(maxSize);
         constexpr static auto blockSize{ 64U };
@@ -399,12 +417,14 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::implementsGui() const noexcept {
+        MH_LOG("GUI: implementsGui()");
         return true;
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiIsApiSupported(const char* api, bool isFloating) noexcept {
-        if (isFloating) return false;
+        MH_LOG("GUI: guiIsApiSupported()");
+        if (isFloating) return true;
 #if defined(MOSTLY_HARMLESS_WINDOWS)
         return strcmp(api, CLAP_WINDOW_API_WIN32) == 0;
 #elif defined(MOSTLY_HARMLESS_MACOS)
@@ -416,6 +436,7 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiCreate(const char* /*api*/, bool /*isFloating*/) noexcept {
+        MH_LOG("GUI: guiCreate()");
         auto requestFlushCallback = [this]() -> void {
             if (_host.canUseParams()) {
                 _host.paramsRequestFlush();
@@ -436,12 +457,14 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     void Plugin<SampleType>::guiDestroy() noexcept {
+        MH_LOG("GUI: guiDestroy()");
         m_guiDispatchThread.stop();
         m_editor.reset();
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiSetParent(const clap_window* window) noexcept {
+        MH_LOG("GUI: guiSetParent()");
 #if defined(MOSTLY_HARMLESS_WINDOWS)
         m_editor->setParent(window->win32);
 #elif defined(MOSTLY_HARMLESS_MACOS)
@@ -454,21 +477,25 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiSetScale(double /*scale*/) noexcept {
+        MH_LOG("GUI: guiSetScale()");
         return false; // TODO
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiCanResize() const noexcept {
+        MH_LOG("GUI: guiCanResize()");
         return false; // TODO
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiAdjustSize(std::uint32_t* /*width*/, std::uint32_t* /*height*/) noexcept {
+        MH_LOG("GUI: guiAdjustSize()");
         return true; // TODO
     }
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiSetSize(std::uint32_t width, std::uint32_t height) noexcept {
+        MH_LOG("GUI: guiSetSize()");
         if (!m_editor) return false;
         m_editor->setSize(width, height);
         return true;
@@ -476,7 +503,22 @@ namespace mostly_harmless {
 
     template <marvin::FloatType SampleType>
     bool Plugin<SampleType>::guiGetSize(std::uint32_t* width, std::uint32_t* height) noexcept {
+        MH_LOG("GUI: guiGetSize()");
         m_editor->getSize(width, height);
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiShow() noexcept {
+        if (!m_editor) return false;
+        m_editor->show();
+        return true;
+    }
+
+    template <marvin::FloatType SampleType>
+    bool Plugin<SampleType>::guiHide() noexcept {
+        if (!m_editor) return false;
+        m_editor->hide();
         return true;
     }
 

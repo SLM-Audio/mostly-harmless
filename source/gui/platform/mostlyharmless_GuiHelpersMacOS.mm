@@ -2,6 +2,7 @@
 #include <Foundation/Foundation.h>
 #include <AppKit/AppKit.h>
 #include <CoreGraphics/CoreGraphics.h>
+#include <mostly_harmless/utils/mostlyharmless_Macros.h>
 namespace mostly_harmless::gui::helpers::macos {
     void* createView(std::uint32_t width, std::uint32_t height) {
         const auto fwidth = static_cast<CGFloat>(width);
@@ -13,6 +14,7 @@ namespace mostly_harmless::gui::helpers::macos {
     }
 
     void removeFromParentView(void* viewHandle) {
+        MH_LOG("GUI: Removing from parent view");
         auto* asView = static_cast<NSView*>(viewHandle);
         [asView removeFromSuperview];
     }
