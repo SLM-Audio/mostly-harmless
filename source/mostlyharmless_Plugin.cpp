@@ -410,6 +410,7 @@ namespace mostly_harmless {
             const auto value = param.value;
             m_procToGuiQueue.tryPush({ .paramId = pid, .value = value });
         }
+        _host.paramsRescan(CLAP_PARAM_RESCAN_VALUES);
         return true;
     }
     //===========================================================================================
