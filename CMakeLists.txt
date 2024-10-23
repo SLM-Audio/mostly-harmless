@@ -72,10 +72,11 @@ target_include_directories(MostlyHarmless SYSTEM PUBLIC
 if (APPLE)
     set(PLATFORM_PREPRO MOSTLY_HARMLESS_MACOS)
     set(MOSTLY_HARMLESS_EXTRA_LIBS "-framework WebKit -framework AppKit")
+    target_compile_options(MostlyHarmless PUBLIC "-ffast-math")
 elseif (WIN32)
     set(PLATFORM_PREPRO MOSTLY_HARMLESS_WINDOWS)
 else ()
-    #    message(FATAL_ERROR "Platform not supported!")
+    #    message(FATAL_ERROR " Platform not supported!")
 endif ()
 target_compile_definitions(MostlyHarmless PUBLIC
         ${PLATFORM_PREPRO}

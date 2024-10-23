@@ -139,6 +139,10 @@ function(mostly_harmless_add_plugin targetName)
             ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostlyharmless_Descriptor.cpp
             ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp
     )
+    if (APPLE)
+        set(${PROJECT_NAME}_COMPILE_OPTS "-ffast-math")
+    endif ()
+
     add_library(${PLUGIN_NAME} STATIC)
     target_sources(${PLUGIN_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp)
     target_link_libraries(${PLUGIN_NAME} PUBLIC MostlyHarmless)
@@ -148,6 +152,7 @@ function(mostly_harmless_add_plugin targetName)
     if (${INDEX} GREATER -1)
         add_library(${PLUGIN_NAME}_CLAP MODULE)
         target_link_libraries(${PLUGIN_NAME}_CLAP PUBLIC ${PLUGIN_NAME})
+        target_compile_options(${PLUGIN_NAME}_CLAP PUBLIC ${${PROJECT_NAME}_COMPILE_OPTS})
         if (APPLE)
             set_target_properties(${PLUGIN_NAME}_CLAP PROPERTIES
                     OUTPUT_NAME ${PLUGIN_NAME}
@@ -199,6 +204,7 @@ function(mostly_harmless_add_plugin targetName)
 
         else ()
         endif ()
+        target_compile_options(${PLUGIN_NAME}_VST3 PUBLIC ${${PROJECT_NAME}_COMPILE_OPTS})
         target_link_libraries(${PLUGIN_NAME}_VST3 PUBLIC ${PLUGIN_NAME})
     endif ()
     list(FIND PLUGIN_FORMATS "AU" INDEX)
@@ -224,6 +230,7 @@ function(mostly_harmless_add_plugin targetName)
             endif ()
             add_library(${PLUGIN_NAME}_AU MODULE)
             target_sources(${PLUGIN_NAME}_AU PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp)
+            target_compile_options(${PLUGIN_NAME}_AU PUBLIC ${${PROJECT_NAME}_COMPILE_OPTS})
             target_link_libraries(${PLUGIN_NAME}_AU PUBLIC ${PLUGIN_NAME})
             add_dependencies(${PLUGIN_NAME}_AU ${PLUGIN_NAME}_CLAP)
             target_add_auv2_wrapper(
@@ -249,6 +256,7 @@ function(mostly_harmless_add_plugin targetName)
         message(STATUS "STANDALONE")
         add_executable(${PLUGIN_NAME}_Standalone)
         target_link_libraries(${PLUGIN_NAME}_Standalone PRIVATE ${PLUGIN_NAME})
+        target_compile_options(${PLUGIN_NAME}_Standalone PUBLIC ${${PROJECT_NAME}_COMPILE_OPTS})
         target_add_standalone_wrapper(TARGET ${PLUGIN_NAME}_Standalone
                 OUTPUT_NAME ${PLUGIN_NAME}
                 STATICALLY_LINKED_CLAP_ENTRY True
