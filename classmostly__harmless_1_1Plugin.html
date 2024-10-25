@@ -127,6 +127,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:ae4694292fecc284e0d7220021ada2314" id="r_ae4694292fecc284e0d7220021ada2314"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4694292fecc284e0d7220021ada2314">runBlockDispatch</a> (<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt; bufferView, <a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a> eventContext, std::function&lt; void(const clap_event_header *event)&gt; &amp;&amp;eventCallback, std::function&lt; void(<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt;)&gt; &amp;&amp;blockCallback) noexcept</td></tr>
+<tr class="separator:ae4694292fecc284e0d7220021ada2314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4930a6a7b33f561eb5d177283f87cf7" id="r_ab4930a6a7b33f561eb5d177283f87cf7"><td class="memItemLeft" align="right" valign="top">std::span&lt; <a class="el" href="structmostly__harmless_1_1Parameter.html">Parameter</a>&lt; SampleType &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4930a6a7b33f561eb5d177283f87cf7">getParamView</a> () noexcept</td></tr>
 <tr class="separator:ab4930a6a7b33f561eb5d177283f87cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87aaf0cab05e489ec01a78c5b2829799" id="r_a87aaf0cab05e489ec01a78c5b2829799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structmostly__harmless_1_1Parameter.html">Parameter</a>&lt; SampleType &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87aaf0cab05e489ec01a78c5b2829799">getParameter</a> (clap_id id) noexcept</td></tr>
@@ -773,6 +775,47 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 </table>
 </div><div class="memdoc">
 <p>Called to clear all audio buffers, and state, etc. </p>
+
+</div>
+</div>
+<a id="ae4694292fecc284e0d7220021ada2314" name="ae4694292fecc284e0d7220021ada2314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4694292fecc284e0d7220021ada2314">&#9670;&#160;</a></span>runBlockDispatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmostly__harmless_1_1Plugin.html">mostly_harmless::Plugin</a>&lt; SampleType &gt;::runBlockDispatch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt;</td>          <td class="paramname"><span class="paramname"><em>bufferView</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">events::InputEventContext</a></td>          <td class="paramname"><span class="paramname"><em>eventContext</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(const clap_event_header *event)&gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>eventCallback</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt;)&gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>blockCallback</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

@@ -18,5 +18,5 @@ var searchData=
   ['resize_15',['resize',['../classmarvin_1_1containers_1_1SwapBuffer.html#acc638250f51b3efb59c191b1f912b8fe',1,'marvin::containers::SwapBuffer']]],
   ['resource_16',['Resource',['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html',1,'mostly_harmless::gui::WebviewBase::Resource'],['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#aec10948467e291b75733f510920da68e',1,'mostly_harmless::gui::WebviewBase::Resource::Resource()=default'],['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970',1,'mostly_harmless::gui::WebviewBase::Resource::Resource(std::string_view content, std::string mimeType_)']]],
   ['run_17',['run',['../classmostly__harmless_1_1utils_1_1Timer.html#af54be9adbdfca2dbcc726f93612d8447',1,'mostly_harmless::utils::Timer::run(int intervalMs)'],['../classmostly__harmless_1_1utils_1_1Timer.html#a11b90c4fe96467d81e955f349e1d3bfd',1,'mostly_harmless::utils::Timer::run(double frequency)']]],
-  ['runblockdispatch_18',['runBlockDispatch',['../namespacemostly__harmless.html#a8d2d74acdc833b5d2eef76b423e9cf89',1,'mostly_harmless']]]
+  ['runblockdispatch_18',['runBlockDispatch',['../classmostly__harmless_1_1Plugin.html#ae4694292fecc284e0d7220021ada2314',1,'mostly_harmless::Plugin']]]
 ];
