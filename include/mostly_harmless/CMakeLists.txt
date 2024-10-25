@@ -19,6 +19,5 @@ set(MOSTLYHARMLESS_HEADERS
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Colour.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_TaskThread.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Timer.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/audio/mostlyharmless_AudioHelpers.h
         ${PLATFORM_HEADERS}
         PARENT_SCOPE)

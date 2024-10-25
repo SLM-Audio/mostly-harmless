@@ -112,6 +112,7 @@ namespace mostly_harmless {
         void paramsFlush(const clap_input_events* in, const clap_output_events* out) noexcept override;
 
     protected:
+        void runBlockDispatch(marvin::containers::BufferView<SampleType> bufferView, events::InputEventContext eventContext, std::function<void(const clap_event_header* event)>&& eventCallback, std::function<void(marvin::containers::BufferView<SampleType>)>&& blockCallback) noexcept;
         /**
          * Retrieves a non owning flat view into the internal params struct - useful for iterating over params, etc etc
          * \return A non owning view into the internal params.
@@ -224,6 +225,7 @@ namespace mostly_harmless {
 
 
     private:
+        std::vector<SampleType*> m_channelScratchVec;
         std::vector<Parameter<SampleType>> m_indexedParams;
         std::unordered_map<clap_id, Parameter<SampleType>*> m_idParams;
         std::optional<TransportState> m_lastTransportState{};

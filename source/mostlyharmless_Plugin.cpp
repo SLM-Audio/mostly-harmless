@@ -26,6 +26,7 @@ namespace mostly_harmless {
             runOnMainThread(std::move(messageThreadCallback));
         };
         m_guiDispatchThread.action = std::move(guiDispatchCallback);
+        m_channelScratchVec.reserve(64);
     }
 
     template <marvin::FloatType SampleType>
@@ -217,6 +218,37 @@ namespace mostly_harmless {
             case CLAP_EVENT_PARAM_MOD: [[fallthrough]]; // TODO
             default: break;
         }
+    }
+    template <marvin::FloatType SampleType>
+    void Plugin<SampleType>::runBlockDispatch(marvin::containers::BufferView<SampleType> bufferView, events::InputEventContext eventContext, std::function<void(const clap_event_header*)>&& eventCallback, std::function<void(marvin::containers::BufferView<SampleType>)>&& blockCallback) noexcept {
+        const auto numChannels = bufferView.getNumChannels();
+        m_channelScratchVec.resize(numChannels);
+        size_t lastEventIndex{ 0 };
+        auto* const* rawBuff = bufferView.getArrayOfWritePointers();
+        for (size_t i = 0; i < bufferView.getNumSamples(); ++i) {
+            if (eventContext.next() && eventContext.next()->time == static_cast<std::uint32_t>(i)) {
+                while (eventContext.next() && eventContext.next()->time == static_cast<std::uint32_t>(i)) {
+                    eventCallback(eventContext.next());
+                    ++eventContext;
+                }
+                for (size_t channel = 0; channel < numChannels; ++channel) {
+                    auto* offsetChannelPtr = rawBuff[channel] + static_cast<std::ptrdiff_t>(lastEventIndex);
+                    m_channelScratchVec[channel] = offsetChannelPtr;
+                }
+                const auto numSamples = i - lastEventIndex;
+                marvin::containers::BufferView<SampleType> slice{ m_channelScratchVec.data(), numChannels, numSamples };
+                blockCallback(slice);
+                lastEventIndex = i;
+            }
+        }
+        const auto remaining = static_cast<std::int64_t>(bufferView.getNumSamples()) - static_cast<std::int64_t>(lastEventIndex);
+        if (remaining <= 0) return;
+        for (size_t channel = 0; channel < numChannels; ++channel) {
+            auto* offsetChannelPtr = rawBuff[channel] + static_cast<std::ptrdiff_t>(lastEventIndex);
+            m_channelScratchVec[channel] = offsetChannelPtr;
+        }
+        marvin::containers::BufferView<SampleType> slice{ m_channelScratchVec.data(), bufferView.getNumChannels(), static_cast<size_t>(remaining) };
+        blockCallback(slice);
     }
 
     template <marvin::FloatType SampleType>
