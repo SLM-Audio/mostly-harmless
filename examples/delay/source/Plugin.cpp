@@ -4,7 +4,6 @@
 
 #include "Plugin.h"
 #include "PluginEditor.h"
-#include <mostly_harmless/audio/mostlyharmless_AudioHelpers.h>
 
 namespace examples::delay {
     std::vector<mostly_harmless::Parameter<float>> createParams() {
@@ -34,7 +33,7 @@ namespace examples::delay {
             m_delay.process(buffer, m_parameters);
         };
 
-        mostly_harmless::runBlockDispatch<float>(buffer, context, std::move(onEvent), std::move(onAudio));
+        mostly_harmless::Plugin<float>::runBlockDispatch(buffer, context, std::move(onEvent), std::move(onAudio));
     }
 
     void Plugin::flushParams(mostly_harmless::events::InputEventContext context) noexcept {

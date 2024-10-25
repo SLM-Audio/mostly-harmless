@@ -6,7 +6,7 @@
 #include <fmt/core.h>
 #include <iostream>
 #include <sstream>
-#include <magic_enum.hpp>
+#include <magic_enum/magic_enum.hpp>
 #include "Gain.h"
 #include <mostlyharmless_WebResources.h>
 

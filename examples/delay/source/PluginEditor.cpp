@@ -4,7 +4,7 @@
 
 #include "PluginEditor.h"
 #include "Parameters.h"
-#include <magic_enum.hpp>
+#include <magic_enum/magic_enum.hpp>
 namespace examples::delay {
     PluginEditor::PluginEditor(std::uint32_t width, std::uint32_t height) : mostly_harmless::gui::WebviewEditor(width, height, mostly_harmless::gui::Colour{ 0xFF89CC04 }) {
         std::stringstream initialDataStream;
