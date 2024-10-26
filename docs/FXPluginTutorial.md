@@ -332,8 +332,62 @@ our user `SharedState` class.
 [5] Finally, we call a macro to register this `PluginEntry` class with the framework. Internally this defines a free
 function, `createPluginEntry`, which returns our user `PluginEntry` type.
 The internal framework class then uses its hooks to create `SharedState`, `Engine` and `Editor` classes, and forwards
-relevant function calls to the appropriate places within there classes. 
+relevant function calls to the appropriate places within there classes.
 
+## Getting it building
+
+Mostly harmless uses cmake, and provides some CMake helpers to make setting up your plugin a little more painless.
+
+Familiarity with CMake is assumed here, and some typical options have been ommitted for the sake of brevity (macOS arch
+to build, windows runtime linking type, codesigning, etc).
+
+```cmake 
+cmake_minimum_required(VERSION 3.24)
+set(CMAKE_CXX_STANDARD 20)
+project(MyPlugin VERSION 0.0.1)
+include(FetchContent)
+FetchContent_Declare(mostly_harmless
+        GIT_REPOSITORY https://github.com/SLM-Audio/mostly-harmless.git
+        GIT_TAG main
+        GIT_SHALLOW ON
+)
+FetchContent_MakeAvailable(mostly_harmless) # [1]
+
+mostly_harmless_add_plugin(MyPlugin # [2]
+        ID "yourcompany.yourplugin"
+        VENDOR "Your Company"
+        FORMATS CLAP AU VST3 Standalone # [3]
+        AU_BUNDLE_ID "com.yourcompany.yourplugin"
+        AU_BUNDLE_VERSION "1"
+        MANUFACTURER_CODE "Yrco"
+        SUBTYPE_CODE "Ypi1"
+        AU_TYPE "aufx"
+        FEATURES "audio-effect"
+)
+
+target_sources(MyPlugin PRIVATE # [4]
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/PluginEntry.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/SharedState.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/Engine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/Editor.cpp
+)
+
+target_include_directories(MyPlugin PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source) # [5]
+```
+
+[1] We pull in mostly harmless via fetch content - in real life, you probably want to pin this to a specific SHA or tag.
+
+[2] Mostly harmless provides `mostly_harmless_add_plugin`, which will set up the specified plugin targets for you, and
+automatically handle the internal linking, etc.
+
+[3] This is where we specify what formats we want to build. Note that AU requires some extra arguments that the other
+targets don't - see README.md for more info on this.
+
+[4] We specify what source files the plugin should compile.
+
+[5] We set the `source` directory as an include directory for convenience.
+
+At this point, you should be at a stage where your plugin is compiling!
 
 
 
