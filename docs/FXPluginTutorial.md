@@ -1,5 +1,19 @@
 # Making an audio fx plugin
 
+## Prerequisites
+
+Without sounding gatekeepy, mostly harmless wasn't really written with absolute C++ beginners in mind. It's no doubt
+possible to learn C++
+via this framework, but the documentation and tutorials assume relative-fluency with C++ and CMake, (if such a thing
+actually exists), and the framework code tends to adhere to RAII techniques, liberally throw around terms
+like `rvalue ref`, etc.  
+This isn't to exclude anyone from using the framework, I've just never been great at explaining this sort of thing -
+so it's moreso a word of warning that if you're just starting out, the JUCE framework will definitely give you a less
+landmine-filled environment to learn in.
+
+All that being said, if you need help with the framework, you can reach me in The Audio Programmer discord community,
+I'm @Meijis.
+
 ## Anatomy
 
 ### Engine, Editor and SharedState
