@@ -4,7 +4,6 @@
 
 #ifndef MOSTLYHARMLESS_MOSTLYHARMLESS_AUDIOHELPERS_H
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_AUDIOHELPERS_H
-#include "mostly_harmless/mostlyharmless_Plugin.h"
 #include "mostly_harmless/events/mostlyharmless_InputEventContext.h"
 #include "marvin/containers/marvin_BufferView.h"
 #include <functional>

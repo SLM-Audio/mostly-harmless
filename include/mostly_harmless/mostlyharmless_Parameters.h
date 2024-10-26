@@ -1,5 +1,6 @@
 #ifndef MOSTLYHARMLESS_PARAMETERS_H
 #define MOSTLYHARMLESS_PARAMETERS_H
+#include <clap/ext/params.h>
 #include <marvin/utils/marvin_Range.h>
 #include <functional>
 namespace mostly_harmless {

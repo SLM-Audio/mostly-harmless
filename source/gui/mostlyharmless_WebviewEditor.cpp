@@ -14,21 +14,24 @@
 #include <filesystem>
 namespace mostly_harmless::gui {
 
-    WebviewEditor::WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) : WebviewBase(initialWidth, initialHeight, backgroundColour) {
+    WebviewEditor::WebviewEditor(core::ISharedState* sharedState, std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) : WebviewBase(initialWidth,
+                                                                                                                                                                  initialHeight,
+                                                                                                                                                                  backgroundColour),
+                                                                                                                                                      m_sharedState(sharedState) {
     }
 
-    void WebviewEditor::initialise(EditorContext context) {
-        WebviewBase::initialise(context);
-        auto beginParamGestureCallback_ = [context, this](const choc::value::ValueView& args) -> choc::value::Value {
-            return beginParamChangeGestureCallback(context, args);
+    void WebviewEditor::initialise() {
+        WebviewBase::initialise();
+        auto beginParamGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            return beginParamChangeGestureCallback(args);
         };
 
-        auto paramChangeCallback_ = [this, context](const choc::value::ValueView& args) -> choc::value::Value {
-            return paramChangeGestureCallback(context, args);
+        auto paramChangeCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            return paramChangeGestureCallback(args);
         };
 
-        auto endParamGestureCallback_ = [context, this](const choc::value::ValueView& args) -> choc::value::Value {
-            return endParamChangeGestureCallback(context, args);
+        auto endParamGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            return endParamChangeGestureCallback(args);
         };
         m_internalWebview->bind("beginParamGesture", std::move(beginParamGestureCallback_));
         m_internalWebview->bind("setParamValue", std::move(paramChangeCallback_));
@@ -48,14 +51,14 @@ namespace mostly_harmless::gui {
         m_internalWebview->evaluateJavascript(stream.str(), {});
     }
 
-    choc::value::Value WebviewEditor::beginParamChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) {
-        if (!context.guiToProcQueue) return {};
+    choc::value::Value WebviewEditor::beginParamChangeGestureCallback(const choc::value::ValueView& args) {
         try {
+            auto& guiToProcQueue = m_sharedState->getGuiToProcQueue();
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
-            context.guiToProcQueue->tryPush({ .type = events::GuiToProcParamEvent::Type::Begin,
-                                              .paramId = paramId,
-                                              .value = 0.0 });
-            context.requestParamFlush();
+            guiToProcQueue.tryPush({ .type = events::GuiToProcParamEvent::Type::Begin,
+                                     .paramId = paramId,
+                                     .value = 0.0 });
+            m_sharedState->requestParamFlush();
         } catch (std::exception& e) {
             assert(false);
             return choc::value::Value{ e.what() };
@@ -63,15 +66,15 @@ namespace mostly_harmless::gui {
         return {};
     }
 
-    choc::value::Value WebviewEditor::paramChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) {
-        if (!context.guiToProcQueue) return {};
+    choc::value::Value WebviewEditor::paramChangeGestureCallback(const choc::value::ValueView& args) {
         try {
+            auto& guiToProcQueue = m_sharedState->getGuiToProcQueue();
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
             const auto value = args[0]["value"].get<float>();
-            context.guiToProcQueue->tryPush({ .type = events::GuiToProcParamEvent::Type::Adjust,
-                                              .paramId = paramId,
-                                              .value = value });
-            context.requestParamFlush();
+            guiToProcQueue.tryPush({ .type = events::GuiToProcParamEvent::Type::Adjust,
+                                     .paramId = paramId,
+                                     .value = value });
+            m_sharedState->requestParamFlush();
         } catch (std::exception& e) {
             assert(false);
             return choc::value::Value{ e.what() };
@@ -79,14 +82,14 @@ namespace mostly_harmless::gui {
         return {};
     }
 
-    choc::value::Value WebviewEditor::endParamChangeGestureCallback(mostly_harmless::gui::EditorContext context, const choc::value::ValueView& args) {
-        if (!context.guiToProcQueue) return {};
+    choc::value::Value WebviewEditor::endParamChangeGestureCallback(const choc::value::ValueView& args) {
         try {
+            auto& guiToProcQueue = m_sharedState->getGuiToProcQueue();
             const auto paramId = static_cast<std::uint32_t>(args[0]["paramId"].getInt64());
-            context.guiToProcQueue->tryPush({ .type = events::GuiToProcParamEvent::Type::End,
-                                              .paramId = paramId,
-                                              .value = 0.0 });
-            context.requestParamFlush();
+            guiToProcQueue.tryPush({ .type = events::GuiToProcParamEvent::Type::End,
+                                     .paramId = paramId,
+                                     .value = 0.0 });
+            m_sharedState->requestParamFlush();
         } catch (std::exception& e) {
             std::cout << e.what();
             assert(false);

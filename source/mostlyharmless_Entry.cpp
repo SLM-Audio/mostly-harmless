@@ -1,11 +1,19 @@
 #include <mostly_harmless/mostlyharmless_Descriptor.h>
+#include <mostly_harmless/mostlyharmless_PluginBase.h>
 #include "clap/entry.h"
 #include "clap/plugin.h"
 #include <cstdint>
 #include <clap/factory/plugin-factory.h>
 
 namespace mostly_harmless::entry {
-    const clap_plugin* clap_create_plugin(const clap_plugin_factory* f, const clap_host* h, const char* id);
+    const clap_plugin* clap_create_plugin(const clap_plugin_factory* /*f*/, const clap_host* h, const char* id) {
+        auto& desc = getDescriptor();
+        if (std::strcmp(desc.id, id) != 0) {
+            return nullptr;
+        }
+        auto* p = new internal::PluginBase(h);
+        return p->clapPlugin();
+    }
 
     std::uint32_t clap_get_plugin_count(const clap_plugin_factory* /*f*/) {
         return 1;
