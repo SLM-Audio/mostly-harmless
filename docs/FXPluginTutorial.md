@@ -403,6 +403,173 @@ targets don't - see README.md for more info on this.
 
 At this point, you should be at a stage where your plugin is compiling!
 
+## A Gain Plugin
+
+### Modifying the input signal's level
+
+Let's start simple - multiply the audio input by 0.5. Jumping back to our `Engine` class, our `process` function is the
+place to do so.
+
+```cpp 
+  void Engine::process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> /*transportState*/) { 
+  
+  }
+```
+
+You can take a look at the docs for `BufferView`, but it can pretty much be thought of a `std::span` but for an audio
+buffer - that is, a non owning view into the passed in audio buffer.
+Internally in the framework, for sample accurate automation, this buffer view will be from index_of_last_event to
+index_of_current_event - essentially it's interrupted whenever there's a new param/midi event.
+See `mostly_harmless::runBlockDispatch` for a more in-depth explanation of this.
+
+`BufferView` provides functions to grab read / write pointers (RAW pointers) to the underlying data. It's worth noting
+that these actually point to the same memory, just with different access modifiers, which is a holdover from my JUCE
+muscle memory.
+
+To start with then, lets grab our read and write pointers..
+
+```cpp 
+const auto* const* read = buffer.getArrayOfReadPointers(); // const T* const *
+auto* const* write = buffer.getArrayOfWritePointers(); // T* const *
+```
+
+Now we're set up to apply our gain:
+
+```cpp
+const auto* const* read = buffer.getArrayOfReadPointers(); // const T* const *
+auto* const* write = buffer.getArrayOfWritePointers(); // T* const *
+for(size_t sample = 0; sample < buffer.getNumSamples(); ++sample) { // iterate over the samples
+    for(auto channel = 0_sz; channel < buffer.getNumChannels(); ++channel) { // iterate over the channels
+        write[channel][sample] = read[channel][sample] * 0.5f; // multiply our input signal by 0.5, and write to the output signal.
+    }
+}
+```
+
+Running this, you should hear it attenuating the input signal. Great! Now lets make the gain modifyable.
+
+### Parameters
+
+Earlier I mentioned that `ISharedState` takes a vector of parameters to its constructor, which registers them
+internally, and we defined a
+TU-scoped free function to create our params. Let's revisit that:
+
+```cpp
+std::vector<mostly_harmless::Parameter<float>> createParams() { 
+    std::vector<mostly_harmless::Parameter<float>> params;
+    ...
+}
+```
+
+Now - `mostly_harmless::Parameter<float>` - whats the deal with that? At this point it's helpful to get slightly
+sidetracked, and take a look at the documentation.
+The main things we need to worry about here are `pid`, `name`, `category`, `range`, `defaultValue` and `flags`.
+
+- `pid` is the internally used param id.
+- `name` is the parameter's name, which will be displayed in the host.
+- `category` is a clap-specific thing, in which you can separate certain parameters by category - this specifies the
+  category.
+- `range` is the range of the parameter.
+- `defaultValue` is, intuitively, the default value of the parameter.
+- `flags` is a set of clap defined flags, to control the parameter's properties.
+
+To start with, it's sort of awkward having to decide on an arbitrary `pid`, so we'll set up an enumerator to define
+these.
+
+```cpp 
+enum ParamId : std::uint32_t { 
+  kGain,
+  NumParams
+};
+```
+
+Armed with our newfound knowledge, lets populate our `createParams` function.
+
+```cpp
+std::vector<mostly_harmless::Parameter<float>> createParams() { 
+    std::vector<mostly_harmless::Parameter<float>> params;
+    params.emplace_back(mostly_harmless::Parameter<float>{ 
+        ParamId::kGain, // pid
+        "Gain", // name
+        "gain/", // category
+        {.min = 0.0f, .max = 1.0f}, // range,
+        1.0f, // defaultValue
+        CLAP_PARAM_IS_AUTOMATABLE // flags
+    });
+    return params;
+}
+```
+
+With this in place, we've created a gain parameter. `ISharedState` provides a `getParameterById` function which we can
+use to retrieve a parameter by `ParamId`.
+
+However, this performs a lookup in a `std::unordered_map`. We can live with this, but can also do better. Still within
+our `ISharedState` header/source, lets declare a new type, `ParameterView`.
+
+```cpp 
+struct ParameterView final { 
+    mostly_harmless::Parameter<float>* gainParam{ nullptr };
+};
+
+class SharedState ....
+```
+
+And now let's create an instance of `ParameterView` as a member of `SharedContext`.
+
+```cpp 
+private: 
+    void loadState(...
+    void saveState(...
+    
+    ParameterView m_paramView;
+    
+```
+
+In `SharedState`'s constructor, we need to initialise `m_paramView`'s `gainParam` pointer to a valid parameter:
+
+```cpp 
+SharedState::SharedState(....) : .... { 
+    m_paramView.gainParam = getParameterById(ParamId::kGain);
+}
+```
+
+We've now set up a trivially copyable struct containing raw pointers to our params, and the only lookups happen at
+construction.
+To use this in our `Engine` and `Editor` classes, we need to create a getter:
+
+```cpp 
+class SharedState final : .... { 
+public: 
+    ...
+    [[nodiscard]] ParameterView getParamView() const noexcept;
+    ...
+};
+```
+
+```cpp
+ParameterView SharedState::getParamView() const noexcept { 
+    return m_paramView;
+}
+```
+
+We can finally grab the parameter in our Engine now:
+
+```cpp
+void Engine::process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> transport) {
+    auto paramView = m_sharedState->getParamView();
+    const auto gain = paramView.gainParam->value;
+    const auto* const* read = buffer.getArrayOfReadPointers();                   
+    auto* const* write = buffer.getArrayOfWritePointers();                      
+    for (size_t sample = 0; sample < buffer.getNumSamples(); ++sample) {       
+        for (auto channel = 0_sz; channel < buffer.getNumChannels(); ++channel) {
+            write[channel][sample] = read[channel][sample] * gain;             
+        }
+    }
+}
+```
+
+
+
+
 
 
 
