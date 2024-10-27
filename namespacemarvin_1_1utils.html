@@ -90,6 +90,7 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">marvin::utils Namespace Reference</div></div>
@@ -101,8 +102,8 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmarvin_1_1utils_1_1Random.html">Random</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for (pseudo) random number generation.  <a href="classmarvin_1_1utils_1_1Random.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmarvin_1_1utils_1_1RandomGenerator.html">RandomGenerator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for (pseudo) random number generation.  <a href="classmarvin_1_1utils_1_1RandomGenerator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">POD type that represents a range of values, for classes requiring a min and a max.  <a href="structmarvin_1_1utils_1_1Range.html#details">More...</a><br /></td></tr>
@@ -110,6 +111,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmarvin_1_1utils_1_1SmoothedValue.html">SmoothedValue</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A utility class to smooth discrete values over a given period.  <a href="classmarvin_1_1utils_1_1SmoothedValue.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ad5d70be25524dd9193cbefe9a02aa65a" id="r_ad5d70be25524dd9193cbefe9a02aa65a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5d70be25524dd9193cbefe9a02aa65a">Random</a> = <a class="el" href="classmarvin_1_1utils_1_1RandomGenerator.html">RandomGenerator</a>&lt;std::mt19937&gt;</td></tr>
+<tr class="separator:ad5d70be25524dd9193cbefe9a02aa65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -134,10 +140,37 @@ Functions</h2></td></tr>
 <tr class="memitem:a12bbf2c5a95257bd58ba02a26cdc8fd7" id="r_a12bbf2c5a95257bd58ba02a26cdc8fd7"><td class="memTemplParams" colspan="2">template&lt;NumericType T&gt; </td></tr>
 <tr class="memitem:a12bbf2c5a95257bd58ba02a26cdc8fd7"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a12bbf2c5a95257bd58ba02a26cdc8fd7">operator!=</a> (const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;lhs, const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;rhs)</td></tr>
 <tr class="separator:a12bbf2c5a95257bd58ba02a26cdc8fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cbf6de2c3f412d1018c9659c06c4e31" id="r_a6cbf6de2c3f412d1018c9659c06c4e31"><td class="memTemplParams" colspan="2">template&lt;NumericType T&gt; </td></tr>
+<tr class="memitem:a6cbf6de2c3f412d1018c9659c06c4e31"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6cbf6de2c3f412d1018c9659c06c4e31">operator+</a> (const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:a6cbf6de2c3f412d1018c9659c06c4e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aa67f6d68743a46b861e85e1623079b" id="r_a5aa67f6d68743a46b861e85e1623079b"><td class="memTemplParams" colspan="2">template&lt;NumericType T&gt; </td></tr>
+<tr class="memitem:a5aa67f6d68743a46b861e85e1623079b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5aa67f6d68743a46b861e85e1623079b">operator-</a> (const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:a5aa67f6d68743a46b861e85e1623079b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c8be7cb771be20358133a3351ae6b0" id="r_a27c8be7cb771be20358133a3351ae6b0"><td class="memTemplParams" colspan="2">template&lt;NumericType T&gt; </td></tr>
+<tr class="memitem:a27c8be7cb771be20358133a3351ae6b0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a27c8be7cb771be20358133a3351ae6b0">operator*</a> (const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:a27c8be7cb771be20358133a3351ae6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a160f0a46bb6b9c65e3dfea723659b2" id="r_a0a160f0a46bb6b9c65e3dfea723659b2"><td class="memTemplParams" colspan="2">template&lt;NumericType T&gt; </td></tr>
+<tr class="memitem:a0a160f0a46bb6b9c65e3dfea723659b2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0a160f0a46bb6b9c65e3dfea723659b2">operator/</a> (const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:a0a160f0a46bb6b9c65e3dfea723659b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utility helper functions and classes. </p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="ad5d70be25524dd9193cbefe9a02aa65a" name="ad5d70be25524dd9193cbefe9a02aa65a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5d70be25524dd9193cbefe9a02aa65a">&#9670;&#160;</a></span>Random</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ad5d70be25524dd9193cbefe9a02aa65a">marvin::utils::Random</a> = <a class="el" href="classmarvin_1_1utils_1_1RandomGenerator.html">RandomGenerator</a>&lt;std::mt19937&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a561daf68b83f068162d1ef3582e6d89a" name="a561daf68b83f068162d1ef3582e6d89a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a561daf68b83f068162d1ef3582e6d89a">&#9670;&#160;</a></span>SmoothingType</h2>
 
@@ -221,6 +254,98 @@ template&lt;NumericType T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if lhs.min != rhs.min or lhs.max != rhs.max, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a27c8be7cb771be20358133a3351ae6b0" name="a27c8be7cb771be20358133a3351ae6b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27c8be7cb771be20358133a3351ae6b0">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;NumericType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; marvin::utils::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6cbf6de2c3f412d1018c9659c06c4e31" name="a6cbf6de2c3f412d1018c9659c06c4e31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cbf6de2c3f412d1018c9659c06c4e31">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;NumericType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; marvin::utils::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5aa67f6d68743a46b861e85e1623079b" name="a5aa67f6d68743a46b861e85e1623079b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aa67f6d68743a46b861e85e1623079b">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;NumericType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; marvin::utils::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a160f0a46bb6b9c65e3dfea723659b2" name="a0a160f0a46bb6b9c65e3dfea723659b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a160f0a46bb6b9c65e3dfea723659b2">&#9670;&#160;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;NumericType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; marvin::utils::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1utils_1_1Range.html">Range</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

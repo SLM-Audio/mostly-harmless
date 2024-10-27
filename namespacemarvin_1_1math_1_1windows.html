@@ -89,6 +89,7 @@ $(function(){ initResizable(false); });
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">marvin::math::windows Namespace Reference</div></div>
@@ -98,6 +99,12 @@ $(function(){ initResizable(false); });
 <p>Various windowing functions. An interactive graph with more intuition than the textual documentation can give can be found <a href="https://www.desmos.com/calculator/lwbvvnjoaf">here</a>  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmarvin_1_1math_1_1windows_1_1PrecomputedWindow.html">PrecomputedWindow</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper class for cacheing a window function in a lookup table.  <a href="classmarvin_1_1math_1_1windows_1_1PrecomputedWindow.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ac849a14617e4474c653fd66547db8d58" id="r_ac849a14617e4474c653fd66547db8d58"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac849a14617e4474c653fd66547db8d58">WindowType</a> { <br />
@@ -117,9 +124,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4939c967efe179e65412d86fc064b29d" id="r_a4939c967efe179e65412d86fc064b29d"><td class="memTemplParams" colspan="2">template&lt;FloatType SampleType&gt; </td></tr>
 <tr class="memitem:a4939c967efe179e65412d86fc064b29d"><td class="memTemplItemLeft" align="right" valign="top">SampleType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4939c967efe179e65412d86fc064b29d">sine</a> (SampleType n, SampleType N)</td></tr>
 <tr class="separator:a4939c967efe179e65412d86fc064b29d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc37f3055a2d4b788ebb0415fde9e9c9" id="r_adc37f3055a2d4b788ebb0415fde9e9c9"><td class="memTemplParams" colspan="2">template&lt;FloatType SampleType&gt; </td></tr>
-<tr class="memitem:adc37f3055a2d4b788ebb0415fde9e9c9"><td class="memTemplItemLeft" align="right" valign="top">SampleType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#adc37f3055a2d4b788ebb0415fde9e9c9">tukey</a> (SampleType n, SampleType N, SampleType alpha)</td></tr>
-<tr class="separator:adc37f3055a2d4b788ebb0415fde9e9c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa29304e3060312ec4796b6965ce5d527" id="r_aa29304e3060312ec4796b6965ce5d527"><td class="memTemplParams" colspan="2">template&lt;FloatType SampleType&gt; </td></tr>
+<tr class="memitem:aa29304e3060312ec4796b6965ce5d527"><td class="memTemplItemLeft" align="right" valign="top">SampleType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa29304e3060312ec4796b6965ce5d527">tukey</a> (SampleType n, SampleType NumPoints, SampleType alpha)</td></tr>
+<tr class="separator:aa29304e3060312ec4796b6965ce5d527"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a478bc2e574a36a1e1a6a6ab9edd29b65" id="r_a478bc2e574a36a1e1a6a6ab9edd29b65"><td class="memTemplParams" colspan="2">template&lt;FloatType SampleType&gt; </td></tr>
 <tr class="memitem:a478bc2e574a36a1e1a6a6ab9edd29b65"><td class="memTemplItemLeft" align="right" valign="top">SampleType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a478bc2e574a36a1e1a6a6ab9edd29b65">blackmanHarris</a> (SampleType n, SampleType N)</td></tr>
 <tr class="separator:a478bc2e574a36a1e1a6a6ab9edd29b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -371,8 +378,8 @@ template&lt;FloatType SampleType&gt; </div>
 
 </div>
 </div>
-<a id="adc37f3055a2d4b788ebb0415fde9e9c9" name="adc37f3055a2d4b788ebb0415fde9e9c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc37f3055a2d4b788ebb0415fde9e9c9">&#9670;&#160;</a></span>tukey()</h2>
+<a id="aa29304e3060312ec4796b6965ce5d527" name="aa29304e3060312ec4796b6965ce5d527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa29304e3060312ec4796b6965ce5d527">&#9670;&#160;</a></span>tukey()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -390,7 +397,7 @@ template&lt;FloatType SampleType&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SampleType</td>          <td class="paramname"><span class="paramname"><em>N</em></span>, </td>
+          <td class="paramtype">SampleType</td>          <td class="paramname"><span class="paramname"><em>NumPoints</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

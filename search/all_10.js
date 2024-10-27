@@ -16,7 +16,7 @@ var searchData=
   ['trypop_13',['tryPop',['../classmarvin_1_1containers_1_1fifos_1_1SPSC.html#ae0438c6dc0b0019887d81d9aa1e184e5',1,'marvin::containers::fifos::SPSC']]],
   ['trypush_14',['tryPush',['../classmarvin_1_1containers_1_1fifos_1_1SPSC.html#a2acb3e27a2dc5bf8e821d6c219ad7b20',1,'marvin::containers::fifos::SPSC']]],
   ['tukey_15',['Tukey',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58ae64282abbecb575a17b762eb0138273b',1,'marvin::math::windows']]],
-  ['tukey_16',['tukey',['../namespacemarvin_1_1math_1_1windows.html#adc37f3055a2d4b788ebb0415fde9e9c9',1,'marvin::math::windows']]],
+  ['tukey_16',['tukey',['../namespacemarvin_1_1math_1_1windows.html#aa29304e3060312ec4796b6965ce5d527',1,'marvin::math::windows']]],
   ['type_17',['Type',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23',1,'mostly_harmless::events::GuiToProcParamEvent']]],
   ['type_18',['type',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a32bbc6b8b4850eb71e6c0530d4a865cf',1,'mostly_harmless::events::GuiToProcParamEvent']]]
 ];

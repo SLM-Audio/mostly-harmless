@@ -122,6 +122,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acb0ec358cadbd9cb06ada3ae4b700380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9762b8fd07e022f7c1e279345da4e212" id="r_a9762b8fd07e022f7c1e279345da4e212"><td class="memItemLeft" align="right" valign="top">SampleType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9762b8fd07e022f7c1e279345da4e212">popSample</a> (SampleType delayInSamples=-1, bool updateReadPointer=true)</td></tr>
 <tr class="separator:a9762b8fd07e022f7c1e279345da4e212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6662ea4cd0c15793b78442902f84e22e" id="r_a6662ea4cd0c15793b78442902f84e22e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6662ea4cd0c15793b78442902f84e22e">getReadPos</a> () const noexcept</td></tr>
+<tr class="separator:a6662ea4cd0c15793b78442902f84e22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481af5120d328adb36a956db06fdbe55" id="r_a481af5120d328adb36a956db06fdbe55"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a481af5120d328adb36a956db06fdbe55">getWritePos</a> () const noexcept</td></tr>
+<tr class="separator:a481af5120d328adb36a956db06fdbe55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;FloatType SampleType, <a class="el" href="namespacemarvin_1_1dsp.html#a5c2fdd1ce8a2463b0b25e40dd5566d8f">DelayLineInterpolationType</a> InterpolationType = DelayLineInterpolationType::Linear&gt;<br />
@@ -235,6 +239,62 @@ template&lt;FloatType SampleType, <a class="el" href="namespacemarvin_1_1dsp.htm
 </table>
 </div><div class="memdoc">
 <p>Returns the maximum length of the internal buffer. </p><dl class="section return"><dt>Returns</dt><dd>The maximum delay in samples. </dd></dl>
+
+</div>
+</div>
+<a id="a6662ea4cd0c15793b78442902f84e22e" name="a6662ea4cd0c15793b78442902f84e22e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6662ea4cd0c15793b78442902f84e22e">&#9670;&#160;</a></span>getReadPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType SampleType, <a class="el" href="namespacemarvin_1_1dsp.html#a5c2fdd1ce8a2463b0b25e40dd5566d8f">DelayLineInterpolationType</a> InterpolationType = DelayLineInterpolationType::Linear&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classmarvin_1_1dsp_1_1DelayLine.html">marvin::dsp::DelayLine</a>&lt; SampleType, InterpolationType &gt;::getReadPos </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Retrieves the current position of the read head. Note that the read head runs backwards (ie towards zero). </p><dl class="section return"><dt>Returns</dt><dd>The current position of the read head. </dd></dl>
+
+</div>
+</div>
+<a id="a481af5120d328adb36a956db06fdbe55" name="a481af5120d328adb36a956db06fdbe55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a481af5120d328adb36a956db06fdbe55">&#9670;&#160;</a></span>getWritePos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType SampleType, <a class="el" href="namespacemarvin_1_1dsp.html#a5c2fdd1ce8a2463b0b25e40dd5566d8f">DelayLineInterpolationType</a> InterpolationType = DelayLineInterpolationType::Linear&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classmarvin_1_1dsp_1_1DelayLine.html">marvin::dsp::DelayLine</a>&lt; SampleType, InterpolationType &gt;::getWritePos </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Retrives the current position of the write head. Note that the write head runs backwards (ie towards zero). </p><dl class="section return"><dt>Returns</dt><dd>The current position of the write head. </dd></dl>
 
 </div>
 </div>

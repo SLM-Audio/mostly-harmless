@@ -121,21 +121,30 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmarvin_1_1math_1_1LeakyIntegrator.html">LeakyIntegrator</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An integrator of a continuous signal which leaks a small amount of said signal over time.  <a href="classmarvin_1_1math_1_1LeakyIntegrator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmarvin_1_1math_1_1Reciprocal.html">Reciprocal</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to handle mapping from one range to another (warped) range, based on the reciprocal function 1/x.  <a href="classmarvin_1_1math_1_1Reciprocal.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience POD struct for representing a range used by <code><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html" title="Convenience POD struct for representing a range used by marvin::math::ReciprocalRange.">marvin::math::ReciprocalRange</a></code>.  <a href="structmarvin_1_1math_1_1ReciprocalRange.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a67212a8a8c4d308a97bb2e4ea34e7c39" id="r_a67212a8a8c4d308a97bb2e4ea34e7c39"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
 <tr class="memitem:a67212a8a8c4d308a97bb2e4ea34e7c39"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a67212a8a8c4d308a97bb2e4ea34e7c39">lerp</a> (T start, T end, T ratio) noexcept</td></tr>
 <tr class="separator:a67212a8a8c4d308a97bb2e4ea34e7c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a3d40e45bbeb22d6a4566c0f155a292" id="r_a4a3d40e45bbeb22d6a4566c0f155a292"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
-<tr class="memitem:a4a3d40e45bbeb22d6a4566c0f155a292"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4a3d40e45bbeb22d6a4566c0f155a292">dbToGain</a> (T db, T referenceMinDb=static_cast&lt; T &gt;(-100.0))</td></tr>
-<tr class="separator:a4a3d40e45bbeb22d6a4566c0f155a292"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1bc6e54bd3d8abb587555b24648353b" id="r_aa1bc6e54bd3d8abb587555b24648353b"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
-<tr class="memitem:aa1bc6e54bd3d8abb587555b24648353b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa1bc6e54bd3d8abb587555b24648353b">gainToDb</a> (T gain, T minusInfDb=static_cast&lt; T &gt;(-100.0)) noexcept</td></tr>
-<tr class="separator:aa1bc6e54bd3d8abb587555b24648353b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8622695b9c617d47eb67981b8aebf619" id="r_a8622695b9c617d47eb67981b8aebf619"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a8622695b9c617d47eb67981b8aebf619"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8622695b9c617d47eb67981b8aebf619">remap</a> (T x, T newMin, T newMax)</td></tr>
+<tr class="separator:a8622695b9c617d47eb67981b8aebf619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a593ac57e25503d44c65ffe3e068d9df9" id="r_a593ac57e25503d44c65ffe3e068d9df9"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
 <tr class="memitem:a593ac57e25503d44c65ffe3e068d9df9"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a593ac57e25503d44c65ffe3e068d9df9">remap</a> (T x, T srcMin, T srcMax, T newMin, T newMax)</td></tr>
 <tr class="separator:a593ac57e25503d44c65ffe3e068d9df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a83022d44fec7d077403f697e4970bb" id="r_a9a83022d44fec7d077403f697e4970bb"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a9a83022d44fec7d077403f697e4970bb"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9a83022d44fec7d077403f697e4970bb">remap</a> (T x, <a class="el" href="structmarvin_1_1utils_1_1Range.html">marvin::utils::Range</a>&lt; T &gt; srcRange, <a class="el" href="structmarvin_1_1utils_1_1Range.html">marvin::utils::Range</a>&lt; T &gt; newRange)</td></tr>
+<tr class="separator:a9a83022d44fec7d077403f697e4970bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bed62982f4cf09b0bd8d96f5d832f1b" id="r_a6bed62982f4cf09b0bd8d96f5d832f1b"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a6bed62982f4cf09b0bd8d96f5d832f1b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6bed62982f4cf09b0bd8d96f5d832f1b">remap</a> (T x, <a class="el" href="structmarvin_1_1utils_1_1Range.html">marvin::utils::Range</a>&lt; T &gt; newRange)</td></tr>
+<tr class="separator:a6bed62982f4cf09b0bd8d96f5d832f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30692b1ae3ffdf4fd7de93cb86579c79" id="r_a30692b1ae3ffdf4fd7de93cb86579c79"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
 <tr class="memitem:a30692b1ae3ffdf4fd7de93cb86579c79"><td class="memTemplItemLeft" align="right" valign="top">std::span&lt; std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a30692b1ae3ffdf4fd7de93cb86579c79">interleavedToComplexView</a> (std::span&lt; T &gt; data)</td></tr>
 <tr class="separator:a30692b1ae3ffdf4fd7de93cb86579c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,6 +154,33 @@ Functions</h2></td></tr>
 <tr class="memitem:af31b72b955255e60690b6caec77f0dda" id="r_af31b72b955255e60690b6caec77f0dda"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
 <tr class="memitem:af31b72b955255e60690b6caec77f0dda"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af31b72b955255e60690b6caec77f0dda">sinc</a> (T x) noexcept</td></tr>
 <tr class="separator:af31b72b955255e60690b6caec77f0dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f22c21bb0cbc08a79c2567f05a96192" id="r_a6f22c21bb0cbc08a79c2567f05a96192"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a6f22c21bb0cbc08a79c2567f05a96192"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6f22c21bb0cbc08a79c2567f05a96192">msToSeconds</a> (T ms) noexcept</td></tr>
+<tr class="separator:a6f22c21bb0cbc08a79c2567f05a96192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b9303a7ed6946b4732cfe6495069c6" id="r_ae7b9303a7ed6946b4732cfe6495069c6"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:ae7b9303a7ed6946b4732cfe6495069c6"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae7b9303a7ed6946b4732cfe6495069c6">secondsToSamples</a> (T seconds, double sampleRate) noexcept</td></tr>
+<tr class="separator:ae7b9303a7ed6946b4732cfe6495069c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0280c75faafd4bf77bd909ad1ae9fb00" id="r_a0280c75faafd4bf77bd909ad1ae9fb00"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a0280c75faafd4bf77bd909ad1ae9fb00"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0280c75faafd4bf77bd909ad1ae9fb00">msToSamples</a> (T ms, double sampleRate) noexcept</td></tr>
+<tr class="separator:a0280c75faafd4bf77bd909ad1ae9fb00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3d40e45bbeb22d6a4566c0f155a292" id="r_a4a3d40e45bbeb22d6a4566c0f155a292"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a4a3d40e45bbeb22d6a4566c0f155a292"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4a3d40e45bbeb22d6a4566c0f155a292">dbToGain</a> (T db, T referenceMinDb=static_cast&lt; T &gt;(-100.0))</td></tr>
+<tr class="separator:a4a3d40e45bbeb22d6a4566c0f155a292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bc6e54bd3d8abb587555b24648353b" id="r_aa1bc6e54bd3d8abb587555b24648353b"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:aa1bc6e54bd3d8abb587555b24648353b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa1bc6e54bd3d8abb587555b24648353b">gainToDb</a> (T gain, T minusInfDb=static_cast&lt; T &gt;(-100.0)) noexcept</td></tr>
+<tr class="separator:aa1bc6e54bd3d8abb587555b24648353b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea2b7b389e800be8311e578018f5f9d" id="r_afea2b7b389e800be8311e578018f5f9d"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:afea2b7b389e800be8311e578018f5f9d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#afea2b7b389e800be8311e578018f5f9d">operator+</a> (const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:afea2b7b389e800be8311e578018f5f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7f6a6a8b70f5b00ba943ac5f70e9229" id="r_ac7f6a6a8b70f5b00ba943ac5f70e9229"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:ac7f6a6a8b70f5b00ba943ac5f70e9229"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac7f6a6a8b70f5b00ba943ac5f70e9229">operator-</a> (const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:ac7f6a6a8b70f5b00ba943ac5f70e9229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff0e3e1bd4955a48423fee72571f6ea" id="r_a3ff0e3e1bd4955a48423fee72571f6ea"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a3ff0e3e1bd4955a48423fee72571f6ea"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a3ff0e3e1bd4955a48423fee72571f6ea">operator*</a> (const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:a3ff0e3e1bd4955a48423fee72571f6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12108a501e2ed2a89a01ea4153abc22b" id="r_a12108a501e2ed2a89a01ea4153abc22b"><td class="memTemplParams" colspan="2">template&lt;FloatType T&gt; </td></tr>
+<tr class="memitem:a12108a501e2ed2a89a01ea4153abc22b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a12108a501e2ed2a89a01ea4153abc22b">operator/</a> (const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;other, T constant)</td></tr>
+<tr class="separator:a12108a501e2ed2a89a01ea4153abc22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Math helper functions and classes. </p>
@@ -343,8 +379,302 @@ template&lt;FloatType T&gt; </div>
 
 </div>
 </div>
+<a id="a0280c75faafd4bf77bd909ad1ae9fb00" name="a0280c75faafd4bf77bd909ad1ae9fb00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0280c75faafd4bf77bd909ad1ae9fb00">&#9670;&#160;</a></span>msToSamples()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T marvin::math::msToSamples </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>ms</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>sampleRate</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts a time in milliseconds to samples. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ms</td><td>Time in milliseconds. </td></tr>
+    <tr><td class="paramname">sampleRate</td><td>The currently used sample rate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of samples for the given time in milliseconds. </dd></dl>
+
+</div>
+</div>
+<a id="a6f22c21bb0cbc08a79c2567f05a96192" name="a6f22c21bb0cbc08a79c2567f05a96192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f22c21bb0cbc08a79c2567f05a96192">&#9670;&#160;</a></span>msToSeconds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T marvin::math::msToSeconds </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>ms</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts a time in milliseconds to seconds </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ms</td><td>Time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Time in seconds. </dd></dl>
+
+</div>
+</div>
+<a id="a3ff0e3e1bd4955a48423fee72571f6ea" name="a3ff0e3e1bd4955a48423fee72571f6ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff0e3e1bd4955a48423fee72571f6ea">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; marvin::math::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afea2b7b389e800be8311e578018f5f9d" name="afea2b7b389e800be8311e578018f5f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea2b7b389e800be8311e578018f5f9d">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; marvin::math::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac7f6a6a8b70f5b00ba943ac5f70e9229" name="ac7f6a6a8b70f5b00ba943ac5f70e9229"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7f6a6a8b70f5b00ba943ac5f70e9229">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; marvin::math::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12108a501e2ed2a89a01ea4153abc22b" name="a12108a501e2ed2a89a01ea4153abc22b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12108a501e2ed2a89a01ea4153abc22b">&#9670;&#160;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; marvin::math::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structmarvin_1_1math_1_1ReciprocalRange.html">ReciprocalRange</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>constant</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6bed62982f4cf09b0bd8d96f5d832f1b" name="a6bed62982f4cf09b0bd8d96f5d832f1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bed62982f4cf09b0bd8d96f5d832f1b">&#9670;&#160;</a></span>remap() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T marvin::math::remap </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmarvin_1_1utils_1_1Range.html">marvin::utils::Range</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>newRange</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Takes a value in range 0 to 1, and rescales it to be in range <code>newRange</code>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The value to remap. </td></tr>
+    <tr><td class="paramname">newRange</td><td>The range to map the value into. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The rescaled value. </dd></dl>
+
+</div>
+</div>
+<a id="a9a83022d44fec7d077403f697e4970bb" name="a9a83022d44fec7d077403f697e4970bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a83022d44fec7d077403f697e4970bb">&#9670;&#160;</a></span>remap() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T marvin::math::remap </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmarvin_1_1utils_1_1Range.html">marvin::utils::Range</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>srcRange</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmarvin_1_1utils_1_1Range.html">marvin::utils::Range</a>&lt; T &gt;</td>          <td class="paramname"><span class="paramname"><em>newRange</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Takes a value in range <code>srcRange</code>, normalises it, and remaps it to be in range <code>newRange</code>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The value to remap. </td></tr>
+    <tr><td class="paramname">srcRange</td><td>The range the value is currently in. </td></tr>
+    <tr><td class="paramname">newRange</td><td>The range to map the value into. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The rescaled value. </dd></dl>
+
+</div>
+</div>
+<a id="a8622695b9c617d47eb67981b8aebf619" name="a8622695b9c617d47eb67981b8aebf619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8622695b9c617d47eb67981b8aebf619">&#9670;&#160;</a></span>remap() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T marvin::math::remap </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>newMin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>newMax</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Takes a value in range 0 to 1, and rescales it to be in range <code>newMin</code> to <code>newMax</code>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The value to remap. </td></tr>
+    <tr><td class="paramname">newMin</td><td>The new range's min. </td></tr>
+    <tr><td class="paramname">newMax</td><td>The new range's max. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The rescaled value. </dd></dl>
+
+</div>
+</div>
 <a id="a593ac57e25503d44c65ffe3e068d9df9" name="a593ac57e25503d44c65ffe3e068d9df9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a593ac57e25503d44c65ffe3e068d9df9">&#9670;&#160;</a></span>remap()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a593ac57e25503d44c65ffe3e068d9df9">&#9670;&#160;</a></span>remap() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -397,6 +727,45 @@ template&lt;FloatType T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The rescaled value. </dd></dl>
+
+</div>
+</div>
+<a id="ae7b9303a7ed6946b4732cfe6495069c6" name="ae7b9303a7ed6946b4732cfe6495069c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b9303a7ed6946b4732cfe6495069c6">&#9670;&#160;</a></span>secondsToSamples()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;FloatType T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T marvin::math::secondsToSamples </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em>seconds</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>sampleRate</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">nodiscard</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Converts a time in seconds to samples. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>Time in seconds. </td></tr>
+    <tr><td class="paramname">sampleRate</td><td>The currently used sample rate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of samples for the given time in seconds. </dd></dl>
 
 </div>
 </div>

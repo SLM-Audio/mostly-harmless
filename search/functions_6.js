@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gaintodb_0',['gainToDb',['../namespacemarvin_1_1math.html#aa1bc6e54bd3d8abb587555b24648353b',1,'marvin::math']]],
-  ['generate_1',['generate',['../classmarvin_1_1utils_1_1Random.html#ae64dd30118e742a805770b3cdba3b42f',1,'marvin::utils::Random']]],
+  ['generate_1',['generate',['../classmarvin_1_1utils_1_1RandomGenerator.html#a6866eeac1030b893927749724f2074aa',1,'marvin::utils::RandomGenerator']]],
   ['get_2',['get',['../classmarvin_1_1library_1_1PropagateConst.html#acb8104a4a6dbf10a979bd490e3fc99cc',1,'marvin::library::PropagateConst::get()'],['../classmarvin_1_1library_1_1PropagateConst.html#a4bd97a733ab2d96a96a7971204ab4630',1,'marvin::library::PropagateConst::get() const']]],
   ['getarrayofreadpointers_3',['getArrayOfReadPointers',['../structmarvin_1_1containers_1_1BufferView.html#a6b8352188eef40456bc4fd483f833111',1,'marvin::containers::BufferView']]],
   ['getarrayofwritepointers_4',['getArrayOfWritePointers',['../structmarvin_1_1containers_1_1BufferView.html#a7a8eb948535412ea473e217bcfe39f48',1,'marvin::containers::BufferView']]],
@@ -21,8 +21,10 @@ var searchData=
   ['getnumsamples_18',['getNumSamples',['../structmarvin_1_1containers_1_1BufferView.html#aea666b0b126d02e58d302bf884200a0e',1,'marvin::containers::BufferView']]],
   ['getparameter_19',['getParameter',['../classmostly__harmless_1_1Plugin.html#a87aaf0cab05e489ec01a78c5b2829799',1,'mostly_harmless::Plugin']]],
   ['getparamview_20',['getParamView',['../classmostly__harmless_1_1Plugin.html#ab4930a6a7b33f561eb5d177283f87cf7',1,'mostly_harmless::Plugin']]],
-  ['getremainingsamples_21',['getRemainingSamples',['../classmarvin_1_1utils_1_1SmoothedValue.html#a83cf07f07698cda928c8e576e5faff88',1,'marvin::utils::SmoothedValue']]],
-  ['getsize_22',['getSize',['../structmostly__harmless_1_1gui_1_1IEditor.html#a449a71dec2dccbae3ecdd1ce351491fc',1,'mostly_harmless::gui::IEditor::getSize()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#ae306effd98b26be4e9540548337e9d5c',1,'mostly_harmless::gui::WebviewBase::getSize()']]],
-  ['gettargetvalue_23',['getTargetValue',['../classmarvin_1_1utils_1_1SmoothedValue.html#a88ee864101dfdc9f24846af37a25df2d',1,'marvin::utils::SmoothedValue']]],
-  ['getviewsize_24',['getViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9',1,'mostly_harmless::gui::helpers::macos']]]
+  ['getreadpos_21',['getReadPos',['../classmarvin_1_1dsp_1_1DelayLine.html#a6662ea4cd0c15793b78442902f84e22e',1,'marvin::dsp::DelayLine']]],
+  ['getremainingsamples_22',['getRemainingSamples',['../classmarvin_1_1utils_1_1SmoothedValue.html#a83cf07f07698cda928c8e576e5faff88',1,'marvin::utils::SmoothedValue']]],
+  ['getsize_23',['getSize',['../structmostly__harmless_1_1gui_1_1IEditor.html#a449a71dec2dccbae3ecdd1ce351491fc',1,'mostly_harmless::gui::IEditor::getSize()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#ae306effd98b26be4e9540548337e9d5c',1,'mostly_harmless::gui::WebviewBase::getSize()']]],
+  ['gettargetvalue_24',['getTargetValue',['../classmarvin_1_1utils_1_1SmoothedValue.html#a88ee864101dfdc9f24846af37a25df2d',1,'marvin::utils::SmoothedValue']]],
+  ['getviewsize_25',['getViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9',1,'mostly_harmless::gui::helpers::macos']]],
+  ['getwritepos_26',['getWritePos',['../classmarvin_1_1dsp_1_1DelayLine.html#a481af5120d328adb36a956db06fdbe55',1,'marvin::dsp::DelayLine']]]
 ];
