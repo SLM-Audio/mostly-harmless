@@ -10,6 +10,7 @@ namespace gain2 {
         std::unique_ptr<mostly_harmless::core::ISharedState> createState(mostly_harmless::core::SharedStateContext&& context) override;
         std::unique_ptr<mostly_harmless::core::IEngine> createEngine(mostly_harmless::core::ISharedState* sharedState) override;
         std::unique_ptr<mostly_harmless::core::IEditor> createEditor(mostly_harmless::core::ISharedState* sharedState) override;
+        std::unique_ptr<mostly_harmless::core::BusLayout> createBusConfig() override;
     };
 } // namespace gain2
 

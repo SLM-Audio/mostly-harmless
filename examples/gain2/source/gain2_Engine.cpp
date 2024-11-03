@@ -7,21 +7,21 @@ namespace gain2 {
     Engine::Engine(SharedState* sharedState) : m_sharedState(sharedState) {
     }
 
-    void Engine::initialise(double sampleRate, std::uint32_t minBlockSize, std::uint32_t maxBlockSize) {
-        m_paramUpdateRate = static_cast<int>(m_paramUpdateRateSeconds * sampleRate);
+    void Engine::initialise(mostly_harmless::core::InitContext initContext) noexcept {
+        m_paramUpdateRate = static_cast<int>(m_paramUpdateRateSeconds * initContext.sampleRate);
         const auto paramView = m_sharedState->getParamView();
         m_smoothedGain.reset(m_paramUpdateRate);
         m_smoothedGain.setCurrentAndTargetValue(paramView.gainParam->value);
     }
 
-    void Engine::process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> transportState) {
+    void Engine::process(mostly_harmless::core::ProcessContext context) noexcept {
         using namespace marvin::literals;
-        const auto* const* read = buffer.getArrayOfReadPointers();
-        auto* const* write = buffer.getArrayOfWritePointers();
-        for (auto sample = 0_sz; sample < buffer.getNumSamples(); ++sample) {
+        const auto* const* read = context.buffer.getArrayOfReadPointers();
+        auto* const* write = context.buffer.getArrayOfWritePointers();
+        for (auto sample = 0_sz; sample < context.buffer.getNumSamples(); ++sample) {
             checkParameters();
             const auto gain = m_smoothedGain();
-            for (auto channel = 0_sz; channel < buffer.getNumChannels(); ++channel) {
+            for (auto channel = 0_sz; channel < context.buffer.getNumChannels(); ++channel) {
                 write[channel][sample] = read[channel][sample] * gain;
             }
         }

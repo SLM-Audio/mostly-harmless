@@ -22,5 +22,16 @@ namespace gain2 {
         return std::make_unique<Editor>(asUserState(sharedState));
     }
 
+    std::unique_ptr<mostly_harmless::core::BusLayout> PluginEntry::createBusConfig() {
+        using namespace mostly_harmless::core;
+        std::vector<mostly_harmless::core::AudioBus> inputs{
+            AudioBus{ .input = true, .supportedNumChannels = { 1, 2 } }
+        };
+        std::vector<mostly_harmless::core::AudioBus> outputs{
+            AudioBus{ .input = false, .supportedNumChannels = { 1, 2 } }
+        };
+        return std::make_unique<BusLayout>(std::move(inputs), std::move(outputs));
+    }
+
 } // namespace gain2
 MH_REGISTER_PLUGIN_ENTRY(gain2::PluginEntry);

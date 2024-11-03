@@ -7,6 +7,7 @@
 #include <mostly_harmless/core/mostlyharmless_ISharedState.h>
 #include <mostly_harmless/core/mostlyharmless_IEngine.h>
 #include <mostly_harmless/core/mostlyharmless_IEditor.h>
+#include <mostly_harmless/core/mostlyharmless_BusLayout.h>
 
 namespace mostly_harmless::core {
     struct IPluginEntry {
@@ -14,6 +15,7 @@ namespace mostly_harmless::core {
         virtual std::unique_ptr<ISharedState> createState(SharedStateContext&& context) = 0;
         virtual std::unique_ptr<IEngine> createEngine(ISharedState* sharedState) = 0;
         virtual std::unique_ptr<IEditor> createEditor(ISharedState* sharedState) = 0;
+        virtual std::unique_ptr<BusLayout> createBusConfig() = 0;
     };
 } // namespace mostly_harmless::core
 

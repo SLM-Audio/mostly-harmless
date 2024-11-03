@@ -12,6 +12,12 @@
 #include <unordered_map>
 namespace mostly_harmless::core {
 
+    /**
+     * \brief The base class for handling data that should be shared between the audio and message threads.
+     *
+     * By default, owns any user defined parameters, and two thread/realtime safe queues for passing parameter data from the audio to message thread (or vice versa).
+     * Also provides pure virtuals for saving and loading plugin state.
+     */
     class ISharedState {
     public:
         explicit ISharedState(SharedStateContext&& context, std::vector<Parameter<float>>&& params);

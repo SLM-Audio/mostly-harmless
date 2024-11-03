@@ -18,6 +18,7 @@ namespace mostly_harmless::internal {
         };
         m_state = m_pluginEntry->createState(std::move(context));
         m_engine = m_pluginEntry->createEngine(m_state.get());
+        m_busLayout = m_pluginEntry->createBusConfig();
 
         auto guiDispatchCallback = [this]() -> void {
             auto messageThreadCallback = [this]() -> void {
@@ -33,40 +34,45 @@ namespace mostly_harmless::internal {
     }
 
     bool PluginBase::activate(double sampleRate, uint32_t minFrameCount, uint32_t maxFrameCount) noexcept {
-        m_engine->initialise(sampleRate, minFrameCount, maxFrameCount);
+        m_initContext = { .sampleRate = sampleRate, .blockSize = { .min = minFrameCount, .max = maxFrameCount } };
+        m_engine->initialise(m_initContext);
         return true;
     }
 
-    clap_process_status PluginBase::process(const clap_process* processContext) noexcept {
-        if (processContext->audio_outputs_count == 0) {
+    clap_process_status PluginBase::process(const clap_process* clapProcessContext) noexcept {
+        if (clapProcessContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
-        events::InputEventContext eventContext{ processContext->in_events };
+        events::InputEventContext eventContext{ clapProcessContext->in_events };
 
-        handleGuiEvents(processContext->out_events);
-        const auto* inputData = processContext->audio_inputs;
-        auto* outputData = processContext->audio_outputs;
+        handleGuiEvents(clapProcessContext->out_events);
+        const auto* inputData = clapProcessContext->audio_inputs;
+        auto* outputData = clapProcessContext->audio_outputs;
         auto** inDataPtr = inputData->data32;
         auto** outDataPtr = outputData->data32;
         for (std::uint32_t i = 0; i < outputData->channel_count; ++i) {
             if (i >= inputData->channel_count) {
                 const auto inIndex = inputData->channel_count - 1;
-                std::memcpy(outDataPtr[i], inDataPtr[inIndex], sizeof(float) * processContext->frames_count);
+                std::memcpy(outDataPtr[i], inDataPtr[inIndex], sizeof(float) * clapProcessContext->frames_count);
                 continue;
             }
             if (inDataPtr[i] == outDataPtr[i]) {
                 continue;
             }
-            std::memcpy(outDataPtr[i], inDataPtr[i], sizeof(float) * processContext->frames_count);
+            std::memcpy(outDataPtr[i], inDataPtr[i], sizeof(float) * clapProcessContext->frames_count);
         }
-        marvin::containers::BufferView<float> bufferView{ outDataPtr, outputData->channel_count, processContext->frames_count };
+        core::ProcessContext processContext{
+            .initContext = m_initContext,
+            .buffer = { outDataPtr, outputData->channel_count, clapProcessContext->frames_count },
+            .transportState = m_lastTransportState
+        };
         // clang-format off
-        runBlockDispatch<float>(bufferView, eventContext,
+        runBlockDispatch<float>(processContext, eventContext,
             [this](const clap_event_header* event) -> void {
                 handleEvent(event);
             },
-            [this](marvin::containers::BufferView<float> buffer) -> void {
-                m_engine->process(buffer, m_lastTransportState);
+            [this](core::ProcessContext context) -> void {
+                m_engine->process(context);
             });
         // clang-format on
         return CLAP_PROCESS_SLEEP;
@@ -252,6 +258,18 @@ namespace mostly_harmless::internal {
             return true;
         }
         return false;
+    }
+
+    bool PluginBase::implementsConfigurableAudioPorts() const noexcept {
+        return true;
+    }
+
+    bool PluginBase::configurableAudioPortsCanApplyConfiguration(const clap_audio_port_configuration_request* requests, std::uint32_t requestsCount) const noexcept {
+        return m_busLayout->satisfiesClapConfig(requests, requestsCount);
+    }
+
+    bool PluginBase::configurableAudioPortsApplyConfiguration(const clap_audio_port_configuration_request* requests, std::uint32_t requestsCount) noexcept {
+        return true;
     }
 
     bool PluginBase::implementsNotePorts() const noexcept {

@@ -34,15 +34,15 @@ namespace mostly_harmless {
      * \param blockCallback A callback to invoke on a new chunk.
      */
     template <marvin::FloatType SampleType>
-    void runBlockDispatch(marvin::containers::BufferView<SampleType> buffer,
+    void runBlockDispatch(core::ProcessContext context,
                           mostly_harmless::events::InputEventContext eventContext,
-                          std::function<void(const clap_event_header* event)>&& eventCallback,
-                          std::function<void(marvin::containers::BufferView<SampleType>)>&& blockCallback) {
-        const auto numChannels = buffer.getNumChannels();
+                          std::function<void(const clap_event_header*)>&& eventCallback,
+                          std::function<void(core::ProcessContext)>&& blockCallback) {
+        const auto numChannels = context.buffer.getNumChannels();
         auto** channelArray = static_cast<SampleType**>(alloca(sizeof(SampleType*) * numChannels));
         size_t lastEventIndex{ 0 };
-        auto* const* rawBuff = buffer.getArrayOfWritePointers();
-        for (size_t i = 0; i < buffer.getNumSamples(); ++i) {
+        auto* const* rawBuff = context.buffer.getArrayOfWritePointers();
+        for (size_t i = 0; i < context.buffer.getNumSamples(); ++i) {
             if (eventContext.next() && eventContext.next()->time == static_cast<std::uint32_t>(i)) {
                 while (eventContext.next() && eventContext.next()->time == static_cast<std::uint32_t>(i)) {
                     eventCallback(eventContext.next());
@@ -53,19 +53,28 @@ namespace mostly_harmless {
                     channelArray[channel] = offsetChannelPtr;
                 }
                 const auto numSamples = i - lastEventIndex;
-                marvin::containers::BufferView<SampleType> slice{ channelArray, buffer.getNumChannels(), numSamples };
-                blockCallback(slice);
+                marvin::containers::BufferView<SampleType> slice{ channelArray, context.buffer.getNumChannels(), numSamples };
+                core::ProcessContext blockContext{
+                    .initContext = context.initContext,
+                    .buffer = { channelArray, context.buffer.getNumChannels(), numSamples },
+                    .transportState = context.transportState
+                };
+                blockCallback(blockContext);
                 lastEventIndex = i;
             }
         }
-        const auto remaining = static_cast<std::int64_t>(buffer.getNumSamples()) - static_cast<std::int64_t>(lastEventIndex);
+        const auto remaining = static_cast<std::int64_t>(context.buffer.getNumSamples()) - static_cast<std::int64_t>(lastEventIndex);
         if (remaining <= 0) return;
         for (size_t channel = 0; channel < numChannels; ++channel) {
             auto* offsetChannelPtr = rawBuff[channel] + static_cast<std::ptrdiff_t>(lastEventIndex);
             channelArray[channel] = offsetChannelPtr;
         }
-        marvin::containers::BufferView<SampleType> slice{ channelArray, buffer.getNumChannels(), static_cast<size_t>(remaining) };
-        blockCallback(slice);
+        core::ProcessContext blockContext{
+            .initContext = context.initContext,
+            .buffer = { channelArray, context.buffer.getNumChannels(), static_cast<size_t>(remaining) },
+            .transportState = context.transportState
+        };
+        blockCallback(blockContext);
     }
 } // namespace mostly_harmless
 
