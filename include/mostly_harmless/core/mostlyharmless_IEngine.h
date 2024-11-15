@@ -11,11 +11,22 @@
 #include <marvin/library/marvin_Concepts.h>
 namespace mostly_harmless::core {
 
+    struct InitContext {
+        double sampleRate;
+        std::uint32_t minBufferSize;
+        std::uint32_t maxBufferSize;
+    };
+
+    struct ProcessContext {
+        marvin::containers::BufferView<float> buffer;
+        std::optional<mostly_harmless::TransportState> transportState;
+    };
+
     class IEngine {
     public:
         virtual ~IEngine() noexcept = default;
-        virtual void initialise(double sampleRate, std::uint32_t minBlockSize, std::uint32_t maxBlockSize) = 0;
-        virtual void process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> transportState) = 0;
+        virtual void initialise(InitContext context) = 0;
+        virtual void process(ProcessContext context) = 0;
         virtual void reset() noexcept = 0;
         virtual void handleNoteOn([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}
         virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}

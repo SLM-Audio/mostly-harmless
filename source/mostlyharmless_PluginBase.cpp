@@ -33,7 +33,12 @@ namespace mostly_harmless::internal {
     }
 
     bool PluginBase::activate(double sampleRate, uint32_t minFrameCount, uint32_t maxFrameCount) noexcept {
-        m_engine->initialise(sampleRate, minFrameCount, maxFrameCount);
+        core::InitContext context{
+            .sampleRate = sampleRate,
+            .minBufferSize = minFrameCount,
+            .maxBufferSize = maxFrameCount
+        };
+        m_engine->initialise(context);
         return true;
     }
 
@@ -66,7 +71,11 @@ namespace mostly_harmless::internal {
                 handleEvent(event);
             },
             [this](marvin::containers::BufferView<float> buffer) -> void {
-                m_engine->process(buffer, m_lastTransportState);
+                core::ProcessContext context {
+                    .buffer = buffer,
+                    .transportState = m_lastTransportState
+                };
+                m_engine->process(context);
             });
         // clang-format on
         return CLAP_PROCESS_SLEEP;
