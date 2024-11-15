@@ -11,8 +11,8 @@ namespace gain2 {
     class Engine : public mostly_harmless::core::IEngine {
     public:
         explicit Engine(SharedState* sharedState);
-        void initialise(double sampleRate, std::uint32_t minBlockSize, std::uint32_t maxBlockSize) override;
-        void process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> transportState) override;
+        void initialise(mostly_harmless::core::InitContext context) override;
+        void process(mostly_harmless::core::ProcessContext context) override;
         void reset() noexcept override;
 
     private:
