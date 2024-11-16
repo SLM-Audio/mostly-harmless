@@ -13,6 +13,7 @@ namespace mostly_harmless::core {
         virtual ~IPluginEntry() noexcept = default;
         virtual std::unique_ptr<ISharedState> createState(SharedStateContext&& context) = 0;
         virtual std::unique_ptr<IEngine> createEngine(ISharedState* sharedState) = 0;
+        virtual bool hasGui() const noexcept = 0;
         virtual std::unique_ptr<IEditor> createEditor(ISharedState* sharedState) = 0;
     };
 } // namespace mostly_harmless::core

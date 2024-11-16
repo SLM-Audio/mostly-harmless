@@ -349,7 +349,7 @@ namespace mostly_harmless::internal {
 
     bool PluginBase::implementsGui() const noexcept {
         MH_LOG("GUI: implementsGui()");
-        return true;
+        return m_pluginEntry->hasGui();
     }
 
     bool PluginBase::guiIsApiSupported(const char* api, bool isFloating) noexcept {

@@ -25,8 +25,8 @@ namespace mostly_harmless::core {
     class IEngine {
     public:
         virtual ~IEngine() noexcept = default;
-        virtual void initialise(InitContext context) = 0;
-        virtual void process(ProcessContext context) = 0;
+        virtual void initialise(InitContext context) noexcept = 0;
+        virtual void process(ProcessContext context) noexcept = 0;
         virtual void reset() noexcept = 0;
         virtual void handleNoteOn([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}
         virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}
