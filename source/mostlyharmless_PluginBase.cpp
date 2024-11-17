@@ -107,7 +107,8 @@ namespace mostly_harmless::internal {
                     break;
                 }
                 case EventType::Adjust: {
-                    auto* param = m_state->getParameterById(id);
+                    //                    auto* param = m_state->getParameterById(id);
+                    auto* param = m_state->getParameterByIndex(id);
                     param->value = value;
                     // And then tell the host..
                     auto ev = clap_event_param_value();
@@ -202,7 +203,7 @@ namespace mostly_harmless::internal {
 
     bool PluginBase::paramsInfo(std::uint32_t paramIndex, clap_param_info* info) const noexcept {
         if (paramIndex >= m_state->getNumParams()) return false;
-        auto* param = m_state->getParameterByIndex(paramIndex);
+        auto* param = m_state->getParameterById(paramIndex);
         info->id = param->pid;
         info->flags = param->flags;
         strncpy(info->name, param->name.c_str(), CLAP_NAME_SIZE);
@@ -211,7 +212,7 @@ namespace mostly_harmless::internal {
         info->min_value = min;
         info->max_value = max;
         info->default_value = param->defaultValue;
-        info->cookie = (void*)&param;
+        info->cookie = (void*)param;
         return true;
     }
 
