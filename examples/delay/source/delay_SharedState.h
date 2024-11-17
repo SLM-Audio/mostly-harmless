@@ -1,8 +1,14 @@
-//
-// Created by Syl Morrison on 15/11/2024.
-//
+#ifndef DELAY_SHAREDSTATE_H
+#define DELAY_SHAREDSTATE_H
 
-#ifndef MOSTLYHARMLESS_DELAY_SHAREDSTATE_H
-#define MOSTLYHARMLESS_DELAY_SHAREDSTATE_H
+#include <mostly_harmless/core/mostlyharmless_ISharedState.h>
+class SharedState final : public mostly_harmless::core::ISharedState {
+public:
+    SharedState(mostly_harmless::core::SharedStateContext&& context);
+    void loadState(std::string_view loadedData) override;
+    void saveState(std::ostringstream& dest) override;
 
-#endif //MOSTLYHARMLESS_DELAY_SHAREDSTATE_H
+private:
+};
+
+#endif // DELAY_SHAREDSTATE_H

@@ -1,8 +1,13 @@
-//
-// Created by Syl Morrison on 15/11/2024.
-//
+#ifndef DELAY_WEBVIEWEDITOR_H
+#define DELAY_WEBVIEWEDITOR_H
 
-#ifndef MOSTLYHARMLESS_DELAY_EDITOR_H
-#define MOSTLYHARMLESS_DELAY_EDITOR_H
+#include "delay_SharedState.h"
+#include <mostly_harmless/gui/mostlyharmless_WebviewEditor.h>
 
-#endif //MOSTLYHARMLESS_DELAY_EDITOR_H
+class Editor final : public mostly_harmless::gui::WebviewEditor {
+public:
+    Editor(SharedState* sharedState);
+    void initialise();
+};
+
+#endif // DELAY_WEBVIEWEDITOR_H
