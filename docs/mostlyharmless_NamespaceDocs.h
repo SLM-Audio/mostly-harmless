@@ -5,11 +5,17 @@
 #ifndef MOSTLYHARMLESS_MOSTLYHARMLESS_NAMESPACEDOCS_H
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_NAMESPACEDOCS_H
 /**
- * \brief The core namespace, contains all things plugin-related.
+ * \brief The top-level namespace, contains all things plugin-related
  */
 namespace mostly_harmless {
     /**
-     * \brief Contains GUI related classes & functions.
+     * \brief Contains core functionality of the framework
+     */
+    namespace core {
+
+    }
+    /**
+     * \brief Contains GUI related classes & functions
      */
     namespace gui {
         /**
