@@ -18,6 +18,9 @@ namespace mostly_harmless::core {
      * Handles specifying the various subclasses the framework should create for ISharedState, IEngine and IEditor.
      */
     struct IPluginEntry {
+        /**
+         * Virtual destructor.
+         */
         virtual ~IPluginEntry() noexcept = default;
 
         /**

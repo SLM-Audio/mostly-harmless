@@ -55,6 +55,9 @@ namespace mostly_harmless::core {
      */
     class IEngine {
     public:
+        /**
+         * Virtual destructor.
+         */
         virtual ~IEngine() noexcept = default;
 
         /**
