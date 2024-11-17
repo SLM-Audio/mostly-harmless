@@ -211,7 +211,7 @@ namespace mostly_harmless::internal {
         info->min_value = min;
         info->max_value = max;
         info->default_value = param->defaultValue;
-        info->cookie = (void*)&param;
+        info->cookie = (void*)param;
         return true;
     }
 
