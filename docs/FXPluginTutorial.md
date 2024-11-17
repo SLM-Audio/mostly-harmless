@@ -139,9 +139,9 @@ namespace myplugin {
     class IEngine final : public mostly_harmless::core::IEngine { // [1]
     public: 
         explicit Engine(SharedState* sharedState); // [2]
-        void initialise(double sampleRate, std::uint32_t minBlockSize, std::uint32_t maxBlockSize) override; // [3]
-        void process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> transport) override; // [4]
-        void reset() override; // [5]
+        void initialise(mostly_harmless::core::InitContext context) noexcept override; // [3]
+        void process(mostly_harmless::core::ProcessContext context) noexcept override; // [4]
+        void reset() noexcept override; // [5]
     private: 
         SharedState* m_sharedState{ nullptr }; // [2]
     };
@@ -173,15 +173,15 @@ namespace myplugin {
     
     }
     
-    void Engine::initialise(double sampleRate, std::uint32_t minBlockSize, std::uint32_t maxBlockSize) { // [2]
+    void Engine::initialise(mostly_harmless::core::InitContext context) noexcept { // [2]
     
     }
     
-    void Engine::process(marvin::container::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> transport) { // [3]
+    void Engine::process(mostly_harmless::core::ProcessContext context) noexcept { // [3]
     
     }
     
-    void Engine::reset() { // [4]
+    void Engine::reset() noexcept { // [4]
     
     }
 }
@@ -189,11 +189,13 @@ namespace myplugin {
 
 [1] Here we store the passed `SharedState` instance in our `m_sharedState` member, for access later on.
 
-[2] We implement `initialise`, which takes the host's sample rate (`sampleRate`), the smallest block size the host can
+[2] We implement `initialise`, which takes an `InitContext`, which is a convenience wrapper for making the args
+extensible, and contains the host's sample rate (`sampleRate`), the smallest block size the host can
 pass (`minBlockSize`),
 and the largest block size the host can pass (`maxBlockSize`).
 
-[3] We implement `process`, which takes a non-owning-view into the buffer passed by the host (`buffer`), and an optional
+[3] We implement `process`, which takes a `ProcessContext` - again, a convenience wrapper for making the args
+extensible, which contains a non-owning-view into the buffer passed by the host (`buffer`), and an optional
 representing the transport state, if it is available (`transport`).
 
 [4] We implement `reset`, as detailed above.
@@ -300,9 +302,10 @@ As discussed earlier, `IPluginEntry` is our interface for doing so.
 namespace myplugin { 
     struct PluginEntry final : public mostly_harmless::core::IPluginEntry { 
     public:    
-        std::unique_ptr<mostly_harmless::core::ISharedState> createState(mostly_harmless::core::SharedStateContext&& context) override; 
-        std::unique_ptr<mostly_harmless::Core::IEngine> createEngine(mostly_harmless::core::ISharedState* sharedState) override;
-        std::unique_ptr<mostly_harmless::core::IEditor> createEditor(mostly_harmless::core::ISharedState* sharedState) override; 
+        [[nodiscard]] std::unique_ptr<mostly_harmless::core::ISharedState> createState(mostly_harmless::core::SharedStateContext&& context) override; 
+        [[nodiscard]] std::unique_ptr<mostly_harmless::Core::IEngine> createEngine(mostly_harmless::core::ISharedState* sharedState) override;
+        [[nodiscard]] bool hasGui() const noexcept override;
+        [[nodiscard]] std::unique_ptr<mostly_harmless::core::IEditor> createEditor(mostly_harmless::core::ISharedState* sharedState) override; 
     };
 }
 
@@ -326,12 +329,16 @@ namespace myplugin {
         return std::make_unique<Engine>(asUserState(sharedState)); // [3]
     }
     
+    bool PluginEntry::hasGui() const noexcept { // [4]
+        return true;
+    }
+    
     std::unique_ptr<mostly_harmless::core::IEditor> PluginEntry::createEditor(mostly_harmless::core::ISharedState* sharedState) { 
-        return std::make_unique<Editor>(asUserState(sharedState)); // [4]
+        return std::make_unique<Editor>(asUserState(sharedState)); // [5]
     }
     
 }
-MH_REGISTER_PLUGIN_ENTRY(myplugin::PluginEntry); // [5]
+MH_REGISTER_PLUGIN_ENTRY(myplugin::PluginEntry); // [6]
 ```
 
 [1] We declare a TU scoped helper function to avoid verbose static casts, for downcasting our `ISharedEditor` points to
@@ -341,9 +348,12 @@ our user `SharedState` class.
 
 [3] We create our `Engine` class, passing it a downcast-to-user-state of `sharedState`.
 
-[4] We create our `Editor` class, passing it a downcast-to-user-state of `sharedState`.
+[4] We return true from `hasGui()`. In the case of a headless plugin, we can return false here, and return a nullptr
+from `createEditor`.
 
-[5] Finally, we call a macro to register this `PluginEntry` class with the framework. Internally this defines a free
+[5] We create our `Editor` class, passing it a downcast-to-user-state of `sharedState`.
+
+[6] Finally, we call a macro to register this `PluginEntry` class with the framework. Internally this defines a free
 function, `createPluginEntry`, which returns our user `PluginEntry` type.
 The internal framework class then uses its hooks to create `SharedState`, `Engine` and `Editor` classes, and forwards
 relevant function calls to the appropriate places within there classes.
@@ -411,12 +421,14 @@ Let's start simple - multiply the audio input by 0.5. Jumping back to our `Engin
 place to do so.
 
 ```cpp 
-  void Engine::process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> /*transportState*/) { 
+  void Engine::process(mostly_harmless::core::ProcessContext context) noexcept { 
+    auto buffer = context.buffer;
   
   }
 ```
 
-You can take a look at the docs for `BufferView`, but it can pretty much be thought of a `std::span` but for an audio
+Firstly, we retrieve the buffer (a `marvin::containers::BufferView<float>`) from the `context`. You can take a look at
+the docs for `BufferView`, but it can pretty much be thought of a `std::span` but for an audio
 buffer - that is, a non owning view into the passed in audio buffer.
 Internally in the framework, for sample accurate automation, this buffer view will be from index_of_last_event to
 index_of_current_event - essentially it's interrupted whenever there's a new param/midi event.
@@ -566,7 +578,8 @@ ParameterView SharedState::getParamView() const noexcept {
 We can finally grab the parameter in our Engine now:
 
 ```cpp
-void Engine::process(marvin::containers::BufferView<float> buffer, std::optional<mostly_harmless::TransportState> transport) {
+void Engine::process(mostly_harmless::core::ProcessContext context) noexcept {
+    auto buffer = context.buffer;
     auto paramView = m_sharedState->getParamView();
     const auto gain = paramView.gainParam->value;
     const auto* const* read = buffer.getArrayOfReadPointers();                   
