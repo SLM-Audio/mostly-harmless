@@ -7,7 +7,7 @@
 class Editor final : public mostly_harmless::gui::WebviewEditor {
 public:
     explicit Editor(SharedState* sharedState);
-    void initialise();
+    void initialise() override;
 
 private:
     std::unordered_map<std::string, mostly_harmless::gui::WebviewEditor::Resource> m_resources;
