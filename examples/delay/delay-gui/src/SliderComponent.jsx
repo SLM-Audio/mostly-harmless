@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import './App.css';
 
-function SliderComponent({pid, min, max}) {
-    const [val, setVal] = useState(0.1);
+function SliderComponent({pid, min, max, initial}) {
+    const [val, setVal] = useState(initial);
     const paramCallback = (ev) => {
         const eventPid = ev.detail.paramId;
         if (parseInt(eventPid) !== pid) return;

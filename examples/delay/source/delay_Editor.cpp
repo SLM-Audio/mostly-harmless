@@ -23,16 +23,19 @@ Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(s
     initialDataStream << "        id: " << Params::kTime << ",\n";
     initialDataStream << "        min: " << paramView.timeParam->range.min << ",\n";
     initialDataStream << "        max: " << paramView.timeParam->range.max << ",\n";
+    initialDataStream << "        initial: " << paramView.timeParam->value << ",\n";
     initialDataStream << "    },\n";
     initialDataStream << "    kFeedback: {\n";
     initialDataStream << "        id: " << Params::kFeedback << ",\n";
     initialDataStream << "        min: " << paramView.feedbackParam->range.min << ",\n";
     initialDataStream << "        max: " << paramView.feedbackParam->range.max << ",\n";
+    initialDataStream << "        initial: " << paramView.feedbackParam->value << ",\n";
     initialDataStream << "    },\n";
     initialDataStream << "    kDryWet: {\n";
     initialDataStream << "        id: " << Params::kDryWet << ",\n";
     initialDataStream << "        min: " << paramView.dryWetParam->range.min << ",\n";
     initialDataStream << "        max: " << paramView.dryWetParam->range.max << ",\n";
+    initialDataStream << "        initial: " << paramView.dryWetParam->value << ",\n";
     initialDataStream << "    },\n";
     initialDataStream << "};";
 #if defined(HOT_RELOAD)

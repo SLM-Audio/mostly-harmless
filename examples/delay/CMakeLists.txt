@@ -1,5 +1,12 @@
 set(CMAKE_CXX_STANDARD 20)
 
+FetchContent_Declare(json
+        URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+        URL_HASH SHA256=d6c65aca6b1ed68e7a182f4757257b107ae403032760ed6ef121c9d55e81757d
+        GIT_SHALLOW ON
+)
+FetchContent_MakeAvailable(json)
+
 mostly_harmless_add_plugin(
         delay
         ID "your_company.delay"
@@ -66,4 +73,5 @@ target_sources(delay PRIVATE
 )
 
 target_include_directories(delay PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source)
+target_link_libraries(delay PUBLIC nlohmann_json)
 #target_compile_definitions(delay PUBLIC HOT_RELOAD) # Comment this out to serve from RAM
