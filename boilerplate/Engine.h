@@ -6,7 +6,7 @@
 
 class Engine final : public mostly_harmless::core::IEngine {
 public:
-    Engine(SharedState* sharedState);
+    explicit Engine(SharedState* sharedState);
     void initialise(mostly_harmless::core::InitContext context) noexcept override;
     void process(mostly_harmless::core::ProcessContext context) noexcept override;
     void reset() noexcept override;

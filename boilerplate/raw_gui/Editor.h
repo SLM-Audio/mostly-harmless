@@ -5,7 +5,7 @@
 #include <mostly_harmless/core/mostlyharmless_IEditor.h>
 class Editor final : public mostly_harmless::core::IEditor {
 public:
-    Editor(SharedState* sharedState);
+    explicit Editor(SharedState* sharedState);
     void initialise() override;
     void destroy() override;
     void setSize(std::uint32_t width, std::uint32_t height) override;

@@ -6,7 +6,7 @@
 
 class Editor final : public mostly_harmless::gui::WebviewEditor {
 public:
-    Editor(SharedState* sharedState);
+    explicit Editor(SharedState* sharedState);
     void initialise();
 };
 
