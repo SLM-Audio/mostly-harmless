@@ -1,13 +1,21 @@
 #include "delay_Editor.h"
+#include <mostlyharmless_DelayWebResources.h>
+#include <mostly_harmless/utils/mostlyharmless_Macros.h>
 
-[[nodiscard]] std::optional<mostly_harmless::gui::WebviewEditor::Resource> createResourceFor(const std::string& name) {
-    /**
-     * TODO: Fill in your logic for retrieving a resource here..
-     */
-    return {};
+[[nodiscard]] mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
+    auto resOpt = mostly_harmless::DelayWebResources::getNamedResource(name);
+    assert(resOpt);
+    auto [data, size] = *resOpt;
+    auto mimeType = mostly_harmless::gui::getMimeType(name);
+    assert(mimeType);
+    auto* asUnsigned = reinterpret_cast<const std::uint8_t*>(data);
+    mostly_harmless::gui::WebviewEditor::Resource temp;
+    temp.data = { asUnsigned, asUnsigned + size };
+    temp.mimeType = *mimeType;
+    return temp;
 }
 
-Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(sharedState, 500, 500, mostly_harmless::gui::Colour{ 0xFF000000 }) {
+Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(sharedState, 500, 500, mostly_harmless::gui::Colour{ 0xFF89CC04 }) {
     auto paramView = sharedState->getParamView();
     std::stringstream initialDataStream;
     initialDataStream << "window.params = {\n";
@@ -30,14 +38,20 @@ Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(s
 #if defined(HOT_RELOAD)
     this->setOptions({ .enableDebug = true, .initScript = initialDataStream.str() });
 #else
+    m_resources.emplace("/index.html", createResourceFor("index.html"));
+    m_resources.emplace("/index.css", createResourceFor("index.css"));
+    m_resources.emplace("/index.js", createResourceFor("index.js"));
     this->setOptions({
         .enableDebug = true,
-        .contentProvider = [](const std::string& name) -> std::optional<mostly_harmless::gui::WebviewEditor::Resource> {
-            return createResourceFor(name);
+        .contentProvider = [this](const std::string& name) -> std::optional<mostly_harmless::gui::WebviewEditor::Resource> {
+            const auto requested = name == "/" ? "/index.html" : name;
+            const auto it = m_resources.find(requested);
+            if (it == m_resources.end()) return {};
+            auto resource = it->second;
+            return resource;
         },
         .initScript = initialDataStream.str(),
     });
-
 #endif
 }
 
