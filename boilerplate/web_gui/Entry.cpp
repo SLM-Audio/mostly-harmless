@@ -22,3 +22,5 @@ bool Entry::hasGui() const noexcept {
 std::unique_ptr<mostly_harmless::core::IEditor> Entry::createEditor(mostly_harmless::core::ISharedState* sharedState) {
     return std::make_unique<Editor>(asUserState(sharedState));
 }
+
+MH_REGISTER_PLUGIN_ENTRY(Entry)
