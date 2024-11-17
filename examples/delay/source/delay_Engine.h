@@ -28,8 +28,8 @@ private:
     } m_smoother;
     SharedState* m_sharedState{ nullptr };
     mostly_harmless::core::InitContext m_initContext;
-    std::array<marvin::dsp::DelayLine<float, marvin::dsp::DelayLineInterpolationType::Linear>, 2> m_delayLines;
-    constexpr static auto m_paramUpdateRateSeconds{ 100.0 / 44100.0 };
+    std::array<marvin::dsp::DelayLine<float, marvin::dsp::DelayLineInterpolationType::Lagrange3rd>, 2> m_delayLines;
+    constexpr static auto m_paramUpdateRateSeconds{ 400.0 / 44100.0 };
 };
 
 #endif // DELAY_ENGINE_H
