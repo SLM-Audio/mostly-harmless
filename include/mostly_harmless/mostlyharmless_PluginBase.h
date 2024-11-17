@@ -13,12 +13,29 @@
 #include <clap/helpers/plugin.hh>
 
 namespace mostly_harmless::core {
+    /**
+     * Called by PluginBase to create the user's IPluginEntry subclass.
+     *
+     * Forward declared here, and defined by calling the MH_REGISTER_PLUGIN_ENTRY macro from within your IPluginEntry subclass' TU.
+     * \return A unique_ptr to the user-defined PluginEntry derivative.
+     */
     std::unique_ptr<IPluginEntry> createPluginEntry() noexcept;
-}
+} // namespace mostly_harmless::core
 
 namespace mostly_harmless::internal {
+    /**
+     * \brief The internal representation of a Plugin, more akin to JUCE's Processor.
+     *
+     * The end user should never need to interface with this class, and is purely there as an abstraction layer between the CLAP Plugin, and the user defined interfaces.
+     *
+     * Under the hood, essentially forwards salient calls to the appropriate functions in the user-defined interfaces.
+     */
     class PluginBase final : public clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Ignore, clap::helpers::CheckingLevel::Maximal> {
     public:
+        /**
+         * Constructs a PluginBase instance.
+         * \param host A clap-provided host pointer.
+         */
         explicit PluginBase(const clap_host* host);
 
     private:
