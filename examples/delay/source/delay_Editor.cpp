@@ -18,15 +18,15 @@
 
 Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(sharedState, 500, 500, mostly_harmless::gui::Colour{ 0xFF89CC04 }) {
     auto paramView = sharedState->getParamView();
-    auto asSpan = paramView.toSpan();
+    auto params = sharedState->getParams();
     std::stringstream initialDataStream;
     nlohmann::json initialDataJson;
-    for (auto& p : asSpan) {
-        auto& el = initialDataJson[p->name];
-        el["id"] = p->parameterId.pid;
-        el["min"] = p->range.min;
-        el["max"] = p->range.max;
-        el["initial"] = p->value;
+    for (auto& p : params) {
+        auto& el = initialDataJson[p.name];
+        el["id"] = p.parameterId.pid;
+        el["min"] = p.range.min;
+        el["max"] = p.range.max;
+        el["initial"] = p.value;
     }
     initialDataStream << "window.params = " << initialDataJson << ";";
 #if defined(HOT_RELOAD)

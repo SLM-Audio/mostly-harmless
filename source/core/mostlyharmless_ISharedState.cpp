@@ -12,6 +12,10 @@ namespace mostly_harmless::core {
         }
     }
 
+    std::span<Parameter<float>> ISharedState::getParams() noexcept {
+        return m_params;
+    }
+
     Parameter<float>* ISharedState::getParameterByIndex(std::uint32_t index) noexcept {
         if (index >= m_params.size()) {
             return nullptr;

@@ -10,17 +10,8 @@ std::vector<mostly_harmless::Parameter<float>> createParameters() {
     return params;
 }
 
-ParamView::ParamView(size_t numParams) : m_numParams(numParams) {
-}
 
-std::span<mostly_harmless::Parameter<float>*> ParamView::toSpan() noexcept {
-    auto* asArray = reinterpret_cast<mostly_harmless::Parameter<float>**>(this);
-    std::span<mostly_harmless::Parameter<float>*> asSpan{ asArray, m_numParams };
-    return asSpan;
-}
-
-SharedState::SharedState(mostly_harmless::core::SharedStateContext&& context) : mostly_harmless::core::ISharedState(std::move(context), createParameters()),
-                                                                                m_paramView(getNumParams()) {
+SharedState::SharedState(mostly_harmless::core::SharedStateContext&& context) : mostly_harmless::core::ISharedState(std::move(context), createParameters()) {
     if (auto timeParam = getParameterById(mostly_harmless::ParameterID{ "Time" })) {
         m_paramView.timeParam = timeParam;
     } else {
@@ -43,23 +34,23 @@ ParamView SharedState::getParamView() const noexcept {
 }
 
 void SharedState::loadState(std::string_view loadedData) {
-    auto paramArray = m_paramView.toSpan();
+    auto paramArray = getParams();
     nlohmann::json j = nlohmann::json::parse(loadedData);
     for (auto& p : paramArray) {
-        const auto pid = p->parameterId.toString();
+        const auto pid = p.parameterId.toString();
         if (!j.contains(pid)) continue;
         const auto value = j[pid].get<float>();
-        p->value = value;
+        p.value = value;
     }
     MH_LOG(loadedData);
 }
 
 void SharedState::saveState(std::ostringstream& dest) {
-    auto paramArray = m_paramView.toSpan();
+    auto paramArray = getParams();
     nlohmann::json j;
     for (auto& p : paramArray) {
-        const auto pid = p->parameterId.toString();
-        j[pid] = p->value;
+        const auto pid = p.parameterId.toString();
+        j[pid] = p.value;
     }
     dest << j;
 }
