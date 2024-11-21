@@ -3,14 +3,15 @@ import './App.css'
 import SliderComponent from "./SliderComponent.jsx";
 
 function App() {
+    const gainParam = window.params["Gain"];
     return (
         <>
             <div>
                 <p className="label">gain</p>
-                <SliderComponent pid={window.params.kGain.id}
-                                 min={window.params.kGain.min}
-                                 max={window.params.kGain.max}
-                                 initial={window.params.kGain.initial}
+                <SliderComponent pid={gainParam.id}
+                                 min={gainParam.min}
+                                 max={gainParam.max}
+                                 initial={gainParam.initial}
                 />
             </div>
         </>

@@ -50,7 +50,9 @@ namespace mostly_harmless::core {
          * \param id The id to attempt to retrieve.
          * \return A raw pointer to the parameter with id if found, nullptr otherwise.
          */
-        [[nodiscard]] Parameter<float>* getParameterById(std::uint32_t id);
+        [[nodiscard]] Parameter<float>* getParameterById(mostly_harmless::ParameterID parameterId);
+
+        [[nodiscard]] Parameter<float>* getParameterById(std::uint32_t pid);
 
         /**
          * Retrieves the number of params registered with the ISharedState instance.

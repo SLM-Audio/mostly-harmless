@@ -1,18 +1,28 @@
 #ifndef MOSTLYHARMLESS_PARAMETERS_H
 #define MOSTLYHARMLESS_PARAMETERS_H
 #include <clap/ext/params.h>
+#include <mostly_harmless/utils/mostlyharmless_Hash.h>
 #include <marvin/utils/marvin_Range.h>
 #include <functional>
 namespace mostly_harmless {
+
+    struct ParameterID {
+        explicit ParameterID(std::string_view internalName) : pid(mostly_harmless::utils::hash<std::uint32_t>(internalName)) {
+        }
+
+        [[nodiscard]] std::string toString() const noexcept {
+            return std::to_string(pid);
+        }
+
+        const std::uint32_t pid;
+    };
+
     /**
      * \brief Container class for a single parameter.
      */
     template <marvin::FloatType SampleType>
     struct Parameter final {
-        /**
-         * A unique id for this parameter.
-         */
-        std::uint32_t pid;
+        ParameterID parameterId;
         /**
          * The parameter's user readable name.
          */

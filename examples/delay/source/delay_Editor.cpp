@@ -1,6 +1,7 @@
 #include "delay_Editor.h"
 #include <mostlyharmless_DelayWebResources.h>
 #include <mostly_harmless/utils/mostlyharmless_Macros.h>
+#include <nlohmann/json.hpp>
 
 [[nodiscard]] mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
     auto resOpt = mostly_harmless::DelayWebResources::getNamedResource(name);
@@ -17,27 +18,17 @@
 
 Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(sharedState, 500, 500, mostly_harmless::gui::Colour{ 0xFF89CC04 }) {
     auto paramView = sharedState->getParamView();
+    auto asSpan = paramView.toSpan();
     std::stringstream initialDataStream;
-    initialDataStream << "window.params = {\n";
-    initialDataStream << "    kTime: {\n ";
-    initialDataStream << "        id: " << Params::kTime << ",\n";
-    initialDataStream << "        min: " << paramView.timeParam->range.min << ",\n";
-    initialDataStream << "        max: " << paramView.timeParam->range.max << ",\n";
-    initialDataStream << "        initial: " << paramView.timeParam->value << ",\n";
-    initialDataStream << "    },\n";
-    initialDataStream << "    kFeedback: {\n";
-    initialDataStream << "        id: " << Params::kFeedback << ",\n";
-    initialDataStream << "        min: " << paramView.feedbackParam->range.min << ",\n";
-    initialDataStream << "        max: " << paramView.feedbackParam->range.max << ",\n";
-    initialDataStream << "        initial: " << paramView.feedbackParam->value << ",\n";
-    initialDataStream << "    },\n";
-    initialDataStream << "    kDryWet: {\n";
-    initialDataStream << "        id: " << Params::kDryWet << ",\n";
-    initialDataStream << "        min: " << paramView.dryWetParam->range.min << ",\n";
-    initialDataStream << "        max: " << paramView.dryWetParam->range.max << ",\n";
-    initialDataStream << "        initial: " << paramView.dryWetParam->value << ",\n";
-    initialDataStream << "    },\n";
-    initialDataStream << "};";
+    nlohmann::json initialDataJson;
+    for (auto& p : asSpan) {
+        auto& el = initialDataJson[p->name];
+        el["id"] = p->parameterId.pid;
+        el["min"] = p->range.min;
+        el["max"] = p->range.max;
+        el["initial"] = p->value;
+    }
+    initialDataStream << "window.params = " << initialDataJson << ";";
 #if defined(HOT_RELOAD)
     this->setOptions({ .enableDebug = true, .initScript = initialDataStream.str() });
 #else

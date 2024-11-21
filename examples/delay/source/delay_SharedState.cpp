@@ -4,30 +4,34 @@
 
 std::vector<mostly_harmless::Parameter<float>> createParameters() {
     std::vector<mostly_harmless::Parameter<float>> params;
-    params.emplace_back(mostly_harmless::Parameter<float>{ Params::kTime, "Time", "delay", { .min = 0.1f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
-    params.emplace_back(mostly_harmless::Parameter<float>{ Params::kFeedback, "Feedback", "delay", { .min = 0.0f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
-    params.emplace_back(mostly_harmless::Parameter<float>{ Params::kDryWet, "Dry/Wet", "delay", { .min = 0.0f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
+    params.emplace_back(mostly_harmless::Parameter<float>{ mostly_harmless::ParameterID{ "Time" }, "Time", "delay", { .min = 0.1f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
+    params.emplace_back(mostly_harmless::Parameter<float>{ mostly_harmless::ParameterID{ "Feedback" }, "Feedback", "delay", { .min = 0.0f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
+    params.emplace_back(mostly_harmless::Parameter<float>{ mostly_harmless::ParameterID{ "Dry/Wet" }, "Dry/Wet", "delay", { .min = 0.0f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
     return params;
+}
+
+ParamView::ParamView(size_t numParams) : m_numParams(numParams) {
 }
 
 std::span<mostly_harmless::Parameter<float>*> ParamView::toSpan() noexcept {
     auto* asArray = reinterpret_cast<mostly_harmless::Parameter<float>**>(this);
-    std::span<mostly_harmless::Parameter<float>*> asSpan{ asArray, kNumParams };
+    std::span<mostly_harmless::Parameter<float>*> asSpan{ asArray, m_numParams };
     return asSpan;
 }
 
-SharedState::SharedState(mostly_harmless::core::SharedStateContext&& context) : mostly_harmless::core::ISharedState(std::move(context), createParameters()) {
-    if (auto timeParam = getParameterByIndex(Params::kTime)) {
+SharedState::SharedState(mostly_harmless::core::SharedStateContext&& context) : mostly_harmless::core::ISharedState(std::move(context), createParameters()),
+                                                                                m_paramView(getNumParams()) {
+    if (auto timeParam = getParameterById(mostly_harmless::ParameterID{ "Time" })) {
         m_paramView.timeParam = timeParam;
     } else {
         assert(false);
     }
-    if (auto feedbackParam = getParameterByIndex(Params::kFeedback)) {
+    if (auto feedbackParam = getParameterById(mostly_harmless::ParameterID{ "Feedback" })) {
         m_paramView.feedbackParam = feedbackParam;
     } else {
         assert(false);
     }
-    if (auto dryWetParam = getParameterByIndex(Params::kDryWet)) {
+    if (auto dryWetParam = getParameterById(mostly_harmless::ParameterID{ "Dry/Wet" })) {
         m_paramView.dryWetParam = dryWetParam;
     } else {
         assert(false);
@@ -42,7 +46,7 @@ void SharedState::loadState(std::string_view loadedData) {
     auto paramArray = m_paramView.toSpan();
     nlohmann::json j = nlohmann::json::parse(loadedData);
     for (auto& p : paramArray) {
-        const auto pid = std::to_string(p->pid);
+        const auto pid = p->parameterId.toString();
         if (!j.contains(pid)) continue;
         const auto value = j[pid].get<float>();
         p->value = value;
@@ -54,7 +58,8 @@ void SharedState::saveState(std::ostringstream& dest) {
     auto paramArray = m_paramView.toSpan();
     nlohmann::json j;
     for (auto& p : paramArray) {
-        j[std::to_string(p->pid)] = p->value;
+        const auto pid = p->parameterId.toString();
+        j[pid] = p->value;
     }
     dest << j;
 }
