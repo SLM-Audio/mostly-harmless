@@ -20,7 +20,7 @@ Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(s
     std::stringstream initialDataStream;
     nlohmann::json j;
     auto& el = j[paramView.gainParam->name];
-    el["id"] = paramView.gainParam->parameterId.pid;
+    el["id"] = paramView.gainParam->pid;
     el["min"] = paramView.gainParam->range.min;
     el["max"] = paramView.gainParam->range.max;
     el["initial"] = paramView.gainParam->value;

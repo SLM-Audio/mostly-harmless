@@ -22,7 +22,7 @@ Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(s
     nlohmann::json initialDataJson;
     for (auto& p : params) {
         auto& el = initialDataJson[p.name];
-        el["id"] = p.parameterId.pid;
+        el["id"] = p.pid;
         el["min"] = p.range.min;
         el["max"] = p.range.max;
         el["initial"] = p.value;

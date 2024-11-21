@@ -39,25 +39,45 @@ namespace mostly_harmless {
      */
     template <marvin::FloatType SampleType>
     struct Parameter final {
-
         /**
-         * A ParameterID for this parameter - the name passed to its constuctor should be unique, and to maintain backwards compatability with different versions of your plugin,
-         * must not change.
+         * Creates a Parameter, setting the pid field based on a ParameterID instance. We'd recommend using this constructor, but the other overload is available if you want custom logic for your PIDs.
+         * \param parameterId_ A ParameterID constructed with the unique internal name for your parameter. If you want to remain backwards compatible, make sure these strings do not change, and are unique.
+         * \param name_ The parameter's user-facing name.
+         * \param category_ The parameter's category - a clap feature supported by some hosts, to organise parameters in trees as opposed to an overwhelming flat list.
+         * \param range_ The parameter's range.
+         * \param defaultValue_ The parameter's default value.
+         * \param flags_ The parameter's clap param flags - see [here](https://github.com/free-audio/clap/blob/c2c1dea9f72b38e23e285a9a10a5d936920895ab/include/clap/ext/params.h#L133) for more details.
          */
-        ParameterID parameterId;
+        Parameter(ParameterID parameterId_, std::string_view name_, std::string_view category_, marvin::utils::Range<SampleType> range_, SampleType defaultValue_, std::uint32_t flags_);
 
         /**
-         * The parameter's user readable name.
+         * Creates a Parameter, setting the pid directly from the pid_ arg. Most of the time, the other overload is preferable here, but if you really want to manage your own PIDs, use this one.
+         * \param pid_ A unique uint32_t pid for your parameter. For backwards compatability, this must stay fixed, and must be unique.
+         * \param name_ The parameter's user-facing name.
+         * \param category_ The parameter's category - a clap feature supported by some hosts, to organise parameters in trees as opposed to an overwhelming flat list.
+         * \param range_ The parameter's range.
+         * \param defaultValue_ The parameter's default value.
+         * \param flags_ The parameter's clap param flags - see [here](https://github.com/free-audio/clap/blob/c2c1dea9f72b38e23e285a9a10a5d936920895ab/include/clap/ext/params.h#L133) for more details.
+         */
+        Parameter(std::uint32_t pid_, std::string_view name_, std::string_view category_, marvin::utils::Range<SampleType> range_, SampleType defaultValue_, std::uint32_t flags_);
+
+        /**
+         * The Parameter's internal ID, used for lookups, etc. CLAP requires that this stay fixed to avoid compatability issues, and it *must* be unique.
+         */
+        std::uint32_t pid;
+
+        /**
+         * The parameter's user-facing name.
          */
         std::string name;
 
         /**
-         * The parameter's category, for display purposes.
+         * The parameter's category - a clap feature supported by some hosts, to organise parameters in trees as opposed to an overwhelming flat list.
          */
         std::string category;
 
         /**
-         * The parameter's min and max values.
+         * The parameter's range.
          */
         marvin::utils::Range<SampleType> range;
 

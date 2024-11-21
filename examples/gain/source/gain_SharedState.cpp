@@ -13,14 +13,14 @@ SharedState::SharedState(mostly_harmless::core::SharedStateContext&& context) : 
 
 void SharedState::loadState(std::string_view loadedData) {
     nlohmann::json j = nlohmann::json::parse(loadedData);
-    const auto pid = m_paramView.gainParam->parameterId.toString();
+    const auto pid = std::to_string(m_paramView.gainParam->pid);
     if (!j.contains(pid)) return;
     m_paramView.gainParam->value = j[pid].get<float>();
 }
 
 void SharedState::saveState(std::ostringstream& dest) {
     nlohmann::json j;
-    const auto pid = m_paramView.gainParam->parameterId.toString();
+    const auto pid = std::to_string(m_paramView.gainParam->pid);
     j[pid] = m_paramView.gainParam->value;
     dest << j;
 }
