@@ -74,4 +74,4 @@ target_sources(delay PRIVATE
 
 target_include_directories(delay PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source)
 target_link_libraries(delay PUBLIC nlohmann_json)
-#target_compile_definitions(delay PUBLIC HOT_RELOAD) # Comment this out to serve from RAM
+target_compile_definitions(delay PUBLIC HOT_RELOAD) # Comment this out to serve from RAM

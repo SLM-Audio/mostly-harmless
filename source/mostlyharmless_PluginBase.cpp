@@ -203,7 +203,7 @@ namespace mostly_harmless::internal {
     bool PluginBase::paramsInfo(std::uint32_t paramIndex, clap_param_info* info) const noexcept {
         if (paramIndex >= m_state->getNumParams()) return false;
         auto* param = m_state->getParameterByIndex(paramIndex);
-        info->id = param->pid;
+        info->id = param->parameterId.pid;
         info->flags = param->flags;
         strncpy(info->name, param->name.c_str(), CLAP_NAME_SIZE);
         strncpy(info->module, param->category.c_str(), CLAP_NAME_SIZE);
@@ -339,7 +339,7 @@ namespace mostly_harmless::internal {
         m_state->loadState(asStr);
         for (std::uint32_t paramIndex = 0; paramIndex < m_state->getNumParams(); ++paramIndex) {
             auto* param = m_state->getParameterByIndex(paramIndex);
-            const auto pid = param->pid;
+            const auto pid = param->parameterId.pid;
             const auto value = param->value;
             m_state->getProcToGuiQueue().tryPush({ .paramId = pid, .value = value });
         }

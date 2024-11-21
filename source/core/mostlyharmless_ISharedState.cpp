@@ -8,8 +8,12 @@ namespace mostly_harmless::core {
                                                                                                        m_procToGuiQueue(1024),
                                                                                                        m_guiToProcQueue(1024) {
         for (auto& param : m_params) {
-            m_paramLookup[param.pid] = &param;
+            m_paramLookup[param.parameterId.pid] = &param;
         }
+    }
+
+    std::span<Parameter<float>> ISharedState::getRawParameterView() noexcept {
+        return m_params;
     }
 
     Parameter<float>* ISharedState::getParameterByIndex(std::uint32_t index) noexcept {
@@ -19,11 +23,15 @@ namespace mostly_harmless::core {
         return &(m_params[index]);
     }
 
-    Parameter<float>* ISharedState::getParameterById(std::uint32_t id) {
-        if (!m_paramLookup.contains(id)) {
+    Parameter<float>* ISharedState::getParameterById(mostly_harmless::ParameterID parameterId) {
+        return getParameterById(parameterId.pid);
+    }
+
+    Parameter<float>* ISharedState::getParameterById(std::uint32_t pid) {
+        if (!m_paramLookup.contains(pid)) {
             return nullptr;
         }
-        return m_paramLookup.at(id);
+        return m_paramLookup.at(pid);
     }
 
     std::uint32_t ISharedState::getNumParams() const noexcept {

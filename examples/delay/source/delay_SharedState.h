@@ -2,19 +2,13 @@
 #define DELAY_SHAREDSTATE_H
 
 #include <mostly_harmless/core/mostlyharmless_ISharedState.h>
+#include <mostly_harmless/utils/mostlyharmless_Hash.h>
 
-enum Params {
-    kTime = 0,
-    kFeedback = 1,
-    kDryWet = 2,
-    kNumParams = 3
-};
+
 struct ParamView final {
     mostly_harmless::Parameter<float>* timeParam{ nullptr };
     mostly_harmless::Parameter<float>* feedbackParam{ nullptr };
     mostly_harmless::Parameter<float>* dryWetParam{ nullptr };
-
-    std::span<mostly_harmless::Parameter<float>*> toSpan() noexcept;
 };
 
 class SharedState final : public mostly_harmless::core::ISharedState {

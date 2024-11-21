@@ -3,24 +3,28 @@ import './App.css'
 import SliderComponent from "./SliderComponent.jsx";
 
 function App() {
+    const timeParam = window.params["Time"];
+    const feedbackParam = window.params["Feedback"];
+    const dryWetParam = window.params["Dry/Wet"];
+
     return (
         <>
             <div>
                 <p className="label">delay</p>
-                <SliderComponent pid={window.params.kTime.id}
-                                 min={window.params.kTime.min}
-                                 max={window.params.kTime.max}
-                                 initial={window.params.kTime.initial}
+                <SliderComponent pid={timeParam.id}
+                                 min={timeParam.min}
+                                 max={timeParam.max}
+                                 initial={timeParam.initial}
                 />
-                <SliderComponent pid={window.params.kFeedback.id}
-                                 min={window.params.kFeedback.min}
-                                 max={window.params.kFeedback.max}
-                                 initial={window.params.kFeedback.initial}
+                <SliderComponent pid={feedbackParam.id}
+                                 min={feedbackParam.min}
+                                 max={feedbackParam.max}
+                                 initial={feedbackParam.initial}
                 />
-                <SliderComponent pid={window.params.kDryWet.id}
-                                 min={window.params.kDryWet.min}
-                                 max={window.params.kDryWet.max}
-                                 initial={window.params.kDryWet.initial}
+                <SliderComponent pid={dryWetParam.id}
+                                 min={dryWetParam.min}
+                                 max={dryWetParam.max}
+                                 initial={dryWetParam.initial}
                 />
             </div>
         </>

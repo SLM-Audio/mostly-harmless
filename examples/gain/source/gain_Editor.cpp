@@ -1,5 +1,6 @@
 #include "gain_Editor.h"
 #include <mostlyharmless_GainWebResources.h>
+#include <nlohmann/json.hpp>
 
 [[nodiscard]] mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
     auto resOpt = mostly_harmless::GainWebResources::getNamedResource(name);
@@ -17,14 +18,14 @@
 Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(sharedState, 500, 500, mostly_harmless::gui::Colour{ 0xFF89CC04 }) {
     auto paramView = sharedState->getParamView();
     std::stringstream initialDataStream;
-    initialDataStream << "window.params = {\n";
-    initialDataStream << "    kGain: {\n";
-    initialDataStream << "        id: " << Params::kGain << ",\n";
-    initialDataStream << "        min: " << paramView.gainParam->range.min << ",\n";
-    initialDataStream << "        max: " << paramView.gainParam->range.max << ",\n";
-    initialDataStream << "        initial: " << paramView.gainParam->value << ",\n";
-    initialDataStream << "    }\n";
-    initialDataStream << "};";
+    nlohmann::json j;
+    auto& el = j[paramView.gainParam->name];
+    el["id"] = paramView.gainParam->parameterId.pid;
+    el["min"] = paramView.gainParam->range.min;
+    el["max"] = paramView.gainParam->range.max;
+    el["initial"] = paramView.gainParam->value;
+    initialDataStream << "window.params = " << j << ";";
+
 #if defined(HOT_RELOAD)
     this->setOptions({ .enableDebug = true, .initScript = initialDataStream.str() });
 #else

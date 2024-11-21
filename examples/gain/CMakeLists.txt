@@ -73,4 +73,4 @@ target_sources(gain PRIVATE
 )
 
 target_include_directories(gain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source)
-#target_compile_definitions(gain PUBLIC HOT_RELOAD) # Comment this out to serve from RAM
+target_compile_definitions(gain PUBLIC HOT_RELOAD) # Comment this out to serve from RAM

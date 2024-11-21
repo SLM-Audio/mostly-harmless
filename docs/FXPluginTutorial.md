@@ -464,7 +464,7 @@ Now - `mostly_harmless::Parameter<float>` - whats the deal with that? At this po
 sidetracked, and take a look at the documentation.
 The main things we need to worry about here are `pid`, `name`, `category`, `range`, `defaultValue` and `flags`.
 
-- `pid` is the internally used param id.
+- `parameterId` is the internally used param id.
 - `name` is the parameter's name, which will be displayed in the host.
 - `category` is a clap-specific thing, in which you can separate certain parameters by category - this specifies the
   category.
@@ -472,23 +472,26 @@ The main things we need to worry about here are `pid`, `name`, `category`, `rang
 - `defaultValue` is, intuitively, the default value of the parameter.
 - `flags` is a set of clap defined flags, to control the parameter's properties.
 
-To start with, it's sort of awkward having to decide on an arbitrary `pid`, so we'll set up an enumerator to define
-these.
+`parameterId` needs a little elaboration here. In CLAP, the id for a given parameter must be fixed to avoid breaking
+automation,
+old presets, old states, and generally maintain backwards compatability. So rather than getting you (the user) to pick
+an arbitrary
+unique uint32_t for each parameter, we provide ParameterID. This class takes a non-owning view to a string, and
+generates that
+string's hash at construction - the hash is then used as the internal param id. We could have generated this
+from `name`, but
+separating the two allows you to rename the host/user facing param name at any point, without breaking existing
+projects, etc. This of course means that the string passed to ParameterID must not change once your plugin is in the
+wild - this is reiterated a few times
+in the documentation, but just to really hammer it home...
 
-```cpp 
-enum ParamId : std::uint32_t { 
-  kGain,
-  NumParams
-};
-```
-
-Armed with our newfound knowledge, lets populate our `createParams` function.
+With that out of the way, armed with our newfound knowledge, lets populate our `createParams` function.
 
 ```cpp
 std::vector<mostly_harmless::Parameter<float>> createParams() { 
     std::vector<mostly_harmless::Parameter<float>> params;
     params.emplace_back(mostly_harmless::Parameter<float>{ 
-        ParamId::kGain, // pid
+        mostly_harmless::ParameterID{"gain"}, // pid
         "Gain", // name
         "gain/", // category
         {.min = 0.0f, .max = 1.0f}, // range,
@@ -500,9 +503,11 @@ std::vector<mostly_harmless::Parameter<float>> createParams() {
 ```
 
 With this in place, we've created a gain parameter. `ISharedState` provides a `getParameterById` function which we can
-use to retrieve a parameter by `ParamId`.
+use to retrieve a parameter by either a ParameterID, or a `std::uint32_t` (the latter being useful if you want to
+precalculate your hashes, and keep them around in shared state, etc.
 
-However, this performs a lookup in a `std::unordered_map`. We can live with this, but can also do better. Still within
+However, both of these overloads perform a lookup in a `std::unordered_map`. We can live with this, but can also do
+better. Still within
 our `ISharedState` header/source, lets declare a new type, `ParameterView`.
 
 ```cpp 
@@ -528,7 +533,12 @@ In `SharedState`'s constructor, we need to initialise `m_paramView`'s `gainParam
 
 ```cpp 
 SharedState::SharedState(....) : .... { 
-    m_paramView.gainParam = getParameterById(ParamId::kGain);
+    if(auto param = getParameterById(mostly_harmless::ParameterID{"gain"}) { 
+        m_paramView.gainParam = param; 
+    }
+    else { 
+        assert(false);
+    }
 }
 ```
 
@@ -567,6 +577,7 @@ void Engine::process(marvin::containers::BufferView<float> buffer, std::optional
 }
 ```
 
+// TODO: MORE
 
 
 
