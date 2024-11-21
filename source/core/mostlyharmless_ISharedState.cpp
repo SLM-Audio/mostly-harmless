@@ -12,7 +12,7 @@ namespace mostly_harmless::core {
         }
     }
 
-    std::span<Parameter<float>> ISharedState::getParams() noexcept {
+    std::span<Parameter<float>> ISharedState::getRawParameterView() noexcept {
         return m_params;
     }
 

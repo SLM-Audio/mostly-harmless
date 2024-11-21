@@ -38,7 +38,12 @@ namespace mostly_harmless::core {
          */
         virtual ~ISharedState() noexcept = default;
 
-        [[nodiscard]] std::span<Parameter<float>> getParams() noexcept;
+        /**
+         * Retrieves a non-owning view into the internal (index ordered) parameter vector.
+         * Useful if you want to iterate over all parameters in state restoration, etc.
+         * \return A non-owning view into the internal parameter vector.
+         */
+        [[nodiscard]] std::span<Parameter<float>> getRawParameterView() noexcept;
 
         /**
          * Attempts to retrieve a parameter by index - see Parameter for more details.

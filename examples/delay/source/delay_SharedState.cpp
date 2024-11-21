@@ -34,7 +34,7 @@ ParamView SharedState::getParamView() const noexcept {
 }
 
 void SharedState::loadState(std::string_view loadedData) {
-    auto paramArray = getParams();
+    auto paramArray = getRawParameterView();
     nlohmann::json j = nlohmann::json::parse(loadedData);
     for (auto& p : paramArray) {
         const auto pid = p.parameterId.toString();
@@ -46,7 +46,7 @@ void SharedState::loadState(std::string_view loadedData) {
 }
 
 void SharedState::saveState(std::ostringstream& dest) {
-    auto paramArray = getParams();
+    auto paramArray = getRawParameterView();
     nlohmann::json j;
     for (auto& p : paramArray) {
         const auto pid = p.parameterId.toString();

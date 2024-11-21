@@ -17,8 +17,7 @@
 }
 
 Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(sharedState, 500, 500, mostly_harmless::gui::Colour{ 0xFF89CC04 }) {
-    auto paramView = sharedState->getParamView();
-    auto params = sharedState->getParams();
+    auto params = sharedState->getRawParameterView();
     std::stringstream initialDataStream;
     nlohmann::json initialDataJson;
     for (auto& p : params) {
