@@ -461,7 +461,9 @@ std::vector<mostly_harmless::Parameter<float>> createParams() {
 ```
 
 Now - `mostly_harmless::Parameter<float>` - whats the deal with that? At this point it's helpful to get slightly
-sidetracked, and take a look at the documentation.
+sidetracked, and take a look at the documentation. It's worth noting that there are two overloads of Parameter's
+constructor - one that takes a ParameterID, and another that takes a raw std::uint32_t.
+We'll focus on the former here, but you can learn the difference between the two by checking the documentation.
 The main things we need to worry about here are `pid`, `name`, `category`, `range`, `defaultValue` and `flags`.
 
 - `parameterId` is the internally used param id.
@@ -475,10 +477,10 @@ The main things we need to worry about here are `pid`, `name`, `category`, `rang
 `parameterId` needs a little elaboration here. In CLAP, the id for a given parameter must be fixed to avoid breaking
 automation,
 old presets, old states, and generally maintain backwards compatability. So rather than getting you (the user) to pick
-an arbitrary
-unique uint32_t for each parameter, we provide ParameterID. This class takes a non-owning view to a string, and
-generates that
-string's hash at construction - the hash is then used as the internal param id. We could have generated this
+an arbitrary unique uint32_t for each parameter, we provide ParameterID. This class takes a non-owning view to a string,
+and
+generates that string's hash at construction - the hash is then used as the internal param id. We could have generated
+this
 from `name`, but
 separating the two allows you to rename the host/user facing param name at any point, without breaking existing
 projects, etc. This of course means that the string passed to ParameterID must not change once your plugin is in the

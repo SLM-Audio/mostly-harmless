@@ -37,7 +37,7 @@ void SharedState::loadState(std::string_view loadedData) {
     auto paramArray = getRawParameterView();
     nlohmann::json j = nlohmann::json::parse(loadedData);
     for (auto& p : paramArray) {
-        const auto pid = p.parameterId.toString();
+        const auto pid = std::to_string(p.pid);
         if (!j.contains(pid)) continue;
         const auto value = j[pid].get<float>();
         p.value = value;
@@ -49,7 +49,7 @@ void SharedState::saveState(std::ostringstream& dest) {
     auto paramArray = getRawParameterView();
     nlohmann::json j;
     for (auto& p : paramArray) {
-        const auto pid = p.parameterId.toString();
+        const auto pid = std::to_string(p.pid);
         j[pid] = p.value;
     }
     dest << j;

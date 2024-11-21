@@ -8,7 +8,7 @@ namespace mostly_harmless::core {
                                                                                                        m_procToGuiQueue(1024),
                                                                                                        m_guiToProcQueue(1024) {
         for (auto& param : m_params) {
-            m_paramLookup[param.parameterId.pid] = &param;
+            m_paramLookup[param.pid] = &param;
         }
     }
 

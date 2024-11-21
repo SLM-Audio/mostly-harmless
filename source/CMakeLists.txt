@@ -8,6 +8,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Entry.cpp
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_PluginBase.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Parameters.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/core/mostlyharmless_ISharedState.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_TransportState.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_EventContext.cpp
