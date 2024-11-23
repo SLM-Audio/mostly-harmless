@@ -11,14 +11,17 @@ var searchData=
   ['bandshelf_8',['bandShelf',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#a09516ebf813241e46fccc87a2f5fdd28',1,'marvin::dsp::filters::SVFResult']]],
   ['begin_9',['Begin',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a1a06729125544cab7cee73195fc044f0',1,'mostly_harmless::events::GuiToProcParamEvent']]],
   ['begin_10',['begin',['../classmarvin_1_1containers_1_1StrideView.html#ad9eb1c57ae577a378322225c3707503c',1,'marvin::containers::StrideView::begin()'],['../classmarvin_1_1containers_1_1StrideView.html#ad16dff206a78e7268f279bc71c22829f',1,'marvin::containers::StrideView::begin() const']]],
-  ['beginparamchangegesturecallback_11',['beginParamChangeGestureCallback',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a498402862ce7f933fe55e1c5de5170cc',1,'mostly_harmless::gui::WebviewEditor']]],
-  ['binary_20data_12',['Binary Data',['../index.html#autotoc_md10',1,'']]],
+  ['beginparamchangegesturecallback_11',['beginParamChangeGestureCallback',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a5da09e824612b7d2f0945c79167cc5b5',1,'mostly_harmless::gui::WebviewEditor']]],
+  ['binary_20data_12',['Binary Data',['../index.html#autotoc_md11',1,'']]],
   ['biquad_13',['Biquad',['../classmarvin_1_1dsp_1_1filters_1_1Biquad.html',1,'marvin::dsp::filters']]],
   ['biquadcoefficients_14',['BiquadCoefficients',['../structmarvin_1_1dsp_1_1filters_1_1BiquadCoefficients.html',1,'marvin::dsp::filters']]],
   ['blackmanharris_15',['BlackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58a7c83be4d47a76f1b8b9657d7e6a00c00',1,'marvin::math::windows']]],
   ['blackmanharris_16',['blackmanHarris',['../namespacemarvin_1_1math_1_1windows.html#a478bc2e574a36a1e1a6a6ab9edd29b65',1,'marvin::math::windows']]],
   ['bpm_17',['bpm',['../structmostly__harmless_1_1TransportState.html#a7920024a99c5b38b58bd8274f751099f',1,'mostly_harmless::TransportState']]],
-  ['bufferview_18',['BufferView',['../structmarvin_1_1containers_1_1BufferView.html',1,'marvin::containers::BufferView&lt; SampleType &gt;'],['../structmarvin_1_1containers_1_1BufferView.html#a2619bfffb10e61e489c698673a017352',1,'marvin::containers::BufferView::BufferView()']]],
-  ['building_19',['Building',['../index.html#autotoc_md7',1,'']]],
-  ['busconfig_20',['BusConfig',['../namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6',1,'mostly_harmless']]]
+  ['buffer_18',['buffer',['../structmostly__harmless_1_1core_1_1ProcessContext.html#affbb8496a15aeeed6d0cbdc15e7535ea',1,'mostly_harmless::core::ProcessContext']]],
+  ['bufferview_19',['BufferView',['../structmarvin_1_1containers_1_1BufferView.html',1,'marvin::containers::BufferView&lt; SampleType &gt;'],['../structmarvin_1_1containers_1_1BufferView.html#a2619bfffb10e61e489c698673a017352',1,'marvin::containers::BufferView::BufferView()']]],
+  ['bufferview_3c_20float_20_3e_20',['BufferView&lt; float &gt;',['../structmarvin_1_1containers_1_1BufferView.html',1,'marvin::containers']]],
+  ['building_21',['Building',['../index.html#autotoc_md8',1,'']]],
+  ['building_22',['Getting it building',['../md_FXPluginTutorial.html#autotoc_md25',1,'']]],
+  ['busconfig_23',['BusConfig',['../namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6',1,'mostly_harmless']]]
 ];

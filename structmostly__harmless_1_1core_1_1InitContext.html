@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MostlyHarmless: mostly_harmless::gui::EditorContext Struct Reference</title>
+<title>MostlyHarmless: mostly_harmless::core::InitContext Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,82 +83,82 @@ $(function(){ initResizable(false); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacemostly__harmless.html">mostly_harmless</a></li><li class="navelem"><a class="el" href="namespacemostly__harmless_1_1gui.html">gui</a></li><li class="navelem"><a class="el" href="structmostly__harmless_1_1gui_1_1EditorContext.html">EditorContext</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacemostly__harmless.html">mostly_harmless</a></li><li class="navelem"><a class="el" href="namespacemostly__harmless_1_1core.html">core</a></li><li class="navelem"><a class="el" href="structmostly__harmless_1_1core_1_1InitContext.html">InitContext</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structmostly__harmless_1_1gui_1_1EditorContext-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">mostly_harmless::gui::EditorContext Struct Reference<span class="mlabels"><span class="mlabel">final</span></span></div></div>
+<a href="structmostly__harmless_1_1core_1_1InitContext-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">mostly_harmless::core::InitContext Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Trivially copyable struct containing extra necessary context for a gui.  
+<p>Container for context passed to <a class="el" href="classmostly__harmless_1_1core_1_1IEngine.html#a3ea8f26e120106793454ad91d7638b74">IEngine::initialise</a>.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="mostlyharmless__EditorContext_8h_source.html">mostlyharmless_EditorContext.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="mostlyharmless__IEngine_8h_source.html">mostlyharmless_IEngine.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a6b5d167c9f763dcc1beff24e4bff52f4" id="r_a6b5d167c9f763dcc1beff24e4bff52f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b5d167c9f763dcc1beff24e4bff52f4">guiToProcQueue</a> { nullptr }</td></tr>
-<tr class="separator:a6b5d167c9f763dcc1beff24e4bff52f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f9dd8134b7d401e3aa6286deb411840" id="r_a7f9dd8134b7d401e3aa6286deb411840"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(void)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f9dd8134b7d401e3aa6286deb411840">requestParamFlush</a> { nullptr }</td></tr>
-<tr class="separator:a7f9dd8134b7d401e3aa6286deb411840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb8b0bd6252688539b0994b908971401" id="r_afb8b0bd6252688539b0994b908971401"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(std::function&lt; void(void)&gt; &amp;&amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb8b0bd6252688539b0994b908971401">callOnMainThread</a> { nullptr }</td></tr>
-<tr class="separator:afb8b0bd6252688539b0994b908971401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b018189a9c686d4ca4a711b2e565294" id="r_a3b018189a9c686d4ca4a711b2e565294"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b018189a9c686d4ca4a711b2e565294">sampleRate</a></td></tr>
+<tr class="separator:a3b018189a9c686d4ca4a711b2e565294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4b37cb4fb80303fef9333b12d7acc6f" id="r_ac4b37cb4fb80303fef9333b12d7acc6f"><td class="memItemLeft" align="right" valign="top">std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4b37cb4fb80303fef9333b12d7acc6f">minBufferSize</a></td></tr>
+<tr class="separator:ac4b37cb4fb80303fef9333b12d7acc6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3ad72e6038a9ea532134f992b5879f6" id="r_aa3ad72e6038a9ea532134f992b5879f6"><td class="memItemLeft" align="right" valign="top">std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3ad72e6038a9ea532134f992b5879f6">maxBufferSize</a></td></tr>
+<tr class="separator:aa3ad72e6038a9ea532134f992b5879f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Trivially copyable struct containing extra necessary context for a gui. </p>
+<div class="textblock"><p>Container for context passed to <a class="el" href="classmostly__harmless_1_1core_1_1IEngine.html#a3ea8f26e120106793454ad91d7638b74">IEngine::initialise</a>. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="afb8b0bd6252688539b0994b908971401" name="afb8b0bd6252688539b0994b908971401"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb8b0bd6252688539b0994b908971401">&#9670;&#160;</a></span>callOnMainThread</h2>
+<a id="aa3ad72e6038a9ea532134f992b5879f6" name="aa3ad72e6038a9ea532134f992b5879f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3ad72e6038a9ea532134f992b5879f6">&#9670;&#160;</a></span>maxBufferSize</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::function&lt;void(std::function&lt;void(void)&gt;&amp;&amp;)&gt; mostly_harmless::gui::EditorContext::callOnMainThread { nullptr }</td>
+          <td class="memname">std::uint32_t mostly_harmless::core::InitContext::maxBufferSize</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A lambda for invoking functions from a background thread on the gui thread. Passed for convenience, should you be running timers on the gui thread, etc etc. Takes an rvalue ref to a lambda to invoke. </p>
+<p>The maximum buffer size the host can pass to the plugin. </p>
 
 </div>
 </div>
-<a id="a6b5d167c9f763dcc1beff24e4bff52f4" name="a6b5d167c9f763dcc1beff24e4bff52f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b5d167c9f763dcc1beff24e4bff52f4">&#9670;&#160;</a></span>guiToProcQueue</h2>
+<a id="ac4b37cb4fb80303fef9333b12d7acc6f" name="ac4b37cb4fb80303fef9333b12d7acc6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4b37cb4fb80303fef9333b12d7acc6f">&#9670;&#160;</a></span>minBufferSize</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt;<a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a>&gt;* mostly_harmless::gui::EditorContext::guiToProcQueue { nullptr }</td>
+          <td class="memname">std::uint32_t mostly_harmless::core::InitContext::minBufferSize</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A pointer to a rt/ts fifo for sending param updates to the audio thread. </p>
+<p>The minimum buffer size the host can pass to the plugin. </p>
 
 </div>
 </div>
-<a id="a7f9dd8134b7d401e3aa6286deb411840" name="a7f9dd8134b7d401e3aa6286deb411840"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f9dd8134b7d401e3aa6286deb411840">&#9670;&#160;</a></span>requestParamFlush</h2>
+<a id="a3b018189a9c686d4ca4a711b2e565294" name="a3b018189a9c686d4ca4a711b2e565294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b018189a9c686d4ca4a711b2e565294">&#9670;&#160;</a></span>sampleRate</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::function&lt;void(void)&gt; mostly_harmless::gui::EditorContext::requestParamFlush { nullptr }</td>
+          <td class="memname">double mostly_harmless::core::InitContext::sampleRate</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A lambda calling back to the clap_host, to request flushing parameters. This should be called after dispatching an event into the guiToProcQueue. </p>
+<p>The current host sample rate. </p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/runner/work/mostly-harmless/mostly-harmless/include/mostly_harmless/gui/<a class="el" href="mostlyharmless__EditorContext_8h_source.html">mostlyharmless_EditorContext.h</a></li>
+<li>/home/runner/work/mostly-harmless/mostly-harmless/include/mostly_harmless/core/<a class="el" href="mostlyharmless__IEngine_8h_source.html">mostlyharmless_IEngine.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['multioscillator_0',['MultiOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html',1,'marvin::dsp::oscillators']]]
+  ['noiseoscillator_0',['NoiseOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1NoiseOscillator.html',1,'marvin::dsp::oscillators']]]
 ];

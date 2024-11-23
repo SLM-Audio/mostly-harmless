@@ -110,10 +110,16 @@ gui</h2>
 <h1><a class="anchor" id="autotoc_md6"></a>
 Getting Started</h1>
 <h2><a class="anchor" id="autotoc_md7"></a>
-Building</h2>
-<p>Firstly, we'd recommend taking a look in the <code>examples</code> directory for a real-world use case, in the absence of actual tutorials (which are planned). <br  />
- mostly harmless is built with CMake, and supports Windows and macOS (Linux support is on the roadmap). It can be consumed either as a git submodule, or as a FetchContent dependency.</p>
+First Steps</h2>
+<p>Firstly, we'd recommend taking a look in the <code>examples</code> directory for a real-world use case, and the FX Plugin Tutorial in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project. We also provide a (wip) python script to generate the boilerplate needed for a new project for you, found in the root directory.<br  />
+ Usage is</p>
+<p><code>python3 create.py &lt;name&gt; &lt;dest_path&gt; &lt;fx | instrument&gt; [no_gui | web | raw_gui]</code></p>
+<p>where <code>&lt;&gt;</code> denotes a required field, and <code>[]</code> denotes an optional field. The final field, for gui, if not provided, will default to <code>no_gui</code>.<br  />
+ I realise it's a little janky at the moment having positional args instead of the usual <code>--some_flag=something</code> approach, and plan to refactor it to be a little more user friendly in future.</p>
 <h2><a class="anchor" id="autotoc_md8"></a>
+Building</h2>
+<p>mostly harmless is built with CMake, and supports Windows and macOS (Linux support is on the roadmap). It can be consumed either as a git submodule, or as a FetchContent dependency.</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Adding to your project</h2>
 <div class="fragment"><div class="line"> include(FetchContent)</div>
 <div class="line">FetchContent_Declare(mostly_harmless</div>
@@ -124,7 +130,7 @@ Adding to your project</h2>
 <div class="line"> FetchContent_MakeAvailable(mostly_harmless)</div>
 </div><!-- fragment --><p> <br  />
 </p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Adding a plugin target</h2>
 <p>We provide a convenience function to set up your plugin targets, <code>mostly_harmless_add_plugin</code>. This function will create targets for the specified formats, and link them to the necessary dependencies. Note that if you specify the AU format, a few more arguments become neccessary - the arguments are detailed below.</p>
 <div class="fragment"><div class="line"> mostly_harmless_add_plugin(YourTarget</div>
@@ -170,7 +176,7 @@ Adding a plugin target</h2>
 <div class="line">auol - offline effect</div>
 <div class="line">auou - output</div>
 <div class="line">aupn - panner</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
 Binary Data</h2>
 <p>We also provide a helper to embed assets into your binary, (essentially sugar around <code>CMRC</code>) and a corresponding cmake function to call this, <code>mostly_harmless_add_binary_data</code>.</p>
 <div class="fragment"><div class="line">mostly_harmless_add_binary_data(YourTarget</div>
@@ -179,7 +185,7 @@ Binary Data</h2>
 <div class="line">        BINARY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/VonDutch128.mp3</div>
 <div class="line">        ${CMAKE_CURRENT_SOURCE_DIR}/resources/JamesJoyceReads_TheJungleBook.wav</div>
 <div class="line">)</div>
-</div><!-- fragment --><p>This will create a static library called <code>BinaryData</code> containing your resources, and add the resulting header to your include path. The value you pass to the <code>TARGET_NAME</code> parameters will dictate the name of the generated static library, the resulting filename (prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>), and the namespace the binary resources are contained in (also prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The core namespace, contains all things plugin-related.">mostly_harmless</a></code>). <br  />
+</div><!-- fragment --><p>This will create a static library called <code>BinaryData</code> containing your resources, and add the resulting header to your include path. The value you pass to the <code>TARGET_NAME</code> parameters will dictate the name of the generated static library, the resulting filename (prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The top-level namespace, contains all things plugin-related.">mostly_harmless</a></code>), and the namespace the binary resources are contained in (also prefixed by <code><a class="el" href="namespacemostly__harmless.html" title="The top-level namespace, contains all things plugin-related.">mostly_harmless</a></code>). <br  />
 <br  />
  The generated header provides a free function, <code>getNamedResource()</code> to access binary resources through, which takes a ( relative to root) path to a resource, and returns a <code>std::optional&lt;BinaryResource&gt;</code>, where <code>BinaryResource</code> is defined as:</p>
 <div class="fragment"><div class="line"><span class="keyword">struct </span>BinaryResource final { </div>
@@ -212,10 +218,10 @@ Binary Data</h2>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>You're not limited to a single library of binary resources either, which could be useful for separating resources of a different category or purpose into different headers, etc etc etc.</p>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 The actual plugin code</h2>
 <p>We've included the boilerplate for various projects in the <code>boilerplate</code> directory - these should serve as a good starting point for your plugin sources. As previously mentioned, you can also check out the <code>examples</code> directory for more inspiration.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Dependencies</h1>
 <p>mostly harmless depends on the following libraries:</p>
 <ul>
@@ -227,7 +233,7 @@ Dependencies</h1>
 <li><a href="https://github.com/nlohmann/json">json</a></li>
 <li><a href="https://github.com/catchorg/Catch2">catch2</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 Credits</h1>
 <p>This framework wouldn't exist without the advice, moral support and help of <a href="https://github.com/mthierman">mthierman</a>, <a href="https://github.com/benthevining">Ben Vining</a>, <a href="https://signalsmith-audio.co.uk/">Signalsmith</a> and the legions of incredible people in <a href="https://discord.gg/v5Rs8h6aGF">The Audio Programmer Discord</a>.<b></b></p>
 <p><b>SLM Audio Brat Summer 2024, all rights reserved. </b></p>
