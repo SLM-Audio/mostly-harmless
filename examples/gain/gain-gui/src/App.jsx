@@ -1,13 +1,18 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import './App.css'
 import SliderComponent from "./SliderComponent.jsx";
 
 function App() {
+    const gainParam = window.params["Gain"];
     return (
         <>
             <div>
-                <p className="label">Gain</p>
-                <SliderComponent pid={window.params.kGain} name={"hello"} min={0} max={1}/>
+                <p className="label">gain</p>
+                <SliderComponent pid={gainParam.id}
+                                 min={gainParam.min}
+                                 max={gainParam.max}
+                                 initial={gainParam.initial}
+                />
             </div>
         </>
     )

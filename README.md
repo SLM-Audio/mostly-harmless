@@ -37,10 +37,24 @@ in `mostly_harmless::gui::IEffect`.
 
 ## Getting Started
 
+### First Steps
+
+Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, and the FX Plugin Tutorial
+in the docs directory,
+which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project.
+We also provide a (wip) python script to generate the boilerplate needed for a new project for you, found in the root
+directory.<br>
+Usage is
+
+`python3 create.py <name> <dest_path> <fx | instrument> [no_gui | web | raw_gui]`
+
+where `<>` denotes a required field, and `[]` denotes an optional field. The final field, for gui, if not provided, will
+default to `no_gui`.<br>
+I realise it's a little janky at the moment having positional args instead of the usual `--some_flag=something`
+approach, and plan to refactor it to be a little more user friendly in future.
+
 ### Building
 
-Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, in the absence of actual
-tutorials (which are planned). <br>
 mostly harmless is built with CMake, and supports Windows and macOS (Linux support is on the roadmap).
 It can be consumed either as a git submodule, or as a FetchContent dependency.
 

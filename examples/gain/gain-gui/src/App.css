@@ -1,22 +1,32 @@
 #root {
-    min-width: 500px;
-    min-height: 500px;
-    margin: 0 auto;
+    top: 0;
+    left: 0;
+    margin: 0;
     padding: 0;
+    overflow: hidden;
     text-align: center;
     align-content: center;
-    justify-content: center;
-    font-family: Arial, serif;
+    /*font-family: Arial, serif;*/
     background-color: #89CC04;
-
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    min-height: 100vh;
+    max-height: 100vh;
 }
 
 .label {
+    display: flex;
     color: black;
     font-size: 70px;
     -webkit-transform: scale(0.65, 1);
 }
 
 .slider-el {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    min-width: 30vw;
 }
 

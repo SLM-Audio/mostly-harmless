@@ -1,30 +1,26 @@
 set(CMAKE_CXX_STANDARD 20)
-# set(ENABLE_EXPORTS FALSE)
+
 FetchContent_Declare(json
         URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
         URL_HASH SHA256=d6c65aca6b1ed68e7a182f4757257b107ae403032760ed6ef121c9d55e81757d
         GIT_SHALLOW ON
 )
-FetchContent_MakeAvailable(json)
 
-FetchContent_Declare(magic_enum
-        GIT_REPOSITORY https://github.com/Neargye/magic_enum.git
-        GIT_TAG master
-        GIT_SHALLOW ON)
-FetchContent_MakeAvailable(magic_enum)
+FetchContent_MakeAvailable(json)
 mostly_harmless_add_plugin(
-        Gain
-        ID "slma.gain"
-        VENDOR "SLM Audio"
+        gain
+        ID "your_company.gain"
+        VENDOR "Your Company"
         FORMATS CLAP AU VST3 Standalone
-        AU_BUNDLE_ID "com.yourcompany.gain"
+        AU_BUNDLE_ID "com.your_company.gain"
         AU_BUNDLE_VERSION "1"
         MANUFACTURER_CODE "Exmp"
-        SUBTYPE_CODE "Gpl1"
+        SUBTYPE_CODE "Mhp1"
         AU_TYPE "aufx"
         FEATURES "audio-effect"
 )
 
+# TODO: Setup your frontend code here - see examples/delay for a React example
 set(GAIN_GUI_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/gain-gui)
 file(GLOB_RECURSE GAIN_GUI_SOURCES "${GAIN_GUI_ROOT}/*" FORCE)
 set(GAIN_GUI_OUTPUT
@@ -32,6 +28,7 @@ set(GAIN_GUI_OUTPUT
         ${PROJECT_BINARY_DIR}/gain-gui/index.css
         ${PROJECT_BINARY_DIR}/gain-gui/index.js
 )
+
 if (WIN32)
     add_custom_command(
             OUTPUT ${GAIN_GUI_OUTPUT}
@@ -59,18 +56,21 @@ add_custom_target(
         ALL
         DEPENDS ${GAIN_GUI_OUTPUT}
 )
-mostly_harmless_add_binary_data(Gain
-        TARGET_NAME WebResources
+
+mostly_harmless_add_binary_data(gain
+        TARGET_NAME GainWebResources
         ROOT ${PROJECT_BINARY_DIR}/gain-gui
         BINARY_SOURCES ${GAIN_GUI_OUTPUT}
 )
-add_dependencies(WebResources gain-vite)
+add_dependencies(GainWebResources gain-vite)
 
-target_sources(Gain PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/source/Gain.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/source/GainEditor.cpp
+
+target_sources(gain PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/gain_Entry.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/gain_SharedState.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/gain_Engine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/source/gain_Editor.cpp
 )
 
-target_include_directories(Gain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(Gain PUBLIC magic_enum::magic_enum nlohmann_json)
-target_compile_definitions(Gain PUBLIC GAIN_HOT_RELOAD)
+target_include_directories(gain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/source)
+target_compile_definitions(gain PUBLIC HOT_RELOAD) # Comment this out to serve from RAM

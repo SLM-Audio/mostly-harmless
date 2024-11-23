@@ -6,7 +6,6 @@ import {resolve} from 'path'
 export default defineConfig({
     plugins: [react()],
     build: {
-        // outDir: resolve("../build/gain-gui"),
         emptyOutDir: true,
         root: resolve('gain-gui'),
         rollupOptions: {

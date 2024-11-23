@@ -4,7 +4,7 @@
 
 #ifndef MOSTLYHARMLESS_MOSTLYHARMLESS_WEBVIEWBASE_H
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_WEBVIEWBASE_H
-#include <mostly_harmless/gui/mostlyharmless_IEditor.h>
+#include <mostly_harmless/core/mostlyharmless_IEditor.h>
 #include <mostly_harmless/gui/mostlyharmless_Colour.h>
 #include <choc/gui/choc_WebView.h>
 namespace mostly_harmless::gui {
@@ -32,7 +32,7 @@ namespace mostly_harmless::gui {
      * ```
      *
      */
-    class WebviewBase : public IEditor {
+    class WebviewBase : public core::IEditor {
     public:
         /**
          * \brief Tiny container struct for web resources.
@@ -91,7 +91,7 @@ namespace mostly_harmless::gui {
         WebviewBase(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour);
         ~WebviewBase() noexcept override;
         void setOptions(Options&& options) noexcept;
-        void initialise(EditorContext context) override;
+        void initialise() override;
         void destroy() override;
         void setSize(std::uint32_t width, std::uint32_t height) override;
         void getSize(std::uint32_t* width, std::uint32_t* height) override;

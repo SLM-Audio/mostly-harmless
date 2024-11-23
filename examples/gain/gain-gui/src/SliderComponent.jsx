@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
+import './App.css';
 
-function SliderComponent({pid, name, min, max}) {
-    const [val, setVal] = useState(0.0);
+function SliderComponent({pid, min, max, initial}) {
+    const [val, setVal] = useState(initial);
     const paramCallback = (ev) => {
         const eventPid = ev.detail.paramId;
-        // console.log(ev);
-        if(parseInt(eventPid) !== pid) return;
+        if (parseInt(eventPid) !== pid) return;
         const value = parseFloat(ev.detail.value);
         setVal(value);
     }
@@ -14,40 +14,40 @@ function SliderComponent({pid, name, min, max}) {
         return function cleanup() {
             removeEventListener("param", paramCallback);
         }
-    }, []);
+    }, [paramCallback]);
 
     const sliderDragStarted = (v) => {
         beginParamGesture({
-            paramId: 0,
+            paramId: pid,
             value: v.target.value
         });
     };
     const sliderChangedCallback = (v) => {
         setVal(v.target.value);
         const args = {
-            paramId: 0,
+            paramId: pid,
             value: parseFloat(v.target.value)
         };
-        setParamValue(args).then((res) => console.log(res));
+        setParamValue(args);
     };
 
     const sliderDragEnded = (v) => {
         endParamGesture({
-            paramId: 0,
+            paramId: pid,
             value: v.target.value
         });
     };
     return (
-        <>
+        <div>
             <input className="slider-el"
-                   type={"range"}
+                   type="range"
                    value={val}
                    onDragStart={sliderDragStarted}
                    onChange={sliderChangedCallback}
                    onDragEnd={sliderDragEnded}
-                   min={0} max={1} step={0.001}></input>
+                   min={min} max={max} step={0.0001}></input>
 
-        </>
+        </div>
     )
 }
 

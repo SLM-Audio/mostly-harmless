@@ -96,20 +96,14 @@ namespace mostly_harmless::gui {
          * \param initialHeight The initial height for the webview.
          * \param backgroundColour The colour to paint the actual window beneath the webview.
          */
-        WebviewEditor(std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour);
+        WebviewEditor(core::ISharedState* sharedState, std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour);
 
         /**
          * Default destructor.
          */
         ~WebviewEditor() noexcept override = default;
 
-        /**
-         * Called when the webview is created, immediately after construction.
-         * Our default implementation here establishes the bindings for the javascript side param callbacks, so if you are overriding, be sure to call the base implementation manually.
-         * See the class description for an overview of what the calls to these functions javascript side should look like.
-         * \param context The editor context (see IEditor::initialise() and EditorContext for more details).
-         */
-        void initialise(EditorContext context) override;
+        void initialise() override;
 
         /**
          * Called when the host sends a param update, to inform the gui that a change has occurred.\n
@@ -135,7 +129,7 @@ namespace mostly_harmless::gui {
          * \param args The args provided by the frontend.
          * \return An empty value if everything went well, the exception message if parsing the args failed.
          */
-        virtual choc::value::Value beginParamChangeGestureCallback(EditorContext context, const choc::value::ValueView& args);
+        virtual choc::value::Value beginParamChangeGestureCallback(const choc::value::ValueView& args);
 
         /**
          * Called internally by any javascript side calls to 'setParamValue()`. Informs the host/audio thread that an adjustment was made, as part of a change gesture.
@@ -143,7 +137,7 @@ namespace mostly_harmless::gui {
          * \param args The args provided by the frontend.
          * \return An empty value if everything went well, the exception message if parsing the args failed.
          */
-        virtual choc::value::Value paramChangeGestureCallback(EditorContext context, const choc::value::ValueView& args);
+        virtual choc::value::Value paramChangeGestureCallback(const choc::value::ValueView& args);
 
         /**
          * Called internally by any javascript side calls to 'endParamGesture()`. Informs the host/audio thread that a change gesture has ended.
@@ -151,7 +145,9 @@ namespace mostly_harmless::gui {
          * \param args The args provided by the frontend.
          * \return An empty value if everything went well, the exception message if parsing the args failed.
          */
-        virtual choc::value::Value endParamChangeGestureCallback(EditorContext context, const choc::value::ValueView& args);
+        virtual choc::value::Value endParamChangeGestureCallback(const choc::value::ValueView& args);
+
+        core::ISharedState* m_sharedState{ nullptr };
     };
 } // namespace mostly_harmless::gui
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_WEBVIEWEDITOR_H
