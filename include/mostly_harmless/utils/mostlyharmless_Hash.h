@@ -29,8 +29,11 @@ namespace mostly_harmless::utils {
 
     template <UnsignedIntType T, HashType Algorithm = HashType::Default>
     constexpr static T hash(std::string_view toHash) noexcept {
-        static_assert(Algorithm == HashType::DJB2 || Algorithm == HashType::Default);
-        return djb2<T>(toHash);
+        switch (Algorithm) {
+            case HashType::DJB2: [[fallthrough]];
+            default:
+                return djb2<T>(toHash);
+        }
     }
 
 } // namespace mostly_harmless::utils
