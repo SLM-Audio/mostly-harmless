@@ -1,6 +1,7 @@
 if (APPLE)
     set(PLATFORM_SOURCES
             ${CMAKE_CURRENT_SOURCE_DIR}/gui/platform/mostlyharmless_GuiHelpersMacOS.mm
+            ${CMAKE_CURRENT_SOURCE_DIR}/utils/platform/mostlyharmless_DirectoriesMacOS.mm
     )
 endif ()
 set(MOSTLYHARMLESS_SOURCES
