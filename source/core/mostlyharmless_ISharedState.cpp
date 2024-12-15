@@ -54,5 +54,9 @@ namespace mostly_harmless::core {
         m_context.requestParamFlush();
     }
 
+    void ISharedState::rescanParams() const {
+        m_context.requestParamRescan();
+    }
+
 
 } // namespace mostly_harmless::core

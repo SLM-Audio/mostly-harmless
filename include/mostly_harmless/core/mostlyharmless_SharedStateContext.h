@@ -20,6 +20,11 @@ namespace mostly_harmless::core {
          * A lambda wrapping a call to the PluginBase's requestParamFlush function.
          */
         std::function<void(void)> requestParamFlush{ nullptr };
+
+        /**
+         * Call this to request that the host rescans the param values, to keep them up to date.
+         */
+        std::function<void(void)> requestParamRescan{ nullptr };
     };
 } // namespace mostly_harmless::core
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_SHAREDSTATECONTEXT_H

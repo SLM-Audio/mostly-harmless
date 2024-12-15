@@ -14,7 +14,10 @@ namespace mostly_harmless::internal {
             .requestParamFlush = [this]() {
                 if (_host.canUseParams()) {
                     _host.paramsRequestFlush();
-                } }
+                } },
+            .requestParamRescan = [this]() -> void {
+                _host.paramsRescan(CLAP_PARAM_RESCAN_VALUES);
+            }
         };
         m_state = m_pluginEntry->createState(std::move(context));
         m_engine = m_pluginEntry->createEngine(m_state.get());
