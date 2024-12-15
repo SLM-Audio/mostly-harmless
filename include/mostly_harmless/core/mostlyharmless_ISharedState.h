@@ -106,6 +106,11 @@ namespace mostly_harmless::core {
          */
         void requestParamFlush() const;
 
+        /**
+         * Asks the host to rescan all param values.
+         */
+        void rescanParams() const;
+
     private:
         SharedStateContext m_context;
         std::vector<Parameter<float>> m_params;
