@@ -10,7 +10,7 @@ namespace mostly_harmless::testing {
     constexpr static size_t s_nRepeats{ 50 };
     TEST_CASE("Test TaskThread") {
         SECTION("Wait for lock") {
-            for(auto i = 0; i < s_nRepeats; ++i) {
+            for (auto i = 0; i < s_nRepeats; ++i) {
                 mostly_harmless::utils::TaskThread taskThread;
                 std::mutex mutex;
                 auto x{ false };
@@ -30,24 +30,23 @@ namespace mostly_harmless::testing {
         }
 
         SECTION("Kill") {
-            for(auto i = 0; i <s_nRepeats; ++i) {
+            for (auto i = 0; i < s_nRepeats; ++i) {
                 mostly_harmless::utils::TaskThread taskThread;
                 auto task = [&taskThread]() -> void {
-                    while (!taskThread.threadShouldExit())
+                    while (taskThread.isThreadRunning())
                         ;
                 };
                 taskThread.action = std::move(task);
                 taskThread.perform();
                 std::this_thread::sleep_for(std::chrono::milliseconds(5));
                 REQUIRE(taskThread.isThreadRunning());
-                taskThread.signalThreadShouldExit();
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                taskThread.stop(true);
                 REQUIRE(!taskThread.isThreadRunning());
             }
         }
 
         SECTION("Sleep/Wake") {
-            for(auto i = 0; i < s_nRepeats; ++i) {
+            for (auto i = 0; i < s_nRepeats; ++i) {
                 mostly_harmless::utils::TaskThread taskThread;
                 auto task = [&taskThread]() -> void {
                     taskThread.sleep();
@@ -57,7 +56,7 @@ namespace mostly_harmless::testing {
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
                 REQUIRE(taskThread.isThreadRunning());
                 taskThread.wake();
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                taskThread.stop(true);
                 REQUIRE(!taskThread.isThreadRunning());
             }
         }
@@ -68,7 +67,7 @@ namespace mostly_harmless::testing {
                 {
                     utils::TaskThread scopedThread;
                     auto task = [&scopedThread]() -> void {
-                        while (!scopedThread.threadShouldExit()) {
+                        while (scopedThread.isThreadRunning()) {
                             scopedThread.sleep();
                         }
                     };
