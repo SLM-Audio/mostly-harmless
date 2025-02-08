@@ -6,52 +6,47 @@
 #include <thread>
 namespace mostly_harmless::utils {
     TaskThread::~TaskThread() noexcept {
-        while (isThreadRunning()) {
-            signalThreadShouldExit();
-            wake();
-        }
+        stop(true);
     }
 
     void TaskThread::perform() {
-        if (m_isThreadRunning) return;
-        m_threadShouldExit.store(false);
-        m_threadAboutToStart = true;
-        if (!action) {
-            assert(false);
+        auto expected{ false };
+        if (m_isThreadRunning.compare_exchange_strong(expected, true)) {
+            auto actionWrapper = [this]() -> void {
+                action();
+                m_isThreadRunning = false;
+            };
+            m_thread = std::make_unique<std::thread>(std::move(actionWrapper));
+        }
+    }
+
+    void TaskThread::stop(bool join) noexcept {
+        m_isThreadRunning = false;
+        if (!m_thread) {
             return;
         }
-        auto actionWrapper = [this]() -> void {
-            m_threadAboutToStart.store(false);
-            m_isThreadRunning.store(true);
-            action();
-            m_isThreadRunning.store(false);
-        };
-        m_threadShouldExit = false;
-        std::thread worker{ std::move(actionWrapper) };
-        worker.detach();
+        if (join) {
+            if (m_thread->joinable()) {
+                m_thread->join();
+            }
+            m_thread.reset();
+        }
     }
 
     void TaskThread::sleep() {
         m_canWakeUp = false;
-        std::unique_lock<std::mutex> lock(m_mutex);
-        m_conditionVariable.wait(lock, [this]() -> bool { return m_canWakeUp; });
+        std::unique_lock<std::mutex> ul{ m_mutex };
+        m_conditionVariable.wait(ul, [this]() -> bool { return m_canWakeUp; });
     }
 
     void TaskThread::wake() {
         m_canWakeUp = true;
-        std::lock_guard<std::mutex> guard{ m_mutex };
+        std::lock_guard<std::mutex> lock{ m_mutex };
         m_conditionVariable.notify_one();
     }
 
-    void TaskThread::signalThreadShouldExit() {
-        m_threadShouldExit.store(true);
-    }
-
-    bool TaskThread::threadShouldExit() const noexcept {
-        return m_threadShouldExit;
-    }
-
     bool TaskThread::isThreadRunning() const noexcept {
-        return m_isThreadRunning || m_threadAboutToStart;
+        return m_isThreadRunning;
     }
+
 } // namespace mostly_harmless::utils

@@ -3,6 +3,7 @@
 //
 #include <catch2/catch_test_macros.hpp>
 #include <mostly_harmless/utils/mostlyharmless_Timer.h>
+#include <mostly_harmless/utils/mostlyharmless_Proxy.h>
 #include <iostream>
 #include <cmath>
 #include <thread>
@@ -27,7 +28,7 @@ namespace mostly_harmless::tests {
             timer.run(static_cast<int>(100));
             while (callCount < 5)
                 ;
-            timer.stop();
+            timer.stop(true);
             REQUIRE(callCount >= 5);
         }
 
@@ -43,6 +44,28 @@ namespace mostly_harmless::tests {
             }
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             REQUIRE(count == 0);
+        }
+        SECTION("Test proxy") {
+            std::atomic<bool> wasInvalid{ false };
+            mostly_harmless::utils::Timer proxyTimer;
+            {
+                int x{ 0 };
+                auto proxy = mostly_harmless::utils::Proxy<int>::create(&x);
+                auto timerCallback = [&wasInvalid, proxy]() -> void {
+                    if (!proxy->isValid()) {
+                        wasInvalid = true;
+                        return;
+                    }
+                    auto& x = *proxy->getWrapped();
+                    ++x;
+                    std::cout << x << "\n";
+                };
+                proxyTimer.action = std::move(timerCallback);
+                proxyTimer.run(1);
+                proxy->null();
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds{ 40 });
+            REQUIRE(wasInvalid);
         }
     }
 } // namespace mostly_harmless::tests
