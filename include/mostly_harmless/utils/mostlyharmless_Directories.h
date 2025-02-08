@@ -13,15 +13,15 @@ namespace mostly_harmless::utils::directories {
      */
     enum class DirectoryType {
         /**
-         * The user desktop directory - on macOS, ~/Desktop
+         * The user desktop directory - on macOS, ~/Desktop, on Windows, C:/Users/<You>/Desktop
          */
         Desktop,
         /**
-         * The user documents directory - on macOS, ~/Documents
+         * The user documents directory - on macOS, ~/Documents, on Windows, C:/Users/<You>/Documents
          */
         Documents,
         /**
-         * The user application data directory - on macOS, ~/Library
+         * The user application data directory - on macOS, ~/Library, on Windows, C:/Users/<You>/AppData
          */
         UserAppData,
         /**
