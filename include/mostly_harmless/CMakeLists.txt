@@ -24,5 +24,6 @@ set(MOSTLYHARMLESS_HEADERS
         ${CMAKE_CURRENT_SOURCE_DIR}/audio/mostlyharmless_AudioHelpers.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Directories.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_OnScopeExit.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Proxy.h
         ${PLATFORM_HEADERS}
         PARENT_SCOPE)
