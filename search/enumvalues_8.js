@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['noise_0',['Noise',['../classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html#ac43911d9178f41514a0c48a9a80de28ca9b27ee4c75799bd59f202735ce258699',1,'marvin::dsp::oscillators::MultiOscillator']]],
-  ['none_1',['None',['../namespacemarvin_1_1dsp.html#a5c2fdd1ce8a2463b0b25e40dd5566d8fa6adf97f83acf6453d4a6a4b1070f3754',1,'marvin::dsp::None'],['../namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6a6adf97f83acf6453d4a6a4b1070f3754',1,'mostly_harmless::None']]],
-  ['normalisedbandpass_2',['NormalisedBandpass',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289ab722f5351a35b614e74c29a3a1a19162',1,'marvin::dsp::filters::SVF']]],
-  ['notch_3',['Notch',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289aa70ec028ca3f03d3bf0f8016f8c072a3',1,'marvin::dsp::filters::SVF']]]
+  ['lagrange3rd_0',['Lagrange3rd',['../namespacemarvin_1_1dsp.html#a5c2fdd1ce8a2463b0b25e40dd5566d8fa472061f37c49db4d1c1a4b940937aeed',1,'marvin::dsp']]],
+  ['linear_1',['Linear',['../namespacemarvin_1_1dsp.html#a5c2fdd1ce8a2463b0b25e40dd5566d8fa32a843da6ea40ab3b17a3421ccdf671b',1,'marvin::dsp::Linear'],['../namespacemarvin_1_1utils.html#a561daf68b83f068162d1ef3582e6d89aa32a843da6ea40ab3b17a3421ccdf671b',1,'marvin::utils::Linear']]],
+  ['lowpass_2',['Lowpass',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289a97ed1c13cd79855adc19c2b8a96dfa41',1,'marvin::dsp::filters::SVF']]],
+  ['lowshelf_3',['LowShelf',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289a04efcd6f392567e252822d1247d8c875',1,'marvin::dsp::filters::SVF']]]
 ];

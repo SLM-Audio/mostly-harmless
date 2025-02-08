@@ -22,5 +22,6 @@ var searchData=
   ['mostly_5fharmless_3a_3agui_3a_3ahelpers_19',['helpers',['../namespacemostly__harmless_1_1gui_1_1helpers.html',1,'mostly_harmless::gui']]],
   ['mostly_5fharmless_3a_3agui_3a_3ahelpers_3a_3amacos_20',['macos',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html',1,'mostly_harmless::gui::helpers']]],
   ['mostly_5fharmless_3a_3ainternal_21',['internal',['../namespacemostly__harmless_1_1internal.html',1,'mostly_harmless']]],
-  ['mostly_5fharmless_3a_3autils_22',['utils',['../namespacemostly__harmless_1_1utils.html',1,'mostly_harmless']]]
+  ['mostly_5fharmless_3a_3autils_22',['utils',['../namespacemostly__harmless_1_1utils.html',1,'mostly_harmless']]],
+  ['mostly_5fharmless_3a_3autils_3a_3adirectories_23',['directories',['../namespacemostly__harmless_1_1utils_1_1directories.html',1,'mostly_harmless::utils']]]
 ];
