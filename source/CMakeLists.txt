@@ -3,6 +3,10 @@ if (APPLE)
             ${CMAKE_CURRENT_SOURCE_DIR}/gui/platform/mostlyharmless_GuiHelpersMacOS.mm
             ${CMAKE_CURRENT_SOURCE_DIR}/utils/platform/mostlyharmless_DirectoriesMacOS.mm
     )
+else()
+    set(PLATFORM_SOURCES
+            ${CMAKE_CURRENT_SOURCE_DIR}/utils/platform/mostlyharmless_DirectoriesWindows.cpp
+    )
 endif ()
 set(MOSTLYHARMLESS_SOURCES
         INTERFACE
@@ -19,6 +23,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Colour.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_TaskThread.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Timer.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_OnScopeExit.cpp
         ${PLATFORM_SOURCES}
         PARENT_SCOPE)
 message(STATUS ${MOSTLYHARMLESS_PLATFORM_SOURCES})
