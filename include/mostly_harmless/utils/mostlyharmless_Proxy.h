@@ -73,25 +73,47 @@ namespace mostly_harmless::utils {
         struct Private {};
 
     public:
+        /**
+         * @internal
+         */
         explicit Proxy([[maybe_unused]] Private, T* toWrap) : m_wrapped(toWrap) {
         }
 
+        /**
+         * Create a std::shared_ptr<Proxy<T>>, wrapping whatever you pass to toWrap.
+         * \param toWrap a raw pointer to the data you want to wrap.
+         */
         [[nodiscard]] static std::shared_ptr<Proxy<T>> create(T* toWrap) noexcept {
             return std::make_shared<Proxy<T>>(Private{}, toWrap);
         }
 
+        /**
+         * Retrieve the pointer this object is wrapping.
+         * \return The wrapped pointer. Make sure to check this for `null`.
+         */
         [[nodiscard]] T* getWrapped() noexcept {
             return m_wrapped;
         }
 
+        /**
+         * Reassigns the wrapped data.
+         * \param wrapped A raw pointer to the data you want to wrap.
+         */
         void setWrapped(T* wrapped) noexcept {
             m_wrapped = wrapped;
         }
 
+        /**
+         * nulls the wrapped pointer - make SURE you call this when whatever data your proxy is wrapping gets destroyed!
+         */
         void null() noexcept {
             m_wrapped = nullptr;
         }
 
+        /**
+         * Checks whether the wrapped data is still allocated.
+         * \return true if the data is valid, false otherwise.
+         */
         [[nodiscard]] bool isValid() const noexcept {
             return m_wrapped;
         }

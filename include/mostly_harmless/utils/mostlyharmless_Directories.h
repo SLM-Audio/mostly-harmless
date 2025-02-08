@@ -6,6 +6,7 @@
 #define NIGHTSHELL_MOSTLYHARMLESS_DIRECTORIES_H
 
 #include <filesystem>
+#include <optional>
 
 namespace mostly_harmless::utils::directories {
     /**
