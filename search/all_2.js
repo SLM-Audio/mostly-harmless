@@ -14,11 +14,12 @@ var searchData=
   ['copy_11',['copy',['../namespacemarvin_1_1math_1_1vecops.html#a328afb54f699886f5ebc72ee129d7b66',1,'marvin::math::vecops::copy(T *lhs, const T *rhs, size_t size) noexcept'],['../namespacemarvin_1_1math_1_1vecops.html#a9b62331cc96d37a0b23dcf1e9e987a65',1,'marvin::math::vecops::copy(T &amp;lhs, const T &amp;rhs) noexcept']]],
   ['cosinesum_12',['CosineSum',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58aff6515b2beac74a8d6313fb9cc579ce7',1,'marvin::math::windows']]],
   ['cosinesum_13',['cosineSum',['../namespacemarvin_1_1math_1_1windows.html#a00a224366c4eac9fb994c301a68cc384',1,'marvin::math::windows']]],
-  ['createeditor_14',['createEditor',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#a9a35d7670088724e05eba6d9f9709b50',1,'mostly_harmless::core::IPluginEntry']]],
-  ['createengine_15',['createEngine',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#ab57c560772be09d55d1261fa5e193c07',1,'mostly_harmless::core::IPluginEntry']]],
-  ['createpluginentry_16',['createPluginEntry',['../namespacemostly__harmless_1_1core.html#a8d02b02740d4fe1dd733026811179789',1,'mostly_harmless::core']]],
-  ['createstate_17',['createState',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#ae0ef8c9463db5712183eb0758402d64a',1,'mostly_harmless::core::IPluginEntry']]],
-  ['createview_18',['createView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a164a8658c908d901c4b4c27c974f7f73',1,'mostly_harmless::gui::helpers::macos']]],
-  ['credits_19',['Credits',['../index.html#autotoc_md14',1,'']]],
-  ['current_20',['current',['../classmarvin_1_1dsp_1_1filters_1_1SmoothedBiquadCoefficients.html#aafe9fb98271c1acd5a8cf579af49b53b',1,'marvin::dsp::filters::SmoothedBiquadCoefficients']]]
+  ['create_14',['create',['../classmostly__harmless_1_1utils_1_1Proxy.html#a70a880a8513f3b0905df4648f73d7472',1,'mostly_harmless::utils::Proxy']]],
+  ['createeditor_15',['createEditor',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#a9a35d7670088724e05eba6d9f9709b50',1,'mostly_harmless::core::IPluginEntry']]],
+  ['createengine_16',['createEngine',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#ab57c560772be09d55d1261fa5e193c07',1,'mostly_harmless::core::IPluginEntry']]],
+  ['createpluginentry_17',['createPluginEntry',['../namespacemostly__harmless_1_1core.html#a8d02b02740d4fe1dd733026811179789',1,'mostly_harmless::core']]],
+  ['createstate_18',['createState',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#ae0ef8c9463db5712183eb0758402d64a',1,'mostly_harmless::core::IPluginEntry']]],
+  ['createview_19',['createView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a164a8658c908d901c4b4c27c974f7f73',1,'mostly_harmless::gui::helpers::macos']]],
+  ['credits_20',['Credits',['../index.html#autotoc_md14',1,'']]],
+  ['current_21',['current',['../classmarvin_1_1dsp_1_1filters_1_1SmoothedBiquadCoefficients.html#aafe9fb98271c1acd5a8cf579af49b53b',1,'marvin::dsp::filters::SmoothedBiquadCoefficients']]]
 ];

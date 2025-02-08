@@ -24,7 +24,7 @@ var searchData=
   ['isrecording_21',['isRecording',['../structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126',1,'mostly_harmless::TransportState']]],
   ['issmoothing_22',['isSmoothing',['../classmarvin_1_1utils_1_1SmoothedValue.html#a115608c69142ce963bd6ddba217a9686',1,'marvin::utils::SmoothedValue']]],
   ['isthreadrunning_23',['isThreadRunning',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a2dc43b2e8ff9d3e9ce5078d62cbc31ee',1,'mostly_harmless::utils::TaskThread']]],
-  ['istimerrunning_24',['isTimerRunning',['../classmostly__harmless_1_1utils_1_1Timer.html#ac734b3dd1ef4d780da67c81b49e998de',1,'mostly_harmless::utils::Timer']]],
+  ['isvalid_24',['isValid',['../classmostly__harmless_1_1utils_1_1Proxy.html#ae4aca9960895f8409eb94df3b491d29a',1,'mostly_harmless::utils::Proxy']]],
   ['iswithinpreroll_25',['isWithinPreroll',['../structmostly__harmless_1_1TransportState.html#a3a1d97d350c3adb79b091bd433c05b0e',1,'mostly_harmless::TransportState']]],
   ['it_20building_26',['Getting it building',['../md_FXPluginTutorial.html#autotoc_md25',1,'']]],
   ['it_20up_27',['Setting it up',['../md_FXPluginTutorial.html#autotoc_md20',1,'']]],

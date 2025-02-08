@@ -46,10 +46,11 @@ var searchData=
   ['mostlyharmless_5fparameters_2eh_43',['mostlyharmless_Parameters.h',['../mostlyharmless__Parameters_8h.html',1,'']]],
   ['mostlyharmless_5fparamevent_2eh_44',['mostlyharmless_ParamEvent.h',['../mostlyharmless__ParamEvent_8h.html',1,'']]],
   ['mostlyharmless_5fpluginbase_2eh_45',['mostlyharmless_PluginBase.h',['../mostlyharmless__PluginBase_8h.html',1,'']]],
-  ['mostlyharmless_5ftaskthread_2eh_46',['mostlyharmless_TaskThread.h',['../mostlyharmless__TaskThread_8h.html',1,'']]],
-  ['mostlyharmless_5ftimer_2eh_47',['mostlyharmless_Timer.h',['../mostlyharmless__Timer_8h.html',1,'']]],
-  ['mostlyharmless_5ftransportstate_2eh_48',['mostlyharmless_TransportState.h',['../mostlyharmless__TransportState_8h.html',1,'']]],
-  ['mostlyharmless_5fwebevent_2eh_49',['mostlyharmless_WebEvent.h',['../mostlyharmless__WebEvent_8h.html',1,'']]],
-  ['mostlyharmless_5fwebviewbase_2eh_50',['mostlyharmless_WebviewBase.h',['../mostlyharmless__WebviewBase_8h.html',1,'']]],
-  ['mostlyharmless_5fwebvieweditor_2eh_51',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]]
+  ['mostlyharmless_5fproxy_2eh_46',['mostlyharmless_Proxy.h',['../mostlyharmless__Proxy_8h.html',1,'']]],
+  ['mostlyharmless_5ftaskthread_2eh_47',['mostlyharmless_TaskThread.h',['../mostlyharmless__TaskThread_8h.html',1,'']]],
+  ['mostlyharmless_5ftimer_2eh_48',['mostlyharmless_Timer.h',['../mostlyharmless__Timer_8h.html',1,'']]],
+  ['mostlyharmless_5ftransportstate_2eh_49',['mostlyharmless_TransportState.h',['../mostlyharmless__TransportState_8h.html',1,'']]],
+  ['mostlyharmless_5fwebevent_2eh_50',['mostlyharmless_WebEvent.h',['../mostlyharmless__WebEvent_8h.html',1,'']]],
+  ['mostlyharmless_5fwebviewbase_2eh_51',['mostlyharmless_WebviewBase.h',['../mostlyharmless__WebviewBase_8h.html',1,'']]],
+  ['mostlyharmless_5fwebvieweditor_2eh_52',['mostlyharmless_WebviewEditor.h',['../mostlyharmless__WebviewEditor_8h.html',1,'']]]
 ];

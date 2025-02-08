@@ -1,5 +1,15 @@
 var NAVTREEINDEX4 =
 {
+"namespacemarvin_1_1library.html#af379e43500a81205c77d3b924dca2d04":[2,0,0,2,7],
+"namespacemarvin_1_1library.html#af40def0e47727a95bc8cbb40d849b1a8":[2,0,0,2,19],
+"namespacemarvin_1_1math.html":[2,0,0,3],
+"namespacemarvin_1_1math.html#a0280c75faafd4bf77bd909ad1ae9fb00":[2,0,0,3,13],
+"namespacemarvin_1_1math.html#a12108a501e2ed2a89a01ea4153abc22b":[2,0,0,3,18],
+"namespacemarvin_1_1math.html#a30692b1ae3ffdf4fd7de93cb86579c79":[2,0,0,3,11],
+"namespacemarvin_1_1math.html#a3f791d02adbe01af8c996c8b5b436f75":[2,0,0,3,8],
+"namespacemarvin_1_1math.html#a3ff0e3e1bd4955a48423fee72571f6ea":[2,0,0,3,15],
+"namespacemarvin_1_1math.html#a4a3d40e45bbeb22d6a4566c0f155a292":[2,0,0,3,9],
+"namespacemarvin_1_1math.html#a593ac57e25503d44c65ffe3e068d9df9":[2,0,0,3,22],
 "namespacemarvin_1_1math.html#a67212a8a8c4d308a97bb2e4ea34e7c39":[2,0,0,3,12],
 "namespacemarvin_1_1math.html#a6bed62982f4cf09b0bd8d96f5d832f1b":[2,0,0,3,19],
 "namespacemarvin_1_1math.html#a6f22c21bb0cbc08a79c2567f05a96192":[2,0,0,3,14],
@@ -239,15 +249,5 @@ var NAVTREEINDEX4 =
 "structmostly__harmless_1_1TransportState.html#ab5a47a11f4050a3c18c7a47d958240c2":[2,0,1,10,7],
 "structmostly__harmless_1_1TransportState.html#ab5a47a11f4050a3c18c7a47d958240c2":[4,0,1,9,7],
 "structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[2,0,1,10,3],
-"structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[4,0,1,9,3],
-"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[2,0,1,10,5],
-"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[4,0,1,9,5],
-"structmostly__harmless_1_1core_1_1IEditor.html":[2,0,1,1,0],
-"structmostly__harmless_1_1core_1_1IEditor.html":[4,0,1,0,0],
-"structmostly__harmless_1_1core_1_1IEditor.html#a07c091f62b3cee918843e94ff0b30bcf":[2,0,1,1,0,3],
-"structmostly__harmless_1_1core_1_1IEditor.html#a07c091f62b3cee918843e94ff0b30bcf":[4,0,1,0,0,3],
-"structmostly__harmless_1_1core_1_1IEditor.html#a4bfb9f3dfbc91f53ff035755dfed6d16":[2,0,1,1,0,5],
-"structmostly__harmless_1_1core_1_1IEditor.html#a4bfb9f3dfbc91f53ff035755dfed6d16":[4,0,1,0,0,5],
-"structmostly__harmless_1_1core_1_1IEditor.html#a5bdf4b21f9c258a79749ebc46a0f6205":[2,0,1,1,0,7],
-"structmostly__harmless_1_1core_1_1IEditor.html#a5bdf4b21f9c258a79749ebc46a0f6205":[4,0,1,0,0,7]
+"structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[4,0,1,9,3]
 };

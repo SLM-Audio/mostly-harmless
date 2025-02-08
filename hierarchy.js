@@ -52,6 +52,7 @@ var hierarchy =
     [ "mostly_harmless::core::ProcessContext", "structmostly__harmless_1_1core_1_1ProcessContext.html", null ],
     [ "mostly_harmless::events::ProcToGuiParamEvent", "structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html", null ],
     [ "marvin::library::PropagateConst< T >", "classmarvin_1_1library_1_1PropagateConst.html", null ],
+    [ "mostly_harmless::utils::Proxy< T >", "classmostly__harmless_1_1utils_1_1Proxy.html", null ],
     [ "marvin::utils::RandomGenerator< Engine >", "classmarvin_1_1utils_1_1RandomGenerator.html", null ],
     [ "marvin::utils::Range< T >", "structmarvin_1_1utils_1_1Range.html", null ],
     [ "marvin::math::Reciprocal< T >", "classmarvin_1_1math_1_1Reciprocal.html", null ],

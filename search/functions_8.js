@@ -11,6 +11,6 @@ var searchData=
   ['ispoweroftwo_8',['isPowerOfTwo',['../namespacemarvin.html#aef211161dc3b68ddd015a4b477d815c1',1,'marvin']]],
   ['issmoothing_9',['isSmoothing',['../classmarvin_1_1utils_1_1SmoothedValue.html#a115608c69142ce963bd6ddba217a9686',1,'marvin::utils::SmoothedValue']]],
   ['isthreadrunning_10',['isThreadRunning',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a2dc43b2e8ff9d3e9ce5078d62cbc31ee',1,'mostly_harmless::utils::TaskThread']]],
-  ['istimerrunning_11',['isTimerRunning',['../classmostly__harmless_1_1utils_1_1Timer.html#ac734b3dd1ef4d780da67c81b49e998de',1,'mostly_harmless::utils::Timer']]],
+  ['isvalid_11',['isValid',['../classmostly__harmless_1_1utils_1_1Proxy.html#ae4aca9960895f8409eb94df3b491d29a',1,'mostly_harmless::utils::Proxy']]],
   ['iterator_12',['iterator',['../classmarvin_1_1containers_1_1StrideView_1_1iterator.html#ae1d45a1fbd2df7d4ea291e838122f7fe',1,'marvin::containers::StrideView::iterator::iterator()=delete'],['../classmarvin_1_1containers_1_1StrideView_1_1iterator.html#a4f452a14176184fd0ac5cba18f84c30e',1,'marvin::containers::StrideView::iterator::iterator(pointer ptr)']]]
 ];

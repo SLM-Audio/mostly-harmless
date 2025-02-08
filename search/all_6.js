@@ -36,7 +36,8 @@ var searchData=
   ['getvaluetype_33',['getValueType',['../structmarvin_1_1dsp_1_1spectral_1_1getValueType.html',1,'marvin::dsp::spectral']]],
   ['getvaluetype_3c_20t_20_3e_34',['getValueType&lt; T &gt;',['../structmarvin_1_1dsp_1_1spectral_1_1getValueType_3_01T_01_4.html',1,'marvin::dsp::spectral']]],
   ['getviewsize_35',['getViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9',1,'mostly_harmless::gui::helpers::macos']]],
-  ['getwritepos_36',['getWritePos',['../classmarvin_1_1dsp_1_1DelayLine.html#a481af5120d328adb36a956db06fdbe55',1,'marvin::dsp::DelayLine']]],
-  ['gui_37',['gui',['../index.html#autotoc_md5',1,'']]],
-  ['guitoprocparamevent_38',['GuiToProcParamEvent',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html',1,'mostly_harmless::events']]]
+  ['getwrapped_36',['getWrapped',['../classmostly__harmless_1_1utils_1_1Proxy.html#aa4c1e7ee5c7ef835536f00fe1e1373f6',1,'mostly_harmless::utils::Proxy']]],
+  ['getwritepos_37',['getWritePos',['../classmarvin_1_1dsp_1_1DelayLine.html#a481af5120d328adb36a956db06fdbe55',1,'marvin::dsp::DelayLine']]],
+  ['gui_38',['gui',['../index.html#autotoc_md5',1,'']]],
+  ['guitoprocparamevent_39',['GuiToProcParamEvent',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html',1,'mostly_harmless::events']]]
 ];

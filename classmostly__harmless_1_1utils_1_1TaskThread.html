@@ -110,9 +110,6 @@ $(function(){initNavTree('classmostly__harmless_1_1utils_1_1TaskThread.html','')
 </div><!--header-->
 <div class="contents">
 
-<p>Wrapper around a std::thread to perform a single action, then exit.  
- <a href="#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="mostlyharmless__TaskThread_8h_source.html">mostlyharmless_TaskThread.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -121,14 +118,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abaa418488d213bfed018c54d30b4a1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae82139117b54e99df9de0ee5cfe5a1a5" id="r_ae82139117b54e99df9de0ee5cfe5a1a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae82139117b54e99df9de0ee5cfe5a1a5">perform</a> ()</td></tr>
 <tr class="separator:ae82139117b54e99df9de0ee5cfe5a1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9dd36e26e073c5fc7a5a49180a8116f" id="r_ab9dd36e26e073c5fc7a5a49180a8116f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9dd36e26e073c5fc7a5a49180a8116f">stop</a> (bool join) noexcept</td></tr>
+<tr class="separator:ab9dd36e26e073c5fc7a5a49180a8116f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966cb6f9825dfc8c90904791c7cf49b8" id="r_a966cb6f9825dfc8c90904791c7cf49b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966cb6f9825dfc8c90904791c7cf49b8">sleep</a> ()</td></tr>
 <tr class="separator:a966cb6f9825dfc8c90904791c7cf49b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5767debb36f097d06df842173d509a82" id="r_a5767debb36f097d06df842173d509a82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5767debb36f097d06df842173d509a82">wake</a> ()</td></tr>
 <tr class="separator:a5767debb36f097d06df842173d509a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8877049bdcaa73425e10bcf72b71d307" id="r_a8877049bdcaa73425e10bcf72b71d307"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8877049bdcaa73425e10bcf72b71d307">signalThreadShouldExit</a> ()</td></tr>
-<tr class="separator:a8877049bdcaa73425e10bcf72b71d307"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c42f5bbc3b914dbcb1d1c7a152f434e" id="r_a7c42f5bbc3b914dbcb1d1c7a152f434e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c42f5bbc3b914dbcb1d1c7a152f434e">threadShouldExit</a> () const noexcept</td></tr>
-<tr class="separator:a7c42f5bbc3b914dbcb1d1c7a152f434e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dc43b2e8ff9d3e9ce5078d62cbc31ee" id="r_a2dc43b2e8ff9d3e9ce5078d62cbc31ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dc43b2e8ff9d3e9ce5078d62cbc31ee">isThreadRunning</a> () const noexcept</td></tr>
 <tr class="separator:a2dc43b2e8ff9d3e9ce5078d62cbc31ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -137,10 +132,7 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a1181390e7184820a666e430d58fa0bc7" id="r_a1181390e7184820a666e430d58fa0bc7"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(void)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1181390e7184820a666e430d58fa0bc7">action</a> { nullptr }</td></tr>
 <tr class="separator:a1181390e7184820a666e430d58fa0bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Wrapper around a std::thread to perform a single action, then exit. </p>
-<p>Note that <code><a class="el" href="#ae82139117b54e99df9de0ee5cfe5a1a5">perform()</a></code> will detach the thread, so it's no longer joinable - so it's your responsibility to ensure the thread elegantly exits of its own volition. When the action is performed, a wrapper lambda automatically informs and internal atomic that the thread is running, and when the action has completed, it sets it back to false. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abaa418488d213bfed018c54d30b4a1e3" name="abaa418488d213bfed018c54d30b4a1e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abaa418488d213bfed018c54d30b4a1e3">&#9670;&#160;</a></span>~TaskThread()</h2>
 
@@ -163,7 +155,6 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The destructor will hang until the thread exits - so MAKE SURE THAT THE THREAD EXITS.. </p>
 
 </div>
 </div>
@@ -190,7 +181,6 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the thread is currently running. </dd></dl>
 
 </div>
 </div>
@@ -208,25 +198,6 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Starts the thread, with the user provided <code>action</code> lambda if it has been assigned - if it hasn't, asserts false and exits. Note that launching a thread is a syscall, and thus can take an unbounded amount of time - so this is <em>not</em> realtime safe, and you can't really make any assumptions about how long until <a class="el" href="#a2dc43b2e8ff9d3e9ce5078d62cbc31ee">isThreadRunning()</a> will return true. </p>
-
-</div>
-</div>
-<a id="a8877049bdcaa73425e10bcf72b71d307" name="a8877049bdcaa73425e10bcf72b71d307"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8877049bdcaa73425e10bcf72b71d307">&#9670;&#160;</a></span>signalThreadShouldExit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mostly_harmless::utils::TaskThread::signalThreadShouldExit </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Sets an internal atomic bool to specify that the thread should exit, accessible through <code>threadShouldExit</code>. Note that this doesn't actually kill the thread, it's up to you to do something with the bool. </p>
 
 </div>
 </div>
@@ -244,12 +215,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sleeps the thread until <a class="el" href="#a5767debb36f097d06df842173d509a82">wake()</a> is called. <b>Only call this from the thread!</b> </p>
 
 </div>
 </div>
-<a id="a7c42f5bbc3b914dbcb1d1c7a152f434e" name="a7c42f5bbc3b914dbcb1d1c7a152f434e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c42f5bbc3b914dbcb1d1c7a152f434e">&#9670;&#160;</a></span>threadShouldExit()</h2>
+<a id="ab9dd36e26e073c5fc7a5a49180a8116f" name="ab9dd36e26e073c5fc7a5a49180a8116f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9dd36e26e073c5fc7a5a49180a8116f">&#9670;&#160;</a></span>stop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,19 +228,18 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool mostly_harmless::utils::TaskThread::threadShouldExit </td>
+          <td class="memname">void mostly_harmless::utils::TaskThread::stop </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>join</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The state of the internal atomic bool specifying whether or not the thread should exit. </dd></dl>
 
 </div>
 </div>
@@ -288,7 +257,6 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Wakes a thread previously suspended with <code><a class="el" href="#a966cb6f9825dfc8c90904791c7cf49b8">sleep()</a></code>. </p>
 
 </div>
 </div>
@@ -304,7 +272,6 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The action that should actually be performed on the thread. </p>
 
 </div>
 </div>
