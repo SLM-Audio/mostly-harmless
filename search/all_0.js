@@ -19,5 +19,6 @@ var searchData=
   ['an_20audio_20fx_20plugin_16',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]],
   ['anatomy_17',['Anatomy',['../md_FXPluginTutorial.html#autotoc_md17',1,'']]],
   ['and_20sharedstate_18',['Engine, Editor and SharedState',['../md_FXPluginTutorial.html#autotoc_md18',1,'']]],
-  ['audio_20fx_20plugin_19',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]]
+  ['arraylike_19',['ArrayLike',['../conceptmarvin_1_1ArrayLike.html',1,'marvin']]],
+  ['audio_20fx_20plugin_20',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]]
 ];

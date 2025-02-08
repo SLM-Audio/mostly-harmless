@@ -6,8 +6,11 @@ var searchData=
   ['filtertype_3',['FilterType',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289',1,'marvin::dsp::filters::SVF']]],
   ['first_20steps_4',['First Steps',['../index.html#autotoc_md7',1,'']]],
   ['fixedcircularbuffer_5',['FixedCircularBuffer',['../classmarvin_1_1containers_1_1FixedCircularBuffer.html',1,'marvin::containers::FixedCircularBuffer&lt; T, N &gt;'],['../classmarvin_1_1containers_1_1FixedCircularBuffer.html#a232c909e042a29c5ca913e19868e257d',1,'marvin::containers::FixedCircularBuffer::FixedCircularBuffer()']]],
-  ['flags_6',['flags',['../structmostly__harmless_1_1Parameter.html#a03612e6423db700f1aad50b982165881',1,'mostly_harmless::Parameter']]],
-  ['forward_7',['forward',['../classmarvin_1_1dsp_1_1spectral_1_1FFT.html#afacba700712844c9641b73bb59ff8601',1,'marvin::dsp::spectral::FFT::forward(std::span&lt; SampleType &gt; source, std::span&lt; std::complex&lt; ValueType &gt; &gt; dest)'],['../classmarvin_1_1dsp_1_1spectral_1_1FFT.html#a67781067edb9eb043b13569a146ae29a',1,'marvin::dsp::spectral::FFT::forward(std::span&lt; SampleType &gt; source)']]],
-  ['fx_20plugin_8',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]],
-  ['fxplugintutorial_2emd_9',['FXPluginTutorial.md',['../FXPluginTutorial_8md.html',1,'']]]
+  ['fixedwidthsignedinteger_6',['FixedWidthSignedInteger',['../conceptmarvin_1_1FixedWidthSignedInteger.html',1,'marvin']]],
+  ['flags_7',['flags',['../structmostly__harmless_1_1Parameter.html#a03612e6423db700f1aad50b982165881',1,'mostly_harmless::Parameter']]],
+  ['floatarraylike_8',['FloatArrayLike',['../conceptmarvin_1_1FloatArrayLike.html',1,'marvin']]],
+  ['floattype_9',['FloatType',['../conceptmarvin_1_1FloatType.html',1,'marvin']]],
+  ['forward_10',['forward',['../classmarvin_1_1dsp_1_1spectral_1_1FFT.html#afacba700712844c9641b73bb59ff8601',1,'marvin::dsp::spectral::FFT::forward(std::span&lt; SampleType &gt; source, std::span&lt; std::complex&lt; ValueType &gt; &gt; dest)'],['../classmarvin_1_1dsp_1_1spectral_1_1FFT.html#a67781067edb9eb043b13569a146ae29a',1,'marvin::dsp::spectral::FFT::forward(std::span&lt; SampleType &gt; source)']]],
+  ['fx_20plugin_11',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]],
+  ['fxplugintutorial_2emd_12',['FXPluginTutorial.md',['../FXPluginTutorial_8md.html',1,'']]]
 ];
