@@ -7,8 +7,8 @@ capable of building CLAP, VST3, Audio Unit and Standalone targets.
 > If you're compiling VST3 targets, the responsibility to ensure you're adhering to the Steinberg VST3 License agreement
 > is firmly on you!
 
-The framework is in active development, alongside some of our own plug-ins, and there are some notable missing features
-(resizable gui being one of them..), so if you're thinking of giving it a go, please bare in mind that we're still
+The framework is in active development, alongside some of our own plug-ins, and there are some notable missing features,
+so if you're thinking of giving it a go, please bare in mind that we're still
 working on it.<br>
 If you have any questions, the best way to reach me is
 via [The Audio Programmer Discord](https://discord.gg/v5Rs8h6aGF), I'm @Meijis.
