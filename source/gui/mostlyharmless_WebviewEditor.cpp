@@ -4,6 +4,7 @@
 #include <choc/gui/choc_DesktopWindow.h>
 #include <choc/gui/choc_WebView.h>
 #include <mostly_harmless/gui/mostlyharmless_WebviewEditor.h>
+#include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #if defined(MOSTLY_HARMLESS_MACOS)
 #include <mostly_harmless/gui/platform/mostlyharmless_GuiHelpersMacOS.h>
 #elif defined(MOSTLY_HARMLESS_WINDOWS)
