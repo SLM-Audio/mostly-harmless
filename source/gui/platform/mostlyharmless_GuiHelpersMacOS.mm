@@ -21,7 +21,8 @@ namespace mostly_harmless::gui::helpers::macos {
 
     void setViewSize(void* viewHandle, std::uint32_t width, std::uint32_t height) {
         auto* asView = static_cast<NSView*>(viewHandle);
-        asView.frame = CGRectMake(0, 0, width, height);
+        CGSize newSize{ static_cast<CGFloat>(width), static_cast<CGFloat>(height) };
+        [asView setFrameSize:newSize];
     }
 
     void getViewSize(void* viewHandle, std::uint32_t* width, std::uint32_t* height) {

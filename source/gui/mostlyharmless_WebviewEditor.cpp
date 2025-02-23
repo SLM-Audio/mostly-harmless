@@ -38,6 +38,13 @@ namespace mostly_harmless::gui {
         m_internalWebview->bind("endParamGesture", std::move(endParamGestureCallback_));
     }
 
+    bool WebviewEditor::allowResize() const noexcept {
+        return true;
+    }
+
+    void WebviewEditor::onResizeRequested(std::uint32_t* /*newWidth*/, std::uint32_t* /*newHeight*/) {
+    }
+
     void WebviewEditor::onParamEvent(events::ProcToGuiParamEvent event) {
         sendEvent(events::WebEvent{ event });
     }
