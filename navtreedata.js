@@ -82,9 +82,9 @@ var NAVTREEINDEX =
 "annotated.html",
 "classmarvin_1_1dsp_1_1filters_1_1SVF.html",
 "classmarvin_1_1library_1_1PropagateConst.html#ad77bf6c16db5de00a1e4021572c226a1",
-"dir_5555df452c2a072384baf45054ee846b.html",
-"namespacemarvin_1_1library.html#af379e43500a81205c77d3b924dca2d04",
-"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234"
+"dir_8fd05fbe15fee679ea0403e28ff9cc9c.html",
+"namespacemarvin_1_1math.html",
+"structmostly__harmless_1_1core_1_1IEditor.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

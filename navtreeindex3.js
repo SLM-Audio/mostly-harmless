@@ -1,7 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"dir_5555df452c2a072384baf45054ee846b.html":[5,0,1,0,0],
-"dir_8cd8824b93565c00c1285bc3d0d04aad.html":[5,0,0,0,2],
 "dir_8fd05fbe15fee679ea0403e28ff9cc9c.html":[5,0,1,0,1],
 "dir_91e2a268092c1a35bd92f72d89983e9f.html":[5,0,1,0,1,0,1,0,0],
 "dir_926f3872094bfb62253bcd5badfc3f32.html":[5,0,1,0,1,0,0],
@@ -249,5 +247,7 @@ var NAVTREEINDEX3 =
 "namespacemarvin_1_1library.html#ab252a8e2ef11bd068f94fb3d0ea5b447":[2,0,0,2,1],
 "namespacemarvin_1_1library.html#adac83a2a22f2d849efd741357b0d4a93":[2,0,0,2,9],
 "namespacemarvin_1_1library.html#ae510d843d03833f2932fae281bcf2424":[2,0,0,2,13],
-"namespacemarvin_1_1library.html#aee178f86b222b4aa7d01010f0e17c662":[2,0,0,2,11]
+"namespacemarvin_1_1library.html#aee178f86b222b4aa7d01010f0e17c662":[2,0,0,2,11],
+"namespacemarvin_1_1library.html#af379e43500a81205c77d3b924dca2d04":[2,0,0,2,7],
+"namespacemarvin_1_1library.html#af40def0e47727a95bc8cbb40d849b1a8":[2,0,0,2,19]
 };

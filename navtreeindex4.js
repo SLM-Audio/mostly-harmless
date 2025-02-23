@@ -1,7 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"namespacemarvin_1_1library.html#af379e43500a81205c77d3b924dca2d04":[2,0,0,2,7],
-"namespacemarvin_1_1library.html#af40def0e47727a95bc8cbb40d849b1a8":[2,0,0,2,19],
 "namespacemarvin_1_1math.html":[2,0,0,3],
 "namespacemarvin_1_1math.html#a0280c75faafd4bf77bd909ad1ae9fb00":[2,0,0,3,13],
 "namespacemarvin_1_1math.html#a12108a501e2ed2a89a01ea4153abc22b":[2,0,0,3,18],
@@ -249,5 +247,7 @@ var NAVTREEINDEX4 =
 "structmostly__harmless_1_1TransportState.html#ab5a47a11f4050a3c18c7a47d958240c2":[2,0,1,10,7],
 "structmostly__harmless_1_1TransportState.html#ab5a47a11f4050a3c18c7a47d958240c2":[4,0,1,9,7],
 "structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[2,0,1,10,3],
-"structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[4,0,1,9,3]
+"structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[4,0,1,9,3],
+"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[2,0,1,10,5],
+"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[4,0,1,9,5]
 };

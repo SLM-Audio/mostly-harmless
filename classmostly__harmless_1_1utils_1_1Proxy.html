@@ -121,12 +121,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a26cb77aa7c2d1ce51b821bb707f4115d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c1e7ee5c7ef835536f00fe1e1373f6" id="r_aa4c1e7ee5c7ef835536f00fe1e1373f6"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4c1e7ee5c7ef835536f00fe1e1373f6">getWrapped</a> () noexcept</td></tr>
 <tr class="separator:aa4c1e7ee5c7ef835536f00fe1e1373f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06c42e3a7dc9d80f98df1e0234d3b381" id="r_a06c42e3a7dc9d80f98df1e0234d3b381"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06c42e3a7dc9d80f98df1e0234d3b381">setWrapped</a> (T *wrapped) noexcept</td></tr>
-<tr class="separator:a06c42e3a7dc9d80f98df1e0234d3b381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae010b13ffb7c4dafea8e44fb76df63c7" id="r_ae010b13ffb7c4dafea8e44fb76df63c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae010b13ffb7c4dafea8e44fb76df63c7">null</a> () noexcept</td></tr>
 <tr class="separator:ae010b13ffb7c4dafea8e44fb76df63c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4aca9960895f8409eb94df3b491d29a" id="r_ae4aca9960895f8409eb94df3b491d29a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4aca9960895f8409eb94df3b491d29a">isValid</a> () const noexcept</td></tr>
-<tr class="separator:ae4aca9960895f8409eb94df3b491d29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa833e5e77573b804cfdda986d6292459" id="r_aa833e5e77573b804cfdda986d6292459"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa833e5e77573b804cfdda986d6292459">isValid</a> () noexcept</td></tr>
+<tr class="separator:aa833e5e77573b804cfdda986d6292459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -272,8 +270,8 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="ae4aca9960895f8409eb94df3b491d29a" name="ae4aca9960895f8409eb94df3b491d29a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4aca9960895f8409eb94df3b491d29a">&#9670;&#160;</a></span>isValid()</h2>
+<a id="aa833e5e77573b804cfdda986d6292459" name="aa833e5e77573b804cfdda986d6292459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa833e5e77573b804cfdda986d6292459">&#9670;&#160;</a></span>isValid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -287,7 +285,7 @@ template&lt;typename T&gt; </div>
           <td class="memname">bool <a class="el" href="classmostly__harmless_1_1utils_1_1Proxy.html">mostly_harmless::utils::Proxy</a>&lt; T &gt;::isValid </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -325,39 +323,6 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 <p>nulls the wrapped pointer - make SURE you call this when whatever data your proxy is wrapping gets destroyed! </p>
-
-</div>
-</div>
-<a id="a06c42e3a7dc9d80f98df1e0234d3b381" name="a06c42e3a7dc9d80f98df1e0234d3b381"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06c42e3a7dc9d80f98df1e0234d3b381">&#9670;&#160;</a></span>setWrapped()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classmostly__harmless_1_1utils_1_1Proxy.html">mostly_harmless::utils::Proxy</a>&lt; T &gt;::setWrapped </td>
-          <td>(</td>
-          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>wrapped</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Reassigns the wrapped data. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">wrapped</td><td>A raw pointer to the data you want to wrap. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

@@ -1,7 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[2,0,1,10,5],
-"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[4,0,1,9,5],
 "structmostly__harmless_1_1core_1_1IEditor.html":[2,0,1,1,0],
 "structmostly__harmless_1_1core_1_1IEditor.html":[4,0,1,0,0],
 "structmostly__harmless_1_1core_1_1IEditor.html#a07c091f62b3cee918843e94ff0b30bcf":[2,0,1,1,0,3],
