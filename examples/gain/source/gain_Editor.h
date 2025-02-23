@@ -9,6 +9,7 @@ class Editor final : public mostly_harmless::gui::WebviewEditor {
 public:
     Editor(SharedState* sharedState);
     void initialise();
+    bool allowResize() const noexcept override;
 
 private:
     std::unordered_map<std::string, mostly_harmless::gui::WebviewEditor::Resource> m_resources;

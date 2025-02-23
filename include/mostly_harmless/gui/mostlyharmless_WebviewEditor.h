@@ -106,6 +106,16 @@ namespace mostly_harmless::gui {
         void initialise() override;
 
         /**
+         * See IEditor::allowResize for a detailed explanation, overridden here to demonstrate that it's still implementable in your editor.
+         */
+        [[nodiscard]] bool allowResize() const noexcept override;
+
+        /**
+         * See IEditor::onResizeRequested for a detailed explanation, overridden here to demonstrate that it's still implementable in your editor.
+         */
+        void onResizeRequested(std::uint32_t* newWidth, std::uint32_t* newHeight) override;
+
+        /**
          * Called when the host sends a param update, to inform the gui that a change has occurred.\n
          * Actually gets invoked from a timer thread, on the message thread. \n
          * This is still virtual, and can be overridden as you like, but the default implementation will call sendEvent() with a WebEvent constructed from the
