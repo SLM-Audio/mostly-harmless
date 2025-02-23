@@ -33,7 +33,7 @@ don't provide any kind of gui framework of our own.
 We do, however, provide a thin wrapper around [choc](https://github.com/Tracktion/choc)'s WebView, and plan to implement
 similar minimal wrappers around a couple of other frameworks.<br>
 We also provide an interface with hooks for you to implement your framework of choice,
-in `mostly_harmless::gui::IEffect`.
+in `mostly_harmless::gui::IEditor`.
 
 ## Getting Started
 
