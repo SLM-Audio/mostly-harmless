@@ -92,21 +92,15 @@ namespace mostly_harmless::utils {
          * \return The wrapped pointer. Make sure to check this for `null`.
          */
         [[nodiscard]] T* getWrapped() noexcept {
+            std::scoped_lock<std::mutex> sl{ m_mutex };
             return m_wrapped;
-        }
-
-        /**
-         * Reassigns the wrapped data.
-         * \param wrapped A raw pointer to the data you want to wrap.
-         */
-        void setWrapped(T* wrapped) noexcept {
-            m_wrapped = wrapped;
         }
 
         /**
          * nulls the wrapped pointer - make SURE you call this when whatever data your proxy is wrapping gets destroyed!
          */
         void null() noexcept {
+            std::scoped_lock<std::mutex> sl{ m_mutex };
             m_wrapped = nullptr;
         }
 
@@ -114,11 +108,13 @@ namespace mostly_harmless::utils {
          * Checks whether the wrapped data is still allocated.
          * \return true if the data is valid, false otherwise.
          */
-        [[nodiscard]] bool isValid() const noexcept {
+        [[nodiscard]] bool isValid() noexcept {
+            std::scoped_lock<std::mutex> sl{ m_mutex };
             return m_wrapped;
         }
 
     private:
+        std::mutex m_mutex;
         T* m_wrapped{ nullptr };
     };
 
