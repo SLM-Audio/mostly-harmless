@@ -198,6 +198,7 @@ namespace mostly_harmless::gui {
         }
 
         void setSize(std::uint32_t width, std::uint32_t height) {
+            helpers::macos::setViewSize(m_clientView, width, height);
             helpers::macos::setViewSize(m_webview->getViewHandle(), width, height);
         }
 
