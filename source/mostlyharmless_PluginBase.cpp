@@ -4,7 +4,9 @@
 #include <mostly_harmless/mostlyharmless_PluginBase.h>
 #include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #include <mostly_harmless/audio/mostlyharmless_AudioHelpers.h>
+#include <mostly_harmless/utils/mostlyharmless_NoDenormals.h>
 #include <clap/helpers/plugin.hxx>
+
 namespace mostly_harmless::internal {
     PluginBase::PluginBase(const clap_host* host) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Ignore, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host) {
         MH_LOG("PROC: Creating plugin instance...");
@@ -46,6 +48,8 @@ namespace mostly_harmless::internal {
     }
 
     clap_process_status PluginBase::process(const clap_process* processContext) noexcept {
+
+        [[maybe_unused]] utils::NoDenormals stopDenormals;
         if (processContext->audio_outputs_count == 0) {
             return CLAP_PROCESS_SLEEP;
         }
