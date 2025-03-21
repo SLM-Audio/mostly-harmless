@@ -35,6 +35,16 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(clap_helpers)
 
+SET(CLAP_WRAPPER_CXX_STANDARD 20)
+set(CLAP_WRAPPER_DOWNLOAD_DEPENDENCIES TRUE CACHE BOOL "Dowload dependencies")
+FetchContent_Declare(
+        clap-wrapper
+        GIT_REPOSITORY https://github.com/free-audio/clap-wrapper.git
+        GIT_TAG 5a98d30afe5fc805779cbcfce8b1f1bf99570bfa
+        GIT_SHALLOW ON
+)
+FetchContent_MakeAvailable(clap-wrapper)
+
 FetchContent_Declare(json
         URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
         URL_HASH SHA256=d6c65aca6b1ed68e7a182f4757257b107ae403032760ed6ef121c9d55e81757d
@@ -110,9 +120,6 @@ else ()
     )
 endif ()
 
-SET(CLAP_WRAPPER_CXX_STANDARD 20)
-set(CLAP_WRAPPER_DOWNLOAD_DEPENDENCIES TRUE CACHE BOOL "Dowload dependencies")
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/modules/clap-wrapper EXCLUDE_FROM_ALL)
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/mostly_harmless.cmake)
 install(DIRECTORY "include/"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
