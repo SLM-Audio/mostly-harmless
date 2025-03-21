@@ -83,6 +83,7 @@ var annotated_dup =
         [ "PluginBase", "classmostly__harmless_1_1internal_1_1PluginBase.html", "classmostly__harmless_1_1internal_1_1PluginBase" ]
       ] ],
       [ "utils", "namespacemostly__harmless_1_1utils.html", [
+        [ "NoDenormals", "classmostly__harmless_1_1utils_1_1NoDenormals.html", "classmostly__harmless_1_1utils_1_1NoDenormals" ],
         [ "OnScopeExit", "classmostly__harmless_1_1utils_1_1OnScopeExit.html", "classmostly__harmless_1_1utils_1_1OnScopeExit" ],
         [ "Proxy", "classmostly__harmless_1_1utils_1_1Proxy.html", "classmostly__harmless_1_1utils_1_1Proxy" ],
         [ "TaskThread", "classmostly__harmless_1_1utils_1_1TaskThread.html", "classmostly__harmless_1_1utils_1_1TaskThread" ],

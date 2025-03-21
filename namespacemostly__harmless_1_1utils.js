@@ -9,6 +9,7 @@ var namespacemostly__harmless_1_1utils =
       ] ],
       [ "getDirectory", "namespacemostly__harmless_1_1utils_1_1directories.html#a2da2e9354d8d521014a4e627b312d783", null ]
     ] ],
+    [ "NoDenormals", "classmostly__harmless_1_1utils_1_1NoDenormals.html", "classmostly__harmless_1_1utils_1_1NoDenormals" ],
     [ "OnScopeExit", "classmostly__harmless_1_1utils_1_1OnScopeExit.html", "classmostly__harmless_1_1utils_1_1OnScopeExit" ],
     [ "Proxy", "classmostly__harmless_1_1utils_1_1Proxy.html", "classmostly__harmless_1_1utils_1_1Proxy" ],
     [ "TaskThread", "classmostly__harmless_1_1utils_1_1TaskThread.html", "classmostly__harmless_1_1utils_1_1TaskThread" ],

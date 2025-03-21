@@ -29,6 +29,7 @@ var hierarchy =
     [ "mostly_harmless::LoopInfo", "structmostly__harmless_1_1LoopInfo.html", null ],
     [ "marvin::dsp::filters::LPF< SampleType >", "classmarvin_1_1dsp_1_1filters_1_1LPF.html", null ],
     [ "marvin::dsp::oscillators::MultiOscillator< SampleType, Bandlimit >", "classmarvin_1_1dsp_1_1oscillators_1_1MultiOscillator.html", null ],
+    [ "mostly_harmless::utils::NoDenormals", "classmostly__harmless_1_1utils_1_1NoDenormals.html", null ],
     [ "mostly_harmless::utils::OnScopeExit", "classmostly__harmless_1_1utils_1_1OnScopeExit.html", null ],
     [ "mostly_harmless::gui::WebviewBase::Options", "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html", null ],
     [ "marvin::dsp::oscillators::OscillatorBase< SampleType >", "classmarvin_1_1dsp_1_1oscillators_1_1OscillatorBase.html", [

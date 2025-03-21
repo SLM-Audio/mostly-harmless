@@ -1,5 +1,13 @@
 var NAVTREEINDEX5 =
 {
+"structmostly__harmless_1_1TransportState.html#aafc5c344238881eaf7bf81bda59d7e58":[2,0,1,10,6],
+"structmostly__harmless_1_1TransportState.html#aafc5c344238881eaf7bf81bda59d7e58":[4,0,1,9,6],
+"structmostly__harmless_1_1TransportState.html#ab5a47a11f4050a3c18c7a47d958240c2":[2,0,1,10,7],
+"structmostly__harmless_1_1TransportState.html#ab5a47a11f4050a3c18c7a47d958240c2":[4,0,1,9,7],
+"structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[2,0,1,10,3],
+"structmostly__harmless_1_1TransportState.html#ad60658b8005891e46b74b33bcc968126":[4,0,1,9,3],
+"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[2,0,1,10,5],
+"structmostly__harmless_1_1TransportState.html#aff3781845c7998bcb625edc2642db234":[4,0,1,9,5],
 "structmostly__harmless_1_1core_1_1IEditor.html":[2,0,1,1,0],
 "structmostly__harmless_1_1core_1_1IEditor.html":[4,0,1,0,0],
 "structmostly__harmless_1_1core_1_1IEditor.html#a07c091f62b3cee918843e94ff0b30bcf":[2,0,1,1,0,3],
