@@ -3,11 +3,11 @@
 //
 #include <mostly_harmless/mostlyharmless_TransportState.h>
 namespace mostly_harmless {
-    [[nodiscard]] double beattimeToDouble(clap_beattime t) {
+    [[nodiscard]] static double beattimeToDouble(clap_beattime t) {
         return static_cast<double>(t) / static_cast<double>(CLAP_BEATTIME_FACTOR);
     }
 
-    [[nodiscard]] double sectimeToDouble(clap_sectime t) {
+    [[nodiscard]] static double sectimeToDouble(clap_sectime t) {
         return static_cast<double>(t) / static_cast<double>(CLAP_SECTIME_FACTOR);
     }
 
