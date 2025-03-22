@@ -2,7 +2,7 @@
 #include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #include <nlohmann/json.hpp>
 
-std::vector<mostly_harmless::Parameter<float>> static createParameters() {
+static std::vector<mostly_harmless::Parameter<float>> createParameters() {
     std::vector<mostly_harmless::Parameter<float>> params;
     params.emplace_back(mostly_harmless::Parameter<float>{ mostly_harmless::ParameterID{ "Time" }, "Time", "delay", { .min = 0.1f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
     params.emplace_back(mostly_harmless::Parameter<float>{ mostly_harmless::ParameterID{ "Feedback" }, "Feedback", "delay", { .min = 0.0f, .max = 1.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE });
