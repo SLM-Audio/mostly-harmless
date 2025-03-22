@@ -3,7 +3,7 @@
 #include "$LOWER_PROJECT_NAME$_Engine.h"
 #include "$LOWER_PROJECT_NAME$_Editor.h"
 
-[[nodiscard]] SharedState* asUserState(mostly_harmless::core::ISharedState* state) noexcept {
+[[nodiscard]] static SharedState* asUserState(mostly_harmless::core::ISharedState* state) noexcept {
     return static_cast<SharedState*>(state);
 }
 
