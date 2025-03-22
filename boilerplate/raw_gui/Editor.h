@@ -8,6 +8,7 @@ public:
     explicit Editor(SharedState* sharedState);
     void initialise() override;
     void destroy() override;
+    [[nodiscard]] bool allowResize() const noexcept override;
     void setSize(std::uint32_t width, std::uint32_t height) override;
     void getSize(std::uint32_t* width, std::uint32_t* height) override;
     void setParent(void* parentHandle) override;
