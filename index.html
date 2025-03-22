@@ -129,11 +129,15 @@ gui</h2>
 Getting Started</h1>
 <h2><a class="anchor" id="autotoc_md7"></a>
 First Steps</h2>
-<p>Firstly, we'd recommend taking a look in the <code>examples</code> directory for a real-world use case, and the FX Plugin Tutorial in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project. We also provide a (wip) python script to generate the boilerplate needed for a new project for you, found in the root directory.<br  />
- Usage is</p>
-<p><code>python3 create.py &lt;name&gt; &lt;dest_path&gt; &lt;fx | instrument&gt; [no_gui | web | raw_gui]</code></p>
-<p>where <code>&lt;&gt;</code> denotes a required field, and <code>[]</code> denotes an optional field. The final field, for gui, if not provided, will default to <code>no_gui</code>.<br  />
- I realise it's a little janky at the moment having positional args instead of the usual <code>--some_flag=something</code> approach, and plan to refactor it to be a little more user friendly in future.</p>
+<p>Firstly, we'd recommend taking a look in the <code>examples</code> directory for a real-world use case, and the FX Plugin Tutorial in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project. We also provide a Python script to generate the boilerplate needed for a new project for you, found in the root directory.</p>
+<p>Usage:</p>
+<div class="fragment"><div class="line">python3 create.py &lt;name&gt; &lt;path&gt; &lt;fx|instrument&gt; [--gui web|raw|none]</div>
+</div><!-- fragment --><ul>
+<li><code>name</code>: the name of your plugin</li>
+<li><code>path</code>: the folder for your plugin project (must not already exist)</li>
+<li><code>fx|instrument</code>: the type of your plugin</li>
+<li><code>--gui</code>: the GUI backend for your plugin, must be web, raw, or none (for no GUI) (optional, defaults to none)</li>
+</ul>
 <h2><a class="anchor" id="autotoc_md8"></a>
 Building</h2>
 <p>mostly harmless is built with CMake, and supports Windows and macOS (Linux support is on the roadmap). It can be consumed either as a git submodule, or as a FetchContent dependency.</p>
