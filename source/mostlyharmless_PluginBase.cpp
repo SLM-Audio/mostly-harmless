@@ -58,18 +58,23 @@ namespace mostly_harmless::internal {
         handleGuiEvents(processContext->out_events);
         const auto* inputData = processContext->audio_inputs;
         auto* outputData = processContext->audio_outputs;
-        auto** inDataPtr = inputData->data32;
+        if (!outputData) { // TODO: Support no output
+            return CLAP_PROCESS_SLEEP;
+        }
         auto** outDataPtr = outputData->data32;
-        for (std::uint32_t i = 0; i < outputData->channel_count; ++i) {
-            if (i >= inputData->channel_count) {
-                const auto inIndex = inputData->channel_count - 1;
-                std::memcpy(outDataPtr[i], inDataPtr[inIndex], sizeof(float) * processContext->frames_count);
-                continue;
+        if (inputData) {
+            auto** inDataPtr = inputData->data32;
+            for (std::uint32_t i = 0; i < outputData->channel_count; ++i) {
+                if (i >= inputData->channel_count) {
+                    const auto inIndex = inputData->channel_count - 1;
+                    std::memcpy(outDataPtr[i], inDataPtr[inIndex], sizeof(float) * processContext->frames_count);
+                    continue;
+                }
+                if (inDataPtr[i] == outDataPtr[i]) {
+                    continue;
+                }
+                std::memcpy(outDataPtr[i], inDataPtr[i], sizeof(float) * processContext->frames_count);
             }
-            if (inDataPtr[i] == outDataPtr[i]) {
-                continue;
-            }
-            std::memcpy(outDataPtr[i], inDataPtr[i], sizeof(float) * processContext->frames_count);
         }
         marvin::containers::BufferView<float> bufferView{ outDataPtr, outputData->channel_count, processContext->frames_count };
         // clang-format off
