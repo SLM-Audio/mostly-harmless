@@ -11,6 +11,7 @@ public:
     [[nodiscard]] bool allowResize() const noexcept override;
     void setSize(std::uint32_t width, std::uint32_t height) override;
     void getSize(std::uint32_t* width, std::uint32_t* height) override;
+    void onResizeRequested(std::uint32_t* newWidth, std::uint32_t* newHeight) override;
     void setParent(void* parentHandle) override;
     void show() override;
     void hide() override;

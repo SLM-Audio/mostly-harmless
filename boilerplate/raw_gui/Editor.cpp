@@ -19,6 +19,10 @@ void Editor::setSize(std::uint32_t /*width*/, std::uint32_t /*height*/) {
 void Editor::getSize(std::uint32_t* /*width*/, std::uint32_t* /*height*/) {
 }
 
+void Editor::onResizeRequested(std::uint32_t* /*width*/, std::uint32_t* /*height*/) {
+
+}
+
 void Editor::setParent(void* /*parentHandle*/) {
 }
 

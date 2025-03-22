@@ -57,3 +57,7 @@ void Editor::initialise() {
 bool Editor::allowResize() const noexcept {
     return true;
 }
+
+void Editor::onResizeRequested(std::uint32_t* /*newWidth*/, std::uint32_t* /*newHeight*/) {
+
+}
