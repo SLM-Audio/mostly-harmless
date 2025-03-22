@@ -6,6 +6,8 @@
 #define MOSTLYHARMLESS_SYNTH_VOICE_H
 #include "synth_Envelope.h"
 #include <marvin/dsp/oscillators/marvin_Oscillator.h>
+#include <array>
+
 class SynthVoice final {
 public:
     SynthVoice();
