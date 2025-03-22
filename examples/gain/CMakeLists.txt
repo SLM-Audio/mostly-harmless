@@ -15,9 +15,11 @@ mostly_harmless_add_plugin(
         AU_BUNDLE_ID "com.your_company.gain"
         AU_BUNDLE_VERSION "1"
         MANUFACTURER_CODE "Exmp"
-        SUBTYPE_CODE "Mhp1"
+        SUBTYPE_CODE "Mhp2"
         AU_TYPE "aufx"
         FEATURES "audio-effect"
+
+        SIGN_ID ${SIGN_ID}
 )
 
 # TODO: Setup your frontend code here - see examples/delay for a React example
