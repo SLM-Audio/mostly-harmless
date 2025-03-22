@@ -9,6 +9,7 @@ public:
     explicit Editor(SharedState* sharedState);
     void initialise() override;
     bool allowResize() const noexcept override;
+    void onResizeRequested(std::uint32_t* newWidth, std::uint32_t* newHeight) override;
 
 private:
     std::unordered_map<std::string, mostly_harmless::gui::WebviewEditor::Resource> m_resources;
