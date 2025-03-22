@@ -52,3 +52,7 @@ void Editor::initialise() {
     m_internalWebview->navigate("http://localhost:5173");
 #endif
 }
+
+bool Editor::allowResize() const noexcept {
+    return true;
+}

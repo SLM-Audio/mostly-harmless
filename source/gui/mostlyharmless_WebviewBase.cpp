@@ -199,6 +199,7 @@ namespace mostly_harmless::gui {
 
         void setSize(std::uint32_t width, std::uint32_t height) {
             helpers::macos::setViewSize(m_clientView, width, height);
+            helpers::macos::setViewSize(m_webview->getViewHandle(), width, height);
         }
 
         void setParent(void* parentHandle) {
@@ -253,12 +254,19 @@ namespace mostly_harmless::gui {
         m_impl->destroy();
     }
 
+    bool WebviewBase::allowResize() const noexcept {
+        return true;
+    }
+
     void WebviewBase::getSize(std::uint32_t* width, std::uint32_t* height) {
         m_impl->getSize(width, height);
     }
 
     void WebviewBase::setSize(std::uint32_t width, std::uint32_t height) {
         m_impl->setSize(width, height);
+    }
+
+    void WebviewBase::onResizeRequested(std::uint32_t* /*newWidth*/, std::uint32_t* /*newHeight*/) {
     }
 
     void WebviewBase::setParent(void* parentHandle) {

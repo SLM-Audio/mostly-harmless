@@ -33,11 +33,25 @@ namespace mostly_harmless::core {
         virtual void destroy() = 0;
 
         /**
+         * Return true here if you want your gui to be resizable, otherwise return false.
+         * \return Whether or not the gui is allowed to be resized.
+         */
+        [[nodiscard]] virtual bool allowResize() const noexcept = 0;
+
+        /**
          * Called when the size of the parent window has been changed.
          * \param width The new parent width.
          * \param height The new parent height.
          */
         virtual void setSize(std::uint32_t width, std::uint32_t height) = 0;
+
+        /**
+         * Called when the host tries to adjust the editor's size, and allows the user to add extra constraints to the requested bounds.
+         * Calls to this will be followed by a subsequent call to setSize, using the values stored in the newWidth and newHeight parameters.
+         * \param newWidth A pointer containing the new requested width. Can be mutated by your implementation, to clamp the size to a certain max or aspect ratio, for example.
+         * \param newHeight A pointer containing the new requested height. Can be mutated by your implementation, to clamp the size to a certain max or aspect ratio, for example.
+         */
+        virtual void onResizeRequested(std::uint32_t* newWidth, std::uint32_t* newHeight) = 0;
 
         /**
          * Queries the editor about the size of its window. Initially, the parent window's size depends entirely on this call.

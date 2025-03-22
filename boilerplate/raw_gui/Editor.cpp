@@ -9,6 +9,10 @@ void Editor::initialise() {
 void Editor::destroy() {
 }
 
+bool Editor::allowResize() const noexcept {
+    return true;
+}
+
 void Editor::setSize(std::uint32_t /*width*/, std::uint32_t /*height*/) {
 }
 
