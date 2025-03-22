@@ -1,6 +1,6 @@
 #include "$PROJECT_NAME$_Editor.h"
 
-[[nodiscard]] mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
+[[nodiscard]] static mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
     /**
      * TODO: Fill in your logic for retrieving a resource here..
      * Something like::
