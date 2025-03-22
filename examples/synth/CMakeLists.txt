@@ -9,14 +9,14 @@ FetchContent_Declare(json
 FetchContent_MakeAvailable(json)
 mostly_harmless_add_plugin(
         synth
-        ID "slm-audio.synth"
-        VENDOR "SLM Audio"
+        ID "your_company.synth"
+        VENDOR "Your Company"
         FORMATS CLAP AU VST3 Standalone
         NEEDS_NOTE_IN_BUS TRUE
         NEEDS_NOTE_OUT_BUS FALSE
         NEEDS_AUDIO_IN_BUS FALSE
         NEEDS_AUDIO_OUT_BUS TRUE
-        AU_BUNDLE_ID "com.slm-audio.synth"
+        AU_BUNDLE_ID "com.your-company.synth"
         AU_BUNDLE_VERSION "1"
         MANUFACTURER_CODE "Exmp"
         SUBTYPE_CODE "Mhp3"
