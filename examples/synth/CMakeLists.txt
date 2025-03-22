@@ -9,15 +9,21 @@ FetchContent_Declare(json
 FetchContent_MakeAvailable(json)
 mostly_harmless_add_plugin(
         synth
-        ID "your_company.synth"
-        VENDOR "Your Company"
+        ID "slm-audio.synth"
+        VENDOR "SLM Audio"
         FORMATS CLAP AU VST3 Standalone
-        AU_BUNDLE_ID "com.your_company.synth"
+        NEEDS_NOTE_IN_BUS TRUE
+        NEEDS_NOTE_OUT_BUS FALSE
+        NEEDS_AUDIO_IN_BUS FALSE
+        NEEDS_AUDIO_OUT_BUS TRUE
+        AU_BUNDLE_ID "com.slm-audio.synth"
         AU_BUNDLE_VERSION "1"
         MANUFACTURER_CODE "Exmp"
         SUBTYPE_CODE "Mhp3"
         AU_TYPE "aumu"
         FEATURES "instrument"
+
+        SIGN_ID ${SIGN_ID}
 )
 
 # TODO: Setup your frontend code here - see examples/delay for a React example
