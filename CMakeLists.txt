@@ -59,7 +59,13 @@ FetchContent_Declare(
         GIT_SHALLOW ON)
 FetchContent_MakeAvailable(fmt)
 
-add_subdirectory(modules/marvin)
+FetchContent_Declare(
+        marvin
+        GIT_REPOSITORY https://github.com/MeijisIrlnd/marvin.git
+        GIT_TAG main
+        GIT_SHALLOW ON
+)
+FetchContent_MakeAvailable(marvin)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/include/mostly_harmless)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/source)
 
