@@ -11,7 +11,7 @@ if (Doxygen_FOUND)
     endif ()
     message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
-    add_subdirectory(${CMAKE_SOURCE_DIR}/modules/marvin/include ${CMAKE_CURRENT_BINARY_DIR}/marvin)
+    add_subdirectory(${FETCHCONTENT_SOURCE_DIR_MARVIN}/include ${CMAKE_CURRENT_BINARY_DIR}/marvin)
     doxygen_add_docs(
             mostly_harmless_docs
             ${CMAKE_SOURCE_DIR}/README.md
