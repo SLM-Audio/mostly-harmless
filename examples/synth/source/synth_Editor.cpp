@@ -1,22 +1,17 @@
 #include "synth_Editor.h"
+#include <mostlyharmless_SynthWebResources.h>
 #include <nlohmann/json.hpp>
 
-[[nodiscard]] mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
-    /**
-     * TODO: Fill in your logic for retrieving a resource here..
-     * Something like::
-     * auto resOpt = mostly_harmless::[[YourBinaryData]]::getNamedResource(name);
-     * assert(resOpt);
-     * auto [data, size] = *resOpt;
-     * auto mimeType = mostly_harmless::gui::getMimeType(name);
-     * assert(mimeType);
-     * auto* asUnsigned = reinterpret_cast<const std::uint8_t*>(data);
-     * mostly_harmless::gui::WebviewEditor::Resource temp;
-     * temp.data = { asUnsigned, asUnsigned + size };
-     * temp.mimeType = *mimeType;
-     * return temp;
-     */
+[[nodiscard]] static mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
+    auto resOpt = mostly_harmless::SynthWebResources::getNamedResource(name);
+    assert(resOpt);
+    auto [data, size] = *resOpt;
+    auto mimeType = mostly_harmless::gui::getMimeType(name);
+    assert(mimeType);
+    auto* asUnsigned = reinterpret_cast<const std::uint8_t*>(data);
     mostly_harmless::gui::WebviewEditor::Resource temp;
+    temp.data = { asUnsigned, asUnsigned + size };
+    temp.mimeType = *mimeType;
     return temp;
 }
 
@@ -34,13 +29,14 @@ Editor::Editor(SharedState* sharedState) : mostly_harmless::gui::WebviewEditor(s
         el["initial"] = p.value;
     }
     initialDataStream << "window.params = " << j << ";";
+
 #if defined(HOT_RELOAD)
     this->setOptions({ .enableDebug = true, .initScript = initialDataStream.str() });
 #else
-    /**
-     * TODO: emplace any resources you need into m_resources here...
-     * eg: m_resources.emplace("/index.html", createResourceFor("index.html"));
-     */
+    m_resources.emplace("/index.html", createResourceFor("index.html"));
+    m_resources.emplace("/index.css", createResourceFor("index.css"));
+    m_resources.emplace("/index.js", createResourceFor("index.js"));
+
     this->setOptions({
         .enableDebug = true,
         .contentProvider = [this](const std::string& name) -> std::optional<mostly_harmless::gui::WebviewEditor::Resource> {

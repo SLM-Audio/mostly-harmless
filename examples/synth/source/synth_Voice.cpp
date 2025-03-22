@@ -4,7 +4,8 @@
 
 #include "synth_Voice.h"
 static std::random_device s_rd{};
-float mtof(std::uint8_t midi) {
+
+static float mtof(std::uint8_t midi) {
     const auto exponent = static_cast<float>(midi - 69) / 12.0f;
     const auto power = std::pow(2.0f, exponent);
     return power * 440.0f;

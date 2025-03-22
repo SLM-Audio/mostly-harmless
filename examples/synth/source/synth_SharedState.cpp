@@ -3,7 +3,8 @@
 
 static mostly_harmless::ParameterID s_attackId{ "Attack" };
 static mostly_harmless::ParameterID s_releaseId{ "Release" };
-std::vector<mostly_harmless::Parameter<float>> createParameters() {
+
+static std::vector<mostly_harmless::Parameter<float>> createParameters() {
     std::vector<mostly_harmless::Parameter<float>> params;
     params.emplace_back(s_attackId, "Attack", "synth", marvin::utils::Range<float>{ 1e-4f, 2.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE);
     params.emplace_back(s_releaseId, "Release", "synth", marvin::utils::Range<float>{ 1e-4f, 2.0f }, 0.5f, CLAP_PARAM_IS_AUTOMATABLE);
