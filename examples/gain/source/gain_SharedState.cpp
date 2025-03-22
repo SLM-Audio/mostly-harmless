@@ -1,7 +1,7 @@
 #include "gain_SharedState.h"
 #include <nlohmann/json.hpp>
 
-std::vector<mostly_harmless::Parameter<float>> createParameters() {
+static std::vector<mostly_harmless::Parameter<float>> createParameters() {
     std::vector<mostly_harmless::Parameter<float>> params;
     params.emplace_back(mostly_harmless::Parameter<float>{ mostly_harmless::ParameterID{ "Gain" }, "Gain", "gain", { .min = 0.0f, .max = 1.0f }, 1.0f, CLAP_PARAM_IS_AUTOMATABLE });
     return params;

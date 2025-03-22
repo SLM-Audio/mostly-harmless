@@ -3,7 +3,7 @@
 #include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #include <nlohmann/json.hpp>
 
-[[nodiscard]] mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
+[[nodiscard]] static mostly_harmless::gui::WebviewEditor::Resource createResourceFor(const std::string& name) {
     auto resOpt = mostly_harmless::DelayWebResources::getNamedResource(name);
     assert(resOpt);
     auto [data, size] = *resOpt;
