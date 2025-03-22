@@ -181,6 +181,7 @@ var NAVTREEINDEX3 =
 "mostlyharmless__NamespaceDocs_8h.html":[5,0,2],
 "mostlyharmless__NamespaceDocs_8h_source.html":[5,0,2],
 "mostlyharmless__NoDenormals_8h.html":[5,0,0,0,4,1],
+"mostlyharmless__NoDenormals_8h.html#a8e27dc57d8a90ccd1ba6e7dffe8b03c6":[5,0,0,0,4,1,1],
 "mostlyharmless__NoDenormals_8h_source.html":[5,0,0,0,4,1],
 "mostlyharmless__OnScopeExit_8h.html":[5,0,0,0,4,2],
 "mostlyharmless__OnScopeExit_8h_source.html":[5,0,0,0,4,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "namespacemarvin_1_1library.html#a565e238d191ec8e620a0bae03993bff2":[2,0,0,2,14],
 "namespacemarvin_1_1library.html#a5fb5079dd71e12711e0699ecf37c4230":[2,0,0,2,16],
 "namespacemarvin_1_1library.html#a6da95de6ad870f68ec58b329940753e7":[2,0,0,2,4],
-"namespacemarvin_1_1library.html#a6f5435b9c5db38a066726125cfebbfee":[2,0,0,2,2],
-"namespacemarvin_1_1library.html#a6f8bbf6fd45b1d8d658aa4ce25cef983":[2,0,0,2,10]
+"namespacemarvin_1_1library.html#a6f5435b9c5db38a066726125cfebbfee":[2,0,0,2,2]
 };

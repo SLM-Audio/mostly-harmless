@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"namespacemarvin_1_1library.html#a6f8bbf6fd45b1d8d658aa4ce25cef983":[2,0,0,2,10],
 "namespacemarvin_1_1library.html#a89ee9586210e8be8645449a41ae2c4db":[2,0,0,2,8],
 "namespacemarvin_1_1library.html#ab021e73eb3c6929b1935026c67e3a036":[2,0,0,2,18],
 "namespacemarvin_1_1library.html#ab252a8e2ef11bd068f94fb3d0ea5b447":[2,0,0,2,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "structmostly__harmless_1_1TransportState.html#a7920024a99c5b38b58bd8274f751099f":[4,0,1,9,0],
 "structmostly__harmless_1_1TransportState.html#a8c2b7ea5e6658ff6516efacca18d93ff":[2,0,1,10,8],
 "structmostly__harmless_1_1TransportState.html#a8c2b7ea5e6658ff6516efacca18d93ff":[4,0,1,9,8],
-"structmostly__harmless_1_1TransportState.html#a92aa20e179ebee1872170f90a6e1bbc9":[2,0,1,10,2],
-"structmostly__harmless_1_1TransportState.html#a92aa20e179ebee1872170f90a6e1bbc9":[4,0,1,9,2]
+"structmostly__harmless_1_1TransportState.html#a92aa20e179ebee1872170f90a6e1bbc9":[2,0,1,10,2]
 };
