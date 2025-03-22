@@ -5,6 +5,8 @@ if (APPLE)
     set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
     set(CMAKE_OSX_DEPLOYMENT_TARGET 10.15)
     enable_language(OBJCXX)
+elseif(WIN32)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif ()
 
 include(FetchContent)
