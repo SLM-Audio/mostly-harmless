@@ -87,7 +87,7 @@ namespace mostly_harmless::core {
          * Retrieves the proc->gui parameter spsc, for direct access by either the engine or the editor.
          * \return A ref to the proc->gui parameter queue.
          */
-        [[nodiscard]] marvin::containers::fifos::SPSC<events::ProcToGuiParamEvent>& getProcToGuiQueue() noexcept;
+        [[nodiscard]] marvin::containers::fifos::MPMC<events::ProcToGuiParamEvent>& getProcToGuiQueue() noexcept;
 
         /**
          * Retrieves the gui->proc parameters spsc, for direct access by either the engine or the editor.
@@ -115,7 +115,7 @@ namespace mostly_harmless::core {
         SharedStateContext m_context;
         std::vector<Parameter<float>> m_params;
         std::unordered_map<std::uint32_t, Parameter<float>*> m_paramLookup;
-        marvin::containers::fifos::SPSC<events::ProcToGuiParamEvent> m_procToGuiQueue;
+        marvin::containers::fifos::MPMC<events::ProcToGuiParamEvent> m_procToGuiQueue;
         marvin::containers::fifos::SPSC<events::GuiToProcParamEvent> m_guiToProcQueue;
     };
 
