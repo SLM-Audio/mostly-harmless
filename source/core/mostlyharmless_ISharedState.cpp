@@ -38,7 +38,7 @@ namespace mostly_harmless::core {
         return m_params.size();
     }
 
-    marvin::containers::fifos::SPSC<events::ProcToGuiParamEvent>& ISharedState::getProcToGuiQueue() noexcept {
+    marvin::containers::fifos::MPMC<events::ProcToGuiParamEvent>& ISharedState::getProcToGuiQueue() noexcept {
         return m_procToGuiQueue;
     }
 
