@@ -39,7 +39,7 @@ in `mostly_harmless::gui::IEditor`.
 
 ### First Steps
 
-Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, and the FX Plugin Tutorial in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project. We also provide a (wip) python script to generate the boilerplate needed for a new project for you, found in the root directory.
+Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, and the FX Plugin Tutorial in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project. We also provide a Python script to generate the boilerplate needed for a new project for you, found in the root directory.
 
 Usage:
 
