@@ -14,11 +14,12 @@ var searchData=
   ['adding_20a_20plugin_20target_11',['Adding a plugin target',['../index.html#autotoc_md10',1,'']]],
   ['adding_20to_20your_20project_12',['Adding to your project',['../index.html#autotoc_md9',1,'']]],
   ['adjust_13',['Adjust',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a51d7a685e12188ee196670343e1ac2cd',1,'mostly_harmless::events::GuiToProcParamEvent']]],
-  ['allpass_14',['Allpass',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289afdb07e27e5265677979dddb0d7ed948e',1,'marvin::dsp::filters::SVF']]],
-  ['allpass_15',['allpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#a0e5ed72ea53c2c9f612528b781b0d1f0',1,'marvin::dsp::filters::SVFResult::allpass'],['../namespacemarvin_1_1dsp_1_1filters_1_1rbj.html#a018d81b21c5e991bb6d6778a2b604fe0',1,'marvin::dsp::filters::rbj::allpass()']]],
-  ['an_20audio_20fx_20plugin_16',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]],
-  ['anatomy_17',['Anatomy',['../md_FXPluginTutorial.html#autotoc_md17',1,'']]],
-  ['and_20sharedstate_18',['Engine, Editor and SharedState',['../md_FXPluginTutorial.html#autotoc_md18',1,'']]],
-  ['arraylike_19',['ArrayLike',['../conceptmarvin_1_1ArrayLike.html',1,'marvin']]],
-  ['audio_20fx_20plugin_20',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]]
+  ['allowresize_14',['allowResize',['../structmostly__harmless_1_1core_1_1IEditor.html#a3bf6475d46b90573bda80cbec9880798',1,'mostly_harmless::core::IEditor::allowResize()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#ab4106b8a2f00fccf1890f388c28a688d',1,'mostly_harmless::gui::WebviewBase::allowResize()'],['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a9e231d037a0077f656036e70a9c8dec4',1,'mostly_harmless::gui::WebviewEditor::allowResize()']]],
+  ['allpass_15',['Allpass',['../classmarvin_1_1dsp_1_1filters_1_1SVF.html#a1f44dc1b5fcb84d3d879a0975e8ee289afdb07e27e5265677979dddb0d7ed948e',1,'marvin::dsp::filters::SVF']]],
+  ['allpass_16',['allpass',['../structmarvin_1_1dsp_1_1filters_1_1SVFResult.html#a0e5ed72ea53c2c9f612528b781b0d1f0',1,'marvin::dsp::filters::SVFResult::allpass'],['../namespacemarvin_1_1dsp_1_1filters_1_1rbj.html#a018d81b21c5e991bb6d6778a2b604fe0',1,'marvin::dsp::filters::rbj::allpass()']]],
+  ['an_20audio_20fx_20plugin_17',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]],
+  ['anatomy_18',['Anatomy',['../md_FXPluginTutorial.html#autotoc_md17',1,'']]],
+  ['and_20sharedstate_19',['Engine, Editor and SharedState',['../md_FXPluginTutorial.html#autotoc_md18',1,'']]],
+  ['arraylike_20',['ArrayLike',['../conceptmarvin_1_1ArrayLike.html',1,'marvin']]],
+  ['audio_20fx_20plugin_21',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]]
 ];

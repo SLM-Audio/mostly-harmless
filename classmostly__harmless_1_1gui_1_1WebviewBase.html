@@ -147,10 +147,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a939351f0ea95f93b2a2da02a6b405a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29ba30b0b50b2a5327e249a81c8b3646" id="r_a29ba30b0b50b2a5327e249a81c8b3646"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29ba30b0b50b2a5327e249a81c8b3646">destroy</a> () override</td></tr>
 <tr class="separator:a29ba30b0b50b2a5327e249a81c8b3646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4106b8a2f00fccf1890f388c28a688d" id="r_ab4106b8a2f00fccf1890f388c28a688d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4106b8a2f00fccf1890f388c28a688d">allowResize</a> () const noexcept override</td></tr>
+<tr class="separator:ab4106b8a2f00fccf1890f388c28a688d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01a54529b4a4fc66a4874b127fc5c1d" id="r_af01a54529b4a4fc66a4874b127fc5c1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af01a54529b4a4fc66a4874b127fc5c1d">setSize</a> (std::uint32_t width, std::uint32_t height) override</td></tr>
 <tr class="separator:af01a54529b4a4fc66a4874b127fc5c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae306effd98b26be4e9540548337e9d5c" id="r_ae306effd98b26be4e9540548337e9d5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae306effd98b26be4e9540548337e9d5c">getSize</a> (std::uint32_t *width, std::uint32_t *height) override</td></tr>
 <tr class="separator:ae306effd98b26be4e9540548337e9d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a59b79482f4221e2d3755326a07db2" id="r_a40a59b79482f4221e2d3755326a07db2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40a59b79482f4221e2d3755326a07db2">onResizeRequested</a> (std::uint32_t *newWidth, std::uint32_t *newHeight) override</td></tr>
+<tr class="separator:a40a59b79482f4221e2d3755326a07db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59b99374e6854815fa4c51c1946fe8e1" id="r_a59b99374e6854815fa4c51c1946fe8e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59b99374e6854815fa4c51c1946fe8e1">setParent</a> (void *parentHandle) override</td></tr>
 <tr class="separator:a59b99374e6854815fa4c51c1946fe8e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85cdd02af5eabb7fa6fef7d29da18995" id="r_a85cdd02af5eabb7fa6fef7d29da18995"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85cdd02af5eabb7fa6fef7d29da18995">show</a> () override</td></tr>
@@ -227,6 +231,36 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab4106b8a2f00fccf1890f388c28a688d" name="ab4106b8a2f00fccf1890f388c28a688d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4106b8a2f00fccf1890f388c28a688d">&#9670;&#160;</a></span>allowResize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mostly_harmless::gui::WebviewBase::allowResize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return true here if you want your gui to be resizable, otherwise return false. </p><dl class="section return"><dt>Returns</dt><dd>Whether or not the gui is allowed to be resized. </dd></dl>
+
+<p>Implements <a class="el" href="structmostly__harmless_1_1core_1_1IEditor.html#a3bf6475d46b90573bda80cbec9880798">mostly_harmless::core::IEditor</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#a9e231d037a0077f656036e70a9c8dec4">mostly_harmless::gui::WebviewEditor</a>.</p>
+
+</div>
+</div>
 <a id="a29ba30b0b50b2a5327e249a81c8b3646" name="a29ba30b0b50b2a5327e249a81c8b3646"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a29ba30b0b50b2a5327e249a81c8b3646">&#9670;&#160;</a></span>destroy()</h2>
 
@@ -378,6 +412,46 @@ Protected Attributes</h2></td></tr>
 <p>Implements <a class="el" href="structmostly__harmless_1_1core_1_1IEditor.html#a4bfb9f3dfbc91f53ff035755dfed6d16">mostly_harmless::core::IEditor</a>.</p>
 
 <p>Implemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#ac90eb502e652f38ae5e9a2287b400bc2">mostly_harmless::gui::WebviewEditor</a>.</p>
+
+</div>
+</div>
+<a id="a40a59b79482f4221e2d3755326a07db2" name="a40a59b79482f4221e2d3755326a07db2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a59b79482f4221e2d3755326a07db2">&#9670;&#160;</a></span>onResizeRequested()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::gui::WebviewBase::onResizeRequested </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t *</td>          <td class="paramname"><span class="paramname"><em>newWidth</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t *</td>          <td class="paramname"><span class="paramname"><em>newHeight</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called when the host tries to adjust the editor's size, and allows the user to add extra constraints to the requested bounds. Calls to this will be followed by a subsequent call to setSize, using the values stored in the newWidth and newHeight parameters. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newWidth</td><td>A pointer containing the new requested width. Can be mutated by your implementation, to clamp the size to a certain max or aspect ratio, for example. </td></tr>
+    <tr><td class="paramname">newHeight</td><td>A pointer containing the new requested height. Can be mutated by your implementation, to clamp the size to a certain max or aspect ratio, for example. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="structmostly__harmless_1_1core_1_1IEditor.html#af0d31a35bb262250d58de734551a953c">mostly_harmless::core::IEditor</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewEditor.html#acf90a728084453370cc71bcf7885ffa4">mostly_harmless::gui::WebviewEditor</a>.</p>
 
 </div>
 </div>
