@@ -39,19 +39,18 @@ in `mostly_harmless::gui::IEditor`.
 
 ### First Steps
 
-Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, and the FX Plugin Tutorial
-in the docs directory,
-which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project.
-We also provide a (wip) python script to generate the boilerplate needed for a new project for you, found in the root
-directory.<br>
-Usage is
+Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, and the FX Plugin Tutorial in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project. We also provide a (wip) python script to generate the boilerplate needed for a new project for you, found in the root directory.
 
-`python3 create.py <name> <dest_path> <fx | instrument> [no_gui | web | raw_gui]`
+Usage:
 
-where `<>` denotes a required field, and `[]` denotes an optional field. The final field, for gui, if not provided, will
-default to `no_gui`.<br>
-I realise it's a little janky at the moment having positional args instead of the usual `--some_flag=something`
-approach, and plan to refactor it to be a little more user friendly in future.
+```
+python3 create.py <name> <path> <fx|instrument> [--gui web|raw|none]
+```
+
+* `name`: the name of your plugin
+* `path`: the folder for your plugin project (must not already exist)
+* `fx|instrument`: the type of your plugin
+* `--gui`: the GUI backend for your plugin, must be web, raw, or none (for no GUI) (optional, defaults to none)
 
 ### Building
 
