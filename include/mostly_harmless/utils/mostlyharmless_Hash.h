@@ -21,7 +21,7 @@ namespace mostly_harmless::utils {
             auto hash = 5381UL;
             auto* data = toHash.data();
             while (auto c = *data++) {
-                hash = ((hash << 5) + hash) + c;
+                hash = ((hash << 5) + hash) + static_cast<decltype(hash)>(c);
             }
             return static_cast<T>(hash);
         }
