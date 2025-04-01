@@ -40,7 +40,7 @@ set(CLAP_WRAPPER_DOWNLOAD_DEPENDENCIES TRUE CACHE BOOL "Dowload dependencies")
 FetchContent_Declare(
         clap-wrapper
         GIT_REPOSITORY https://github.com/free-audio/clap-wrapper.git
-        GIT_TAG 5a98d30afe5fc805779cbcfce8b1f1bf99570bfa
+        GIT_TAG next
         GIT_SHALLOW ON
 )
 FetchContent_MakeAvailable(clap-wrapper)
