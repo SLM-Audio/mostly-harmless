@@ -164,9 +164,7 @@ if (TESTS)
             GIT_SHALLOW ON)
     FetchContent_MakeAvailable(Catch2)
     add_subdirectory(tests)
-    add_executable(mostly-harmless-tests
-            include/mostly_harmless/data/mostlyharmless_DatabaseState.h
-            include/mostly_harmless/data/mostlyharmless_DatabaseState.h)
+    add_executable(mostly-harmless-tests)
     target_sources(mostly-harmless-tests PRIVATE ${MOSTLYHARMLESS_TEST_SOURCE})
     target_link_libraries(mostly-harmless-tests PUBLIC MostlyHarmless Catch2::Catch2WithMain)
 

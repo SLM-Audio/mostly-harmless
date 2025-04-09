@@ -18,12 +18,6 @@ namespace mostly_harmless::data {
      * @private
      */
     namespace {
-        constexpr std::string s_stringTableName{ "TEXT_DATA" };
-        constexpr std::string s_intTableName{ "INT_DATA" };
-        constexpr std::string s_floatTableName{ "FLOAT_DATA" };
-        constexpr std::string s_doubleTableName{ "DOUBLE_DATA" };
-        constexpr std::string s_boolTableName{ "BOOL_DATA" };
-
         enum Index : size_t {
             TextIndex = 1,
             BoolIndex = 2,
