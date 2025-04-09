@@ -5,6 +5,7 @@
 #ifndef MOSTLYHARMLESS_PROXY_H
 #define MOSTLYHARMLESS_PROXY_H
 #include <memory>
+#include <mutex>
 namespace mostly_harmless::utils {
 
     /**

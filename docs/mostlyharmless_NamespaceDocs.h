@@ -37,6 +37,12 @@ namespace mostly_harmless {
 
     }
     /**
+     * \brief Contains classes and functions related to data management
+     */
+    namespace data {
+
+    }
+    /**
      * \brief Contains classes and functions related to events
      */
     namespace events {
