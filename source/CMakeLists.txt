@@ -25,6 +25,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Timer.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_OnScopeExit.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_NoDenormals.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabaseState.cpp
         ${PLATFORM_SOURCES}
         PARENT_SCOPE)
 message(STATUS ${MOSTLYHARMLESS_PLATFORM_SOURCES})

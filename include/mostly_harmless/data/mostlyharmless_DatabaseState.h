@@ -97,7 +97,7 @@ namespace mostly_harmless::data {
         [[nodiscard]] static auto try_create(const std::filesystem::path& location) -> std::optional<DatabaseState> {
             try {
                 DatabaseState state{ {}, location };
-                return { std::move(state) };
+                return state;
             } catch (...) {
                 assert(false);
                 return {};
