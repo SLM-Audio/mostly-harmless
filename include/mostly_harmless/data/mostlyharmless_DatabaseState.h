@@ -57,7 +57,7 @@ namespace mostly_harmless::data {
      *
      * The database schema itself is fairly generic, a single `DATA` table, with `NAME`, `TEXT_VALUE`, `BOOL_VALUE`, `INT_VALUE`, `FLOAT_VALUE` and `DOUBLE_VALUE fields.
      * get and set are templated, and will get or set the field associated with the given template type - so it's important to ensure you retrieve the correct value type for a field you've previously set.
-     * The fields default to `""`, `false`, `0`, `0.0f` and `0.0` respectively.
+     * The fields default to "", false, 0, 0.0f and 0.0 respectively.
      * The connection is set to WAL mode, to allow concurrent access.
      */
     class DatabaseState final {
