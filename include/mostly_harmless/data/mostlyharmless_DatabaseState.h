@@ -61,33 +61,46 @@ namespace mostly_harmless::data {
      * The connection is set to WAL mode, to allow concurrent access.
      */
     class DatabaseState final {
+    private:
+        struct Private {};
+
     public:
         /**
-         * On construction, will attempt to open the database passed to location, and establish a connection to it if it exists.
-         * If it doesn't exist, creates the database, and a table to store user data in.
-         *
-         * \param location A path to the database to create or open.
+         * @private
          */
-        explicit DatabaseState(const std::filesystem::path& location) {
+        DatabaseState(Private, const std::filesystem::path& location) {
             const auto checkResult = [](int response) -> void {
                 if (response != SQLITE_OK) {
                     throw std::exception{};
                 }
             };
+            auto resultCode = sqlite3_open(location.string().c_str(), &m_databaseHandle);
+            checkResult(resultCode);
+            const std::string enableWalCommand{ "PRAGMA journal_mode=WAL" };
+            resultCode = sqlite3_exec(m_databaseHandle, enableWalCommand.c_str(), nullptr, nullptr, nullptr);
+            checkResult(resultCode);
+            const std::string command{
+                "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double);"
+            };
+            resultCode = sqlite3_exec(m_databaseHandle, command.c_str(), nullptr, nullptr, nullptr);
+            checkResult(resultCode);
+        }
+
+        /**
+         * Attempts to create a new DatabaseState instance.
+         * On construction, will attempt to open the database passed to location, and establish a connection to it if it exists.
+         * If it doesn't exist, creates the database, and a table to store user data in.
+         *
+         * \param location A path to the database to create or open.
+         * \return A DatabaseState instance on success, nullopt otherwise.
+         */
+        [[nodiscard]] static auto try_create(const std::filesystem::path& location) -> std::optional<DatabaseState> {
             try {
-                auto resultCode = sqlite3_open(location.string().c_str(), &m_databaseHandle);
-                checkResult(resultCode);
-                const std::string enableWalCommand{ "PRAGMA journal_mode=WAL" };
-                resultCode = sqlite3_exec(m_databaseHandle, enableWalCommand.c_str(), nullptr, nullptr, nullptr);
-                checkResult(resultCode);
-                const std::string command{
-                    "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double);"
-                };
-                resultCode = sqlite3_exec(m_databaseHandle, command.c_str(), nullptr, nullptr, nullptr);
-                checkResult(resultCode);
+                DatabaseState state{ {}, location };
+                return { std::move(state) };
             } catch (...) {
-                MH_LOG(sqlite3_errmsg(m_databaseHandle));
                 assert(false);
+                return {};
             }
         }
 
@@ -95,6 +108,7 @@ namespace mostly_harmless::data {
          * @private
          */
         ~DatabaseState() noexcept {
+            if (!m_databaseHandle) return;
             sqlite3_close(m_databaseHandle);
         }
 
