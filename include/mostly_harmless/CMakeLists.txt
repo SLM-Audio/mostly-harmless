@@ -26,5 +26,6 @@ set(MOSTLYHARMLESS_HEADERS
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_OnScopeExit.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Proxy.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_NoDenormals.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabaseState.h
         ${PLATFORM_HEADERS}
         PARENT_SCOPE)

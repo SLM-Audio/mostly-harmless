@@ -60,6 +60,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(fmt)
 
 FetchContent_Declare(
+        sqlite3
+        GIT_REPOSITORY https://github.com/alex85k/sqlite3-cmake.git
+        GIT_SHALLOW ON
+)
+FetchContent_MakeAvailable(sqlite3)
+
+FetchContent_Declare(
         marvin
         GIT_REPOSITORY https://github.com/MeijisIrlnd/marvin.git
         GIT_TAG main
@@ -73,7 +80,7 @@ message(STATUS ${MOSTLYHARMLESS_SOURCES})
 add_library(MostlyHarmless STATIC)
 add_library(slma::MostlyHarmless ALIAS MostlyHarmless)
 
-target_sources(MostlyHarmless PRIVATE ${MOSTLYHARMLESS_SOURCES})
+target_sources(MostlyHarmless PRIVATE ${MOSTLYHARMLESS_SOURCES} ${MOSTLYHARMLESS_INCLUDES})
 
 target_include_directories(MostlyHarmless PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -107,6 +114,7 @@ target_link_libraries(MostlyHarmless
         clap-helpers
         fmt::fmt-header-only
         nlohmann_json
+        sqlite3
         ${MOSTLY_HARMLESS_EXTRA_LIBS}
 )
 
