@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['cosinesum_0',['CosineSum',['../namespacemarvin_1_1math_1_1windows.html#ac849a14617e4474c653fd66547db8d58aff6515b2beac74a8d6313fb9cc579ce7',1,'marvin::math::windows']]]
+  ['desktop_0',['Desktop',['../namespacemostly__harmless_1_1utils_1_1directories.html#a2c6f5f83a8af557c3c4f1fd217925e45a2310408a63388fe57e3a4177168a8798',1,'mostly_harmless::utils::directories']]],
+  ['documents_1',['Documents',['../namespacemostly__harmless_1_1utils_1_1directories.html#a2c6f5f83a8af557c3c4f1fd217925e45af28128b38efbc6134dc40751ee21fd29',1,'mostly_harmless::utils::directories']]]
 ];

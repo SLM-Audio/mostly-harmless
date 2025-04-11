@@ -122,6 +122,9 @@ Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemostly__harmless_1_1core.html">core</a></td></tr>
 <tr class="memdesc:namespacemostly__harmless_1_1core"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains core functionality of the framework. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemostly__harmless_1_1data.html">data</a></td></tr>
+<tr class="memdesc:namespacemostly__harmless_1_1data"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains classes and functions related to data management. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemostly__harmless_1_1events.html">events</a></td></tr>
 <tr class="memdesc:namespacemostly__harmless_1_1events"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains classes and functions related to events. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,8 +173,8 @@ Functions</h2></td></tr>
 <tr class="separator:acff0881b0acaad3e3db2abcefae922c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac889a0306c5a9a0ef6063a36e423f0d6" id="r_ac889a0306c5a9a0ef6063a36e423f0d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a8a6a5b83db80421ea36533977f16b7c6">BusConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac889a0306c5a9a0ef6063a36e423f0d6">getNoteBusConfig</a> () noexcept</td></tr>
 <tr class="separator:ac889a0306c5a9a0ef6063a36e423f0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d2d74acdc833b5d2eef76b423e9cf89" id="r_a8d2d74acdc833b5d2eef76b423e9cf89"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </td></tr>
-<tr class="memitem:a8d2d74acdc833b5d2eef76b423e9cf89"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8d2d74acdc833b5d2eef76b423e9cf89">runBlockDispatch</a> (<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt; buffer, <a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">mostly_harmless::events::InputEventContext</a> eventContext, std::function&lt; void(const clap_event_header *event)&gt; &amp;&amp;eventCallback, std::function&lt; void(<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt;)&gt; &amp;&amp;blockCallback)</td></tr>
+<tr class="memitem:a8d2d74acdc833b5d2eef76b423e9cf89" id="r_a8d2d74acdc833b5d2eef76b423e9cf89"><td class="memTemplParams" colspan="2">template&lt;marvin::FloatType SampleType&gt; </td></tr>
+<tr class="memitem:a8d2d74acdc833b5d2eef76b423e9cf89"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8d2d74acdc833b5d2eef76b423e9cf89">runBlockDispatch</a> (marvin::containers::BufferView&lt; SampleType &gt; buffer, <a class="el" href="structmostly__harmless_1_1events_1_1InputEventContext.html">mostly_harmless::events::InputEventContext</a> eventContext, std::function&lt; void(const clap_event_header *event)&gt; &amp;&amp;eventCallback, std::function&lt; void(marvin::containers::BufferView&lt; SampleType &gt;)&gt; &amp;&amp;blockCallback)</td></tr>
 <tr class="memdesc:a8d2d74acdc833b5d2eef76b423e9cf89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splits an input buffer into chunks and dispatches them, allowing for block based processing.  <br /></td></tr>
 <tr class="separator:a8d2d74acdc833b5d2eef76b423e9cf89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -293,12 +296,12 @@ Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatType</a> SampleType&gt; </div>
+template&lt;marvin::FloatType SampleType&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void mostly_harmless::runBlockDispatch </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+          <td class="paramtype">marvin::containers::BufferView&lt; SampleType &gt;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -313,7 +316,7 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::function&lt; void(<a class="el" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a>&lt; SampleType &gt;)&gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>blockCallback</em></span>&#160;)</td>
+          <td class="paramtype">std::function&lt; void(marvin::containers::BufferView&lt; SampleType &gt;)&gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>blockCallback</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -324,14 +327,13 @@ template&lt;<a class="el" href="conceptmarvin_1_1FloatType.html">marvin::FloatTy
 <div class="line">        [<span class="keyword">this</span>](<span class="keyword">const</span> clap_event_header* event) -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line">            handleEvent(event);</div>
 <div class="line">        },</div>
-<div class="line">        [<span class="keyword">this</span>](<a class="code hl_struct" href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView&lt;float&gt;</a> chunk) -&gt; <span class="keywordtype">void</span> {</div>
+<div class="line">        [<span class="keyword">this</span>](marvin::containers::BufferView&lt;float&gt; chunk) -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line">            <span class="comment">// assuming a member called m_processor</span></div>
 <div class="line">            m_processor.process(chunk);</div>
 <div class="line">        }</div>
 <div class="line">    );</div>
 <div class="line">}</div>
 <div class="ttc" id="anamespacemostly__harmless_html_a8d2d74acdc833b5d2eef76b423e9cf89"><div class="ttname"><a href="#a8d2d74acdc833b5d2eef76b423e9cf89">mostly_harmless::runBlockDispatch</a></div><div class="ttdeci">void runBlockDispatch(marvin::containers::BufferView&lt; SampleType &gt; buffer, mostly_harmless::events::InputEventContext eventContext, std::function&lt; void(const clap_event_header *event)&gt; &amp;&amp;eventCallback, std::function&lt; void(marvin::containers::BufferView&lt; SampleType &gt;)&gt; &amp;&amp;blockCallback)</div><div class="ttdoc">Splits an input buffer into chunks and dispatches them, allowing for block based processing.</div><div class="ttdef"><b>Definition</b> mostlyharmless_AudioHelpers.h:37</div></div>
-<div class="ttc" id="astructmarvin_1_1containers_1_1BufferView_html"><div class="ttname"><a href="structmarvin_1_1containers_1_1BufferView.html">marvin::containers::BufferView</a></div><div class="ttdoc">Trivially copyable view into a preallocated SampleType**.</div><div class="ttdef"><b>Definition</b> marvin_BufferView.h:22</div></div>
 <div class="ttc" id="astructmostly__harmless_1_1events_1_1InputEventContext_html"><div class="ttname"><a href="structmostly__harmless_1_1events_1_1InputEventContext.html">mostly_harmless::events::InputEventContext</a></div><div class="ttdoc">Trivially copyable wrapper around the clap-api provided clap_input_events queue, for easier iterating...</div><div class="ttdef"><b>Definition</b> mostlyharmless_InputEventContext.h:9</div></div>
 </div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

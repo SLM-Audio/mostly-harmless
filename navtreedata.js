@@ -49,22 +49,18 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ],
         [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
-    [ "Concepts", "concepts.html", "concepts" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
-        [ "Enumerations", "functions_enum.html", null ],
-        [ "Related Symbols", "functions_rela.html", null ]
+        [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -80,11 +76,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classmarvin_1_1dsp_1_1filters_1_1SVF.html",
-"classmarvin_1_1library_1_1PropagateConst.html#ad77bf6c16db5de00a1e4021572c226a1",
-"concepts.html",
-"namespacemarvin_1_1library.html#a313c56496e1d354553302cf70ca9e61e",
-"structmostly__harmless_1_1TransportState.html#a2b2372e532a4b11722d1a09fd58d149e"
+"mostlyharmless__TaskThread_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

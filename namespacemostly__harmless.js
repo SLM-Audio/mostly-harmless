@@ -2,6 +2,7 @@ var namespacemostly__harmless =
 [
     [ "audio", "namespacemostly__harmless_1_1audio.html", null ],
     [ "core", "namespacemostly__harmless_1_1core.html", "namespacemostly__harmless_1_1core" ],
+    [ "data", "namespacemostly__harmless_1_1data.html", "namespacemostly__harmless_1_1data" ],
     [ "events", "namespacemostly__harmless_1_1events.html", "namespacemostly__harmless_1_1events" ],
     [ "gui", "namespacemostly__harmless_1_1gui.html", "namespacemostly__harmless_1_1gui" ],
     [ "internal", "namespacemostly__harmless_1_1internal.html", "namespacemostly__harmless_1_1internal" ],

@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['next_0',['next',['../structmostly__harmless_1_1events_1_1InputEventContext.html#aff4d3af343444bd4944654208a4ab84e',1,'mostly_harmless::events::InputEventContext']]],
-  ['nodenormals_1',['NoDenormals',['../classmostly__harmless_1_1utils_1_1NoDenormals.html#a6c823124f9f78d3c93c0e7283d9c92a8',1,'mostly_harmless::utils::NoDenormals']]],
-  ['noiseoscillator_2',['NoiseOscillator',['../classmarvin_1_1dsp_1_1oscillators_1_1NoiseOscillator.html#a0555c6a74b22bee6b50b187236a99655',1,'marvin::dsp::oscillators::NoiseOscillator']]],
-  ['notch_3',['notch',['../namespacemarvin_1_1dsp_1_1filters_1_1rbj.html#ab231eb44b64ea9c2583b076d3ff61949',1,'marvin::dsp::filters::rbj']]],
-  ['null_4',['null',['../classmostly__harmless_1_1utils_1_1Proxy.html#ae010b13ffb7c4dafea8e44fb76df63c7',1,'mostly_harmless::utils::Proxy']]]
+  ['paramchangegesturecallback_0',['paramChangeGestureCallback',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#abe0eb428c3937499c18ef1398ddea40d',1,'mostly_harmless::gui::WebviewEditor']]],
+  ['parameter_1',['Parameter',['../structmostly__harmless_1_1Parameter.html#a5ba754de8c7f5636d1580c2051faafce',1,'mostly_harmless::Parameter::Parameter(ParameterID parameterId_, std::string_view name_, std::string_view category_, marvin::utils::Range&lt; SampleType &gt; range_, SampleType defaultValue_, std::uint32_t flags_)'],['../structmostly__harmless_1_1Parameter.html#ac2750f850e78f04405249d0f07e24cb3',1,'mostly_harmless::Parameter::Parameter(std::uint32_t pid_, std::string_view name_, std::string_view category_, marvin::utils::Range&lt; SampleType &gt; range_, SampleType defaultValue_, std::uint32_t flags_)']]],
+  ['parameterid_2',['ParameterID',['../structmostly__harmless_1_1ParameterID.html#a34935b3f9fb8a7b8027f50cf9bff5aeb',1,'mostly_harmless::ParameterID']]],
+  ['perform_3',['perform',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ae82139117b54e99df9de0ee5cfe5a1a5',1,'mostly_harmless::utils::TaskThread']]],
+  ['pluginbase_4',['PluginBase',['../classmostly__harmless_1_1internal_1_1PluginBase.html#a63d83b502b35798be59757dede35669e',1,'mostly_harmless::internal::PluginBase']]],
+  ['process_5',['process',['../classmostly__harmless_1_1core_1_1IEngine.html#a18cca1c5774944609ac06e15bc2b4db9',1,'mostly_harmless::core::IEngine']]],
+  ['proxy_6',['Proxy',['../classmostly__harmless_1_1utils_1_1Proxy.html#a26cb77aa7c2d1ce51b821bb707f4115d',1,'mostly_harmless::utils::Proxy']]]
 ];

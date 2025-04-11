@@ -134,9 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2677ca09974250ba03a38cf9b9343fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5556586621e0e40ffc1004e8205f6e0" id="r_af5556586621e0e40ffc1004e8205f6e0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5556586621e0e40ffc1004e8205f6e0">saveState</a> (std::ostringstream &amp;dest)=0</td></tr>
 <tr class="separator:af5556586621e0e40ffc1004e8205f6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad280ada395dd98c1aecf823dc2c21db2" id="r_ad280ada395dd98c1aecf823dc2c21db2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad280ada395dd98c1aecf823dc2c21db2">getProcToGuiQueue</a> () noexcept</td></tr>
-<tr class="separator:ad280ada395dd98c1aecf823dc2c21db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20a0c466b7df0437d63e32969c136088" id="r_a20a0c466b7df0437d63e32969c136088"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20a0c466b7df0437d63e32969c136088">getGuiToProcQueue</a> () noexcept</td></tr>
+<tr class="memitem:ae76f2d60550b2916a6444d447d734f32" id="r_ae76f2d60550b2916a6444d447d734f32"><td class="memItemLeft" align="right" valign="top">marvin::containers::fifos::MPMC&lt; <a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae76f2d60550b2916a6444d447d734f32">getProcToGuiQueue</a> () noexcept</td></tr>
+<tr class="separator:ae76f2d60550b2916a6444d447d734f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20a0c466b7df0437d63e32969c136088" id="r_a20a0c466b7df0437d63e32969c136088"><td class="memItemLeft" align="right" valign="top">marvin::containers::fifos::SPSC&lt; <a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20a0c466b7df0437d63e32969c136088">getGuiToProcQueue</a> () noexcept</td></tr>
 <tr class="separator:a20a0c466b7df0437d63e32969c136088"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac15da31be172228169ea302ed1acadf4" id="r_ac15da31be172228169ea302ed1acadf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac15da31be172228169ea302ed1acadf4">runOnMainThread</a> (std::function&lt; void(void)&gt; &amp;&amp;toRun) const</td></tr>
 <tr class="separator:ac15da31be172228169ea302ed1acadf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,7 +225,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a> &gt; &amp; mostly_harmless::core::ISharedState::getGuiToProcQueue </td>
+          <td class="memname">marvin::containers::fifos::SPSC&lt; <a class="el" href="structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html">events::GuiToProcParamEvent</a> &gt; &amp; mostly_harmless::core::ISharedState::getGuiToProcQueue </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -357,8 +357,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad280ada395dd98c1aecf823dc2c21db2" name="ad280ada395dd98c1aecf823dc2c21db2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad280ada395dd98c1aecf823dc2c21db2">&#9670;&#160;</a></span>getProcToGuiQueue()</h2>
+<a id="ae76f2d60550b2916a6444d447d734f32" name="ae76f2d60550b2916a6444d447d734f32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae76f2d60550b2916a6444d447d734f32">&#9670;&#160;</a></span>getProcToGuiQueue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -367,7 +367,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmarvin_1_1containers_1_1fifos_1_1SPSC.html">marvin::containers::fifos::SPSC</a>&lt; <a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> &gt; &amp; mostly_harmless::core::ISharedState::getProcToGuiQueue </td>
+          <td class="memname">marvin::containers::fifos::MPMC&lt; <a class="el" href="structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html">events::ProcToGuiParamEvent</a> &gt; &amp; mostly_harmless::core::ISharedState::getProcToGuiQueue </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>

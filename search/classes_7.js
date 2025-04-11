@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['latticeapf_0',['LatticeAPF',['../classmarvin_1_1dsp_1_1filters_1_1LatticeAPF.html',1,'marvin::dsp::filters']]],
-  ['leakyintegrator_1',['LeakyIntegrator',['../classmarvin_1_1math_1_1LeakyIntegrator.html',1,'marvin::math']]],
-  ['loopinfo_2',['LoopInfo',['../structmostly__harmless_1_1LoopInfo.html',1,'mostly_harmless']]],
-  ['lpf_3',['LPF',['../classmarvin_1_1dsp_1_1filters_1_1LPF.html',1,'marvin::dsp::filters']]]
+  ['parameter_0',['Parameter',['../structmostly__harmless_1_1Parameter.html',1,'mostly_harmless']]],
+  ['parameterid_1',['ParameterID',['../structmostly__harmless_1_1ParameterID.html',1,'mostly_harmless']]],
+  ['pluginbase_2',['PluginBase',['../classmostly__harmless_1_1internal_1_1PluginBase.html',1,'mostly_harmless::internal']]],
+  ['processcontext_3',['ProcessContext',['../structmostly__harmless_1_1core_1_1ProcessContext.html',1,'mostly_harmless::core']]],
+  ['proctoguiparamevent_4',['ProcToGuiParamEvent',['../structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html',1,'mostly_harmless::events']]],
+  ['proxy_5',['Proxy',['../classmostly__harmless_1_1utils_1_1Proxy.html',1,'mostly_harmless::utils']]]
 ];

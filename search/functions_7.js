@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['hamming_0',['hamming',['../namespacemarvin_1_1math_1_1windows.html#a7be1a2f895faae28c033eabac1835b95',1,'marvin::math::windows']]],
-  ['handlenoteoff_1',['handleNoteOff',['../classmostly__harmless_1_1core_1_1IEngine.html#a52d94392e2a4b08c73f3ec4248068385',1,'mostly_harmless::core::IEngine']]],
-  ['handlenoteon_2',['handleNoteOn',['../classmostly__harmless_1_1core_1_1IEngine.html#a81402565b13fac637c2d665788e3e09a',1,'mostly_harmless::core::IEngine']]],
-  ['hann_3',['hann',['../namespacemarvin_1_1math_1_1windows.html#a8b0f4e506555cbf059716b84966c599d',1,'marvin::math::windows']]],
-  ['hasgui_4',['hasGui',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#aab3fcec3cbdb8d7a48a053196f99d8ec',1,'mostly_harmless::core::IPluginEntry']]],
-  ['hide_5',['hide',['../structmostly__harmless_1_1core_1_1IEditor.html#a07c091f62b3cee918843e94ff0b30bcf',1,'mostly_harmless::core::IEditor::hide()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a8208c0343578e42c04cc1e2fe24e7d7f',1,'mostly_harmless::gui::WebviewBase::hide()']]],
-  ['hideview_6',['hideView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8ae69eea9aecfc8ac734d56213687048',1,'mostly_harmless::gui::helpers::macos']]],
-  ['highpass_7',['highpass',['../namespacemarvin_1_1dsp_1_1filters_1_1rbj.html#a524c1e3b92f0ce3057830a6b22f48d6f',1,'marvin::dsp::filters::rbj']]],
-  ['highshelf_8',['highShelf',['../namespacemarvin_1_1dsp_1_1filters_1_1rbj.html#a709f224e22e7115b8e801501c6e38776',1,'marvin::dsp::filters::rbj']]]
+  ['initialise_0',['initialise',['../classmostly__harmless_1_1core_1_1IEngine.html#a3ea8f26e120106793454ad91d7638b74',1,'mostly_harmless::core::IEngine::initialise()'],['../structmostly__harmless_1_1core_1_1IEditor.html#a740caae0b6e7afe4e255003d77f0aa5f',1,'mostly_harmless::core::IEditor::initialise()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a939351f0ea95f93b2a2da02a6b405a21',1,'mostly_harmless::gui::WebviewBase::initialise()'],['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a1f971ab269931475d34d5dca242f563d',1,'mostly_harmless::gui::WebviewEditor::initialise()']]],
+  ['inputeventcontext_1',['InputEventContext',['../structmostly__harmless_1_1events_1_1InputEventContext.html#a4392545508d4265ba2fb1e477711b615',1,'mostly_harmless::events::InputEventContext']]],
+  ['isharedstate_2',['ISharedState',['../classmostly__harmless_1_1core_1_1ISharedState.html#a39ee14562171c70d77eef1af2c47ef74',1,'mostly_harmless::core::ISharedState']]],
+  ['isthreadrunning_3',['isThreadRunning',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a2dc43b2e8ff9d3e9ce5078d62cbc31ee',1,'mostly_harmless::utils::TaskThread']]],
+  ['isvalid_4',['isValid',['../classmostly__harmless_1_1utils_1_1Proxy.html#aa833e5e77573b804cfdda986d6292459',1,'mostly_harmless::utils::Proxy']]]
 ];

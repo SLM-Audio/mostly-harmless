@@ -7,7 +7,7 @@ var classmostly__harmless_1_1core_1_1ISharedState =
     [ "getParameterById", "classmostly__harmless_1_1core_1_1ISharedState.html#a29af1382203a833569e8248d36b06590", null ],
     [ "getParameterById", "classmostly__harmless_1_1core_1_1ISharedState.html#a5597648d83a6dbd2893cda12a456541e", null ],
     [ "getParameterByIndex", "classmostly__harmless_1_1core_1_1ISharedState.html#aa7ed7c6411e4242672891c876646ea63", null ],
-    [ "getProcToGuiQueue", "classmostly__harmless_1_1core_1_1ISharedState.html#ad280ada395dd98c1aecf823dc2c21db2", null ],
+    [ "getProcToGuiQueue", "classmostly__harmless_1_1core_1_1ISharedState.html#ae76f2d60550b2916a6444d447d734f32", null ],
     [ "getRawParameterView", "classmostly__harmless_1_1core_1_1ISharedState.html#a7ca1f5d8de9029447d3b18264574e6e8", null ],
     [ "loadState", "classmostly__harmless_1_1core_1_1ISharedState.html#a2677ca09974250ba03a38cf9b9343fce", null ],
     [ "requestParamFlush", "classmostly__harmless_1_1core_1_1ISharedState.html#a96dbac2dfdcb3e3fde432f0790401070", null ],
