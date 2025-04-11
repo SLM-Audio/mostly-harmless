@@ -9,6 +9,12 @@
  */
 namespace mostly_harmless {
     /**
+     * \brief Framework-Developer-Only documentation, for specific mechanisms within the framework
+     */
+     namespace internal {
+
+     }
+    /**
      * \brief Contains core functionality of the framework
      */
     namespace core {
@@ -34,6 +40,12 @@ namespace mostly_harmless {
      * \brief Contains general purpose utility classes & functions
      */
     namespace utils {
+        /**
+         * \brief Contains filesystem helpers
+         */
+        namespace directories {
+
+        }
 
     }
     /**

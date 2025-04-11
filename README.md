@@ -15,8 +15,7 @@ via [The Audio Programmer Discord](https://discord.gg/v5Rs8h6aGF), I'm @Meijis.
 
 ## Documentation
 
-Documentation is built automatically, and hosted [here](https://mostly-harmless.pages.dev). For convenience, it also
-includes the documentation for marvin.
+Documentation is built automatically, and hosted [here](https://mostly-harmless.pages.dev).
 
 ## Features
 
