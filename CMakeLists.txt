@@ -61,7 +61,7 @@ FetchContent_MakeAvailable(fmt)
 
 FetchContent_Declare(
         sqlite3
-        GIT_REPOSITORY https://github.com/alex85k/sqlite3-cmake.git
+        GIT_REPOSITORY https://github.com/SLM-Audio/sqlite3-cmake.git
         GIT_SHALLOW ON
 )
 FetchContent_MakeAvailable(sqlite3)
@@ -114,7 +114,7 @@ target_link_libraries(MostlyHarmless
         clap-helpers
         fmt::fmt-header-only
         nlohmann_json
-        sqlite3
+        sqlite3::sqlite3
         ${MOSTLY_HARMLESS_EXTRA_LIBS}
 )
 
