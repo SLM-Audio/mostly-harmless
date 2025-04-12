@@ -1,5 +1,15 @@
 var NAVTREEINDEX1 =
 {
+"mostlyharmless__OnScopeExit_8h_source.html":[4,0,0,0,5,2],
+"mostlyharmless__ParamEvent_8h.html":[4,0,0,0,3,1],
+"mostlyharmless__ParamEvent_8h_source.html":[4,0,0,0,3,1],
+"mostlyharmless__Parameters_8h.html":[4,0,0,0,8],
+"mostlyharmless__Parameters_8h_source.html":[4,0,0,0,8],
+"mostlyharmless__PluginBase_8h.html":[4,0,0,0,9],
+"mostlyharmless__PluginBase_8h_source.html":[4,0,0,0,9],
+"mostlyharmless__Proxy_8h.html":[4,0,0,0,5,3],
+"mostlyharmless__Proxy_8h_source.html":[4,0,0,0,5,3],
+"mostlyharmless__TaskThread_8h.html":[4,0,0,0,5,4],
 "mostlyharmless__TaskThread_8h_source.html":[4,0,0,0,5,4],
 "mostlyharmless__Timer_8h.html":[4,0,0,0,5,5],
 "mostlyharmless__Timer_8h_source.html":[4,0,0,0,5,5],
@@ -12,8 +22,9 @@ var NAVTREEINDEX1 =
 "mostlyharmless__WebviewEditor_8h.html":[4,0,0,0,4,3],
 "mostlyharmless__WebviewEditor_8h_source.html":[4,0,0,0,4,3],
 "namespacemembers.html":[2,1,0],
-"namespacemembers_enum.html":[2,1,2],
+"namespacemembers_enum.html":[2,1,3],
 "namespacemembers_func.html":[2,1,1],
+"namespacemembers_type.html":[2,1,2],
 "namespacemostly__harmless.html":[2,0,0],
 "namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6":[2,0,0,12],
 "namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6a6adf97f83acf6453d4a6a4b1070f3754":[2,0,0,12,3],
@@ -28,6 +39,7 @@ var NAVTREEINDEX1 =
 "namespacemostly__harmless_1_1core.html":[2,0,0,1],
 "namespacemostly__harmless_1_1core.html#a8d02b02740d4fe1dd733026811179789":[2,0,0,1,6],
 "namespacemostly__harmless_1_1data.html":[2,0,0,2],
+"namespacemostly__harmless_1_1data.html#a055629b370f5f824bf6a28ebd10ba983":[2,0,0,2,1],
 "namespacemostly__harmless_1_1events.html":[2,0,0,3],
 "namespacemostly__harmless_1_1gui.html":[2,0,0,4],
 "namespacemostly__harmless_1_1gui.html#a8855535e755f2b2934ea13613ac12c58":[2,0,0,4,4],
@@ -237,10 +249,5 @@ var NAVTREEINDEX1 =
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html":[3,0,0,3,1,1],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970":[2,0,0,4,2,1,1],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970":[3,0,0,3,1,1,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a95f0429b73dc7988bdb62c982c31e7b2":[2,0,0,4,2,1,2],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a95f0429b73dc7988bdb62c982c31e7b2":[3,0,0,3,1,1,2],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#aec10948467e291b75733f510920da68e":[2,0,0,4,2,1,0],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#aec10948467e291b75733f510920da68e":[3,0,0,3,1,1,0],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#af51bda90a40a638cde22fff8d0498cba":[2,0,0,4,2,1,3],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#af51bda90a40a638cde22fff8d0498cba":[3,0,0,3,1,1,3]
+"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a95f0429b73dc7988bdb62c982c31e7b2":[2,0,0,4,2,1,2]
 };
