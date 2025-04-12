@@ -88,13 +88,13 @@ namespace mostly_harmless::data {
                                      nullptr,
                                      nullptr));
             // Populate with initial values, if key is present already, skip set
-            for (auto& [key, value] : initialValues) {
+            for (const auto& [key, value] : initialValues) {
                 std::visit([this, &key](auto&& arg) {
                     using T = std::decay_t<decltype(arg)>;
                     if (get<T>(key)) {
                         return;
                     }
-                    set<T>(key, std::forward<decltype(arg)>(arg));
+                    set(key, std::forward<decltype(arg)>(arg));
                 },
                            value);
             }
@@ -142,7 +142,7 @@ namespace mostly_harmless::data {
          */
         [[nodiscard]] static auto try_create(const std::filesystem::path& location, const std::vector<std::pair<std::string, DatabaseValueVariant>>& initialValues) -> std::optional<DatabaseState> {
             try {
-                DatabaseState state{ {}, location, std::move(initialValues) };
+                DatabaseState state{ {}, location, initialValues };
                 return std::move(state);
             } catch (...) {
                 assert(false);
