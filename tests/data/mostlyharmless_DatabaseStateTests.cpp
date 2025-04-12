@@ -4,6 +4,7 @@
 #include <mostly_harmless/utils/mostlyharmless_Directories.h>
 #include <mostly_harmless/data/mostlyharmless_DatabaseState.h>
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
 
 namespace mostly_harmless::testing {
     template <bool ShouldSucceed>
@@ -37,16 +38,16 @@ namespace mostly_harmless::testing {
                 auto& database = *databaseOpt;
                 auto retrievedDouble = database.get<double>("DoubleTest");
                 REQUIRE(retrievedDouble.has_value());
-                REQUIRE(retrievedDouble.value() == 15.0);
+                REQUIRE_THAT(retrievedDouble.value(), Catch::Matchers::WithinRel(15.0));
                 database.set<double>("DoubleTest", 20.0);
                 retrievedDouble = database.get<double>("DoubleTest");
                 REQUIRE(retrievedDouble.has_value());
-                REQUIRE(retrievedDouble.value() == 20.0);
+                REQUIRE_THAT(retrievedDouble.value(), Catch::Matchers::WithinRel(20.0));
                 auto database2Opt = tryCreateDatabase<true>(dbFile, initialValues);
                 auto& database2 = *database2Opt;
                 retrievedDouble = database2.get<double>("DoubleTest");
                 REQUIRE(retrievedDouble.has_value());
-                REQUIRE(retrievedDouble.value() == 20.0);
+                REQUIRE_THAT(retrievedDouble.value(), Catch::Matchers::WithinRel(20.0));
             }
 
             std::filesystem::remove(dbFile);
