@@ -7,8 +7,8 @@
 
 namespace mostly_harmless::testing {
     template <bool ShouldSucceed>
-    auto tryCreateDatabase(const std::filesystem::path& destination, std::vector<std::pair<std::string, data::DatabaseValueVariant>>&& initialValues) {
-        auto databaseOpt = data::DatabaseState::try_create(destination, std::move(initialValues));
+    auto tryCreateDatabase(const std::filesystem::path& destination, const std::vector<std::pair<std::string, data::DatabaseValueVariant>>& initialValues) {
+        auto databaseOpt = data::DatabaseState::try_create(destination, initialValues);
         REQUIRE(databaseOpt.has_value() == ShouldSucceed);
         return std::move(databaseOpt);
     }
@@ -28,7 +28,27 @@ namespace mostly_harmless::testing {
                 REQUIRE(retrieved.has_value());
                 REQUIRE(*retrieved == "World");
             }
-            // std::filesystem::remove(dbFile);
+            {
+                std::vector<std::pair<std::string, data::DatabaseValueVariant>> initialValues;
+                initialValues.emplace_back("IntTest", 10);
+                initialValues.emplace_back("DoubleTest", 15.0);
+                auto databaseOpt = tryCreateDatabase<true>(dbFile, initialValues);
+                auto& database = *databaseOpt;
+                auto retrievedDouble = database.get<double>("DoubleTest");
+                REQUIRE(retrievedDouble.has_value());
+                REQUIRE(retrievedDouble.value() == 15.0);
+                database.set<double>("DoubleTest", 20.0);
+                retrievedDouble = database.get<double>("DoubleTest");
+                REQUIRE(retrievedDouble.has_value());
+                REQUIRE(retrievedDouble.value() == 20.0);
+                auto database2Opt = tryCreateDatabase<true>(dbFile, initialValues);
+                auto& database2 = *database2Opt;
+                retrievedDouble = database2.get<double>("DoubleTest");
+                REQUIRE(retrievedDouble.has_value());
+                REQUIRE(retrievedDouble.value() == 20.0);
+            }
+
+            std::filesystem::remove(dbFile);
         }
         SECTION("Test Invalid Location") {
             tryCreateDatabase<false>("/iamthelordofthebongo", {});
