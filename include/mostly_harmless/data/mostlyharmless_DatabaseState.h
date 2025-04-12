@@ -47,6 +47,9 @@ namespace mostly_harmless::data {
         }
     } // namespace
 
+    /**
+     * \brief A std::variant containing all types satisfying the DatabaseStorageType concept.
+     */
     using DatabaseValueVariant = std::variant<std::string, bool, int, float, double>;
     /**
      * \brief Represents a connection to a sqlite database.
@@ -118,7 +121,7 @@ namespace mostly_harmless::data {
          * Non Copyable, as the database connection pointer will be closed on destruction...
          *
          */
-        DatabaseState& operator=(const DatabaseState& other) = delete;
+        DatabaseState& operator=(const DatabaseState& /*other*/) = delete;
 
         /**
          * Moveable, nulls `other`'s connection pointer
@@ -138,6 +141,8 @@ namespace mostly_harmless::data {
          * If it doesn't exist, creates the database, and a table to store user data in.
          *
          * \param location A path to the database to create or open.
+         * \param initialValues A vector containing the initial values to add to the database if it didn't exist. If the database DID exist, but any of the keys in the vector aren't present, they'll be added with the values specified
+         * and existing items will be skipped.
          * \return A DatabaseState instance on success, nullopt otherwise.
          */
         [[nodiscard]] static auto try_create(const std::filesystem::path& location, const std::vector<std::pair<std::string, DatabaseValueVariant>>& initialValues) -> std::optional<DatabaseState> {

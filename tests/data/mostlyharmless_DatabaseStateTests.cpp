@@ -14,7 +14,7 @@ namespace mostly_harmless::testing {
     }
 
     TEST_CASE("Test DatabaseState") {
-        auto tempDir = utils::directories::getDirectory(utils::directories::DirectoryType::Desktop);
+        auto tempDir = utils::directories::getDirectory(utils::directories::DirectoryType::Temp);
         if (!tempDir) {
             REQUIRE(false);
         }
@@ -27,6 +27,7 @@ namespace mostly_harmless::testing {
                 const auto retrieved = database.get<std::string>("Hello");
                 REQUIRE(retrieved.has_value());
                 REQUIRE(*retrieved == "World");
+                REQUIRE(!database.get<int>("aaaaa"));
             }
             {
                 std::vector<std::pair<std::string, data::DatabaseValueVariant>> initialValues;
