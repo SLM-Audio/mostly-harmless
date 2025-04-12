@@ -78,7 +78,7 @@ namespace mostly_harmless::data {
             const auto enableWAL = [](auto* dbPtr) -> bool {
                 const std::string enableWalCommand{ "PRAGMA journal_mode=WAL" };
                 const auto resultCode = sqlite3_exec(dbPtr, enableWalCommand.c_str(), nullptr, nullptr, nullptr);
-                return resultCode == SQLITE_OK;
+                return resultCode;
             };
 
             const auto tryOpenExisting = [this, &enableWAL, &checkResult](const std::filesystem::path& location_) -> bool {
@@ -109,6 +109,38 @@ namespace mostly_harmless::data {
         }
 
         /**
+         * Non Copyable, as the database connection pointer will be closed on destruction...
+         */
+        DatabaseState(const DatabaseState& /*other*/) = delete;
+
+        /**
+         * Moveable, nulls `other`'s connection pointer
+         * @param other The moved-from DatabaseState instance
+         */
+        DatabaseState(DatabaseState&& other) noexcept {
+            std::swap(m_databaseHandle, other.m_databaseHandle);
+        }
+
+        /**
+         *
+         * Non Copyable, as the database connection pointer will be closed on destruction...
+         *
+         */
+        DatabaseState& operator=(const DatabaseState& other) = delete;
+
+        /**
+         * Moveable, nulls `other`'s connection pointer
+         * @param other The moved-from DatabaseState instance
+         * @return *this
+         */
+        DatabaseState& operator=(DatabaseState&& other) noexcept {
+            if (this != &other) {
+                std::swap(m_databaseHandle, other.m_databaseHandle);
+            }
+            return *this;
+        }
+
+        /**
          * Attempts to create a new DatabaseState instance.
          * On construction, will attempt to open the database passed to location, and establish a connection to it if it exists.
          * If it doesn't exist, creates the database, and a table to store user data in.
@@ -119,7 +151,7 @@ namespace mostly_harmless::data {
         [[nodiscard]] static auto try_create(const std::filesystem::path& location, std::vector<std::pair<std::string, DatabaseValueVariant>>&& initialValues) -> std::optional<DatabaseState> {
             try {
                 DatabaseState state{ {}, location, std::move(initialValues) };
-                return state;
+                return std::move(state);
             } catch (...) {
                 assert(false);
                 return {};
@@ -127,7 +159,7 @@ namespace mostly_harmless::data {
         }
 
         /**
-         * @private
+         * The internal database handle is closed if not null.
          */
         ~DatabaseState() noexcept {
             if (!m_databaseHandle) return;
