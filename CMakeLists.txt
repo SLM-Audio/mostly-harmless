@@ -149,14 +149,7 @@ install(
         INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
 
-# install( 
-#     EXPORT MostlyHarmless 
-#     NAMESPACE slma::
-#     FILE Targets.cmake 
-#     DESTINATION "${MOSTLYHARMLESS_INSTALL_DEST}"
-#     COMPONENT MostlyHarmless
-# )
-if (TESTS)
+if (MOSTLY_HARMLESS_TESTS)
     set(CMAKE_DEBUG_POSTFIX "")
     FetchContent_Declare(Catch2
             GIT_REPOSITORY https://github.com/catchorg/Catch2.git
@@ -172,7 +165,7 @@ endif ()
 if (${PROJECT_IS_TOP_LEVEL})
     add_subdirectory(docs)
 endif ()
-if (${EXAMPLES})
+if (${MOSTLY_HARMLESS_EXAMPLES})
     add_subdirectory(examples/gain)
     add_subdirectory(examples/delay)
     add_subdirectory(examples/synth)
