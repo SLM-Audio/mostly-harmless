@@ -3,7 +3,7 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, edited, reopened]
+    types: [ opened, edited, reopened ]
 jobs:
   tests-windows:
     runs-on: windows-latest
@@ -14,7 +14,7 @@ jobs:
       - name: Configure and Build
         uses: threeal/cmake-action@main
         with:
-          options: "TESTS=ON"
+          options: "MOSTLY_HARMLESS_TESTS=ON"
           build-args: "--target mostly-harmless-tests"
       - name: Run tests
         run: "./build/debug/mostly-harmless-tests.exe"
@@ -28,7 +28,7 @@ jobs:
       - name: Configure and Build
         uses: threeal/cmake-action@main
         with:
-          options: "TESTS=ON"
+          options: "MOSTLY_HARMLESS_TESTS=ON"
           build-args: "--target mostly-harmless-tests"
       - name: Run tests
         run: "./build/mostly-harmless-tests"
