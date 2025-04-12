@@ -26,7 +26,6 @@ namespace mostly_harmless::data {
             DoubleIndex = 5
         };
 
-
         template <DatabaseStorageType T>
         auto databaseQueryCallback(void* ud, int count, char** data, char** /*columns*/) -> int {
             auto* result = static_cast<std::optional<T>*>(ud);
@@ -48,6 +47,7 @@ namespace mostly_harmless::data {
         }
     } // namespace
 
+    using DatabaseValueVariant = std::variant<std::string, bool, int, float, double>;
     /**
      * \brief Represents a connection to a sqlite database.
      *
@@ -68,22 +68,44 @@ namespace mostly_harmless::data {
         /**
          * @private
          */
-        DatabaseState(Private, const std::filesystem::path& location) {
+        DatabaseState(Private, const std::filesystem::path& location, std::vector<std::pair<std::string, DatabaseValueVariant>>&& initialValues) {
+            using InitialValueContainer = std::vector<std::pair<std::string, DatabaseValueVariant>>;
             const auto checkResult = [](int response) -> void {
                 if (response != SQLITE_OK) {
                     throw std::exception{};
                 }
             };
-            auto resultCode = sqlite3_open(location.string().c_str(), &m_databaseHandle);
-            checkResult(resultCode);
-            const std::string enableWalCommand{ "PRAGMA journal_mode=WAL" };
-            resultCode = sqlite3_exec(m_databaseHandle, enableWalCommand.c_str(), nullptr, nullptr, nullptr);
-            checkResult(resultCode);
-            const std::string command{
-                "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double);"
+            const auto enableWAL = [](auto* dbPtr) -> bool {
+                const std::string enableWalCommand{ "PRAGMA journal_mode=WAL" };
+                const auto resultCode = sqlite3_exec(dbPtr, enableWalCommand.c_str(), nullptr, nullptr, nullptr);
+                return resultCode == SQLITE_OK;
             };
-            resultCode = sqlite3_exec(m_databaseHandle, command.c_str(), nullptr, nullptr, nullptr);
-            checkResult(resultCode);
+
+            const auto tryOpenExisting = [this, &enableWAL, &checkResult](const std::filesystem::path& location_) -> bool {
+                auto resultCode = sqlite3_open_v2(location_.string().c_str(), &m_databaseHandle, SQLITE_OPEN_READWRITE, nullptr);
+                if (resultCode != SQLITE_OK) return false;
+                checkResult(enableWAL(m_databaseHandle));
+                return true;
+            };
+
+            const auto create = [this, &enableWAL, &checkResult](const std::filesystem::path& location_, InitialValueContainer&& initialValues_) -> void {
+                checkResult(sqlite3_open(location_.string().c_str(), &m_databaseHandle));
+                checkResult(enableWAL(m_databaseHandle));
+                const std::string createTableCommand{
+                    "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double);"
+                };
+                checkResult(sqlite3_exec(m_databaseHandle, createTableCommand.c_str(), nullptr, nullptr, nullptr));
+                for (auto& [key, value] : initialValues_) {
+                    std::visit([this, &key](auto&& arg) {
+                        using T = std::decay_t<decltype(arg)>;
+                        set<T>(key, std::forward<T>(arg));
+                    },
+                               value);
+                }
+            };
+            if (!tryOpenExisting(location)) {
+                create(location, std::move(initialValues));
+            }
         }
 
         /**
@@ -94,9 +116,9 @@ namespace mostly_harmless::data {
          * \param location A path to the database to create or open.
          * \return A DatabaseState instance on success, nullopt otherwise.
          */
-        [[nodiscard]] static auto try_create(const std::filesystem::path& location) -> std::optional<DatabaseState> {
+        [[nodiscard]] static auto try_create(const std::filesystem::path& location, std::vector<std::pair<std::string, DatabaseValueVariant>>&& initialValues) -> std::optional<DatabaseState> {
             try {
-                DatabaseState state{ {}, location };
+                DatabaseState state{ {}, location, std::move(initialValues) };
                 return state;
             } catch (...) {
                 assert(false);
@@ -120,7 +142,7 @@ namespace mostly_harmless::data {
          */
         template <DatabaseStorageType T>
         auto set(std::string_view name, T&& toSet) -> void {
-            struct Properties {
+            struct {
                 std::string textValue{};
                 bool boolValue{ false };
                 int intValue{ 0 };
