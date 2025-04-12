@@ -26,7 +26,6 @@ namespace mostly_harmless::data {
             DoubleIndex = 5
         };
 
-
         template <DatabaseStorageType T>
         auto databaseQueryCallback(void* ud, int count, char** data, char** /*columns*/) -> int {
             auto* result = static_cast<std::optional<T>*>(ud);
@@ -49,6 +48,10 @@ namespace mostly_harmless::data {
     } // namespace
 
     /**
+     * \brief A std::variant containing all types satisfying the DatabaseStorageType concept.
+     */
+    using DatabaseValueVariant = std::variant<std::string, bool, int, float, double>;
+    /**
      * \brief Represents a connection to a sqlite database.
      *
      * The rationale behind this class' existence is to provide a unified "standard" layout for a plugin's global state - things like settings, statistics or anything else you might need to share between all instances.
@@ -68,22 +71,68 @@ namespace mostly_harmless::data {
         /**
          * @private
          */
-        DatabaseState(Private, const std::filesystem::path& location) {
+        DatabaseState(Private, const std::filesystem::path& location, const std::vector<std::pair<std::string, DatabaseValueVariant>>& initialValues) {
             const auto checkResult = [](int response) -> void {
                 if (response != SQLITE_OK) {
                     throw std::exception{};
                 }
             };
-            auto resultCode = sqlite3_open(location.string().c_str(), &m_databaseHandle);
-            checkResult(resultCode);
-            const std::string enableWalCommand{ "PRAGMA journal_mode=WAL" };
-            resultCode = sqlite3_exec(m_databaseHandle, enableWalCommand.c_str(), nullptr, nullptr, nullptr);
-            checkResult(resultCode);
-            const std::string command{
-                "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double);"
-            };
-            resultCode = sqlite3_exec(m_databaseHandle, command.c_str(), nullptr, nullptr, nullptr);
-            checkResult(resultCode);
+
+            // Try open existing
+            if (sqlite3_open_v2(location.string().c_str(), &m_databaseHandle, SQLITE_OPEN_READWRITE, nullptr) != SQLITE_OK) {
+                checkResult(sqlite3_open(location.string().c_str(), &m_databaseHandle)); // Didn't exist, try create
+            }
+            // Enable WAL
+            checkResult(sqlite3_exec(m_databaseHandle, "PRAGMA journal_mode=WAL", nullptr, nullptr, nullptr));
+            // Create Table if not present
+            checkResult(sqlite3_exec(m_databaseHandle,
+                                     "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double);",
+                                     nullptr,
+                                     nullptr,
+                                     nullptr));
+            // Populate with initial values, if key is present already, skip set
+            for (const auto& [key, value] : initialValues) {
+                std::visit([this, &key](auto&& arg) {
+                    using T = std::decay_t<decltype(arg)>;
+                    if (get<T>(key)) {
+                        return;
+                    }
+                    set(key, std::forward<decltype(arg)>(arg));
+                },
+                           value);
+            }
+        }
+
+        /**
+         * Non Copyable, as the database connection pointer will be closed on destruction...
+         */
+        DatabaseState(const DatabaseState& /*other*/) = delete;
+
+        /**
+         * Moveable, nulls `other`'s connection pointer
+         * @param other The moved-from DatabaseState instance
+         */
+        DatabaseState(DatabaseState&& other) noexcept {
+            std::swap(m_databaseHandle, other.m_databaseHandle);
+        }
+
+        /**
+         *
+         * Non Copyable, as the database connection pointer will be closed on destruction...
+         *
+         */
+        DatabaseState& operator=(const DatabaseState& /*other*/) = delete;
+
+        /**
+         * Moveable, nulls `other`'s connection pointer
+         * @param other The moved-from DatabaseState instance
+         * @return *this
+         */
+        DatabaseState& operator=(DatabaseState&& other) noexcept {
+            if (this != &other) {
+                std::swap(m_databaseHandle, other.m_databaseHandle);
+            }
+            return *this;
         }
 
         /**
@@ -92,12 +141,14 @@ namespace mostly_harmless::data {
          * If it doesn't exist, creates the database, and a table to store user data in.
          *
          * \param location A path to the database to create or open.
+         * \param initialValues A vector containing the initial values to add to the database if it didn't exist. If the database DID exist, but any of the keys in the vector aren't present, they'll be added with the values specified
+         * and existing items will be skipped.
          * \return A DatabaseState instance on success, nullopt otherwise.
          */
-        [[nodiscard]] static auto try_create(const std::filesystem::path& location) -> std::optional<DatabaseState> {
+        [[nodiscard]] static auto try_create(const std::filesystem::path& location, const std::vector<std::pair<std::string, DatabaseValueVariant>>& initialValues) -> std::optional<DatabaseState> {
             try {
-                DatabaseState state{ {}, location };
-                return state;
+                DatabaseState state{ {}, location, initialValues };
+                return std::move(state);
             } catch (...) {
                 assert(false);
                 return {};
@@ -105,7 +156,7 @@ namespace mostly_harmless::data {
         }
 
         /**
-         * @private
+         * The internal database handle is closed if not null.
          */
         ~DatabaseState() noexcept {
             if (!m_databaseHandle) return;
@@ -119,8 +170,8 @@ namespace mostly_harmless::data {
          * @param toSet The value to set.
          */
         template <DatabaseStorageType T>
-        auto set(std::string_view name, T&& toSet) -> void {
-            struct Properties {
+        auto set(std::string_view name, const T& toSet) -> void {
+            struct {
                 std::string textValue{};
                 bool boolValue{ false };
                 int intValue{ 0 };
