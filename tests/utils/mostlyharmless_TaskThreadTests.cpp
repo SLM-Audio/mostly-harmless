@@ -10,7 +10,7 @@ namespace mostly_harmless::testing {
     constexpr static size_t s_nRepeats{ 50 };
     TEST_CASE("Test TaskThread") {
         SECTION("Wait for lock") {
-            for (auto i = 0; i < s_nRepeats; ++i) {
+            for (size_t i = 0; i < s_nRepeats; ++i) {
                 mostly_harmless::utils::TaskThread taskThread;
                 std::mutex mutex;
                 auto x{ false };
@@ -30,11 +30,10 @@ namespace mostly_harmless::testing {
         }
 
         SECTION("Kill") {
-            for (auto i = 0; i < s_nRepeats; ++i) {
+            for (size_t i = 0; i < s_nRepeats; ++i) {
                 mostly_harmless::utils::TaskThread taskThread;
                 auto task = [&taskThread]() -> void {
-                    while (taskThread.isThreadRunning())
-                        ;
+                    while (taskThread.isThreadRunning());
                 };
                 taskThread.action = std::move(task);
                 taskThread.perform();
@@ -46,7 +45,7 @@ namespace mostly_harmless::testing {
         }
 
         SECTION("Sleep/Wake") {
-            for (auto i = 0; i < s_nRepeats; ++i) {
+            for (size_t i = 0; i < s_nRepeats; ++i) {
                 mostly_harmless::utils::TaskThread taskThread;
                 auto task = [&taskThread]() -> void {
                     taskThread.sleep();
@@ -62,7 +61,7 @@ namespace mostly_harmless::testing {
         }
 
         SECTION("Out of scope") {
-            for (auto i = 0; i < s_nRepeats; ++i) {
+            for (size_t i = 0; i < s_nRepeats; ++i) {
                 std::chrono::time_point<std::chrono::steady_clock> start;
                 {
                     utils::TaskThread scopedThread;
