@@ -11,6 +11,7 @@
 #include <fmt/core.h>
 #include <string>
 #include <filesystem>
+#include <variant>
 
 namespace mostly_harmless::data {
 
@@ -78,6 +79,9 @@ namespace mostly_harmless::data {
                 }
             };
 
+            if(!std::filesystem::exists(location.parent_path()) && location.string() != ":memory:") {
+                throw std::exception{};
+            }
             // Try open existing
             if (sqlite3_open_v2(location.string().c_str(), &m_databaseHandle, SQLITE_OPEN_READWRITE, nullptr) != SQLITE_OK) {
                 checkResult(sqlite3_open(location.string().c_str(), &m_databaseHandle)); // Didn't exist, try create
