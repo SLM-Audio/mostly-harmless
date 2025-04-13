@@ -3,6 +3,7 @@
 //
 #include <mostly_harmless/utils/mostlyharmless_Directories.h>
 #include <mostly_harmless/data/mostlyharmless_DatabaseState.h>
+#include <mostly_harmless/data/mostlyharmless_DatabasePropertyListener.h>
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 
@@ -57,22 +58,53 @@ namespace mostly_harmless::testing {
 
             std::filesystem::remove(dbFile);
         }
+
         SECTION("Test Invalid Location") {
             tryCreateDatabase<false>("INVALID LOCATION", {});
         }
+
         SECTION("Test In-Memory") {
             tryCreateDatabase<true>(":memory:", {});
         }
+
         SECTION("Test Duplicate") {
-            auto connectionAOpt = tryCreateDatabase<true>(dbFile, { { "test", "aaaa" } });
-            auto& databaseA = *connectionAOpt;
-            auto connectionBOpt = databaseA.duplicate();
-            REQUIRE(connectionBOpt.has_value());
-            auto& databaseB = *connectionBOpt;
-            auto retrievalOpt = databaseB.get<std::string>("test");
-            REQUIRE(retrievalOpt.has_value());
-            REQUIRE(*retrievalOpt == "aaaa");
+            {
+                auto connectionAOpt = tryCreateDatabase<true>(dbFile, { { "test", "aaaa" } });
+                auto& databaseA = *connectionAOpt;
+                auto connectionBOpt = databaseA.duplicate();
+                REQUIRE(connectionBOpt.has_value());
+                auto& databaseB = *connectionBOpt;
+                auto retrievalOpt = databaseB.get<std::string>("test");
+                REQUIRE(retrievalOpt.has_value());
+                REQUIRE(*retrievalOpt == "aaaa");
+            }
             std::filesystem::remove(dbFile);
+        }
+
+        SECTION("Test DatabasePropertyListener") {
+            auto databaseOpt = tryCreateDatabase<true>(dbFile, { { "test", 0 } });
+            auto& database = *databaseOpt;
+            std::atomic<bool> wasPropertyChanged{ false };
+            std::atomic<int> newValue{ 0 };
+            {
+                auto onPropertyChanged = [&wasPropertyChanged, &newValue](const auto& x) -> void {
+                    wasPropertyChanged = true;
+                    newValue = x;
+                };
+                auto listener = data::DatabasePropertyListener<int>::tryCreate(database, "test", 10, std::move(onPropertyChanged));
+                REQUIRE(listener);
+                database.set<int>("test", 10);
+                std::this_thread::sleep_for(std::chrono::milliseconds(15));
+                REQUIRE(wasPropertyChanged);
+                database.set<int>("test", 20);
+                std::this_thread::sleep_for(std::chrono::milliseconds(15));
+                REQUIRE(newValue == 20);
+                database.set<int>("test", 30);
+            }
+            // In this case, the listener has gone out of scope, but the timer thread is still running - so we're testing that the Proxy is doing its job, and
+            // early-returning on any callbacks that fire when the wrapped object is out of scope...
+            std::this_thread::sleep_for(std::chrono::milliseconds(15));
+            REQUIRE(newValue == 20);
         }
     }
 

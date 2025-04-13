@@ -33,6 +33,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Hash.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Macros.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabaseState.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabasePropertyListener.cpp
         ${PLATFORM_SOURCES}
         PARENT_SCOPE)
 message(STATUS ${MOSTLYHARMLESS_PLATFORM_SOURCES})
