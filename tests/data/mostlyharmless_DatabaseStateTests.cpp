@@ -64,14 +64,16 @@ namespace mostly_harmless::testing {
             tryCreateDatabase<true>(":memory:", {});
         }
         SECTION("Test Duplicate") {
-            auto connectionAOpt = tryCreateDatabase<true>(dbFile, { { "test", "aaaa" } });
-            auto& databaseA = *connectionAOpt;
-            auto connectionBOpt = databaseA.duplicate();
-            REQUIRE(connectionBOpt.has_value());
-            auto& databaseB = *connectionBOpt;
-            auto retrievalOpt = databaseB.get<std::string>("test");
-            REQUIRE(retrievalOpt.has_value());
-            REQUIRE(*retrievalOpt == "aaaa");
+            {
+                auto connectionAOpt = tryCreateDatabase<true>(dbFile, { { "test", "aaaa" } });
+                auto& databaseA = *connectionAOpt;
+                auto connectionBOpt = databaseA.duplicate();
+                REQUIRE(connectionBOpt.has_value());
+                auto& databaseB = *connectionBOpt;
+                auto retrievalOpt = databaseB.get<std::string>("test");
+                REQUIRE(retrievalOpt.has_value());
+                REQUIRE(*retrievalOpt == "aaaa");
+            }
             std::filesystem::remove(dbFile);
         }
     }
