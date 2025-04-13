@@ -9,7 +9,7 @@
 namespace mostly_harmless::testing {
     template <bool ShouldSucceed>
     auto tryCreateDatabase(const std::filesystem::path& destination, const std::vector<std::pair<std::string, data::DatabaseValueVariant>>& initialValues) -> std::optional<data::DatabaseState> {
-        auto databaseOpt = data::DatabaseState::try_create(destination, initialValues);
+        auto databaseOpt = data::DatabaseState::tryCreate(destination, initialValues);
         if constexpr (!ShouldSucceed) {
             REQUIRE(!databaseOpt);
             return {};
@@ -62,6 +62,17 @@ namespace mostly_harmless::testing {
         }
         SECTION("Test In-Memory") {
             tryCreateDatabase<true>(":memory:", {});
+        }
+        SECTION("Test Duplicate") {
+            auto connectionAOpt = tryCreateDatabase<true>(dbFile, { { "test", "aaaa" } });
+            auto& databaseA = *connectionAOpt;
+            auto connectionBOpt = databaseA.duplicate();
+            REQUIRE(connectionBOpt.has_value());
+            auto& databaseB = *connectionBOpt;
+            auto retrievalOpt = databaseB.get<std::string>("test");
+            REQUIRE(retrievalOpt.has_value());
+            REQUIRE(*retrievalOpt == "aaaa");
+            std::filesystem::remove(dbFile);
         }
     }
 

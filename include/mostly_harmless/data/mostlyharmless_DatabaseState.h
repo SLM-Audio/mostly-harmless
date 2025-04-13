@@ -79,7 +79,7 @@ namespace mostly_harmless::data {
                 }
             };
 
-            if(!std::filesystem::exists(location.parent_path()) && location.string() != ":memory:") {
+            if (!std::filesystem::exists(location.parent_path()) && location.string() != ":memory:") {
                 throw std::exception{};
             }
             // Try open existing
@@ -149,7 +149,7 @@ namespace mostly_harmless::data {
          * and existing items will be skipped.
          * \return A DatabaseState instance on success, nullopt otherwise.
          */
-        [[nodiscard]] static auto try_create(const std::filesystem::path& location, const std::vector<std::pair<std::string, DatabaseValueVariant>>& initialValues) -> std::optional<DatabaseState> {
+        [[nodiscard]] static auto tryCreate(const std::filesystem::path& location, const std::vector<std::pair<std::string, DatabaseValueVariant>>& initialValues) -> std::optional<DatabaseState> {
             try {
                 DatabaseState state{ {}, location, initialValues };
                 return std::move(state);
@@ -234,7 +234,34 @@ namespace mostly_harmless::data {
             return result;
         }
 
+        /**
+         * Tries to create a copy of the current database connection.
+         * This is useful as database connections are only safe to use on a single thread - so for polling for changes on a background thread for example,
+         * a new connection must be used.
+         *
+         * Will *not* work with an in-memory database created with filename = ":memory:".
+         * @return A copy of the current connection if succeeded, nullopt otherwise.
+         */
+        [[nodiscard]] auto duplicate() const -> std::optional<DatabaseState> {
+            const auto filenameOpt = getDatabaseFilename();
+            if (!filenameOpt) {
+                return {};
+            }
+            const std::filesystem::path databasePath{ *filenameOpt };
+            if (!std::filesystem::exists(databasePath)) {
+                return {};
+            }
+            return tryCreate(databasePath, {});
+        }
+
     private:
+        [[nodiscard]] auto getDatabaseFilename() const noexcept -> std::optional<std::string> {
+            const auto* res = sqlite3_db_filename(m_databaseHandle, "main");
+            if (!res || strcmp(res, "") == 0) {
+                return {};
+            }
+            return std::string{ res };
+        }
         sqlite3* m_databaseHandle{ nullptr };
     };
 
