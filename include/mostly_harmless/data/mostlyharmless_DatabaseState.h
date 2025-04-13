@@ -11,6 +11,7 @@
 #include <fmt/core.h>
 #include <string>
 #include <filesystem>
+#include <variant>
 
 namespace mostly_harmless::data {
 
