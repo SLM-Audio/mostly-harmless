@@ -8,10 +8,16 @@
 
 namespace mostly_harmless::testing {
     template <bool ShouldSucceed>
-    auto tryCreateDatabase(const std::filesystem::path& destination, const std::vector<std::pair<std::string, data::DatabaseValueVariant>>& initialValues) {
+    auto tryCreateDatabase(const std::filesystem::path& destination, const std::vector<std::pair<std::string, data::DatabaseValueVariant>>& initialValues) -> std::optional<data::DatabaseState> {
         auto databaseOpt = data::DatabaseState::try_create(destination, initialValues);
-        REQUIRE(databaseOpt.has_value() == ShouldSucceed);
-        return std::move(databaseOpt);
+        if constexpr(!ShouldSucceed) {
+           REQUIRE(!databaseOpt);
+           return {};
+        }
+        else {
+           REQUIRE(databaseOpt);
+           return std::move(databaseOpt);
+        }
     }
 
     TEST_CASE("Test DatabaseState") {
