@@ -123,7 +123,7 @@ if (MSVC)
     target_compile_definitions(MostlyHarmless PUBLIC _CRT_SECURE_NO_WARNINGS)
     target_compile_options(MostlyHarmless PUBLIC
             /W4
-            #            /WX
+#            /WX
     )
 else ()
     target_compile_options(MostlyHarmless PUBLIC
