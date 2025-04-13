@@ -35,7 +35,7 @@ namespace mostly_harmless::core {
     }
 
     std::uint32_t ISharedState::getNumParams() const noexcept {
-        return m_params.size();
+        return static_cast<std::uint32_t>(m_params.size());
     }
 
     marvin::containers::fifos::MPMC<events::ProcToGuiParamEvent>& ISharedState::getProcToGuiQueue() noexcept {

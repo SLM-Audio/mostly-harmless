@@ -120,7 +120,7 @@ namespace mostly_harmless::internal {
                 }
                 case EventType::Adjust: {
                     auto* param = m_state->getParameterById(id);
-                    param->value = value;
+                    param->value = static_cast<float>(value);
                     // And then tell the host..
                     auto ev = clap_event_param_value();
                     ev.header.size = sizeof(clap_event_param_value);
@@ -149,7 +149,7 @@ namespace mostly_harmless::internal {
                 if (!param) [[unlikely]] {
                     param = m_state->getParameterById(id);
                 }
-                param->value = paramValue;
+                param->value = static_cast<float>(paramValue);
                 m_state->getProcToGuiQueue().tryPush({ id, paramValue });
                 break;
             }

@@ -7,7 +7,7 @@
 namespace mostly_harmless::testing {
     clap_event_note createNoteEvent(int noteId, std::uint32_t time, std::int16_t midiKey, bool on, clap::helpers::EventList& eventList) {
         clap_event_note noteEvent;
-        noteEvent.header.type = on ? CLAP_EVENT_NOTE_ON : CLAP_EVENT_NOTE_OFF;
+        noteEvent.header.type = on ? static_cast<std::uint16_t>(CLAP_EVENT_NOTE_ON) : static_cast<std::uint16_t>(CLAP_EVENT_NOTE_OFF);
         noteEvent.header.size = sizeof(clap_event_note);
         noteEvent.header.time = time;
         noteEvent.header.space_id = CLAP_CORE_EVENT_SPACE_ID;
