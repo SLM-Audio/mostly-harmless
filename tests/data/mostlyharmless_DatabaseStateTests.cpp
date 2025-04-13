@@ -53,7 +53,10 @@ namespace mostly_harmless::testing {
             std::filesystem::remove(dbFile);
         }
         SECTION("Test Invalid Location") {
-            tryCreateDatabase<false>("/iamthelordofthebongo", {});
+            tryCreateDatabase<false>("INVALID LOCATION", {});
+        }
+        SECTION("Test In-Memory") {
+            tryCreateDatabase<true>(":memory:", {});
         }
     }
 
