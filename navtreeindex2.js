@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970":[3,0,0,3,1,1,1],
+"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a95f0429b73dc7988bdb62c982c31e7b2":[2,0,0,4,2,1,2],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a95f0429b73dc7988bdb62c982c31e7b2":[3,0,0,3,1,1,2],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#aec10948467e291b75733f510920da68e":[2,0,0,4,2,1,0],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#aec10948467e291b75733f510920da68e":[3,0,0,3,1,1,0],

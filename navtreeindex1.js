@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"mostlyharmless__NoDenormals_8h_source.html":[4,0,0,0,5,1],
+"mostlyharmless__OnScopeExit_8h.html":[4,0,0,0,5,2],
 "mostlyharmless__OnScopeExit_8h_source.html":[4,0,0,0,5,2],
 "mostlyharmless__ParamEvent_8h.html":[4,0,0,0,3,1],
 "mostlyharmless__ParamEvent_8h_source.html":[4,0,0,0,3,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#add34ce329286bf50d89e77d015533166":[3,0,0,3,1,0,1],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html":[2,0,0,4,2,1],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html":[3,0,0,3,1,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970":[2,0,0,4,2,1,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970":[3,0,0,3,1,1,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a95f0429b73dc7988bdb62c982c31e7b2":[2,0,0,4,2,1,2]
+"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970":[2,0,0,4,2,1,1]
 };

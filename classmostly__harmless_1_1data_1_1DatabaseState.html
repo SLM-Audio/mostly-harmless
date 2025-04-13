@@ -133,11 +133,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae66302a1cba081ec5a08684263c418f2" id="r_ae66302a1cba081ec5a08684263c418f2"><td class="memTemplParams" colspan="2">template&lt;DatabaseStorageType T&gt; </td></tr>
 <tr class="memitem:ae66302a1cba081ec5a08684263c418f2"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae66302a1cba081ec5a08684263c418f2">get</a> (std::string_view name) -&gt; std::optional&lt; T &gt;</td></tr>
 <tr class="separator:ae66302a1cba081ec5a08684263c418f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5252df551ab65b880e43eab954dc960" id="r_ac5252df551ab65b880e43eab954dc960"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5252df551ab65b880e43eab954dc960">duplicate</a> () const -&gt; std::optional&lt; <a class="el" href="classmostly__harmless_1_1data_1_1DatabaseState.html">DatabaseState</a> &gt;</td></tr>
+<tr class="separator:ac5252df551ab65b880e43eab954dc960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac1bf043b80e1fe64df7a936dea445559" id="r_ac1bf043b80e1fe64df7a936dea445559"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1bf043b80e1fe64df7a936dea445559">try_create</a> (const std::filesystem::path &amp;location, const std::vector&lt; std::pair&lt; std::string, <a class="el" href="namespacemostly__harmless_1_1data.html#a055629b370f5f824bf6a28ebd10ba983">DatabaseValueVariant</a> &gt; &gt; &amp;initialValues) -&gt; std::optional&lt; <a class="el" href="classmostly__harmless_1_1data_1_1DatabaseState.html">DatabaseState</a> &gt;</td></tr>
-<tr class="separator:ac1bf043b80e1fe64df7a936dea445559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07772f77c297ee77c9a9c9305ef219d1" id="r_a07772f77c297ee77c9a9c9305ef219d1"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07772f77c297ee77c9a9c9305ef219d1">tryCreate</a> (const std::filesystem::path &amp;location, const std::vector&lt; std::pair&lt; std::string, <a class="el" href="namespacemostly__harmless_1_1data.html#a055629b370f5f824bf6a28ebd10ba983">DatabaseValueVariant</a> &gt; &gt; &amp;initialValues) -&gt; std::optional&lt; <a class="el" href="classmostly__harmless_1_1data_1_1DatabaseState.html">DatabaseState</a> &gt;</td></tr>
+<tr class="separator:a07772f77c297ee77c9a9c9305ef219d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a connection to a sqlite database. </p>
@@ -228,6 +230,33 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac5252df551ab65b880e43eab954dc960" name="ac5252df551ab65b880e43eab954dc960"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5252df551ab65b880e43eab954dc960">&#9670;&#160;</a></span>duplicate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto mostly_harmless::data::DatabaseState::duplicate </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const -&gt; std::optional&lt;<a class="el" href="classmostly__harmless_1_1data_1_1DatabaseState.html">DatabaseState</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Tries to create a copy of the current database connection. This is useful as database connections are only safe to use on a single thread - so for polling for changes on a background thread for example, a new connection must be used.</p>
+<p>Will <em>not</em> work with an in-memory database created with filename = ":memory:". </p><dl class="section return"><dt>Returns</dt><dd>A copy of the current connection if succeeded, nullopt otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="ae66302a1cba081ec5a08684263c418f2" name="ae66302a1cba081ec5a08684263c418f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae66302a1cba081ec5a08684263c418f2">&#9670;&#160;</a></span>get()</h2>
 
@@ -370,8 +399,8 @@ template&lt;DatabaseStorageType T&gt; </div>
 
 </div>
 </div>
-<a id="ac1bf043b80e1fe64df7a936dea445559" name="ac1bf043b80e1fe64df7a936dea445559"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1bf043b80e1fe64df7a936dea445559">&#9670;&#160;</a></span>try_create()</h2>
+<a id="a07772f77c297ee77c9a9c9305ef219d1" name="a07772f77c297ee77c9a9c9305ef219d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07772f77c297ee77c9a9c9305ef219d1">&#9670;&#160;</a></span>tryCreate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +409,7 @@ template&lt;DatabaseStorageType T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static auto mostly_harmless::data::DatabaseState::try_create </td>
+          <td class="memname">static auto mostly_harmless::data::DatabaseState::tryCreate </td>
           <td>(</td>
           <td class="paramtype">const std::filesystem::path &amp;</td>          <td class="paramname"><span class="paramname"><em>location</em></span>, </td>
         </tr>
