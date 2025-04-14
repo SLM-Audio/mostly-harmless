@@ -1,5 +1,11 @@
 var NAVTREEINDEX1 =
 {
+"mostlyharmless__InputEventContext_8h.html":[4,0,0,0,3,0],
+"mostlyharmless__InputEventContext_8h_source.html":[4,0,0,0,3,0],
+"mostlyharmless__NamespaceDocs_8h.html":[4,0,1],
+"mostlyharmless__NamespaceDocs_8h_source.html":[4,0,1],
+"mostlyharmless__NoDenormals_8h.html":[4,0,0,0,5,1],
+"mostlyharmless__NoDenormals_8h.html#a8e27dc57d8a90ccd1ba6e7dffe8b03c6":[4,0,0,0,5,1,1],
 "mostlyharmless__NoDenormals_8h_source.html":[4,0,0,0,5,1],
 "mostlyharmless__OnScopeExit_8h.html":[4,0,0,0,5,2],
 "mostlyharmless__OnScopeExit_8h_source.html":[4,0,0,0,5,2],
@@ -41,7 +47,7 @@ var NAVTREEINDEX1 =
 "namespacemostly__harmless_1_1core.html":[2,0,0,1],
 "namespacemostly__harmless_1_1core.html#a8d02b02740d4fe1dd733026811179789":[2,0,0,1,6],
 "namespacemostly__harmless_1_1data.html":[2,0,0,2],
-"namespacemostly__harmless_1_1data.html#a055629b370f5f824bf6a28ebd10ba983":[2,0,0,2,1],
+"namespacemostly__harmless_1_1data.html#a055629b370f5f824bf6a28ebd10ba983":[2,0,0,2,2],
 "namespacemostly__harmless_1_1events.html":[2,0,0,3],
 "namespacemostly__harmless_1_1gui.html":[2,0,0,4],
 "namespacemostly__harmless_1_1gui.html#a8855535e755f2b2934ea13613ac12c58":[2,0,0,4,4],
@@ -243,11 +249,5 @@ var NAVTREEINDEX1 =
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html":[3,0,0,3,1,0],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#aacca9a7c53ab676b5223f7c4fa961f46":[2,0,0,4,2,0,2],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#aacca9a7c53ab676b5223f7c4fa961f46":[3,0,0,3,1,0,2],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#ac2873520e7726bc9bd4129916495a4f1":[2,0,0,4,2,0,0],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#ac2873520e7726bc9bd4129916495a4f1":[3,0,0,3,1,0,0],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#add34ce329286bf50d89e77d015533166":[2,0,0,4,2,0,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#add34ce329286bf50d89e77d015533166":[3,0,0,3,1,0,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html":[2,0,0,4,2,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html":[3,0,0,3,1,1],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970":[2,0,0,4,2,1,1]
+"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#ac2873520e7726bc9bd4129916495a4f1":[2,0,0,4,2,0,0]
 };

@@ -12,7 +12,7 @@ var searchData=
   ['tostring_9',['toString',['../structmostly__harmless_1_1ParameterID.html#a9303e8e8a4785d7f6d524b8576ade83c',1,'mostly_harmless::ParameterID']]],
   ['transportstate_10',['TransportState',['../structmostly__harmless_1_1TransportState.html',1,'mostly_harmless']]],
   ['transportstate_11',['transportState',['../structmostly__harmless_1_1core_1_1ProcessContext.html#a6243c8448baa7763bd08938775037319',1,'mostly_harmless::core::ProcessContext']]],
-  ['trycreate_12',['tryCreate',['../classmostly__harmless_1_1data_1_1DatabaseState.html#a07772f77c297ee77c9a9c9305ef219d1',1,'mostly_harmless::data::DatabaseState']]],
+  ['trycreate_12',['tryCreate',['../classmostly__harmless_1_1data_1_1DatabaseState.html#a07772f77c297ee77c9a9c9305ef219d1',1,'mostly_harmless::data::DatabaseState::tryCreate()'],['../classmostly__harmless_1_1data_1_1DatabasePropertyListener.html#a54f70e8f816edebefd82a11291148554',1,'mostly_harmless::data::DatabasePropertyListener::tryCreate()']]],
   ['type_13',['Type',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23',1,'mostly_harmless::events::GuiToProcParamEvent']]],
   ['type_14',['type',['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a32bbc6b8b4850eb71e6c0530d4a865cf',1,'mostly_harmless::events::GuiToProcParamEvent']]]
 ];

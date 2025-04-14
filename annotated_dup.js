@@ -10,6 +10,7 @@ var annotated_dup =
         [ "ProcessContext", "structmostly__harmless_1_1core_1_1ProcessContext.html", "structmostly__harmless_1_1core_1_1ProcessContext" ]
       ] ],
       [ "data", "namespacemostly__harmless_1_1data.html", [
+        [ "DatabasePropertyListener", "classmostly__harmless_1_1data_1_1DatabasePropertyListener.html", "classmostly__harmless_1_1data_1_1DatabasePropertyListener" ],
         [ "DatabaseState", "classmostly__harmless_1_1data_1_1DatabaseState.html", "classmostly__harmless_1_1data_1_1DatabaseState" ]
       ] ],
       [ "events", "namespacemostly__harmless_1_1events.html", [
