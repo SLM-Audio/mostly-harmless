@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "mostly_harmless::gui::Colour", "structmostly__harmless_1_1gui_1_1Colour.html", null ],
-    [ "mostly_harmless::data::DatabasePropertyListener< T >", "classmostly__harmless_1_1data_1_1DatabasePropertyListener.html", null ],
+    [ "mostly_harmless::data::DatabasePropertyWatcher< T >", "classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html", null ],
     [ "mostly_harmless::data::DatabaseState", "classmostly__harmless_1_1data_1_1DatabaseState.html", null ],
     [ "mostly_harmless::events::GuiToProcParamEvent", "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html", null ],
     [ "mostly_harmless::core::IEditor", "structmostly__harmless_1_1core_1_1IEditor.html", [

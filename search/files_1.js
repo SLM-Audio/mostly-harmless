@@ -3,7 +3,7 @@ var searchData=
   ['mostlyharmless_5faudiohelpers_2eh_0',['mostlyharmless_AudioHelpers.h',['../mostlyharmless__AudioHelpers_8h.html',1,'']]],
   ['mostlyharmless_5fbusconfig_2eh_1',['mostlyharmless_BusConfig.h',['../mostlyharmless__BusConfig_8h.html',1,'']]],
   ['mostlyharmless_5fcolour_2eh_2',['mostlyharmless_Colour.h',['../mostlyharmless__Colour_8h.html',1,'']]],
-  ['mostlyharmless_5fdatabasepropertylistener_2eh_3',['mostlyharmless_DatabasePropertyListener.h',['../mostlyharmless__DatabasePropertyListener_8h.html',1,'']]],
+  ['mostlyharmless_5fdatabasepropertywatcher_2eh_3',['mostlyharmless_DatabasePropertyWatcher.h',['../mostlyharmless__DatabasePropertyWatcher_8h.html',1,'']]],
   ['mostlyharmless_5fdatabasestate_2eh_4',['mostlyharmless_DatabaseState.h',['../mostlyharmless__DatabaseState_8h.html',1,'']]],
   ['mostlyharmless_5fdescriptor_2eh_5',['mostlyharmless_Descriptor.h',['../mostlyharmless__Descriptor_8h.html',1,'']]],
   ['mostlyharmless_5fdirectories_2eh_6',['mostlyharmless_Directories.h',['../mostlyharmless__Directories_8h.html',1,'']]],

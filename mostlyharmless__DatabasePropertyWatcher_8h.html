@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MostlyHarmless: /home/runner/work/mostly-harmless/mostly-harmless/include/mostly_harmless/data/mostlyharmless_DatabasePropertyListener.h File Reference</title>
+<title>MostlyHarmless: /home/runner/work/mostly-harmless/mostly-harmless/include/mostly_harmless/data/mostlyharmless_DatabasePropertyWatcher.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() { codefold.init(0); });
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('mostlyharmless__DatabasePropertyListener_8h.html',''); initResizable(true); });
+$(function(){initNavTree('mostlyharmless__DatabasePropertyWatcher_8h.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -105,7 +105,7 @@ $(function(){initNavTree('mostlyharmless__DatabasePropertyListener_8h.html','');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
-  <div class="headertitle"><div class="title">mostlyharmless_DatabasePropertyListener.h File Reference</div></div>
+  <div class="headertitle"><div class="title">mostlyharmless_DatabasePropertyWatcher.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="mostlyharmless__DatabaseState_8h_source.html">mostly_harmless/data/mostlyharmless_DatabaseState.h</a>&gt;</code><br />
@@ -113,12 +113,12 @@ $(function(){initNavTree('mostlyharmless__DatabasePropertyListener_8h.html','');
 <code>#include &lt;<a class="el" href="mostlyharmless__Timer_8h_source.html">mostly_harmless/utils/mostlyharmless_Timer.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="mostlyharmless__Proxy_8h_source.html">mostly_harmless/utils/mostlyharmless_Proxy.h</a>&gt;</code><br />
 </div>
-<p><a href="mostlyharmless__DatabasePropertyListener_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="mostlyharmless__DatabasePropertyWatcher_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1data_1_1DatabasePropertyListener.html">mostly_harmless::data::DatabasePropertyListener&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience class for responding to changes in a databaseState, potentially fired from other processes. Watches a given property's field corresponding to type T for changes, and fires a callback on change. Note that callback will run on a background timer thread, so if you need thread safety, be sure to utilise <code>ISharedState::callOnMessageThread</code> from your callback lambda.  <a href="classmostly__harmless_1_1data_1_1DatabasePropertyListener.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html">mostly_harmless::data::DatabasePropertyWatcher&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience class for responding to changes in a databaseState, potentially fired from other processes. Watches a given property's field corresponding to type T for changes, and fires a callback on change. Note that callback will run on a background timer thread, so if you need thread safety, be sure to utilise <code>ISharedState::callOnMessageThread</code> from your callback lambda.  <a href="classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -135,7 +135,7 @@ Namespaces</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_005978021987013ba376867cd66f33b8.html">mostly_harmless</a></li><li class="navelem"><a class="el" href="dir_3ebaec3fd709b292b18badb22db99ed8.html">data</a></li><li class="navelem"><a class="el" href="mostlyharmless__DatabasePropertyListener_8h.html">mostlyharmless_DatabasePropertyListener.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_005978021987013ba376867cd66f33b8.html">mostly_harmless</a></li><li class="navelem"><a class="el" href="dir_3ebaec3fd709b292b18badb22db99ed8.html">data</a></li><li class="navelem"><a class="el" href="mostlyharmless__DatabasePropertyWatcher_8h.html">mostlyharmless_DatabasePropertyWatcher.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

@@ -1,5 +1,13 @@
 var NAVTREEINDEX1 =
 {
+"mostlyharmless__IEditor_8h_source.html":[4,0,0,0,1,0],
+"mostlyharmless__IEngine_8h.html":[4,0,0,0,1,1],
+"mostlyharmless__IEngine_8h_source.html":[4,0,0,0,1,1],
+"mostlyharmless__IPluginEntry_8h.html":[4,0,0,0,1,2],
+"mostlyharmless__IPluginEntry_8h.html#ab7eec3b8c12426bc21578d0f27768f0b":[4,0,0,0,1,2,1],
+"mostlyharmless__IPluginEntry_8h_source.html":[4,0,0,0,1,2],
+"mostlyharmless__ISharedState_8h.html":[4,0,0,0,1,3],
+"mostlyharmless__ISharedState_8h_source.html":[4,0,0,0,1,3],
 "mostlyharmless__InputEventContext_8h.html":[4,0,0,0,3,0],
 "mostlyharmless__InputEventContext_8h_source.html":[4,0,0,0,3,0],
 "mostlyharmless__NamespaceDocs_8h.html":[4,0,1],
@@ -241,13 +249,5 @@ var NAVTREEINDEX1 =
 "structmostly__harmless_1_1gui_1_1Colour.html#a5f332fc641e1251bc028c4b851e8c96e":[3,0,0,3,0,3],
 "structmostly__harmless_1_1gui_1_1Colour.html#a772582c3a0aa3a36c1562c1217a845da":[2,0,0,4,1,5],
 "structmostly__harmless_1_1gui_1_1Colour.html#a772582c3a0aa3a36c1562c1217a845da":[3,0,0,3,0,5],
-"structmostly__harmless_1_1gui_1_1Colour.html#a9742e880608f90d414162cb2f5c23efa":[2,0,0,4,1,1],
-"structmostly__harmless_1_1gui_1_1Colour.html#a9742e880608f90d414162cb2f5c23efa":[3,0,0,3,0,1],
-"structmostly__harmless_1_1gui_1_1Colour.html#ad450bcc534500d1f17188f14d654cd5c":[2,0,0,4,1,2],
-"structmostly__harmless_1_1gui_1_1Colour.html#ad450bcc534500d1f17188f14d654cd5c":[3,0,0,3,0,2],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html":[2,0,0,4,2,0],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html":[3,0,0,3,1,0],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#aacca9a7c53ab676b5223f7c4fa961f46":[2,0,0,4,2,0,2],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#aacca9a7c53ab676b5223f7c4fa961f46":[3,0,0,3,1,0,2],
-"structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html#ac2873520e7726bc9bd4129916495a4f1":[2,0,0,4,2,0,0]
+"structmostly__harmless_1_1gui_1_1Colour.html#a9742e880608f90d414162cb2f5c23efa":[2,0,0,4,1,1]
 };
