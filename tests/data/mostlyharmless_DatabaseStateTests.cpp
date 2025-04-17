@@ -3,7 +3,7 @@
 //
 #include <mostly_harmless/utils/mostlyharmless_Directories.h>
 #include <mostly_harmless/data/mostlyharmless_DatabaseState.h>
-#include <mostly_harmless/data/mostlyharmless_DatabasePropertyListener.h>
+#include <mostly_harmless/data/mostlyharmless_DatabasePropertyWatcher.h>
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 
@@ -59,9 +59,9 @@ namespace mostly_harmless::testing {
             std::filesystem::remove(dbFile);
         }
 
-//        SECTION("Test Invalid Location") {
-//            tryCreateDatabase<false>("INVALID LOCATION", {});
-//        }
+        SECTION("Test Invalid Location") {
+            tryCreateDatabase<false>("INVALID LOCATION", {});
+        }
 
         SECTION("Test In-Memory") {
             tryCreateDatabase<true>(":memory:", {});
@@ -81,7 +81,7 @@ namespace mostly_harmless::testing {
             std::filesystem::remove(dbFile);
         }
 
-        SECTION("Test DatabasePropertyListener") {
+        SECTION("Test DatabasePropertyWatcher") {
             for (auto i = 0; i < 100; ++i) {
                 {
                     auto databaseOpt = tryCreateDatabase<true>(dbFile, { { "test", 0 } });
@@ -93,7 +93,7 @@ namespace mostly_harmless::testing {
                             wasPropertyChanged.store(true);
                             newValue = x;
                         };
-                        auto listener = data::DatabasePropertyListener<int>::tryCreate(database, "test", 1, std::move(onPropertyChanged));
+                        auto listener = data::DatabasePropertyWatcher<int>::tryCreate(database, "test", 1, std::move(onPropertyChanged));
                         REQUIRE(listener);
                         database.set<int>("test", 10);
                         std::this_thread::sleep_for(std::chrono::milliseconds(50));
