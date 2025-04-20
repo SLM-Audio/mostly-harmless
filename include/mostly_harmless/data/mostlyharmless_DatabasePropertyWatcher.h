@@ -24,10 +24,10 @@ namespace mostly_harmless::data {
         /**
          * @private
          */
-        DatabasePropertyWatcher(Private, DatabaseState&& databaseState, std::string_view name, int pollFrequencyMs, std::function<void(const T&)>&& callback) : m_databaseState(std::move(databaseState)),
-                                                                                                                                                                m_propertyNameToWatch(name),
-                                                                                                                                                                m_pollFrequencyMs(pollFrequencyMs),
-                                                                                                                                                                m_callback(std::move(callback)) {
+        DatabasePropertyWatcher(Private, DatabaseState&& databaseState, std::string_view name, int pollFrequencyMs, std::function<void(const DatabaseResult<T>&)>&& callback) : m_databaseState(std::move(databaseState)),
+                                                                                                                                                                                m_propertyNameToWatch(name),
+                                                                                                                                                                                m_pollFrequencyMs(pollFrequencyMs),
+                                                                                                                                                                                m_callback(std::move(callback)) {
             m_proxyThis = utils::Proxy<DatabasePropertyWatcher<T>>::create(this);
             auto proxyCopy = m_proxyThis;
             m_timer.action = [this, proxyCopy]() -> void {
@@ -74,7 +74,7 @@ namespace mostly_harmless::data {
          * @param callback A lambda to be invoked from a background timer thread on property value change.
          * @return A DatabasePropertyWatcher for the given property name if successful, nullptr otherwise.
          */
-        static auto tryCreate(const DatabaseState& databaseState, std::string_view propertyName, int pollFrequencyMs, std::function<void(const T&)>&& callback) -> std::unique_ptr<DatabasePropertyWatcher> {
+        static auto tryCreate(const DatabaseState& databaseState, std::string_view propertyName, int pollFrequencyMs, std::function<void(const DatabaseResult<T>&)>&& callback) -> std::unique_ptr<DatabasePropertyWatcher> {
             auto databaseCopyOpt = databaseState.duplicate();
             if (!databaseCopyOpt) {
                 return nullptr;
@@ -93,8 +93,9 @@ namespace mostly_harmless::data {
                 assert(false);
                 return;
             }
-            const auto hasChanged = m_previousValue != getRes;
-            m_previousValue = *getRes;
+            const auto [res, guid] = *getRes;
+            const auto hasChanged = m_previousValue != res;
+            m_previousValue = res;
             if (!hasChanged) {
                 return;
             }
@@ -104,7 +105,7 @@ namespace mostly_harmless::data {
         DatabaseState m_databaseState;
         std::string m_propertyNameToWatch;
         int m_pollFrequencyMs;
-        std::function<void(const T&)> m_callback;
+        std::function<void(const DatabaseResult<T>&)> m_callback;
         std::shared_ptr<utils::Proxy<DatabasePropertyWatcher<T>>> m_proxyThis;
         utils::Timer m_timer;
         std::optional<T> m_previousValue{};

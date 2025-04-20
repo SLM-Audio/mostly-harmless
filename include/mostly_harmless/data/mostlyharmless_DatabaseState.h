@@ -15,6 +15,12 @@
 
 namespace mostly_harmless::data {
 
+    template <DatabaseStorageType T>
+    struct DatabaseResult final {
+        T value;
+        std::uint32_t lastModifier;
+    };
+
     /**
      * @private
      */
@@ -24,25 +30,29 @@ namespace mostly_harmless::data {
             BoolIndex = 2,
             IntIndex = 3,
             FloatIndex = 4,
-            DoubleIndex = 5
+            DoubleIndex = 5,
+            GuidIndex = 6
         };
 
         template <DatabaseStorageType T>
         auto databaseQueryCallback(void* ud, int count, char** data, char** /*columns*/) -> int {
-            auto* result = static_cast<std::optional<T>*>(ud);
-            if (count != 6) {
+            const auto getGuid = [](char** data) -> std::uint32_t {
+                return static_cast<std::uint32_t>(std::stol(data[GuidIndex]));
+            };
+            auto* result = static_cast<std::optional<DatabaseResult<T>>*>(ud);
+            if (count != 7) {
                 return SQLITE_FAIL;
             }
             if constexpr (std::same_as<T, std::string>) {
-                *result = data[Index::TextIndex];
+                *result = { data[Index::TextIndex], getGuid(data) };
             } else if constexpr (std::same_as<T, bool>) {
-                *result = static_cast<T>(std::stoi(data[Index::BoolIndex]));
+                *result = { static_cast<T>(std::stoi(data[Index::BoolIndex])), getGuid(data) };
             } else if constexpr (std::is_integral_v<T>) {
-                *result = static_cast<T>(std::stoi(data[Index::IntIndex]));
+                *result = { static_cast<T>(std::stoi(data[Index::IntIndex])), getGuid(data) };
             } else if constexpr (std::same_as<T, float>) {
-                *result = std::stof(data[Index::FloatIndex]);
+                *result = { std::stof(data[Index::FloatIndex]), getGuid(data) };
             } else if constexpr (std::same_as<T, double>) {
-                *result = std::stod(data[Index::DoubleIndex]);
+                *result = { std::stod(data[Index::DoubleIndex]), getGuid(data) };
             }
             return SQLITE_OK;
         }
@@ -90,7 +100,7 @@ namespace mostly_harmless::data {
             checkResult(sqlite3_exec(m_databaseHandle, "PRAGMA journal_mode=WAL", nullptr, nullptr, nullptr));
             // Create Table if not present
             checkResult(sqlite3_exec(m_databaseHandle,
-                                     "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double);",
+                                     "CREATE TABLE IF NOT EXISTS DATA (NAME text UNIQUE, TEXT_VALUE text, BOOL_VALUE bool, INT_VALUE int, FLOAT_VALUE float, DOUBLE_VALUE double, LAST_MODIFIER int );",
                                      nullptr,
                                      nullptr,
                                      nullptr));
@@ -174,7 +184,7 @@ namespace mostly_harmless::data {
          * @param toSet The value to set.
          */
         template <DatabaseStorageType T>
-        auto set(std::string_view name, const T& toSet) -> void {
+        auto set(std::string_view name, const T& toSet, std::uint32_t guid) -> void {
             struct {
                 std::string textValue{};
                 bool boolValue{ false };
@@ -200,16 +210,23 @@ namespace mostly_harmless::data {
                 props.doubleValue = toSet;
                 updateStr = fmt::format("DOUBLE_VALUE = {}", props.doubleValue);
             }
+            updateStr = fmt::format("{}, LAST_MODIFIER = {}", updateStr, guid);
 
             std::stringstream sstream;
-            sstream << "INSERT INTO DATA (NAME, TEXT_VALUE, BOOL_VALUE, INT_VALUE, FLOAT_VALUE, DOUBLE_VALUE)\n";
-            sstream << "    VALUES ( \"" << name << "\", \"" << props.textValue << "\", " << props.boolValue << "," << props.intValue << ", " << props.floatValue << ", " << props.doubleValue << " )\n";
+            sstream << "INSERT INTO DATA (NAME, TEXT_VALUE, BOOL_VALUE, INT_VALUE, FLOAT_VALUE, DOUBLE_VALUE, LAST_MODIFIER)\n";
+            sstream << "    VALUES ( \"" << name << "\", \"" << props.textValue << "\", " << props.boolValue << "," << props.intValue << ", " << props.floatValue << ", " << props.doubleValue << ", " << guid << " )\n";
             sstream << "    ON CONFLICT(NAME) DO UPDATE SET " << updateStr << ";";
             const auto execResult = sqlite3_exec(m_databaseHandle, sstream.str().c_str(), nullptr, nullptr, nullptr);
             if (execResult != SQLITE_OK) {
                 MH_LOG(sqlite3_errmsg(m_databaseHandle));
                 assert(false);
             }
+        }
+
+
+        template <DatabaseStorageType T>
+        auto set(std::string_view name, const T& toSet) -> void {
+            set(name, toSet, 0);
         }
 
         /**
@@ -219,8 +236,8 @@ namespace mostly_harmless::data {
          * @return The value of the retrieved database field if found, nullopt otherwise.
          */
         template <DatabaseStorageType T>
-        [[nodiscard]] auto get(std::string_view name) -> std::optional<T> {
-            std::optional<T> result{};
+        [[nodiscard]] auto get(std::string_view name) -> std::optional<DatabaseResult<T>> {
+            std::optional<DatabaseResult<T>> result{};
             const auto execStr = fmt::format("SELECT * FROM DATA WHERE NAME = \"{}\"", name);
             const auto getRes = sqlite3_exec(m_databaseHandle,
                                              execStr.c_str(),

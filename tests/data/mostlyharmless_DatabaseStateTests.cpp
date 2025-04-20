@@ -33,7 +33,8 @@ namespace mostly_harmless::testing {
                 REQUIRE_NOTHROW(database.set<std::string>("Hello", "World"));
                 const auto retrieved = database.get<std::string>("Hello");
                 REQUIRE(retrieved.has_value());
-                REQUIRE(*retrieved == "World");
+                const auto [retrievedValue, _] = *retrieved;
+                REQUIRE(retrievedValue == "World");
                 REQUIRE(!database.get<int>("aaaaa"));
             }
             {
@@ -44,16 +45,25 @@ namespace mostly_harmless::testing {
                 auto& database = *databaseOpt;
                 auto retrievedDouble = database.get<double>("DoubleTest");
                 REQUIRE(retrievedDouble.has_value());
-                REQUIRE_THAT(retrievedDouble.value(), Catch::Matchers::WithinRel(15.0));
+                {
+                    const auto [value, _] = *retrievedDouble;
+                    REQUIRE_THAT(value, Catch::Matchers::WithinRel(15.0));
+                }
                 database.set<double>("DoubleTest", 20.0);
                 retrievedDouble = database.get<double>("DoubleTest");
                 REQUIRE(retrievedDouble.has_value());
-                REQUIRE_THAT(retrievedDouble.value(), Catch::Matchers::WithinRel(20.0));
+                {
+                    const auto [value, _] = *retrievedDouble;
+                    REQUIRE_THAT(value, Catch::Matchers::WithinRel(20.0));
+                }
                 auto database2Opt = tryCreateDatabase<true>(dbFile, initialValues);
                 auto& database2 = *database2Opt;
                 retrievedDouble = database2.get<double>("DoubleTest");
                 REQUIRE(retrievedDouble.has_value());
-                REQUIRE_THAT(retrievedDouble.value(), Catch::Matchers::WithinRel(20.0));
+                {
+                    auto [value, _] = *retrievedDouble;
+                    REQUIRE_THAT(value, Catch::Matchers::WithinRel(20.0));
+                }
             }
 
             std::filesystem::remove(dbFile);
@@ -76,7 +86,8 @@ namespace mostly_harmless::testing {
                 auto& databaseB = *connectionBOpt;
                 auto retrievalOpt = databaseB.get<std::string>("test");
                 REQUIRE(retrievalOpt.has_value());
-                REQUIRE(*retrievalOpt == "aaaa");
+                const auto [value, _] = *retrievalOpt;
+                REQUIRE(value == "aaaa");
             }
             std::filesystem::remove(dbFile);
         }
@@ -91,7 +102,8 @@ namespace mostly_harmless::testing {
                     {
                         auto onPropertyChanged = [&wasPropertyChanged, &newValue](const auto& x) -> void {
                             wasPropertyChanged.store(true);
-                            newValue = x;
+                            const auto [value, _] = x;
+                            newValue = value;
                         };
                         auto listener = data::DatabasePropertyWatcher<int>::tryCreate(database, "test", 1, std::move(onPropertyChanged));
                         REQUIRE(listener);
