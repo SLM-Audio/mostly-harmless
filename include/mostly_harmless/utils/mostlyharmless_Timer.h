@@ -15,6 +15,8 @@ namespace mostly_harmless::utils {
         std::function<void(void)> action;
 
     private:
+        std::mutex m_mutex;
+        std::condition_variable m_condVar;
         TaskThread m_thread;
     };
 } // namespace mostly_harmless::utils
