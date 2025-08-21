@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['making_20an_20audio_20fx_20plugin_0',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]],
-  ['mostly_20harmless_1',['mostly harmless',['../index.html',1,'']]]
+  ['data_0',['Binary Data',['../index.html#autotoc_md11',1,'']]],
+  ['dependencies_1',['Dependencies',['../index.html#autotoc_md13',1,'']]],
+  ['documentation_2',['Documentation',['../index.html#autotoc_md2',1,'']]],
+  ['dsp_3',['dsp',['../index.html#autotoc_md4',1,'']]]
 ];

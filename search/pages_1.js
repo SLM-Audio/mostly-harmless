@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['fx_20plugin_0',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]]
+  ['binary_20data_0',['Binary Data',['../index.html#autotoc_md11',1,'']]],
+  ['building_1',['Building',['../index.html#autotoc_md8',1,'']]],
+  ['building_2',['Getting it building',['../md_FXPluginTutorial.html#autotoc_md25',1,'']]]
 ];
