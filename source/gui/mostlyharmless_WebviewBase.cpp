@@ -52,6 +52,7 @@ namespace mostly_harmless::gui {
         { "woff2", "font/woff2" },
         { "xml", "application/xml" },
         { "zip", "application/zip" },
+        { "glb", "model/gltf-binary" }
     };
 
     std::optional<std::string> getMimeType(const std::string& filename) {
