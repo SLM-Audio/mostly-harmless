@@ -122,6 +122,7 @@ target_link_libraries(MostlyHarmless
         fmt::fmt-header-only
         nlohmann_json
         sqlite3::sqlite3
+        flatbuffers
         ${MOSTLY_HARMLESS_EXTRA_LIBS}
 )
 
