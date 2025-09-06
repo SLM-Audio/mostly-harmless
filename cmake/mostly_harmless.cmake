@@ -108,9 +108,9 @@ function(mostly_harmless_add_plugin targetName)
             set(PLUGIN_NOTE_BUS_CONFIG "BusConfig::None")
         endif ()
     endif ()
-    if(NOT ${PLUGIN_NEEDS_AUDIO_OUT_BUS})
+    if (NOT ${PLUGIN_NEEDS_AUDIO_OUT_BUS})
         message(FATAL_ERROR "Plugins that don't support audio output are not supported yet!")
-    endif()
+    endif ()
     # AUDIO BUSSES
     if (${PLUGIN_NEEDS_AUDIO_IN_BUS})
         if (${PLUGIN_NEEDS_AUDIO_OUT_BUS})
@@ -257,4 +257,39 @@ function(mostly_harmless_add_plugin targetName)
                 STATICALLY_LINKED_CLAP_ENTRY True
         )
     endif ()
+endfunction()
+
+function(mostly_harmless_compile_flatbuffer_schemas)
+    set(SINGLE_VALUE_ARGS
+            "TARGET"
+            "INCLUDE_PREFIX"
+    )
+    set(MULTI_VALUE_ARGS
+            "SCHEMAS"
+            "LANGUAGES"
+    )
+    cmake_parse_arguments(ARG "" "${SINGLE_VALUE_ARGS}" "${MULTI_VALUE_ARGS}" ${ARGN})
+    if (NOT DEFINED ARG_TARGET)
+        message(FATAL_ERROR "A target is required!")
+    endif ()
+    if (NOT DEFINED ARG_INCLUDE_PREFIX)
+        message(FATAL_ERROR "An include prefix is required!")
+    endif ()
+    if (NOT DEFINED ARG_SCHEMAS)
+        message(FATAL_ERROR "At least one schema must be provided")
+    endif ()
+    if (NOT DEFINED ARG_LANGUAGES)
+        message(FATAL_ERROR "At least one language must be provided")
+    endif ()
+    foreach (language_string ${ARG_LANGUAGES})
+        set(LANGUAGE_FLAGS "${LANGUAGE_FLAGS}" "--${language_string}")
+    endforeach ()
+    set(FLAGS "${LANGUAGE_FLAGS}" "--gen-object-api")
+    flatbuffers_generate_headers(
+            TARGET ${ARG_TARGET}
+            INCLUDE_PREFIX ${ARG_INCLUDE_PREFIX}
+            SCHEMAS ${ARG_SCHEMAS}
+            BINARY_SCHEMAS_DIR ""
+            FLAGS ${FLAGS}
+    )
 endfunction()
