@@ -46,6 +46,12 @@ namespace mostly_harmless {
         namespace directories {
 
         }
+        /**
+        \brief Serialisation and Deserialisation utils for FlatBuffers
+        */
+        namespace flat_buffers {
+
+        }
 
     }
     /**

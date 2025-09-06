@@ -66,6 +66,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sqlite3)
 
+FetchContent_Declare(FlatBuffers
+        GIT_REPOSITORY https://github.com/google/flatbuffers.git
+        GIT_TAG v25.2.10
+        GIT_SHALLOW ON
+)
+FetchContent_MakeAvailable(FlatBuffers)
+
 FetchContent_Declare(
         marvin
         GIT_REPOSITORY https://github.com/MeijisIrlnd/marvin.git
@@ -115,6 +122,7 @@ target_link_libraries(MostlyHarmless
         fmt::fmt-header-only
         nlohmann_json
         sqlite3::sqlite3
+        flatbuffers
         ${MOSTLY_HARMLESS_EXTRA_LIBS}
 )
 

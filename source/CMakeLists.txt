@@ -32,6 +32,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_NoDenormals.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Hash.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Macros.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_FlatBuffers.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabaseState.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabasePropertyWatcher.cpp
         ${PLATFORM_SOURCES}
