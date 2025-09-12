@@ -1,42 +1,42 @@
 import {useEffect, useState} from "react";
 import './App.css';
+import {
+    mhAddParameterListener, mhRemoveParameterListener,
+    mhSubscribeToParams, mhUnsubscribeFromParams
+} from "@slm-audio/mostly-harmless-js/lib/mostlyharmless_ParamEvents.js";
+import {
+    mhBeginParamGesture,
+    mhEndParamGesture,
+    mhSetParamValue
+} from "@slm-audio/mostly-harmless-js/lib/mostlyharmless_ParamGestures.js";
 
 function SliderComponent({pid, min, max, initial}) {
     const [val, setVal] = useState(initial);
     const paramCallback = (ev) => {
-        const eventPid = ev.detail.paramId;
-        if (parseInt(eventPid) !== pid) return;
         const value = parseFloat(ev.detail.value);
         setVal(value);
     }
     useEffect(() => {
-        addEventListener("param", paramCallback);
+        mhSubscribeToParams();
+        mhAddParameterListener(pid, paramCallback);
         return function cleanup() {
-            removeEventListener("param", paramCallback);
+            mhRemoveParameterListener(pid, paramCallback);
+            mhUnsubscribeFromParams();
         }
     }, [paramCallback]);
 
     const sliderDragStarted = (v) => {
-        beginParamGesture({
-            paramId: pid,
-            value: v.target.value
-        });
+        mhBeginParamGesture(pid);
     };
     const sliderChangedCallback = (v) => {
         setVal(v.target.value);
-        const args = {
-            paramId: pid,
-            value: parseFloat(v.target.value)
-        };
-        setParamValue(args);
+        mhSetParamValue(pid, v.target.value);
     };
 
     const sliderDragEnded = (v) => {
-        endParamGesture({
-            paramId: pid,
-            value: v.target.value
-        });
+        mhEndParamGesture(pid);
     };
+   
     return (
         <div>
             <input className="slider-el"
