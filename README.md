@@ -29,7 +29,9 @@ should you need some convenience helpers and basic audio features.
 
 The goal of the framework was to provide the bare minimum we (as in SLM Audio) need to write a plugin - and as such we
 don't provide any kind of gui framework of our own.
-We do, however, provide a thin wrapper around [choc](https://github.com/Tracktion/choc)'s WebView, and plan to implement
+We do, however, provide a thin wrapper around [choc](https://github.com/Tracktion/choc)'s WebView, with an accompanying
+minimal helper library [mostly-harmless-js](https://www.npmjs.com/package/@slm-audio/mostly-harmless-js) and plan to
+implement
 similar minimal wrappers around a couple of other frameworks.<br>
 We also provide an interface with hooks for you to implement your framework of choice,
 in `mostly_harmless::gui::IEditor`.
@@ -38,7 +40,10 @@ in `mostly_harmless::gui::IEditor`.
 
 ### First Steps
 
-Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, and the FX Plugin Tutorial in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain plugin project. We also provide a Python script to generate the boilerplate needed for a new project for you, found in the root directory.
+Firstly, we'd recommend taking a look in the `examples` directory for a real-world use case, and the FX Plugin Tutorial
+in the docs directory, which talks you through some of the framework's core ideas, and how to set up a simple gain
+plugin project. We also provide a Python script to generate the boilerplate needed for a new project for you, found in
+the root directory.
 
 Usage:
 
@@ -223,7 +228,8 @@ mostly harmless depends on the following libraries:
 
 ## Credits
 
-This framework wouldn't exist without the advice, moral support and help
+This framework wouldn't exist without the contributions of [Ryan Jeffares](https://github.com/ryanjeffares), advice,
+moral support and help
 of [mthierman](https://github.com/mthierman), [Ben Vining](https://github.com/benthevining), [Signalsmith](https://signalsmith-audio.co.uk/)
 and the legions of incredible people in [The Audio Programmer Discord](https://discord.gg/v5Rs8h6aGF).<b>
 

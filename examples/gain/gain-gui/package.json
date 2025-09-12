@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "@slm-audio/mostly-harmless-js": "^0.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
