@@ -418,7 +418,6 @@ namespace mostly_harmless::internal {
         if (!m_editor) return false;
         if (!m_editor->allowResize()) return false;
         m_editor->onResizeRequested(width, height);
-        m_editor->setSize(*width, *height);
         return true;
     }
 
