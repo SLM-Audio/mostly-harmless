@@ -14,6 +14,7 @@ var hierarchy =
     [ "mostly_harmless::events::InputEventContext", "structmostly__harmless_1_1events_1_1InputEventContext.html", null ],
     [ "mostly_harmless::core::IPluginEntry", "structmostly__harmless_1_1core_1_1IPluginEntry.html", null ],
     [ "mostly_harmless::core::ISharedState", "classmostly__harmless_1_1core_1_1ISharedState.html", null ],
+    [ "mostly_harmless::utils::Logging", "classmostly__harmless_1_1utils_1_1Logging.html", null ],
     [ "mostly_harmless::LoopInfo", "structmostly__harmless_1_1LoopInfo.html", null ],
     [ "mostly_harmless::utils::NoDenormals", "classmostly__harmless_1_1utils_1_1NoDenormals.html", null ],
     [ "mostly_harmless::utils::OnScopeExit", "classmostly__harmless_1_1utils_1_1OnScopeExit.html", null ],

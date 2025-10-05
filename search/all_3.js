@@ -14,5 +14,6 @@ var searchData=
   ['documentation_11',['Documentation',['../index.html#autotoc_md2',1,'']]],
   ['documents_12',['Documents',['../namespacemostly__harmless_1_1utils_1_1directories.html#a2c6f5f83a8af557c3c4f1fd217925e45af28128b38efbc6134dc40751ee21fd29',1,'mostly_harmless::utils::directories']]],
   ['dsp_13',['dsp',['../index.html#autotoc_md4',1,'']]],
-  ['duplicate_14',['duplicate',['../classmostly__harmless_1_1data_1_1DatabaseState.html#ac5252df551ab65b880e43eab954dc960',1,'mostly_harmless::data::DatabaseState']]]
+  ['dump_14',['dump',['../classmostly__harmless_1_1utils_1_1Logging.html#adb610c74edb73a17af46fe89764b154e',1,'mostly_harmless::utils::Logging']]],
+  ['duplicate_15',['duplicate',['../classmostly__harmless_1_1data_1_1DatabaseState.html#ac5252df551ab65b880e43eab954dc960',1,'mostly_harmless::data::DatabaseState']]]
 ];
