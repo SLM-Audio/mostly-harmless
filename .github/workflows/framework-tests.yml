@@ -31,7 +31,7 @@ jobs:
         uses: threeal/cmake-action@main
         with:
           options: "MOSTLY_HARMLESS_TESTS=ON CMAKE_BUILD_TYPE=Release"
-          build-args: "--target mostly-harmless-tests --config Release"
+          build-args: "--target mostly-harmless-tests --config Release -- -j 24"
       - name: Run tests
         run: "./build/mostly-harmless-tests"
 
