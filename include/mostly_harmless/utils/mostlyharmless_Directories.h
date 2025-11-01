@@ -22,7 +22,7 @@ namespace mostly_harmless::utils::directories {
          */
         Documents,
         /**
-         * The user application data directory - on macOS, ~/Library, on Windows, C:/Users/<You>/AppData
+         * The user application data directory - on macOS, ~/Library/Application Support, on Windows, C:/Users/<You>/AppData
          */
         UserAppData,
         /**
