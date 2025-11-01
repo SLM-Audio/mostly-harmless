@@ -94,6 +94,9 @@ function(mostly_harmless_add_plugin targetName)
     if (NOT DEFINED PLUGIN_NEEDS_AUDIO_OUT_BUS)
         set(PLUGIN_NEEDS_AUDIO_OUT_BUS TRUE)
     endif ()
+    if (NOT DEFINED PLUGIN_VERSION)
+        set(PLUGIN_VERSION "0.0.1")
+    endif ()
     # NOTE BUSSES
     if (${PLUGIN_NEEDS_NOTE_IN_BUS})
         if (${PLUGIN_NEEDS_NOTE_OUT_BUS})
@@ -108,9 +111,9 @@ function(mostly_harmless_add_plugin targetName)
             set(PLUGIN_NOTE_BUS_CONFIG "BusConfig::None")
         endif ()
     endif ()
-    if(NOT ${PLUGIN_NEEDS_AUDIO_OUT_BUS})
+    if (NOT ${PLUGIN_NEEDS_AUDIO_OUT_BUS})
         message(FATAL_ERROR "Plugins that don't support audio output are not supported yet!")
-    endif()
+    endif ()
     # AUDIO BUSSES
     if (${PLUGIN_NEEDS_AUDIO_IN_BUS})
         if (${PLUGIN_NEEDS_AUDIO_OUT_BUS})
@@ -159,8 +162,8 @@ function(mostly_harmless_add_plugin targetName)
                     BUNDLE_EXTENSION clap
                     MACOSX_BUNDLE_GUI_IDENTIFIER "com.slm-audio.${PLUGIN_NAME}"
                     MACOSX_BUNDLE_BUNDLE_NAME ${PLUGIN_NAME}
-                    MACOSX_BUNDLE_BUNDLE_VERSION "0.0.1"
-                    MACOSX_BUNDLE_SHORT_VERSION_STRING "0.0.1"
+                    MACOSX_BUNDLE_BUNDLE_VERSION ${PLUGIN_VERSION}
+                    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PLUGIN_VERSION}
                     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
             )
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
@@ -192,8 +195,8 @@ function(mostly_harmless_add_plugin targetName)
                     BUNDLE_EXTENSION vst3
                     MACOSX_BUNDLE_GUI_IDENTIFIER "com.slm-audio.${PLUGIN_NAME}"
                     MACOSX_BUNDLE_BUNDLE_NAME ${PLUGIN_NAME}
-                    MACOSX_BUNDLE_BUNDLE_VERSION "0.0.1"
-                    MACOSX_BUNDLE_SHORT_VERSION_STRING "0.0.1"
+                    MACOSX_BUNDLE_BUNDLE_VERSION ${PLUGIN_VERSION}
+                    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PLUGIN_VERSION}
                     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
             )
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
@@ -235,7 +238,7 @@ function(mostly_harmless_add_plugin targetName)
                     OUTPUT_NAME ${PLUGIN_NAME}
                     BUNDLE_EXTENSION "component"
                     BUNDLE_IDENTIFIER ${PLUGIN_AU_BUNDLE_ID}
-                    BUNDLE_VERSION ${PLUGIN_AU_BUNDLE_VERSION}
+                    BUNDLE_VERSION ${PLUGIN_VERSION}
                     MANUFACTURER_NAME ${PLUGIN_VENDOR}
                     MANUFACTURER_CODE ${PLUGIN_MANUFACTURER_CODE}
                     SUBTYPE_CODE ${PLUGIN_SUBTYPE_CODE}
