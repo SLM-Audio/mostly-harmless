@@ -13,7 +13,7 @@ namespace mostly_harmless::utils::directories {
                 return homePath / "Documents";
             }
             case DirectoryType::UserAppData: {
-                return homePath / "Library";
+                return homePath / "Library" / "Application Support";
             }
             case DirectoryType::Temp: {
                 const char* tempDir = NSTemporaryDirectory().UTF8String;
