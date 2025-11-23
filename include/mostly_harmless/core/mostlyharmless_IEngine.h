@@ -98,6 +98,13 @@ namespace mostly_harmless::core {
          * \param velocity The 0-1 velocity of the note event
          */
         virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}
+
+        // TODO: Document
+        virtual void handleControlChange([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t controlNumber, [[maybe_unused]] std::uint8_t data) {}
+        virtual void handleProgramChange([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t programNumber) {};
+        virtual void handlePolyAftertouch([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] std::uint8_t pressure) {}
+        virtual void handleChannelAftertouch([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t pressure) {}
+        virtual void handlePitchWheel([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint16_t value) {}
     };
 } // namespace mostly_harmless::core
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_IENGINE_H

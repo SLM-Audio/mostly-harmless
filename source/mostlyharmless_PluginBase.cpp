@@ -8,6 +8,15 @@
 #include <clap/helpers/plugin.hxx>
 
 namespace mostly_harmless::internal {
+    namespace midi_headers {
+        constexpr static auto s_note_off{ 0x80 };
+        constexpr static auto s_note_on{ 0x90 };
+        constexpr static auto s_poly_aftertouch{ 0xA0 };
+        constexpr static auto s_control_change{ 0xB0 };
+        constexpr static auto s_program_change{ 0xC0 };
+        constexpr static auto s_channel_aftertouch{ 0xD0 };
+        constexpr static auto s_pitch_wheel{ 0xE0 };
+    } // namespace midi_headers
     PluginBase::PluginBase(const clap_host* host) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Ignore, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host) {
         MH_LOG("PROC: Creating plugin instance...");
         m_pluginEntry = core::createPluginEntry();
@@ -168,21 +177,53 @@ namespace mostly_harmless::internal {
                 // 0PPP PPPP
                 // 0VVV VVVV
                 const auto* midiEvent = reinterpret_cast<const clap_event_midi*>(event);
-                std::uint8_t message = midiEvent->data[0] & 0xF0; // SSSS 0000 - Message will be << 4
-                std::uint8_t channel = midiEvent->data[0] & 0x0F; // 0000 CCCC
-                std::uint8_t note = midiEvent->data[1];           // 0PPP PPPP
-                std::uint8_t velocity = midiEvent->data[2];       // 0VVV VVVV
-                const auto fpVelocity = static_cast<double>(velocity) / 127.0;
+                const auto handle_note_on_or_off = [this](const clap_event_midi* ev, bool on) -> void {
+                };
+                const std::uint8_t message = midiEvent->data[0] & 0xF0; // SSSS 0000 - Message will be << 4
+                const std::uint8_t channel = midiEvent->data[0] & 0x0F; // 0000 CCCC
                 switch (message) {
-                    case 0x90: {
-                        m_engine->handleNoteOn(midiEvent->port_index, channel, note, fpVelocity);
+                    case midi_headers::s_note_on: [[fallthrough]];
+                    case midi_headers::s_note_off: {
+                        const std::uint8_t note = midiEvent->data[1];     // 0PPP PPPP
+                        const std::uint8_t velocity = midiEvent->data[2]; // 0VVV VVVV
+                        const auto fpVelocity = static_cast<double>(velocity) / 127.0;
+                        if (message == midi_headers::s_note_on) {
+                            m_engine->handleNoteOn(midiEvent->port_index, channel, note, fpVelocity);
+                        } else {
+                            m_engine->handleNoteOff(midiEvent->port_index, channel, note, fpVelocity);
+                        }
                         break;
                     }
-                    case 0x80: {
-                        m_engine->handleNoteOff(midiEvent->port_index, channel, note, fpVelocity);
+                    case midi_headers::s_poly_aftertouch: {
+                        const std::uint8_t note = midiEvent->data[1];
+                        const std::uint8_t pressure = midiEvent->data[2];
+                        m_engine->handlePolyAftertouch(midiEvent->port_index, channel, note, pressure);
                         break;
                     }
-                    default: break; // TODO
+                    case midi_headers::s_control_change: {
+                        const std::uint8_t controllerNumber = midiEvent->data[1];
+                        const std::uint8_t data = midiEvent->data[2];
+                        m_engine->handleControlChange(midiEvent->port_index, channel, controllerNumber, data);
+                        break;
+                    }
+                    case midi_headers::s_program_change: {
+                        const std::uint8_t programNumber = midiEvent->data[1];
+                        m_engine->handleProgramChange(midiEvent->port_index, channel, programNumber);
+                        break;
+                    }
+                    case midi_headers::s_channel_aftertouch: {
+                        const std::uint8_t pressure = midiEvent->data[1];
+                        m_engine->handleChannelAftertouch(midiEvent->port_index, channel, pressure);
+                        break;
+                    }
+                    case midi_headers::s_pitch_wheel: {
+                        const std::uint8_t lsb = midiEvent->data[1];
+                        const std::uint8_t msb = midiEvent->data[2];
+                        const std::uint16_t combined = lsb & (msb << 7);
+                        m_engine->handlePitchWheel(midiEvent->port_index, channel, combined);
+                        break;
+                    }
+                    default: break;
                 }
                 break;
             }
