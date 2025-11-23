@@ -177,8 +177,6 @@ namespace mostly_harmless::internal {
                 // 0PPP PPPP
                 // 0VVV VVVV
                 const auto* midiEvent = reinterpret_cast<const clap_event_midi*>(event);
-                const auto handle_note_on_or_off = [this](const clap_event_midi* ev, bool on) -> void {
-                };
                 const std::uint8_t message = midiEvent->data[0] & 0xF0; // SSSS 0000 - Message will be << 4
                 const std::uint8_t channel = midiEvent->data[0] & 0x0F; // 0000 CCCC
                 switch (message) {

@@ -99,11 +99,55 @@ namespace mostly_harmless::core {
          */
         virtual void handleNoteOff([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] double velocity) {}
 
-        // TODO: Document
+        /**
+         * Called if the plugin receives a midi control change event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality.
+         * Called on the audio thread, in response to a control change event.
+         * Some of the identifiers here are reserved for special controls (mod wheel etc) - we don't do any handling of this framework side, so have a google if you need this info!
+         * @param portIndex The clap port index the event originated from.
+         * @param channel The midi channel the event was passed to
+         * @param controlNumber The midi control that was changed
+         * @param data The data in the midi message - see the midi spec for interpreting this.
+         */
         virtual void handleControlChange([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t controlNumber, [[maybe_unused]] std::uint8_t data) {}
+
+        /**
+         * Called if the plugin receives a program change event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality.
+         * Called on the audio thread, in response to a program change event.
+         * @param portIndex The clap port index the event originated from.
+         * @param channel The midi channel the event was passed to
+         * @param programNumber The program number that was set
+         */
         virtual void handleProgramChange([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t programNumber) {};
+
+        /**
+         * Called if the plugin receives a (polyphonic) aftertouch event (polyphonic in the sense that each note can have its own pressure data).
+         * Not pure virtual, as this function isn't relevant if you haven't requested midi functionality.
+         * Called on the audio thread, in response to a poly aftertouch event.
+         * @param portIndex The clap port index the event originated from.
+         * @param channel The midi channel the event was passed to
+         * @param note The midi note this aftertouch event applies to
+         * @param pressure The pressure applied to this midi note
+         */
         virtual void handlePolyAftertouch([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t note, [[maybe_unused]] std::uint8_t pressure) {}
+
+        /**
+         * Called if the plugin receives a (channel-wide) aftertouch event. In this case, all notes within a channel get the same pressure value.
+         * Not pure virtual, as this function isn't relevant if you haven't requested midi functionality.
+         * Called on the audio thread, in response to a channel aftertouch event.
+         * @param portIndex The clap port index the event originated from.
+         * @param channel The midi channel the event was passed to
+         * @param pressure The pressure applied to this midi note
+         */
         virtual void handleChannelAftertouch([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t pressure) {}
+
+        /**
+         * Called if the plugin receives a pitch wheel event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality.
+         * Value here is a 14-bit value representing the pitch wheel's position, in the range 0x0 to 0x3FFF. Generally, 0x2000 is treated as the centre, negative pitch wheel pos is below 0x2000, and positive is above etc etc etc.
+         * Called on the audio thread, in response to a pitch wheel event.
+         * @param portIndex The clap port index the event originated from.
+         * @param channel The midi channel the event was passed to
+         * @param value The 14-bit value representing pitch wheel pos between 0x0 and 0x3FFF.
+         */
         virtual void handlePitchWheel([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint16_t value) {}
     };
 } // namespace mostly_harmless::core
