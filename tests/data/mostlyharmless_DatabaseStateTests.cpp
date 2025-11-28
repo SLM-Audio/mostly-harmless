@@ -62,8 +62,7 @@ namespace mostly_harmless::testing {
         SECTION("Test Invalid Location") {
             tryCreateDatabase<false>("INVALID LOCATION", {});
         }
-
-        SECTION("Test In-Memory") {
+     SECTION("Test In-Memory") {
             tryCreateDatabase<true>(":memory:", {});
         }
 

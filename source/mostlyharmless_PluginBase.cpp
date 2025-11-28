@@ -386,7 +386,7 @@ namespace mostly_harmless::internal {
 
     void PluginBase::guiDestroy() noexcept {
         MH_LOG("GUI: guiDestroy()");
-        m_guiDispatchThread.stop(true);
+        m_guiDispatchThread.stop();
         m_editor.reset();
     }
 

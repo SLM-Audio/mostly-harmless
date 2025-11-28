@@ -1,51 +1,54 @@
 //
 // Created by Syl on 12/08/2024.
 //
+#include "mostly_harmless/utils/mostlyharmless_OnScopeExit.h"
+
+
 #include <mostly_harmless/utils/mostlyharmless_TaskThread.h>
 #include <cassert>
 #include <thread>
 namespace mostly_harmless::utils {
     TaskThread::~TaskThread() noexcept {
-        stop(true);
+        stop();
     }
 
-    void TaskThread::perform() {
+    auto TaskThread::perform() -> void {
         auto expected{ false };
         if (m_isThreadRunning.compare_exchange_strong(expected, true)) {
             auto actionWrapper = [this]() -> void {
+                OnScopeExit se{ [this]() -> void {
+                    m_isThreadRunning.store(false);
+                } };
                 action();
-                m_isThreadRunning = false;
             };
             m_thread = std::make_unique<std::thread>(std::move(actionWrapper));
         }
     }
 
-    void TaskThread::stop(bool join) noexcept {
+    auto TaskThread::stop() noexcept -> void {
         m_isThreadRunning = false;
         if (!m_thread) {
             return;
         }
-        if (join) {
-            if (m_thread->joinable()) {
-                m_thread->join();
-            }
-            m_thread.reset();
+        if (m_thread->joinable()) {
+            m_thread->join();
         }
+        m_thread.reset();
     }
 
-    void TaskThread::sleep() {
-        m_canWakeUp = false;
-        std::unique_lock<std::mutex> ul{ m_mutex };
-        m_conditionVariable.wait(ul, [this]() -> bool { return m_canWakeUp; });
+    auto TaskThread::sleep() -> void {
+        m_sleepState.canWakeUp = false;
+        std::unique_lock<std::mutex> ul{ m_sleepState.mutex };
+        m_sleepState.conditionVariable.wait(ul, [this]() -> bool { return m_sleepState.canWakeUp; });
     }
 
-    void TaskThread::wake() {
-        m_canWakeUp = true;
-        std::lock_guard<std::mutex> lock{ m_mutex };
-        m_conditionVariable.notify_one();
+    auto TaskThread::wake() -> void {
+        m_sleepState.canWakeUp = true;
+        std::lock_guard<std::mutex> lock{ m_sleepState.mutex };
+        m_sleepState.conditionVariable.notify_one();
     }
 
-    bool TaskThread::isThreadRunning() const noexcept {
+    auto TaskThread::isThreadRunning() const noexcept -> bool {
         return m_isThreadRunning;
     }
 

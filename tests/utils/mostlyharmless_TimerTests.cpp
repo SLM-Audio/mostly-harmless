@@ -12,9 +12,11 @@ namespace mostly_harmless::tests {
     TEST_CASE("Test Timer") {
         mostly_harmless::utils::Timer timer;
         SECTION("Test calls") {
+            std::mutex mutex;
+            std::condition_variable cv;
             std::atomic<int> callCount{ 0 };
             auto start = std::chrono::steady_clock::now();
-            auto timerCallback = [&callCount, &start]() -> void {
+            auto timerCallback = [&callCount, &start, &mutex, &cv]() -> void {
                 const auto now = std::chrono::steady_clock::now();
                 const auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);
                 // normalise, and truncate..
@@ -22,14 +24,20 @@ namespace mostly_harmless::tests {
                 const auto truncatedDelta = std::round(normalisedDelta);
                 REQUIRE(truncatedDelta == 1);
                 start = std::chrono::steady_clock::now();
-                ++callCount;
+                {
+                    std::lock_guard<std::mutex> lock{ mutex };
+                    ++callCount;
+                }
+                cv.notify_one();
             };
             timer.action = std::move(timerCallback);
             timer.run(static_cast<int>(100));
-            while (callCount < 5)
-                ;
-            timer.stop(true);
-            REQUIRE(callCount >= 5);
+            std::unique_lock<std::mutex> ul{ mutex };
+            cv.wait_for(ul, std::chrono::seconds{ 1 }, [&callCount]() -> bool {
+                return callCount == 5;
+            });
+            REQUIRE(callCount == 5);
+            timer.stop();
         }
 
         SECTION("Test out-of-scope timer") {
@@ -42,18 +50,23 @@ namespace mostly_harmless::tests {
                 scopedTimer.action = std::move(task);
                 scopedTimer.run(1);
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
             REQUIRE(count == 0);
         }
         SECTION("Test proxy") {
             std::atomic<bool> wasInvalid{ false };
+            std::mutex mutex;
+            std::condition_variable cv;
             mostly_harmless::utils::Timer proxyTimer;
             {
                 int x{ 0 };
                 auto proxy = mostly_harmless::utils::Proxy<int>::create(&x);
-                auto timerCallback = [&wasInvalid, proxy]() -> void {
+                auto timerCallback = [&wasInvalid, &mutex, &cv, proxy]() -> void {
                     if (!proxy->isValid()) {
-                        wasInvalid = true;
+                        {
+                            std::lock_guard<std::mutex> lock{ mutex };
+                            wasInvalid = true;
+                        }
+                        cv.notify_one();
                         return;
                     }
                     auto& x = *proxy->getWrapped();
@@ -64,7 +77,10 @@ namespace mostly_harmless::tests {
                 proxyTimer.run(1);
                 proxy->null();
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds{ 40 });
+            std::unique_lock<std::mutex> ul{ mutex };
+            cv.wait_for(ul, std::chrono::seconds{ 1 }, [&]() -> bool {
+                return wasInvalid;
+            });
             REQUIRE(wasInvalid);
         }
     }

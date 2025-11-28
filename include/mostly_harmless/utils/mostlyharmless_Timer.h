@@ -9,9 +9,9 @@
 namespace mostly_harmless::utils {
     class Timer final {
     public:
-        void run(int intervalMs);
-        void run(double frequency);
-        void stop(bool join);
+        auto run(int intervalMs) -> void;
+        auto run(double frequency) -> void;
+        auto stop() -> void;
         std::function<void(void)> action;
 
     private:

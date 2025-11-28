@@ -13,18 +13,20 @@ namespace mostly_harmless::utils {
     class TaskThread {
     public:
         ~TaskThread() noexcept;
-        void perform();
-        void stop(bool join) noexcept;
-        void sleep();
-        void wake();
-        [[nodiscard]] bool isThreadRunning() const noexcept;
+        auto perform() -> void;
+        auto stop() noexcept -> void;
+        auto sleep() -> void;
+        auto wake() -> void;
+        [[nodiscard]] auto isThreadRunning() const noexcept -> bool;
         std::function<void(void)> action{ nullptr };
 
     private:
-        std::mutex m_mutex;
+        struct {
+            std::mutex mutex;
+            std::atomic<bool> canWakeUp{ false };
+            std::condition_variable conditionVariable;
+        } m_sleepState;
         std::atomic<bool> m_isThreadRunning{ false };
-        std::atomic<bool> m_canWakeUp{ false };
-        std::condition_variable m_conditionVariable;
         std::unique_ptr<std::thread> m_thread{ nullptr };
     };
 } // namespace mostly_harmless::utils

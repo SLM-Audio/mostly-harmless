@@ -4,7 +4,7 @@
 #include <mostly_harmless/utils/mostlyharmless_Timer.h>
 #include <thread>
 namespace mostly_harmless::utils {
-    void Timer::run(int intervalMs) {
+    auto Timer::run(int intervalMs) -> void {
         if (!action || m_thread.isThreadRunning()) return;
         auto threadAction = [this, intervalMs]() -> void {
             auto startPoint = std::chrono::steady_clock::now();
@@ -21,13 +21,13 @@ namespace mostly_harmless::utils {
         m_thread.perform();
     }
 
-    void Timer::run(double frequency) {
+    auto Timer::run(double frequency) -> void {
         const auto intervalMs = static_cast<int>(1.0 / frequency);
         run(intervalMs);
     }
 
-    void Timer::stop(bool join) {
-        m_thread.stop(join);
+    auto Timer::stop() -> void {
+        m_thread.stop();
     }
 
 
