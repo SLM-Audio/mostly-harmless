@@ -5,7 +5,7 @@ var searchData=
   ['parameterid_2',['ParameterID',['../structmostly__harmless_1_1ParameterID.html',1,'mostly_harmless::ParameterID'],['../structmostly__harmless_1_1ParameterID.html#a34935b3f9fb8a7b8027f50cf9bff5aeb',1,'mostly_harmless::ParameterID::ParameterID()']]],
   ['parameters_3',['Parameters',['../md_FXPluginTutorial.html#autotoc_md28',1,'']]],
   ['paramid_4',['paramId',['../structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html#a3290160cca2e4520d5974538f031d053',1,'mostly_harmless::events::ProcToGuiParamEvent::paramId'],['../structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a2e5f82a1a4547ce65eb468f83d29181d',1,'mostly_harmless::events::GuiToProcParamEvent::paramId']]],
-  ['perform_5',['perform',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ae82139117b54e99df9de0ee5cfe5a1a5',1,'mostly_harmless::utils::TaskThread']]],
+  ['perform_5',['perform',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a9c9e3a892d1729e4d581091878fe5778',1,'mostly_harmless::utils::TaskThread']]],
   ['pid_6',['pid',['../structmostly__harmless_1_1ParameterID.html#a6a64660d066066549d7387abdea31e9c',1,'mostly_harmless::ParameterID::pid'],['../structmostly__harmless_1_1Parameter.html#a7d58630afd519a2f36f7543748f884e0',1,'mostly_harmless::Parameter::pid']]],
   ['plugin_7',['A Gain Plugin',['../md_FXPluginTutorial.html#autotoc_md26',1,'']]],
   ['plugin_8',['Making an audio fx plugin',['../md_FXPluginTutorial.html',1,'']]],

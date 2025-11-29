@@ -14,10 +14,11 @@ var searchData=
   ['show_11',['show',['../structmostly__harmless_1_1core_1_1IEditor.html#a7e863967c4374395f843d8629fefb56b',1,'mostly_harmless::core::IEditor::show()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a85cdd02af5eabb7fa6fef7d29da18995',1,'mostly_harmless::gui::WebviewBase::show()']]],
   ['showview_12',['showView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#ac8fef1567c0547ce6195b09c95cb4a73',1,'mostly_harmless::gui::helpers::macos']]],
   ['signal_20s_20level_13',['Modifying the input signal&apos;s level',['../md_FXPluginTutorial.html#autotoc_md27',1,'']]],
-  ['sleep_14',['sleep',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a966cb6f9825dfc8c90904791c7cf49b8',1,'mostly_harmless::utils::TaskThread']]],
-  ['startbeats_15',['startBeats',['../structmostly__harmless_1_1LoopInfo.html#a78247b9f93fd10bb9fa23f1c707c1f29',1,'mostly_harmless::LoopInfo']]],
-  ['started_16',['Getting Started',['../index.html#autotoc_md6',1,'']]],
-  ['startseconds_17',['startSeconds',['../structmostly__harmless_1_1LoopInfo.html#a4911d093f11de0ecade5c3688024dc3e',1,'mostly_harmless::LoopInfo']]],
-  ['steps_18',['First Steps',['../index.html#autotoc_md7',1,'']]],
-  ['stop_19',['stop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ab9dd36e26e073c5fc7a5a49180a8116f',1,'mostly_harmless::utils::TaskThread::stop()'],['../classmostly__harmless_1_1utils_1_1Timer.html#a303f4b214b7f10114e4b135cdd79a959',1,'mostly_harmless::utils::Timer::stop()']]]
+  ['signalstop_14',['signalStop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ac327233167c1f4d2b6c82763431d63b2',1,'mostly_harmless::utils::TaskThread']]],
+  ['sleep_15',['sleep',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ac1f9509dbd9727690bc5fe927c9dcaa8',1,'mostly_harmless::utils::TaskThread']]],
+  ['startbeats_16',['startBeats',['../structmostly__harmless_1_1LoopInfo.html#a78247b9f93fd10bb9fa23f1c707c1f29',1,'mostly_harmless::LoopInfo']]],
+  ['started_17',['Getting Started',['../index.html#autotoc_md6',1,'']]],
+  ['startseconds_18',['startSeconds',['../structmostly__harmless_1_1LoopInfo.html#a4911d093f11de0ecade5c3688024dc3e',1,'mostly_harmless::LoopInfo']]],
+  ['steps_19',['First Steps',['../index.html#autotoc_md7',1,'']]],
+  ['stop_20',['stop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a52b1272fb3729a72f090d32e2e26fb24',1,'mostly_harmless::utils::TaskThread::stop()'],['../classmostly__harmless_1_1utils_1_1Timer.html#ae768a002d49fe64d8596c97948b72fb9',1,'mostly_harmless::utils::Timer::stop()']]]
 ];

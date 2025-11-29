@@ -97,11 +97,13 @@ $(function(){initNavTree('classmostly__harmless_1_1utils_1_1TaskThread.html','',
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abaa418488d213bfed018c54d30b4a1e3" id="r_abaa418488d213bfed018c54d30b4a1e3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abaa418488d213bfed018c54d30b4a1e3">~TaskThread</a> () noexcept</td></tr>
-<tr class="memitem:ae82139117b54e99df9de0ee5cfe5a1a5" id="r_ae82139117b54e99df9de0ee5cfe5a1a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae82139117b54e99df9de0ee5cfe5a1a5">perform</a> ()</td></tr>
-<tr class="memitem:ab9dd36e26e073c5fc7a5a49180a8116f" id="r_ab9dd36e26e073c5fc7a5a49180a8116f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9dd36e26e073c5fc7a5a49180a8116f">stop</a> (bool join) noexcept</td></tr>
-<tr class="memitem:a966cb6f9825dfc8c90904791c7cf49b8" id="r_a966cb6f9825dfc8c90904791c7cf49b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966cb6f9825dfc8c90904791c7cf49b8">sleep</a> ()</td></tr>
-<tr class="memitem:a5767debb36f097d06df842173d509a82" id="r_a5767debb36f097d06df842173d509a82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5767debb36f097d06df842173d509a82">wake</a> ()</td></tr>
-<tr class="memitem:a2dc43b2e8ff9d3e9ce5078d62cbc31ee" id="r_a2dc43b2e8ff9d3e9ce5078d62cbc31ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dc43b2e8ff9d3e9ce5078d62cbc31ee">isThreadRunning</a> () const noexcept</td></tr>
+<tr class="memitem:a9c9e3a892d1729e4d581091878fe5778" id="r_a9c9e3a892d1729e4d581091878fe5778"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c9e3a892d1729e4d581091878fe5778">perform</a> () -&gt; void</td></tr>
+<tr class="memitem:a52b1272fb3729a72f090d32e2e26fb24" id="r_a52b1272fb3729a72f090d32e2e26fb24"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52b1272fb3729a72f090d32e2e26fb24">stop</a> () noexcept -&gt; void</td></tr>
+<tr class="memitem:ac1f9509dbd9727690bc5fe927c9dcaa8" id="r_ac1f9509dbd9727690bc5fe927c9dcaa8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1f9509dbd9727690bc5fe927c9dcaa8">sleep</a> () -&gt; void</td></tr>
+<tr class="memitem:a256c5bb486b47937a644bf5232b5d5b8" id="r_a256c5bb486b47937a644bf5232b5d5b8"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a256c5bb486b47937a644bf5232b5d5b8">wake</a> () -&gt; void</td></tr>
+<tr class="memitem:ac327233167c1f4d2b6c82763431d63b2" id="r_ac327233167c1f4d2b6c82763431d63b2"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac327233167c1f4d2b6c82763431d63b2">signalStop</a> () -&gt; void</td></tr>
+<tr class="memitem:ad9cefe24598befc8c553d2d3fbe433e3" id="r_ad9cefe24598befc8c553d2d3fbe433e3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9cefe24598befc8c553d2d3fbe433e3">hasSignalledStop</a> () const noexcept -&gt; bool</td></tr>
+<tr class="memitem:ad2ef16eab595b3b2389b83d2c7d1b2ae" id="r_ad2ef16eab595b3b2389b83d2c7d1b2ae"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2ef16eab595b3b2389b83d2c7d1b2ae">isThreadRunning</a> () const noexcept -&gt; bool</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -130,12 +132,13 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Destructor. Calls stop, which joins the internal thread, so will block if the thread is running! </p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a2dc43b2e8ff9d3e9ce5078d62cbc31ee" name="a2dc43b2e8ff9d3e9ce5078d62cbc31ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dc43b2e8ff9d3e9ce5078d62cbc31ee">&#9670;&#160;</a></span>isThreadRunning()</h2>
+<a id="ad9cefe24598befc8c553d2d3fbe433e3" name="ad9cefe24598befc8c553d2d3fbe433e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9cefe24598befc8c553d2d3fbe433e3">&#9670;&#160;</a></span>hasSignalledStop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,10 +147,10 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool mostly_harmless::utils::TaskThread::isThreadRunning </td>
+          <td class="memname">auto mostly_harmless::utils::TaskThread::hasSignalledStop </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
+          <td> const -&gt;  bool</td>
         </tr>
       </table>
   </td>
@@ -156,45 +159,12 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Retrieves the state of the atomic bool described in <a class="el" href="#ac327233167c1f4d2b6c82763431d63b2">signalStop()</a> - use this in your custom thread action to respond to cancellation requests if needed (again, does nothing on it's own!) </p><dl class="section return"><dt>Returns</dt><dd>The state of the <span class="tt">should_stop</span> bool. </dd></dl>
 
 </div>
 </div>
-<a id="ae82139117b54e99df9de0ee5cfe5a1a5" name="ae82139117b54e99df9de0ee5cfe5a1a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae82139117b54e99df9de0ee5cfe5a1a5">&#9670;&#160;</a></span>perform()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mostly_harmless::utils::TaskThread::perform </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a966cb6f9825dfc8c90904791c7cf49b8" name="a966cb6f9825dfc8c90904791c7cf49b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a966cb6f9825dfc8c90904791c7cf49b8">&#9670;&#160;</a></span>sleep()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mostly_harmless::utils::TaskThread::sleep </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab9dd36e26e073c5fc7a5a49180a8116f" name="ab9dd36e26e073c5fc7a5a49180a8116f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9dd36e26e073c5fc7a5a49180a8116f">&#9670;&#160;</a></span>stop()</h2>
+<a id="ad2ef16eab595b3b2389b83d2c7d1b2ae" name="ad2ef16eab595b3b2389b83d2c7d1b2ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2ef16eab595b3b2389b83d2c7d1b2ae">&#9670;&#160;</a></span>isThreadRunning()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -203,10 +173,90 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void mostly_harmless::utils::TaskThread::stop </td>
+          <td class="memname">auto mostly_harmless::utils::TaskThread::isThreadRunning </td>
           <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>join</em></span></td><td>)</td>
-          <td></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gives a loose indication of whether the thread is still running or not - loose, because this will only get set <em>after</em> the user action has been run, not within. This means there may be a few cpu cycles discrepancy between when you <em>think</em> this should return true and when it <em>actually</em> returns true. TLDR, don't rely on it for anything timing critical! </p><dl class="section return"><dt>Returns</dt><dd>Whether the thread is running or not. </dd></dl>
+
+</div>
+</div>
+<a id="a9c9e3a892d1729e4d581091878fe5778" name="a9c9e3a892d1729e4d581091878fe5778"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c9e3a892d1729e4d581091878fe5778">&#9670;&#160;</a></span>perform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto mostly_harmless::utils::TaskThread::perform </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> -&gt;  void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Performs the <span class="tt">action</span> lambda (if it's been set) on a std::thread, and sets isThreadRunning to false on scope exit. </p>
+
+</div>
+</div>
+<a id="ac327233167c1f4d2b6c82763431d63b2" name="ac327233167c1f4d2b6c82763431d63b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac327233167c1f4d2b6c82763431d63b2">&#9670;&#160;</a></span>signalStop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto mostly_harmless::utils::TaskThread::signalStop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> -&gt;  void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets an internal atomic bool that the thread should exit. Like <a class="el" href="#ac1f9509dbd9727690bc5fe927c9dcaa8">sleep()</a> and <a class="el" href="#a256c5bb486b47937a644bf5232b5d5b8">wake()</a>, doesn't actually do anything on its own, pair this with usage of <a class="el" href="#ad9cefe24598befc8c553d2d3fbe433e3">hasSignalledStop()</a> in your custom thread action. </p>
+
+</div>
+</div>
+<a id="ac1f9509dbd9727690bc5fe927c9dcaa8" name="ac1f9509dbd9727690bc5fe927c9dcaa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1f9509dbd9727690bc5fe927c9dcaa8">&#9670;&#160;</a></span>sleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto mostly_harmless::utils::TaskThread::sleep </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> -&gt;  void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>For use in your <span class="tt">action</span> lambda, pauses the thread's execution until it's woken via <a class="el" href="#a256c5bb486b47937a644bf5232b5d5b8">wake()</a>. Internally just uses a <span class="tt">std::condition_variable</span> and an atomic "canWakeUp" bool - this call is equivalent to std::condition_variable::wait(). Note that this doesn't actually do anything on its own unless you call <span class="tt">sleep</span> in your action - it's just there if you need it! </p>
+
+</div>
+</div>
+<a id="a52b1272fb3729a72f090d32e2e26fb24" name="a52b1272fb3729a72f090d32e2e26fb24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52b1272fb3729a72f090d32e2e26fb24">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto mostly_harmless::utils::TaskThread::stop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> -&gt;  void</td>
         </tr>
       </table>
   </td>
@@ -215,23 +265,25 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Calls <a class="el" href="#ac327233167c1f4d2b6c82763431d63b2">signalStop()</a>, joins the thread, and resets the internal state for reuse. </p>
 
 </div>
 </div>
-<a id="a5767debb36f097d06df842173d509a82" name="a5767debb36f097d06df842173d509a82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5767debb36f097d06df842173d509a82">&#9670;&#160;</a></span>wake()</h2>
+<a id="a256c5bb486b47937a644bf5232b5d5b8" name="a256c5bb486b47937a644bf5232b5d5b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a256c5bb486b47937a644bf5232b5d5b8">&#9670;&#160;</a></span>wake()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mostly_harmless::utils::TaskThread::wake </td>
+          <td class="memname">auto mostly_harmless::utils::TaskThread::wake </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td> -&gt;  void</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Paired with sleep, sets the <span class="tt">canWakeUp</span> bool to true, and notifies the underlying condition variable. All ramblings from <a class="el" href="#a256c5bb486b47937a644bf5232b5d5b8">wake()</a>` also apply here. </p>
 
 </div>
 </div>
@@ -244,6 +296,49 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::function&lt;void(void)&gt; mostly_harmless::utils::TaskThread::action { nullptr }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A user-settable lambda to be invoked on the internal std::thread. Put your threaded logic here!! </p>
+
+</div>
+</div>
+<a id="aa8ef631fe5c3d53243fbfe51752f4917" name="aa8ef631fe5c3d53243fbfe51752f4917"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ef631fe5c3d53243fbfe51752f4917">&#9670;&#160;</a></span>canWakeUp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;bool&gt; mostly_harmless::utils::TaskThread::canWakeUp { false }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3e595fbd973eeb111baa87171f5a9c0" name="af3e595fbd973eeb111baa87171f5a9c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e595fbd973eeb111baa87171f5a9c0">&#9670;&#160;</a></span>conditionVariable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::condition_variable mostly_harmless::utils::TaskThread::conditionVariable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef5f18e1396849d62bbee9a50ac32ea6" name="aef5f18e1396849d62bbee9a50ac32ea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef5f18e1396849d62bbee9a50ac32ea6">&#9670;&#160;</a></span>mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex mostly_harmless::utils::TaskThread::mutex</td>
         </tr>
       </table>
 </div><div class="memdoc">

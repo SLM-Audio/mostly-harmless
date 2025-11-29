@@ -1,5 +1,15 @@
 var NAVTREEINDEX1 =
 {
+"md_FXPluginTutorial.html#autotoc_md28":[1,4,1],
+"mostlyharmless__AudioHelpers_8h.html":[4,0,0,0,0,0],
+"mostlyharmless__AudioHelpers_8h_source.html":[4,0,0,0,0,0],
+"mostlyharmless__BusConfig_8h.html":[4,0,0,0,6],
+"mostlyharmless__BusConfig_8h_source.html":[4,0,0,0,6],
+"mostlyharmless__Colour_8h.html":[4,0,0,0,4,1],
+"mostlyharmless__Colour_8h_source.html":[4,0,0,0,4,1],
+"mostlyharmless__DatabasePropertyWatcher_8h.html":[4,0,0,0,2,0],
+"mostlyharmless__DatabasePropertyWatcher_8h_source.html":[4,0,0,0,2,0],
+"mostlyharmless__DatabaseState_8h.html":[4,0,0,0,2,1],
 "mostlyharmless__DatabaseState_8h_source.html":[4,0,0,0,2,1],
 "mostlyharmless__Descriptor_8h.html":[4,0,0,0,7],
 "mostlyharmless__Descriptor_8h_source.html":[4,0,0,0,7],
@@ -239,15 +249,5 @@ var NAVTREEINDEX1 =
 "structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html#adf577ed292ce8599a2cbadf670e2d1bc":[3,0,0,2,2,1],
 "structmostly__harmless_1_1events_1_1WebEvent.html":[2,0,0,3,3],
 "structmostly__harmless_1_1events_1_1WebEvent.html":[3,0,0,2,3],
-"structmostly__harmless_1_1events_1_1WebEvent.html#a24e77bcd1a578ce19b56dfa77f423058":[2,0,0,3,3,3],
-"structmostly__harmless_1_1events_1_1WebEvent.html#a24e77bcd1a578ce19b56dfa77f423058":[3,0,0,2,3,3],
-"structmostly__harmless_1_1events_1_1WebEvent.html#a56ebf32b42ac5eae0783a7c4b5f0c5eb":[2,0,0,3,3,1],
-"structmostly__harmless_1_1events_1_1WebEvent.html#a56ebf32b42ac5eae0783a7c4b5f0c5eb":[3,0,0,2,3,1],
-"structmostly__harmless_1_1events_1_1WebEvent.html#aaa122b328dceae4bfce47aa6a1771f08":[2,0,0,3,3,2],
-"structmostly__harmless_1_1events_1_1WebEvent.html#aaa122b328dceae4bfce47aa6a1771f08":[3,0,0,2,3,2],
-"structmostly__harmless_1_1events_1_1WebEvent.html#ac3fe46658e7a96b30c55f5d2ee93b4a3":[2,0,0,3,3,0],
-"structmostly__harmless_1_1events_1_1WebEvent.html#ac3fe46658e7a96b30c55f5d2ee93b4a3":[3,0,0,2,3,0],
-"structmostly__harmless_1_1gui_1_1Colour.html":[2,0,0,4,1],
-"structmostly__harmless_1_1gui_1_1Colour.html":[3,0,0,3,0],
-"structmostly__harmless_1_1gui_1_1Colour.html#a03eb000def42ec98e532d8284cfd5ed8":[2,0,0,4,1,4]
+"structmostly__harmless_1_1events_1_1WebEvent.html#a24e77bcd1a578ce19b56dfa77f423058":[2,0,0,3,3,3]
 };

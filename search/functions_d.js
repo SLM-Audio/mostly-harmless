@@ -9,6 +9,7 @@ var searchData=
   ['setviewsize_6',['setViewSize',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8e6b76e81afa3152032ffa6de869c796',1,'mostly_harmless::gui::helpers::macos']]],
   ['show_7',['show',['../structmostly__harmless_1_1core_1_1IEditor.html#a7e863967c4374395f843d8629fefb56b',1,'mostly_harmless::core::IEditor::show()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a85cdd02af5eabb7fa6fef7d29da18995',1,'mostly_harmless::gui::WebviewBase::show()']]],
   ['showview_8',['showView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#ac8fef1567c0547ce6195b09c95cb4a73',1,'mostly_harmless::gui::helpers::macos']]],
-  ['sleep_9',['sleep',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a966cb6f9825dfc8c90904791c7cf49b8',1,'mostly_harmless::utils::TaskThread']]],
-  ['stop_10',['stop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ab9dd36e26e073c5fc7a5a49180a8116f',1,'mostly_harmless::utils::TaskThread::stop()'],['../classmostly__harmless_1_1utils_1_1Timer.html#a303f4b214b7f10114e4b135cdd79a959',1,'mostly_harmless::utils::Timer::stop()']]]
+  ['signalstop_9',['signalStop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ac327233167c1f4d2b6c82763431d63b2',1,'mostly_harmless::utils::TaskThread']]],
+  ['sleep_10',['sleep',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ac1f9509dbd9727690bc5fe927c9dcaa8',1,'mostly_harmless::utils::TaskThread']]],
+  ['stop_11',['stop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a52b1272fb3729a72f090d32e2e26fb24',1,'mostly_harmless::utils::TaskThread::stop()'],['../classmostly__harmless_1_1utils_1_1Timer.html#ae768a002d49fe64d8596c97948b72fb9',1,'mostly_harmless::utils::Timer::stop()']]]
 ];
