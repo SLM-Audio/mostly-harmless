@@ -5,4 +5,5 @@ set(MOSTLYHARMLESS_TEST_SOURCE
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_TimerTests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_InputEventContextTests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabaseStateTests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_MidiEventTests.cpp
         PARENT_SCOPE)

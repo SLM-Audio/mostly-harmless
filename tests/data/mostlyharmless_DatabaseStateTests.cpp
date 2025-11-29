@@ -79,8 +79,7 @@ namespace mostly_harmless::testing {
             }
             std::filesystem::remove(dbFile);
         }
-
-        SECTION("Test DatabasePropertyWatcher") {
+     SECTION("Test DatabasePropertyWatcher") {
             for (auto i = 0; i < 100; ++i) {
                 {
                     auto databaseOpt = tryCreateDatabase<true>(dbFile, { { "test", 0 } });

@@ -1,10 +1,14 @@
 //
 // Created by Syl Morrison on 20/10/2024.
 //
+#include "mostly_harmless/utils/mostlyharmless_Visitor.h"
+
+
 #include <mostly_harmless/mostlyharmless_PluginBase.h>
 #include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #include <mostly_harmless/audio/mostlyharmless_AudioHelpers.h>
 #include <mostly_harmless/utils/mostlyharmless_NoDenormals.h>
+#include <mostly_harmless/events/mostlyharmless_MidiEvent.h>
 #include <clap/helpers/plugin.hxx>
 
 namespace mostly_harmless::internal {
@@ -168,23 +172,33 @@ namespace mostly_harmless::internal {
                 // 0PPP PPPP
                 // 0VVV VVVV
                 const auto* midiEvent = reinterpret_cast<const clap_event_midi*>(event);
-                std::uint8_t message = midiEvent->data[0] & 0xF0; // SSSS 0000 - Message will be << 4
-                std::uint8_t channel = midiEvent->data[0] & 0x0F; // 0000 CCCC
-                std::uint8_t note = midiEvent->data[1];           // 0PPP PPPP
-                std::uint8_t velocity = midiEvent->data[2];       // 0VVV VVVV
-                const auto fpVelocity = static_cast<double>(velocity) / 127.0;
-                switch (message) {
-                    case 0x90: {
-                        m_engine->handleNoteOn(midiEvent->port_index, channel, note, fpVelocity);
-                        break;
-                    }
-                    case 0x80: {
-                        m_engine->handleNoteOff(midiEvent->port_index, channel, note, fpVelocity);
-                        break;
-                    }
-                    default: break; // TODO
+                auto res = mostly_harmless::events::midi::parse(midiEvent->data[0], midiEvent->data[1], midiEvent->data[2]);
+                if (!res) {
+                    return;
                 }
-                break;
+                std::visit(utils::Visitor{
+                               [this, &midiEvent](events::midi::NoteOff x) {
+                                   m_engine->handleNoteOff(midiEvent->port_index, x.channel, x.note, x.velocity);
+                               },
+                               [this, &midiEvent](events::midi::NoteOn x) {
+                                   m_engine->handleNoteOn(midiEvent->port_index, x.channel, x.note, x.velocity);
+                               },
+                               [this, &midiEvent](events::midi::PolyAftertouch x) {
+                                   m_engine->handlePolyAftertouch(midiEvent->port_index, x.channel, x.note, x.pressure);
+                               },
+                               [this, &midiEvent](events::midi::ControlChange x) {
+                                   m_engine->handleControlChange(midiEvent->port_index, x.channel, x.controllerNumber, x.data);
+                               },
+                               [this, &midiEvent](events::midi::ProgramChange x) {
+                                   m_engine->handleProgramChange(midiEvent->port_index, x.channel, x.programNumber);
+                               },
+                               [this, &midiEvent](events::midi::ChannelAftertouch x) {
+                                   m_engine->handleChannelAftertouch(midiEvent->port_index, x.channel, x.pressure);
+                               },
+                               [this, &midiEvent](events::midi::PitchWheel x) {
+                                   m_engine->handlePitchWheel(midiEvent->port_index, x.channel, x.value);
+                               } },
+                           *res);
             }
             case CLAP_EVENT_TRANSPORT: {
                 if (const auto* transportEvent = reinterpret_cast<const clap_event_transport_t*>(event)) {
