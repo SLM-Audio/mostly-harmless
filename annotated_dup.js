@@ -14,6 +14,15 @@ var annotated_dup =
         [ "DatabaseState", "classmostly__harmless_1_1data_1_1DatabaseState.html", "classmostly__harmless_1_1data_1_1DatabaseState" ]
       ] ],
       [ "events", "namespacemostly__harmless_1_1events.html", [
+        [ "midi", "namespacemostly__harmless_1_1events_1_1midi.html", [
+          [ "ChannelAftertouch", "structmostly__harmless_1_1events_1_1midi_1_1ChannelAftertouch.html", "structmostly__harmless_1_1events_1_1midi_1_1ChannelAftertouch" ],
+          [ "ControlChange", "structmostly__harmless_1_1events_1_1midi_1_1ControlChange.html", "structmostly__harmless_1_1events_1_1midi_1_1ControlChange" ],
+          [ "NoteOff", "structmostly__harmless_1_1events_1_1midi_1_1NoteOff.html", "structmostly__harmless_1_1events_1_1midi_1_1NoteOff" ],
+          [ "NoteOn", "structmostly__harmless_1_1events_1_1midi_1_1NoteOn.html", "structmostly__harmless_1_1events_1_1midi_1_1NoteOn" ],
+          [ "PitchWheel", "structmostly__harmless_1_1events_1_1midi_1_1PitchWheel.html", "structmostly__harmless_1_1events_1_1midi_1_1PitchWheel" ],
+          [ "PolyAftertouch", "structmostly__harmless_1_1events_1_1midi_1_1PolyAftertouch.html", "structmostly__harmless_1_1events_1_1midi_1_1PolyAftertouch" ],
+          [ "ProgramChange", "structmostly__harmless_1_1events_1_1midi_1_1ProgramChange.html", "structmostly__harmless_1_1events_1_1midi_1_1ProgramChange" ]
+        ] ],
         [ "GuiToProcParamEvent", "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html", "structmostly__harmless_1_1events_1_1GuiToProcParamEvent" ],
         [ "InputEventContext", "structmostly__harmless_1_1events_1_1InputEventContext.html", "structmostly__harmless_1_1events_1_1InputEventContext" ],
         [ "ProcToGuiParamEvent", "structmostly__harmless_1_1events_1_1ProcToGuiParamEvent.html", "structmostly__harmless_1_1events_1_1ProcToGuiParamEvent" ],
@@ -33,7 +42,8 @@ var annotated_dup =
         [ "OnScopeExit", "classmostly__harmless_1_1utils_1_1OnScopeExit.html", "classmostly__harmless_1_1utils_1_1OnScopeExit" ],
         [ "Proxy", "classmostly__harmless_1_1utils_1_1Proxy.html", "classmostly__harmless_1_1utils_1_1Proxy" ],
         [ "TaskThread", "classmostly__harmless_1_1utils_1_1TaskThread.html", "classmostly__harmless_1_1utils_1_1TaskThread" ],
-        [ "Timer", "classmostly__harmless_1_1utils_1_1Timer.html", "classmostly__harmless_1_1utils_1_1Timer" ]
+        [ "Timer", "classmostly__harmless_1_1utils_1_1Timer.html", "classmostly__harmless_1_1utils_1_1Timer" ],
+        [ "Visitor", "structmostly__harmless_1_1utils_1_1Visitor.html", null ]
       ] ],
       [ "LoopInfo", "structmostly__harmless_1_1LoopInfo.html", "structmostly__harmless_1_1LoopInfo" ],
       [ "Parameter", "structmostly__harmless_1_1Parameter.html", "structmostly__harmless_1_1Parameter" ],

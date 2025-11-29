@@ -105,6 +105,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e66bf8b432af893904f7db9d5589ed7" id="r_a3e66bf8b432af893904f7db9d5589ed7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e66bf8b432af893904f7db9d5589ed7">reset</a> () noexcept=0</td></tr>
 <tr class="memitem:a81402565b13fac637c2d665788e3e09a" id="r_a81402565b13fac637c2d665788e3e09a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81402565b13fac637c2d665788e3e09a">handleNoteOn</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity)</td></tr>
 <tr class="memitem:a52d94392e2a4b08c73f3ec4248068385" id="r_a52d94392e2a4b08c73f3ec4248068385"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52d94392e2a4b08c73f3ec4248068385">handleNoteOff</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, double velocity)</td></tr>
+<tr class="memitem:ae63414ebb5bc531c20e655220e5eb9ab" id="r_ae63414ebb5bc531c20e655220e5eb9ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae63414ebb5bc531c20e655220e5eb9ab">handleControlChange</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t controlNumber, std::uint8_t data)</td></tr>
+<tr class="memitem:a7243d3f2d0ebb1ba7da4d89b48bcc024" id="r_a7243d3f2d0ebb1ba7da4d89b48bcc024"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7243d3f2d0ebb1ba7da4d89b48bcc024">handleProgramChange</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t programNumber)</td></tr>
+<tr class="memitem:ab6df0b9cce51b4379022209378d7e48e" id="r_ab6df0b9cce51b4379022209378d7e48e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6df0b9cce51b4379022209378d7e48e">handlePolyAftertouch</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, std::uint8_t pressure)</td></tr>
+<tr class="memitem:aa5c45a47f17bb49f9af45cf8f5a0314b" id="r_aa5c45a47f17bb49f9af45cf8f5a0314b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5c45a47f17bb49f9af45cf8f5a0314b">handleChannelAftertouch</a> (std::uint8_t portIndex, std::uint8_t channel, std::uint8_t pressure)</td></tr>
+<tr class="memitem:aeb737e5f9d95bb7fdfd123859f402e1b" id="r_aeb737e5f9d95bb7fdfd123859f402e1b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb737e5f9d95bb7fdfd123859f402e1b">handlePitchWheel</a> (std::uint8_t portIndex, std::uint8_t channel, double value)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for the plugin's audio processing functionality. </p>
@@ -139,6 +144,96 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aa5c45a47f17bb49f9af45cf8f5a0314b" name="aa5c45a47f17bb49f9af45cf8f5a0314b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5c45a47f17bb49f9af45cf8f5a0314b">&#9670;&#160;</a></span>handleChannelAftertouch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void mostly_harmless::core::IEngine::handleChannelAftertouch </td>
+          <td>(</td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>pressure</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called if the plugin receives a (channel-wide) aftertouch event. In this case, all notes within a channel get the same pressure value. Not pure virtual, as this function isn't relevant if you haven't requested midi functionality. Called on the audio thread, in response to a channel aftertouch event. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portIndex</td><td>The clap port index the event originated from. </td></tr>
+    <tr><td class="paramname">channel</td><td>The midi channel the event was passed to </td></tr>
+    <tr><td class="paramname">pressure</td><td>The pressure applied to this midi note </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae63414ebb5bc531c20e655220e5eb9ab" name="ae63414ebb5bc531c20e655220e5eb9ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae63414ebb5bc531c20e655220e5eb9ab">&#9670;&#160;</a></span>handleControlChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void mostly_harmless::core::IEngine::handleControlChange </td>
+          <td>(</td>
+          <td class="paramtype">std::uint16_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>controlNumber</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called if the plugin receives a midi control change event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality. Called on the audio thread, in response to a control change event. Some of the identifiers here are reserved for special controls (mod wheel etc) - we don't do any handling of this framework side, so have a google if you need this info! </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portIndex</td><td>The clap port index the event originated from. </td></tr>
+    <tr><td class="paramname">channel</td><td>The midi channel the event was passed to </td></tr>
+    <tr><td class="paramname">controlNumber</td><td>The midi control that was changed </td></tr>
+    <tr><td class="paramname">data</td><td>The data in the midi message - see the midi spec for interpreting this. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a52d94392e2a4b08c73f3ec4248068385" name="a52d94392e2a4b08c73f3ec4248068385"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52d94392e2a4b08c73f3ec4248068385">&#9670;&#160;</a></span>handleNoteOff()</h2>
 
@@ -229,6 +324,138 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">channel</td><td>The midi channel the event was passed to </td></tr>
     <tr><td class="paramname">note</td><td>The 0-127 midi note that was turned on. </td></tr>
     <tr><td class="paramname">velocity</td><td>The 0-1 velocity of the note event </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeb737e5f9d95bb7fdfd123859f402e1b" name="aeb737e5f9d95bb7fdfd123859f402e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb737e5f9d95bb7fdfd123859f402e1b">&#9670;&#160;</a></span>handlePitchWheel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void mostly_harmless::core::IEngine::handlePitchWheel </td>
+          <td>(</td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called if the plugin receives a pitch wheel event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality. Called on the audio thread, in response to a pitch wheel event. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portIndex</td><td>The clap port index the event originated from. </td></tr>
+    <tr><td class="paramname">channel</td><td>The midi channel the event was passed to </td></tr>
+    <tr><td class="paramname">value</td><td>The value, between -1.0 and 1.0 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab6df0b9cce51b4379022209378d7e48e" name="ab6df0b9cce51b4379022209378d7e48e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6df0b9cce51b4379022209378d7e48e">&#9670;&#160;</a></span>handlePolyAftertouch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void mostly_harmless::core::IEngine::handlePolyAftertouch </td>
+          <td>(</td>
+          <td class="paramtype">std::uint16_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>note</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>pressure</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called if the plugin receives a (polyphonic) aftertouch event (polyphonic in the sense that each note can have its own pressure data). Not pure virtual, as this function isn't relevant if you haven't requested midi functionality. Called on the audio thread, in response to a poly aftertouch event. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portIndex</td><td>The clap port index the event originated from. </td></tr>
+    <tr><td class="paramname">channel</td><td>The midi channel the event was passed to </td></tr>
+    <tr><td class="paramname">note</td><td>The midi note this aftertouch event applies to </td></tr>
+    <tr><td class="paramname">pressure</td><td>The pressure applied to this midi note </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7243d3f2d0ebb1ba7da4d89b48bcc024" name="a7243d3f2d0ebb1ba7da4d89b48bcc024"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7243d3f2d0ebb1ba7da4d89b48bcc024">&#9670;&#160;</a></span>handleProgramChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void mostly_harmless::core::IEngine::handleProgramChange </td>
+          <td>(</td>
+          <td class="paramtype">std::uint16_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>programNumber</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called if the plugin receives a program change event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality. Called on the audio thread, in response to a program change event. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portIndex</td><td>The clap port index the event originated from. </td></tr>
+    <tr><td class="paramname">channel</td><td>The midi channel the event was passed to </td></tr>
+    <tr><td class="paramname">programNumber</td><td>The program number that was set </td></tr>
   </table>
   </dd>
 </dl>
