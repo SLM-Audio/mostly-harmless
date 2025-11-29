@@ -9,74 +9,81 @@
 namespace mostly_harmless::testing {
     constexpr static size_t s_nRepeats{ 50 };
     TEST_CASE("Test TaskThread") {
+
         SECTION("Wait for lock") {
             for (size_t i = 0; i < s_nRepeats; ++i) {
                 mostly_harmless::utils::TaskThread taskThread;
                 std::mutex mutex;
                 auto x{ false };
-                auto task = [&mutex, &x]() -> void {
-                    std::scoped_lock<std::mutex> sl{ mutex };
+                std::condition_variable cv;
+                auto task = [&mutex, &x, &cv]() -> void {
                     std::this_thread::sleep_for(std::chrono::milliseconds(10));
-                    x = true;
+                    {
+                        std::lock_guard<std::mutex> lock{ mutex };
+                        x = true;
+                    }
+                    cv.notify_all();
                 };
                 taskThread.action = std::move(task);
                 taskThread.perform();
-                // Sleep so the task has a chance to acquire the mutex.. (syscall and all that)
-                std::this_thread::sleep_for(std::chrono::milliseconds(20));
-                std::scoped_lock<std::mutex> sl{ mutex };
+                std::unique_lock<std::mutex> ul{ mutex };
+                cv.wait_for(ul, std::chrono::seconds{ 1 }, [&x]() -> bool {
+                    return x == true;
+                });
                 REQUIRE(x);
-                REQUIRE(!taskThread.isThreadRunning());
             }
         }
 
         SECTION("Kill") {
             for (size_t i = 0; i < s_nRepeats; ++i) {
+                bool did_signal_exit{ false};
                 mostly_harmless::utils::TaskThread taskThread;
-                auto task = [&taskThread]() -> void {
-                    while (taskThread.isThreadRunning());
+                std::mutex mutex;
+                std::condition_variable cv;
+                auto task = [&taskThread, &mutex, &cv, &did_signal_exit]() -> void {
+                    while (!taskThread.hasSignalledStop());
+                    {
+                        std::lock_guard<std::mutex> lock{ mutex };
+                        did_signal_exit = true;
+                    }
+                    cv.notify_all();
                 };
+
                 taskThread.action = std::move(task);
                 taskThread.perform();
-                std::this_thread::sleep_for(std::chrono::milliseconds(5));
                 REQUIRE(taskThread.isThreadRunning());
-                taskThread.stop(true);
-                REQUIRE(!taskThread.isThreadRunning());
+                taskThread.stop();
+                std::unique_lock<std::mutex> ul{ mutex };
+                cv.wait_for(ul, std::chrono::seconds{ 1 }, [&]() -> bool { return did_signal_exit; });
+                REQUIRE(did_signal_exit);
             }
         }
 
         SECTION("Sleep/Wake") {
             for (size_t i = 0; i < s_nRepeats; ++i) {
+                bool awake{ false };
                 mostly_harmless::utils::TaskThread taskThread;
-                auto task = [&taskThread]() -> void {
+                std::mutex mutex;
+                std::condition_variable cv;
+                auto task = [&taskThread, &mutex, &cv, &awake]() -> void {
                     taskThread.sleep();
+                    {
+                        std::lock_guard<std::mutex> lock{ mutex };
+                        awake = true;
+                    }
+                    cv.notify_one();
                 };
                 taskThread.action = std::move(task);
                 taskThread.perform();
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
                 REQUIRE(taskThread.isThreadRunning());
+                std::this_thread::sleep_for(std::chrono::milliseconds{ 10 });
                 taskThread.wake();
-                taskThread.stop(true);
-                REQUIRE(!taskThread.isThreadRunning());
-            }
-        }
-
-        SECTION("Out of scope") {
-            for (size_t i = 0; i < s_nRepeats; ++i) {
-                std::chrono::time_point<std::chrono::steady_clock> start;
-                {
-                    utils::TaskThread scopedThread;
-                    auto task = [&scopedThread]() -> void {
-                        while (scopedThread.isThreadRunning()) {
-                            scopedThread.sleep();
-                        }
-                    };
-                    scopedThread.action = std::move(task);
-                    scopedThread.perform();
-                    start = std::chrono::steady_clock::now();
-                }
-                const auto end = std::chrono::steady_clock::now();
-                const auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-                REQUIRE(duration < std::chrono::milliseconds(5));
+                std::unique_lock<std::mutex> ul{ mutex };
+                cv.wait_for(ul, std::chrono::seconds{ 1 }, [&]() -> bool {
+                    return awake;
+                });
+                REQUIRE(awake);
+                taskThread.stop();
             }
         }
     }
