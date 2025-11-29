@@ -108,8 +108,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae63414ebb5bc531c20e655220e5eb9ab" id="r_ae63414ebb5bc531c20e655220e5eb9ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae63414ebb5bc531c20e655220e5eb9ab">handleControlChange</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t controlNumber, std::uint8_t data)</td></tr>
 <tr class="memitem:a7243d3f2d0ebb1ba7da4d89b48bcc024" id="r_a7243d3f2d0ebb1ba7da4d89b48bcc024"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7243d3f2d0ebb1ba7da4d89b48bcc024">handleProgramChange</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t programNumber)</td></tr>
 <tr class="memitem:ab6df0b9cce51b4379022209378d7e48e" id="r_ab6df0b9cce51b4379022209378d7e48e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6df0b9cce51b4379022209378d7e48e">handlePolyAftertouch</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t note, std::uint8_t pressure)</td></tr>
-<tr class="memitem:aa5c45a47f17bb49f9af45cf8f5a0314b" id="r_aa5c45a47f17bb49f9af45cf8f5a0314b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5c45a47f17bb49f9af45cf8f5a0314b">handleChannelAftertouch</a> (std::uint8_t portIndex, std::uint8_t channel, std::uint8_t pressure)</td></tr>
-<tr class="memitem:aeb737e5f9d95bb7fdfd123859f402e1b" id="r_aeb737e5f9d95bb7fdfd123859f402e1b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb737e5f9d95bb7fdfd123859f402e1b">handlePitchWheel</a> (std::uint8_t portIndex, std::uint8_t channel, double value)</td></tr>
+<tr class="memitem:a94de0b1369408f7536a87f73d9d544f4" id="r_a94de0b1369408f7536a87f73d9d544f4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94de0b1369408f7536a87f73d9d544f4">handleChannelAftertouch</a> (std::uint16_t portIndex, std::uint8_t channel, std::uint8_t pressure)</td></tr>
+<tr class="memitem:af129559b0f86a2855cb7b23fe23617b5" id="r_af129559b0f86a2855cb7b23fe23617b5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af129559b0f86a2855cb7b23fe23617b5">handlePitchWheel</a> (std::uint16_t portIndex, std::uint8_t channel, double value)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface for the plugin's audio processing functionality. </p>
@@ -144,8 +144,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="aa5c45a47f17bb49f9af45cf8f5a0314b" name="aa5c45a47f17bb49f9af45cf8f5a0314b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5c45a47f17bb49f9af45cf8f5a0314b">&#9670;&#160;</a></span>handleChannelAftertouch()</h2>
+<a id="a94de0b1369408f7536a87f73d9d544f4" name="a94de0b1369408f7536a87f73d9d544f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94de0b1369408f7536a87f73d9d544f4">&#9670;&#160;</a></span>handleChannelAftertouch()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +156,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void mostly_harmless::core::IEngine::handleChannelAftertouch </td>
           <td>(</td>
-          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
+          <td class="paramtype">std::uint16_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -330,8 +330,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aeb737e5f9d95bb7fdfd123859f402e1b" name="aeb737e5f9d95bb7fdfd123859f402e1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb737e5f9d95bb7fdfd123859f402e1b">&#9670;&#160;</a></span>handlePitchWheel()</h2>
+<a id="af129559b0f86a2855cb7b23fe23617b5" name="af129559b0f86a2855cb7b23fe23617b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af129559b0f86a2855cb7b23fe23617b5">&#9670;&#160;</a></span>handlePitchWheel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -342,7 +342,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void mostly_harmless::core::IEngine::handlePitchWheel </td>
           <td>(</td>
-          <td class="paramtype">std::uint8_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
+          <td class="paramtype">std::uint16_t</td>          <td class="paramname"><span class="paramname"><em>portIndex</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
