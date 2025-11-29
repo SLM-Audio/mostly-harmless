@@ -26,14 +26,14 @@ namespace mostly_harmless::utils {
     }
 
     auto TaskThread::stop() noexcept -> void {
-        m_isThreadRunning = false;
+        signalStop();
         if (!m_thread) {
             return;
         }
         if (m_thread->joinable()) {
             m_thread->join();
         }
-        m_thread.reset();
+        reset();
     }
 
     auto TaskThread::sleep() -> void {
@@ -51,5 +51,21 @@ namespace mostly_harmless::utils {
     auto TaskThread::isThreadRunning() const noexcept -> bool {
         return m_isThreadRunning;
     }
+
+    auto TaskThread::signalStop() -> void {
+        m_stop.store(true);
+    }
+
+    auto TaskThread::hasSignalledStop() const noexcept -> bool {
+        return m_stop;
+    }
+
+    auto TaskThread::reset() -> void {
+        m_thread.reset();
+        m_stop = false;
+    }
+
+
+
 
 } // namespace mostly_harmless::utils

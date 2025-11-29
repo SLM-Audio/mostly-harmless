@@ -36,11 +36,16 @@ namespace mostly_harmless::testing {
 
         SECTION("Kill") {
             for (size_t i = 0; i < s_nRepeats; ++i) {
+                bool did_signal_exit{ false};
                 mostly_harmless::utils::TaskThread taskThread;
                 std::mutex mutex;
                 std::condition_variable cv;
-                auto task = [&taskThread, &cv]() -> void {
-                    while (taskThread.isThreadRunning());
+                auto task = [&taskThread, &mutex, &cv, &did_signal_exit]() -> void {
+                    while (!taskThread.hasSignalledStop());
+                    {
+                        std::lock_guard<std::mutex> lock{ mutex };
+                        did_signal_exit = true;
+                    }
                     cv.notify_all();
                 };
 
@@ -49,18 +54,23 @@ namespace mostly_harmless::testing {
                 REQUIRE(taskThread.isThreadRunning());
                 taskThread.stop();
                 std::unique_lock<std::mutex> ul{ mutex };
-                cv.wait_for(ul, std::chrono::seconds{ 1 }, [&]() -> bool { return !taskThread.isThreadRunning(); });
-                REQUIRE(!taskThread.isThreadRunning());
+                cv.wait_for(ul, std::chrono::seconds{ 1 }, [&]() -> bool { return did_signal_exit; });
+                REQUIRE(did_signal_exit);
             }
         }
 
         SECTION("Sleep/Wake") {
             for (size_t i = 0; i < s_nRepeats; ++i) {
+                bool awake{ false };
                 mostly_harmless::utils::TaskThread taskThread;
                 std::mutex mutex;
                 std::condition_variable cv;
-                auto task = [&taskThread, &cv]() -> void {
+                auto task = [&taskThread, &mutex, &cv, &awake]() -> void {
                     taskThread.sleep();
+                    {
+                        std::lock_guard<std::mutex> lock{ mutex };
+                        awake = true;
+                    }
                     cv.notify_one();
                 };
                 taskThread.action = std::move(task);
@@ -68,12 +78,12 @@ namespace mostly_harmless::testing {
                 REQUIRE(taskThread.isThreadRunning());
                 std::this_thread::sleep_for(std::chrono::milliseconds{ 10 });
                 taskThread.wake();
-                taskThread.stop();
                 std::unique_lock<std::mutex> ul{ mutex };
                 cv.wait_for(ul, std::chrono::seconds{ 1 }, [&]() -> bool {
-                    return !taskThread.isThreadRunning();
+                    return awake;
                 });
-                REQUIRE(!taskThread.isThreadRunning());
+                REQUIRE(awake);
+                taskThread.stop();
             }
         }
     }

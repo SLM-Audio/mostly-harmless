@@ -8,7 +8,7 @@ namespace mostly_harmless::utils {
         if (!action || m_thread.isThreadRunning()) return;
         auto threadAction = [this, intervalMs]() -> void {
             auto startPoint = std::chrono::steady_clock::now();
-            while (m_thread.isThreadRunning()) {
+            while (!m_thread.hasSignalledStop()) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(1));
                 const auto now = std::chrono::steady_clock::now();
                 const auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(now - startPoint);
