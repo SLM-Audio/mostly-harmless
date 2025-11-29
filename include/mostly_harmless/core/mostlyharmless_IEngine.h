@@ -138,7 +138,7 @@ namespace mostly_harmless::core {
          * @param channel The midi channel the event was passed to
          * @param pressure The pressure applied to this midi note
          */
-        virtual void handleChannelAftertouch([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t pressure) {}
+        virtual void handleChannelAftertouch([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint8_t pressure) {}
 
         /**
          * Called if the plugin receives a pitch wheel event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality.
@@ -147,7 +147,7 @@ namespace mostly_harmless::core {
          * @param channel The midi channel the event was passed to
          * @param value The value, between -1.0 and 1.0
          */
-        virtual void handlePitchWheel([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] double value) {}
+        virtual void handlePitchWheel([[maybe_unused]] std::uint16_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] double value) {}
     };
 } // namespace mostly_harmless::core
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_IENGINE_H
