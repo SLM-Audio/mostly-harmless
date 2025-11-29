@@ -15,6 +15,7 @@ set(MOSTLYHARMLESS_HEADERS
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_InputEventContext.h
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_WebEvent.h
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_ParamEvent.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_MidiEvent.h
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Parameters.h
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewBase.h
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewEditor.h
@@ -27,6 +28,7 @@ set(MOSTLYHARMLESS_HEADERS
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Proxy.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_NoDenormals.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Logging.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Visitor.h
         ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabaseState.h
         ${CMAKE_CURRENT_SOURCE_DIR}/data/mostlyharmless_DatabasePropertyWatcher.h
         ${PLATFORM_HEADERS}

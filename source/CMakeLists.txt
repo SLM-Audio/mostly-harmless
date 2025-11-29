@@ -23,6 +23,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_InputEventContext.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_ParamEvent.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_WebEvent.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/events/mostlyharmless_MidiEvent.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewBase.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewEditor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Colour.cpp

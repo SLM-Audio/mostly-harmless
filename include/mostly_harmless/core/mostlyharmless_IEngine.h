@@ -142,13 +142,12 @@ namespace mostly_harmless::core {
 
         /**
          * Called if the plugin receives a pitch wheel event - not pure virtual, as this function isn't relevant if you haven't requested midi functionality.
-         * Value here is a 14-bit value representing the pitch wheel's position, in the range 0x0 to 0x3FFF. Generally, 0x2000 is treated as the centre, negative pitch wheel pos is below 0x2000, and positive is above etc etc etc.
          * Called on the audio thread, in response to a pitch wheel event.
          * @param portIndex The clap port index the event originated from.
          * @param channel The midi channel the event was passed to
-         * @param value The 14-bit value representing pitch wheel pos between 0x0 and 0x3FFF.
+         * @param value The value, between -1.0 and 1.0
          */
-        virtual void handlePitchWheel([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] std::uint16_t value) {}
+        virtual void handlePitchWheel([[maybe_unused]] std::uint8_t portIndex, [[maybe_unused]] std::uint8_t channel, [[maybe_unused]] double value) {}
     };
 } // namespace mostly_harmless::core
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_IENGINE_H
