@@ -102,6 +102,10 @@ you specify the AU format, a few more arguments become neccessary - the argument
         MANUFACTURER_CODE "Brat" # REQUIRED FOR AU, UNUSED OTHERWISE - Your unique 4 character manufacturer code.
         SUBTYPE_CODE "Bpi1" # REQUIRED FOR AU, UNUSED OTHERWISE - A 4 character identifier for your plugin.
         AU_TYPE "aufx" # REQUIRED FOR AU, UNUSED OTHERWISE - The AU plugin type for your plugin. [2]
+
+        STRIP TRUE # OPTIONAL, DEFAULTS TO FALSE - On macOS, if provided, will add a post-build symbol strip step to your plugin
+        # targets, and compile with -fvisibility=hidden. Does nothing on Windows. 
+        SIGN_ID "Developer ID Application: ...." # OPTIONAL - On macOS, if provided, will be used to sign plugin targets
 )
 ```
 
