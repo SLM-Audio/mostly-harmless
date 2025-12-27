@@ -1,4 +1,32 @@
 
+function(mostly_harmless_enable_stripping_static_lib target location name)
+    if(APPLE)
+        target_compile_options(${target} PUBLIC $<$<CONFIG:Release>:-fvisibility=hidden>)
+        set(target_file ${location}/lib${name}_SharedCode.a)
+        add_custom_command(
+                TARGET ${target}
+                COMMAND "$<$<CONFIG:Release>:strip;-x;${target_file}>"
+                VERBATIM
+                POST_BUILD
+                COMMAND_EXPAND_LISTS
+        )
+    endif()
+endfunction()
+
+function(mostly_harmless_enable_stripping target name extension)
+    if(APPLE)
+        target_compile_options(${target} PUBLIC $<$<CONFIG:Release>:-fvisibility=hidden>)
+        set(target_file ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${name}.${extension}/Contents/MacOS/${name})
+        add_custom_command(
+                TARGET ${target}
+                COMMAND "$<$<CONFIG:Release>:strip;-x;${target_file}>"
+                VERBATIM
+                POST_BUILD
+                COMMAND_EXPAND_LISTS
+        )
+    endif()
+endfunction()
+
 function(mostly_harmless_add_binary_data pluginTarget)
     set(ARGS
             TARGET_NAME
@@ -63,6 +91,7 @@ function(mostly_harmless_add_plugin targetName)
             SUBTYPE_CODE # REQUIRED IF AU
             AU_TYPE # REQUIRED IF AU
 
+            STRIP # OPTIONAL, DEFAULT FALSE - if true, will strip symbols in release builds
             SIGN_ID # OPTIONAL, if provided, will codesign
     )
 
@@ -141,6 +170,10 @@ function(mostly_harmless_add_plugin targetName)
     if (NOT DEFINED PLUGIN_FEATURES)
         message(FATAL_ERROR "At least one feature is required")
     endif ()
+    if(NOT DEFINED PLUGIN_STRIP)
+        set(PLUGIN_STRIP FALSE)
+    endif()
+
     configure_file(
             ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostlyharmless_Descriptor.cpp
             ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp
@@ -149,6 +182,9 @@ function(mostly_harmless_add_plugin targetName)
     target_sources(${PLUGIN_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/mostlyharmless_Descriptor.cpp)
     target_link_libraries(${PLUGIN_NAME} PUBLIC MostlyHarmless)
     set_target_properties(${PLUGIN_NAME} PROPERTIES OUTPUT_NAME ${PLUGIN_NAME}_SharedCode)
+    if(${PLUGIN_STRIP})
+        mostly_harmless_enable_stripping_static_lib(${PLUGIN_NAME} ${CMAKE_CURRENT_BINARY_DIR} ${PLUGIN_NAME})
+    endif()
 
     list(FIND PLUGIN_FORMATS "CLAP" INDEX)
     if (${INDEX} GREATER -1)
@@ -166,6 +202,9 @@ function(mostly_harmless_add_plugin targetName)
                     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PLUGIN_VERSION}
                     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
             )
+            if(${PLUGIN_STRIP})
+                mostly_harmless_enable_stripping(${PLUGIN_NAME}_CLAP ${PLUGIN_NAME} "clap")
+            endif()
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
                 mostly_harmless_sign_target(${PLUGIN_NAME}_CLAP ${PLUGIN_NAME} ${PLUGIN_SIGN_ID})
             endif ()
@@ -199,6 +238,9 @@ function(mostly_harmless_add_plugin targetName)
                     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PLUGIN_VERSION}
                     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/mostly_harmless.plist.in
             )
+            if(${PLUGIN_STRIP})
+                mostly_harmless_enable_stripping(${PLUGIN_NAME}_VST3 ${PLUGIN_NAME} "vst3")
+            endif()
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
                 mostly_harmless_sign_target(${PLUGIN_NAME}_VST3 ${PLUGIN_NAME} ${PLUGIN_SIGN_ID})
             endif ()
@@ -244,6 +286,9 @@ function(mostly_harmless_add_plugin targetName)
                     SUBTYPE_CODE ${PLUGIN_SUBTYPE_CODE}
                     INSTRUMENT_TYPE ${PLUGIN_AU_TYPE}
             )
+            if(${PLUGIN_STRIP})
+                mostly_harmless_enable_stripping(${PLUGIN_NAME}_AU ${PLUGIN_NAME} "component")
+            endif()
             if (NOT ${PLUGIN_SIGN_ID} STREQUAL "")
                 mostly_harmless_sign_target(${PLUGIN_NAME}_AU ${PLUGIN_NAME} ${PLUGIN_SIGN_ID})
             endif ()
