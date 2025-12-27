@@ -163,6 +163,10 @@ Adding a plugin target</h2>
 <div class="line">        MANUFACTURER_CODE &quot;Brat&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - Your unique 4 character manufacturer code.</div>
 <div class="line">        SUBTYPE_CODE &quot;Bpi1&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - A 4 character identifier for your plugin.</div>
 <div class="line">        AU_TYPE &quot;aufx&quot; # REQUIRED FOR AU, UNUSED OTHERWISE - The AU plugin type for your plugin. [2]</div>
+<div class="line"> </div>
+<div class="line">        STRIP TRUE # OPTIONAL, DEFAULTS TO FALSE - On macOS, if provided, will add a post-build symbol strip step to your plugin</div>
+<div class="line">        # targets, and compile with -fvisibility=hidden. Does nothing on Windows. </div>
+<div class="line">        SIGN_ID &quot;Developer ID Application: ....&quot; # OPTIONAL - On macOS, if provided, will be used to sign plugin targets</div>
 <div class="line">)</div>
 </div><!-- fragment --><p> <br  />
 </p>
