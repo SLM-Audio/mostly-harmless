@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"md_FXPluginTutorial.html#autotoc_md16":[1,0],
+"md_FXPluginTutorial.html#autotoc_md17":[1,1],
 "md_FXPluginTutorial.html#autotoc_md18":[1,1,0],
 "md_FXPluginTutorial.html#autotoc_md19":[1,1,1],
 "md_FXPluginTutorial.html#autotoc_md20":[1,2],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a51d7a685e12188ee196670343e1ac2cd":[2,0,0,3,1,0,1],
 "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a51d7a685e12188ee196670343e1ac2cd":[3,0,0,2,1,0,1],
 "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a87557f11575c0ad78e4e28abedc13b6e":[2,0,0,3,1,0,2],
-"structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a87557f11575c0ad78e4e28abedc13b6e":[3,0,0,2,1,0,2],
-"structmostly__harmless_1_1events_1_1InputEventContext.html":[2,0,0,3,2],
-"structmostly__harmless_1_1events_1_1InputEventContext.html":[3,0,0,2,2]
+"structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a7f2245f47181293aa071fa22dde67e23a87557f11575c0ad78e4e28abedc13b6e":[3,0,0,2,1,0,2]
 };

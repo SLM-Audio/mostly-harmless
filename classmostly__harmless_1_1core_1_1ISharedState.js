@@ -10,6 +10,7 @@ var classmostly__harmless_1_1core_1_1ISharedState =
     [ "getProcToGuiQueue", "classmostly__harmless_1_1core_1_1ISharedState.html#ae76f2d60550b2916a6444d447d734f32", null ],
     [ "getRawParameterView", "classmostly__harmless_1_1core_1_1ISharedState.html#a7ca1f5d8de9029447d3b18264574e6e8", null ],
     [ "loadState", "classmostly__harmless_1_1core_1_1ISharedState.html#a2677ca09974250ba03a38cf9b9343fce", null ],
+    [ "requestGuiResize", "classmostly__harmless_1_1core_1_1ISharedState.html#a38ab453b2f9e860bc1e357152ed28f1c", null ],
     [ "requestParamFlush", "classmostly__harmless_1_1core_1_1ISharedState.html#a96dbac2dfdcb3e3fde432f0790401070", null ],
     [ "rescanParams", "classmostly__harmless_1_1core_1_1ISharedState.html#a4cdf1903c05a6e8453e3dff65b5c2f83", null ],
     [ "runOnMainThread", "classmostly__harmless_1_1core_1_1ISharedState.html#ac15da31be172228169ea302ed1acadf4", null ],

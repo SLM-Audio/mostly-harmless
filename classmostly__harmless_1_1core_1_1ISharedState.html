@@ -113,6 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac15da31be172228169ea302ed1acadf4" id="r_ac15da31be172228169ea302ed1acadf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac15da31be172228169ea302ed1acadf4">runOnMainThread</a> (std::function&lt; void(void)&gt; &amp;&amp;toRun) const</td></tr>
 <tr class="memitem:a96dbac2dfdcb3e3fde432f0790401070" id="r_a96dbac2dfdcb3e3fde432f0790401070"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96dbac2dfdcb3e3fde432f0790401070">requestParamFlush</a> () const</td></tr>
 <tr class="memitem:a4cdf1903c05a6e8453e3dff65b5c2f83" id="r_a4cdf1903c05a6e8453e3dff65b5c2f83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cdf1903c05a6e8453e3dff65b5c2f83">rescanParams</a> () const</td></tr>
+<tr class="memitem:a38ab453b2f9e860bc1e357152ed28f1c" id="r_a38ab453b2f9e860bc1e357152ed28f1c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38ab453b2f9e860bc1e357152ed28f1c">requestGuiResize</a> (std::uint32_t width, std::uint32_t height) const</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for the plugin's shared state. </p>
@@ -406,6 +407,35 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a38ab453b2f9e860bc1e357152ed28f1c" name="a38ab453b2f9e860bc1e357152ed28f1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ab453b2f9e860bc1e357152ed28f1c">&#9670;&#160;</a></span>requestGuiResize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mostly_harmless::core::ISharedState::requestGuiResize </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>height</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Asks the host to resize your gui to the specified dimensions. Doesn't block, and is thread safe, more of a "please do this when you get a chance" than a "do this now". That said - if you call this from the audio thread it's kinda against the spirit of the framework, and this is my answer to JUCE's "tut tut tut..." comment.. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>The requested width. </td></tr>
+    <tr><td class="paramname">height</td><td>The requested height. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the host acknowledged the resize request, false otherwise. </dd></dl>
 
 </div>
 </div>
