@@ -23,6 +23,9 @@ namespace mostly_harmless::internal {
                 } },
             .requestParamRescan = [this]() -> void {
                 _host.paramsRescan(CLAP_PARAM_RESCAN_VALUES);
+            },
+            .requestGuiResize = [this](std::uint32_t width, std::uint32_t height) -> bool {
+                return _host.guiRequestResize(width, height);
             }
         };
         m_state = m_pluginEntry->createState(std::move(context));

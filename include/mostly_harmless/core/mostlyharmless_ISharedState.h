@@ -111,6 +111,16 @@ namespace mostly_harmless::core {
          */
         void rescanParams() const;
 
+        /**
+         * Asks the host to resize your gui to the specified dimensions.
+         * Doesn't block, and is thread safe, more of a "please do this when you get a chance" than a "do this now".
+         * That said - if you call this from the audio thread it's kinda against the spirit of the framework, and this is my answer to JUCE's "tut tut tut..." comment..
+         * @param width The requested width.
+         * @param height The requested height.
+         * @return true if the host acknowledged the resize request, false otherwise.
+         */
+        bool requestGuiResize(std::uint32_t width, std::uint32_t height) const;
+
     private:
         SharedStateContext m_context;
         std::vector<Parameter<float>> m_params;
