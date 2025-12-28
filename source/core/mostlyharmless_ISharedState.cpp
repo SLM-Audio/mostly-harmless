@@ -58,5 +58,9 @@ namespace mostly_harmless::core {
         m_context.requestParamRescan();
     }
 
+    bool ISharedState::requestGuiResize(std::uint32_t width, std::uint32_t height) const {
+        return m_context.requestGuiResize(width, height);
+    }
+
 
 } // namespace mostly_harmless::core
