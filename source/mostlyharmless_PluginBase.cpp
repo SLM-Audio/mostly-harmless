@@ -433,7 +433,7 @@ namespace mostly_harmless::internal {
     bool PluginBase::guiAdjustSize(std::uint32_t* width, std::uint32_t* height) noexcept {
         MH_LOG("GUI: guiAdjustSize()");
         if (!m_editor) return false;
-        if (!m_editor->allowResize()) return false;
+        // if (!m_editor->allowResize()) return false;
         m_editor->onResizeRequested(width, height);
         return true;
     }
