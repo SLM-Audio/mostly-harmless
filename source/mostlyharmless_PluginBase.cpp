@@ -25,7 +25,13 @@ namespace mostly_harmless::internal {
                 _host.paramsRescan(CLAP_PARAM_RESCAN_VALUES);
             },
             .requestGuiResize = [this](std::uint32_t width, std::uint32_t height) -> bool {
-                return _host.guiRequestResize(width, height);
+                if (!_host.guiRequestResize(width, height)) {
+                    return false;
+                }
+                if (!guiAdjustSize(&width, &height)) {
+                    return false;
+                }
+                return guiSetSize(width, height);
             }
         };
         m_state = m_pluginEntry->createState(std::move(context));
