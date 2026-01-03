@@ -33,7 +33,6 @@ namespace mostly_harmless::gui::helpers::macos {
     }
 
     void reparentView(void* hostViewHandle, void* clientViewHandle, void* childViewHandle, Colour backgroundColour) {
-        createView(0, 0);
         auto* host = static_cast<NSView*>(hostViewHandle);
         auto* client = static_cast<NSView*>(clientViewHandle);
         auto* child = static_cast<NSView*>(childViewHandle);
@@ -45,6 +44,15 @@ namespace mostly_harmless::gui::helpers::macos {
         CGFloat f32B = static_cast<CGFloat>(b) / 255.0f;
         auto* color = [NSColor colorWithCalibratedRed:f32R green:f32G blue:f32B alpha:1];
         [[client layer] setBackgroundColor:color.CGColor];
+        host.autoresizesSubviews = YES;
+        host.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+        host.translatesAutoresizingMaskIntoConstraints = true;
+        client.autoresizesSubviews = YES;
+        client.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+        client.translatesAutoresizingMaskIntoConstraints = true;
+        child.autoresizesSubviews = YES;
+        child.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+        child.translatesAutoresizingMaskIntoConstraints = true;
         client.frame = host.bounds;
         child.frame = host.bounds;
         [client addSubview:child];

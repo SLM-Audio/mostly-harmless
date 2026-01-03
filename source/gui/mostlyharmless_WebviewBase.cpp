@@ -187,7 +187,6 @@ namespace mostly_harmless::gui {
         void create() {
             m_clientView = helpers::macos::createView(m_initialWidth, m_initialHeight);
             m_webview = std::make_unique<choc::ui::WebView>(m_options);
-            helpers::macos::setViewSize(m_clientView, m_initialWidth, m_initialHeight);
         }
 
         void destroy() {
@@ -198,9 +197,8 @@ namespace mostly_harmless::gui {
             helpers::macos::getViewSize(m_clientView, width, height);
         }
 
-        void setSize(std::uint32_t width, std::uint32_t height) {
-            helpers::macos::setViewSize(m_clientView, width, height);
-            helpers::macos::setViewSize(m_webview->getViewHandle(), width, height);
+        void setSize(std::uint32_t /*width*/, std::uint32_t /*height*/) {
+            // Because we're using autolayout and autoresizemask on macOS, this is handled already via the config in setParent
         }
 
         void setParent(void* parentHandle) {
