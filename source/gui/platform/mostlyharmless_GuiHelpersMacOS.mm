@@ -68,4 +68,29 @@ namespace mostly_harmless::gui::helpers::macos {
         auto* asView = static_cast<NSView*>(viewHandle);
         asView.hidden = true;
     }
+
+    void getMousePos(std::uint32_t* x, std::uint32_t* y) {
+        const auto mouseLocation = [NSEvent mouseLocation];
+        *x = static_cast<std::uint32_t>(mouseLocation.x);
+        *y = static_cast<std::uint32_t>(mouseLocation.y);
+    }
+
+    void setMousePos(std::uint32_t newX, std::uint32_t newY) {
+        const auto frame = [[NSScreen mainScreen] frame];
+        const auto h = frame.size.height;
+        const auto translatedY = h - newY;
+        const auto pt = CGPointMake(newX, translatedY);
+        CGWarpMouseCursorPosition(pt);
+        CGAssociateMouseAndMouseCursorPosition(true);
+    }
+
+    void showCursor() {
+        [NSCursor unhide];
+    }
+
+    void hideCursor() {
+        [NSCursor hide];
+    }
+
+
 } // namespace mostly_harmless::gui::helpers::macos

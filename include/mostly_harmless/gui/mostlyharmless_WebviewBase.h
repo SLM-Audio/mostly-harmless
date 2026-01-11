@@ -103,6 +103,9 @@ namespace mostly_harmless::gui {
         void onParamEvent(events::ProcToGuiParamEvent event) override = 0;
 
     protected:
+        static void getMousePos(std::uint32_t* x, std::uint32_t* y);
+        static void setMousePos(std::uint32_t x, std::uint32_t y);
+        static void setCursorState(bool show);
         choc::ui::WebView* m_internalWebview{ nullptr };
 
     private:

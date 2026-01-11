@@ -217,6 +217,22 @@ namespace mostly_harmless::gui {
             return m_webview.get();
         }
 
+        static void getMousePos(std::uint32_t* x, std::uint32_t* y) {
+            helpers::macos::getMousePos(x, y);
+        }
+
+        static void setMousePos(std::uint32_t x, std::uint32_t y) {
+            helpers::macos::setMousePos(x, y);
+        }
+
+        static void setCursorState(bool show) {
+            if (show) {
+                helpers::macos::showCursor();
+            } else {
+                helpers::macos::hideCursor();
+            }
+        }
+
     private:
         std::uint32_t m_initialWidth{ 0 }, m_initialHeight{ 0 };
         choc::ui::WebView::Options m_options{
@@ -278,6 +294,18 @@ namespace mostly_harmless::gui {
 
     void WebviewBase::hide() {
         m_impl->hide();
+    }
+
+    void WebviewBase::getMousePos(std::uint32_t* x, std::uint32_t* y) {
+        return Impl::getMousePos(x, y);
+    }
+
+    void WebviewBase::setMousePos(std::uint32_t x, std::uint32_t y) {
+        Impl::setMousePos(x, y);
+    }
+
+    void WebviewBase::setCursorState(bool show) {
+        Impl::setCursorState(show);
     }
 
 

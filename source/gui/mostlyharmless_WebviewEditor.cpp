@@ -1,9 +1,8 @@
 //
 // Created by Syl Morrison on 11/08/2024.
 //
-#include <choc/gui/choc_DesktopWindow.h>
-#include <choc/gui/choc_WebView.h>
 #include <mostly_harmless/gui/mostlyharmless_WebviewEditor.h>
+#include "mostly_harmless/utils/mostlyharmless_OnScopeExit.h"
 #include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #if defined(MOSTLY_HARMLESS_MACOS)
 #include <mostly_harmless/gui/platform/mostlyharmless_GuiHelpersMacOS.h>
@@ -11,6 +10,8 @@
 #include <windef.h>
 #include <winuser.h>
 #endif
+#include <choc/gui/choc_DesktopWindow.h>
+#include <choc/gui/choc_WebView.h>
 #include <cassert>
 #include <filesystem>
 namespace mostly_harmless::gui {
@@ -34,9 +35,32 @@ namespace mostly_harmless::gui {
         auto endParamGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             return endParamChangeGestureCallback(args);
         };
+        auto beginScopedMouseMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            std::uint32_t x, y;
+            getMousePos(&x, &y);
+            m_lastMouseDownLocation = std::make_pair(x, y);
+            setCursorState(false);
+            return {};
+        };
+
+        auto endScopedMouseMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            mostly_harmless::utils::OnScopeExit se{ [this]() -> void {
+                setCursorState(true);
+            } };
+            if (!m_lastMouseDownLocation) {
+                return {};
+            }
+            const auto [x, y] = *m_lastMouseDownLocation;
+            setMousePos(x, y);
+            m_lastMouseDownLocation = {};
+            return {};
+        };
+
         m_internalWebview->bind("beginParamGesture", std::move(beginParamGestureCallback_));
         m_internalWebview->bind("setParamValue", std::move(paramChangeCallback_));
         m_internalWebview->bind("endParamGesture", std::move(endParamGestureCallback_));
+        m_internalWebview->bind("beginScopedMouseMoveGesture", std::move(beginScopedMouseMoveGestureCallback_));
+        m_internalWebview->bind("endScopedMouseMoveGesture", std::move(endScopedMouseMoveGestureCallback_));
     }
 
     bool WebviewEditor::allowResize() const noexcept {
