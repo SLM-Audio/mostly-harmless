@@ -92,5 +92,4 @@ namespace mostly_harmless::gui::helpers::macos {
         [NSCursor hide];
     }
 
-
 } // namespace mostly_harmless::gui::helpers::macos

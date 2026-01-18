@@ -4,6 +4,7 @@
 
 #ifndef MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
+#include <mostly_harmless/gui/mostlyharmless_Cursor.h>
 #include <mostly_harmless/gui/mostlyharmless_Colour.h>
 #include <cstdint>
 namespace mostly_harmless::gui::helpers::macos {
@@ -68,6 +69,7 @@ namespace mostly_harmless::gui::helpers::macos {
      * Hides the cursor.
      */
     void hideCursor();
+
 
 } // namespace mostly_harmless::gui::helpers::macos
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
