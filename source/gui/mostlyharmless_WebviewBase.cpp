@@ -296,17 +296,4 @@ namespace mostly_harmless::gui {
         m_impl->hide();
     }
 
-    void WebviewBase::getMousePos(std::uint32_t* x, std::uint32_t* y) {
-        return Impl::getMousePos(x, y);
-    }
-
-    void WebviewBase::setMousePos(std::uint32_t x, std::uint32_t y) {
-        Impl::setMousePos(x, y);
-    }
-
-    void WebviewBase::setCursorState(bool show) {
-        Impl::setCursorState(show);
-    }
-
-
 } // namespace mostly_harmless::gui

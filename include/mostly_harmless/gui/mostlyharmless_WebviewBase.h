@@ -8,6 +8,17 @@
 #include <mostly_harmless/gui/mostlyharmless_Colour.h>
 #include <choc/gui/choc_WebView.h>
 namespace mostly_harmless::gui {
+    enum class CursorStyle {
+        Normal,
+        Edit,
+        Wait,
+        Crosshair,
+        UpArrow,
+        VSize,
+        HSize,
+        VHSize
+
+    };
     /**
      * \brief Tries to retrieve the MIME type for a given filename.
      * \param filename The filename to retrieve the MIME type for
@@ -103,9 +114,6 @@ namespace mostly_harmless::gui {
         void onParamEvent(events::ProcToGuiParamEvent event) override = 0;
 
     protected:
-        static void getMousePos(std::uint32_t* x, std::uint32_t* y);
-        static void setMousePos(std::uint32_t x, std::uint32_t y);
-        static void setCursorState(bool show);
         choc::ui::WebView* m_internalWebview{ nullptr };
 
     private:

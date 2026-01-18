@@ -14,6 +14,7 @@
 #include <choc/gui/choc_WebView.h>
 #include <cassert>
 #include <filesystem>
+#include <mostly_harmless/gui/mostlyharmless_Cursor.h>
 namespace mostly_harmless::gui {
 
     WebviewEditor::WebviewEditor(core::ISharedState* sharedState, std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) : WebviewBase(initialWidth,
@@ -37,21 +38,21 @@ namespace mostly_harmless::gui {
         };
         auto beginScopedMouseMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             std::uint32_t x, y;
-            getMousePos(&x, &y);
+            cursor::getCursorPosition(&x, &y);
             m_lastMouseDownLocation = std::make_pair(x, y);
-            setCursorState(false);
+            cursor::setCursorState(false);
             return {};
         };
 
         auto endScopedMouseMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             mostly_harmless::utils::OnScopeExit se{ [this]() -> void {
-                setCursorState(true);
+                cursor::setCursorState(true);
             } };
             if (!m_lastMouseDownLocation) {
                 return {};
             }
             const auto [x, y] = *m_lastMouseDownLocation;
-            setMousePos(x, y);
+            cursor::setCursorPosition(x, y);
             m_lastMouseDownLocation = {};
             return {};
         };

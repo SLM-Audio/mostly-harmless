@@ -19,6 +19,7 @@ set(MOSTLYHARMLESS_HEADERS
         ${CMAKE_CURRENT_SOURCE_DIR}/mostlyharmless_Parameters.h
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewBase.h
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewEditor.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Cursor.h
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Colour.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_TaskThread.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Timer.h
