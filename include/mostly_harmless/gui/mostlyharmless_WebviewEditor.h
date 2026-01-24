@@ -22,7 +22,7 @@ namespace mostly_harmless::gui {
      *
      * To use it, you'll probably want to still subclass it, but the boilerplate will be fairly minimal. See WebviewBase for more fine grained details.
      *
-     * The default implementation establishes bindings to 3 javascript functions, pertaining to parameter updates. These are:
+     * The default implementation establishes bindings to several javascript functions. Firstly the ones pertaining to parameter updates:
      * `beginParamGesture()`, `setParamValue()`, and `endParamGesture()`. \n
      * Each of these functions take an object as an arg, expected to be formatted as json containing the paramId to affect, and the value to set.
      * For example:
@@ -40,6 +40,18 @@ namespace mostly_harmless::gui {
      * paramChangeGestureCallback(), and endParamChangeGestureCallback(). These functions are actually promises, which we don't really leverage here, aside from to report errors in the case of an arg-parsing failure.
      * The default implementation will attempt to parse the args (and assert fail if it failed),
      * and then enqueue the param changes to the guiToProcQueue, for the host and audio side to pick up.
+     *
+     * For what I've been calling "ouroborosing" the cursor position, and generally providing the facilities to hide the cursor, snap back to original mouse down position on a drag etc, we also provide some extra helpers here.
+     * `beginScopedCursorMoveGesture()` caches the mouse down position at the time of calling, and hides the cursor.
+     * `endScopedCursorMoveGesture()` restores the cached cursor position, and shows the cursor. These functions should be called as a pair,
+     * for a slider in mouseDown / mouseUp for example.
+     *
+     * `resetCursorPosition()` does much the same as `endScopedCursorMoveGesture()`, except it doesn't zero any of the internally cached variables, and doesn't show the cursor.
+     * The use case is quite different, and is for forcing the cursor to be within a given area - this allows for "infinite drag", or "ouroborosing" without the cursor hitting the screen edges.
+     * If `resetCursorPosition()` is used, then to avoid unexpected jumps, use `tickCursorMove()`, and use its return value instead of the js side `event.movementY` variable.
+     * It updates the internal cache of the last mouse position, and then returns the difference between the old and new values. Call it every time `mousemove` is called for example.
+     * `clearPreviousCursorPosition()` in this paradigm should be called on mouseUp, and simply nulls the last mouse position stored in the cache, preparing it for a new gesture.
+     *
      *
      *
      * The structure of an event in the default implementation is:
