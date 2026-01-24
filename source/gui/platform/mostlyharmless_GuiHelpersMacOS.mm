@@ -80,6 +80,8 @@ namespace mostly_harmless::gui::helpers::macos {
         const auto h = frame.size.height;
         const auto translatedY = h - newY;
         const auto pt = CGPointMake(newX, translatedY);
+        // Note that while this doesn't generate an event, its delta will be added to the next mouse event that *does* generate an event - so in effect, this can cause a massive fucking jump -
+        // not sure what to do about this at the moment..
         CGWarpMouseCursorPosition(pt);
         CGAssociateMouseAndMouseCursorPosition(true);
     }
