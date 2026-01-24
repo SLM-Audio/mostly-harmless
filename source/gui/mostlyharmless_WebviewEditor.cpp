@@ -37,7 +37,8 @@ namespace mostly_harmless::gui {
         auto endParamGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             return endParamChangeGestureCallback(args);
         };
-        auto beginScopedMouseMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+
+        auto beginScopedCursorMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             std::uint32_t x, y;
             cursor::getCursorPosition(&x, &y);
             m_cursorState.lastMouseDownLocation = std::make_pair(x, y);
@@ -45,7 +46,7 @@ namespace mostly_harmless::gui {
             return {};
         };
 
-        auto endScopedMouseMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+        auto endScopedCursorMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             mostly_harmless::utils::OnScopeExit se{ [this]() -> void {
                 cursor::setCursorState(true);
             } };
@@ -58,14 +59,14 @@ namespace mostly_harmless::gui {
             return {};
         };
 
-        auto resetMousePositonCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+        auto resetCursorPositionCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             const auto [x, y] = m_cursorState.lastMouseDownLocation.value_or(std::make_pair(0, 0));
             mostly_harmless::gui::cursor::setCursorPosition(x, y);
             m_cursorState.lastMousePosition = std::make_pair(x, y);
             return {};
         };
 
-        auto tickMouseMoveCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+        auto tickCursorMoveCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             const auto lastMouseDownLocation = m_cursorState.lastMouseDownLocation.value_or(std::make_pair(0, 0));
             const auto [prevX, prevY] = m_cursorState.lastMousePosition.value_or(lastMouseDownLocation);
             std::uint32_t x, y;
@@ -75,7 +76,7 @@ namespace mostly_harmless::gui {
             return choc::value::Value{ delta };
         };
 
-        auto clearPreviousMousePositionCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+        auto clearPreviousCursorPositionCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             m_cursorState.lastMousePosition = {};
             return {};
         };
@@ -83,11 +84,11 @@ namespace mostly_harmless::gui {
         m_internalWebview->bind("beginParamGesture", std::move(beginParamGestureCallback_));
         m_internalWebview->bind("setParamValue", std::move(paramChangeCallback_));
         m_internalWebview->bind("endParamGesture", std::move(endParamGestureCallback_));
-        m_internalWebview->bind("beginScopedMouseMoveGesture", std::move(beginScopedMouseMoveGestureCallback_));
-        m_internalWebview->bind("endScopedMouseMoveGesture", std::move(endScopedMouseMoveGestureCallback_));
-        m_internalWebview->bind("resetMousePosition", std::move(resetMousePositonCallback_));
-        m_internalWebview->bind("tickMouseMove", std::move(tickMouseMoveCallback_));
-        m_internalWebview->bind("clearPreviousMousePosition", std::move(clearPreviousMousePositionCallback_));
+        m_internalWebview->bind("beginScopedCursorMoveGesture", std::move(beginScopedCursorMoveGestureCallback_));
+        m_internalWebview->bind("endScopedCursorMoveGesture", std::move(endScopedCursorMoveGestureCallback_));
+        m_internalWebview->bind("resetCursorPosition", std::move(resetCursorPositionCallback_));
+        m_internalWebview->bind("tickCursorMove", std::move(tickCursorMoveCallback_));
+        m_internalWebview->bind("clearPreviousCursorPosition", std::move(clearPreviousCursorPositionCallback_));
     }
 
     bool WebviewEditor::allowResize() const noexcept {
