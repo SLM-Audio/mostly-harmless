@@ -158,7 +158,11 @@ namespace mostly_harmless::gui {
         virtual choc::value::Value endParamChangeGestureCallback(const choc::value::ValueView& args);
 
         core::ISharedState* m_sharedState{ nullptr };
-        std::optional<std::pair<std::uint32_t, std::uint32_t>> m_lastMouseDownLocation{};
+
+        struct {
+            std::optional<std::pair<std::uint32_t, std::uint32_t>> lastMouseDownLocation{};
+            std::optional<std::pair<std::uint32_t, std::uint32_t>> lastMousePosition{};
+        } m_cursorState;
     };
 } // namespace mostly_harmless::gui
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_WEBVIEWEDITOR_H
