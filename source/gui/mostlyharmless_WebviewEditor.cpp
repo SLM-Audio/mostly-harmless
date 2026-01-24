@@ -72,8 +72,10 @@ namespace mostly_harmless::gui {
             std::uint32_t x, y;
             mostly_harmless::gui::cursor::getCursorPosition(&x, &y);
             m_cursorState.lastMousePosition = std::make_pair(x, y);
-            const auto delta = static_cast<std::int32_t>(y) - static_cast<std::int32_t>(prevY);
-            return choc::value::Value{ delta };
+            const auto deltaX = static_cast<std::int32_t>(x) - static_cast<std::int32_t>(prevX);
+            const auto deltaY = static_cast<std::int32_t>(y) - static_cast<std::int32_t>(prevY);
+            const auto res = choc::json::create("x", deltaX, "y", deltaY);
+            return res;
         };
 
         auto clearPreviousCursorPositionCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
