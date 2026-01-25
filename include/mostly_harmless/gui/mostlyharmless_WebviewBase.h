@@ -8,17 +8,6 @@
 #include <mostly_harmless/gui/mostlyharmless_Colour.h>
 #include <choc/gui/choc_WebView.h>
 namespace mostly_harmless::gui {
-    enum class CursorStyle {
-        Normal,
-        Edit,
-        Wait,
-        Crosshair,
-        UpArrow,
-        VSize,
-        HSize,
-        VHSize
-
-    };
     /**
      * \brief Tries to retrieve the MIME type for a given filename.
      * \param filename The filename to retrieve the MIME type for
