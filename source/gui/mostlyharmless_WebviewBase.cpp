@@ -280,5 +280,4 @@ namespace mostly_harmless::gui {
         m_impl->hide();
     }
 
-
 } // namespace mostly_harmless::gui

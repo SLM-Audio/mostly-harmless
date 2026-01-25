@@ -1,9 +1,8 @@
 //
 // Created by Syl Morrison on 11/08/2024.
 //
-#include <choc/gui/choc_DesktopWindow.h>
-#include <choc/gui/choc_WebView.h>
 #include <mostly_harmless/gui/mostlyharmless_WebviewEditor.h>
+#include "mostly_harmless/utils/mostlyharmless_OnScopeExit.h"
 #include <mostly_harmless/utils/mostlyharmless_Macros.h>
 #if defined(MOSTLY_HARMLESS_MACOS)
 #include <mostly_harmless/gui/platform/mostlyharmless_GuiHelpersMacOS.h>
@@ -11,8 +10,11 @@
 #include <windef.h>
 #include <winuser.h>
 #endif
+#include <choc/gui/choc_DesktopWindow.h>
+#include <choc/gui/choc_WebView.h>
 #include <cassert>
 #include <filesystem>
+#include <mostly_harmless/gui/mostlyharmless_Cursor.h>
 namespace mostly_harmless::gui {
 
     WebviewEditor::WebviewEditor(core::ISharedState* sharedState, std::uint32_t initialWidth, std::uint32_t initialHeight, Colour backgroundColour) : WebviewBase(initialWidth,
@@ -23,6 +25,7 @@ namespace mostly_harmless::gui {
 
     void WebviewEditor::initialise() {
         WebviewBase::initialise();
+
         auto beginParamGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             return beginParamChangeGestureCallback(args);
         };
@@ -34,9 +37,60 @@ namespace mostly_harmless::gui {
         auto endParamGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             return endParamChangeGestureCallback(args);
         };
+
+        auto beginScopedCursorMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            std::uint32_t x, y;
+            cursor::getCursorPosition(&x, &y);
+            m_cursorState.lastMouseDownLocation = std::make_pair(x, y);
+            cursor::setCursorState(false);
+            return {};
+        };
+
+        auto endScopedCursorMoveGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            mostly_harmless::utils::OnScopeExit se{ [this]() -> void {
+                cursor::setCursorState(true);
+            } };
+            if (!m_cursorState.lastMouseDownLocation) {
+                return {};
+            }
+            const auto [x, y] = *m_cursorState.lastMouseDownLocation;
+            cursor::setCursorPosition(x, y);
+            m_cursorState.lastMouseDownLocation = {};
+            return {};
+        };
+
+        auto resetCursorPositionCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            const auto [x, y] = m_cursorState.lastMouseDownLocation.value_or(std::make_pair(0, 0));
+            mostly_harmless::gui::cursor::setCursorPosition(x, y);
+            m_cursorState.lastMousePosition = std::make_pair(x, y);
+            return {};
+        };
+
+        auto tickCursorMoveCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            const auto lastMouseDownLocation = m_cursorState.lastMouseDownLocation.value_or(std::make_pair(0, 0));
+            const auto [prevX, prevY] = m_cursorState.lastMousePosition.value_or(lastMouseDownLocation);
+            std::uint32_t x, y;
+            mostly_harmless::gui::cursor::getCursorPosition(&x, &y);
+            m_cursorState.lastMousePosition = std::make_pair(x, y);
+            const auto deltaX = static_cast<std::int32_t>(x) - static_cast<std::int32_t>(prevX);
+            const auto deltaY = static_cast<std::int32_t>(y) - static_cast<std::int32_t>(prevY);
+            const auto res = choc::json::create("x", deltaX, "y", deltaY);
+            return res;
+        };
+
+        auto clearPreviousCursorPositionCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            m_cursorState.lastMousePosition = {};
+            return {};
+        };
+
         m_internalWebview->bind("beginParamGesture", std::move(beginParamGestureCallback_));
         m_internalWebview->bind("setParamValue", std::move(paramChangeCallback_));
         m_internalWebview->bind("endParamGesture", std::move(endParamGestureCallback_));
+        m_internalWebview->bind("beginScopedCursorMoveGesture", std::move(beginScopedCursorMoveGestureCallback_));
+        m_internalWebview->bind("endScopedCursorMoveGesture", std::move(endScopedCursorMoveGestureCallback_));
+        m_internalWebview->bind("resetCursorPosition", std::move(resetCursorPositionCallback_));
+        m_internalWebview->bind("tickCursorMove", std::move(tickCursorMoveCallback_));
+        m_internalWebview->bind("clearPreviousCursorPosition", std::move(clearPreviousCursorPositionCallback_));
     }
 
     bool WebviewEditor::allowResize() const noexcept {

@@ -4,6 +4,7 @@
 
 #ifndef MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
+#include <mostly_harmless/gui/mostlyharmless_Cursor.h>
 #include <mostly_harmless/gui/mostlyharmless_Colour.h>
 #include <cstdint>
 namespace mostly_harmless::gui::helpers::macos {
@@ -43,5 +44,32 @@ namespace mostly_harmless::gui::helpers::macos {
      * \param viewHandle A void* to the NSView to set hidden.
      */
     void hideView(void* viewHandle);
+
+    /**
+     * Retrieves the current mouse position in screen coords, and stores them in `x` and `y`.
+     * @param x A pointer to your x variable - the result will be written here.
+     * @param y A pointer to your y variable - the result will be written here.
+     */
+    void getMousePos(std::uint32_t* x, std::uint32_t* y);
+
+    /**
+     * Sets the mouse position to the provided position (in screen coords).
+     * Internally handles translating from screen coords to global space coords.
+     * @param newX The x position to set the mouse position to (in screen space).
+     * @param newY The y position to set the mouse position to (in screen space).
+     */
+    void setMousePos(std::uint32_t newX, std::uint32_t newY);
+
+    /**
+     * Shows (or more accurately, "unhides") the cursor.
+     */
+    void showCursor();
+
+    /**
+     * Hides the cursor.
+     */
+    void hideCursor();
+
+
 } // namespace mostly_harmless::gui::helpers::macos
 #endif // MOSTLYHARMLESS_MOSTLYHARMLESS_GUIHELPERSMACOS_H
