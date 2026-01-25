@@ -52,7 +52,8 @@ namespace mostly_harmless::gui {
      * It updates the internal cache of the last mouse position, and then returns the difference between the old and new values. Call it every time `mousemove` is called for example.
      * `clearPreviousCursorPosition()` in this paradigm should be called on mouseUp, and simply nulls the last mouse position stored in the cache, preparing it for a new gesture.
      *
-     *
+     * As the cursor cannot be hidden in Logic Pro or Garageband, we also provide a `cacheCursorPosition()` bindings - this is to allow you to use the same `tick...` system as outlined above, with minimal special case
+     * handling for these hosts.
      *
      * The structure of an event in the default implementation is:
      *

@@ -12,6 +12,9 @@ namespace mostly_harmless::core {
      */
     struct SharedStateContext {
 
+        /**
+         * A non owning view into the clap_host provided strings identifying the current host.
+         */
         utils::HostInfoView hostInfo;
         /**
          * A lambda wrapping a call to the PluginBase's runOnMainThread function.

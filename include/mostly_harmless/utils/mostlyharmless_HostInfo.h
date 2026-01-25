@@ -6,12 +6,18 @@
 #define GLEO_MOSTLYHARMLESS_HOSTINFO_H
 #include <string>
 namespace mostly_harmless::utils {
+    /**
+     * \brief Contains some strings to help identify the host currently running your plugin.
+     */
     struct HostInfoView {
         std::string_view hostName;
         std::string_view vendorName;
         std::string_view version;
     };
 
+    /**
+     * @private
+     */
     struct HostInfo {
         std::string hostName;
         std::string vendorName;

@@ -121,6 +121,10 @@ namespace mostly_harmless::core {
          */
         bool requestGuiResize(std::uint32_t width, std::uint32_t height) const;
 
+        /**
+         * Retrieves the current HostInfo as a non-owning view
+         * @return The current host information.
+         */
         auto getHostInfo() const -> utils::HostInfoView;
 
     private:
