@@ -77,8 +77,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"md_FXPluginTutorial.html#autotoc_md16",
-"structmostly__harmless_1_1events_1_1InputEventContext.html"
+"index.html#autotoc_md5",
+"structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

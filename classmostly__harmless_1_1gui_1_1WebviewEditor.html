@@ -138,6 +138,10 @@ Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:aafb75f8c62c2c08ab6e7749fc44e43fd" id="r_aafb75f8c62c2c08ab6e7749fc44e43fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmostly__harmless_1_1core_1_1ISharedState.html">core::ISharedState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafb75f8c62c2c08ab6e7749fc44e43fd">m_sharedState</a> { nullptr }</td></tr>
+<tr class="memitem:"><td class="memItemLeft anon">struct {&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="memitem:aa639c4c308ebc9f915d070ffb707fb8d" id="r_aa639c4c308ebc9f915d070ffb707fb8d"><td class="memItemLeft anon">&#160;&#160;&#160;std::optional&lt; std::pair&lt; std::uint32_t, std::uint32_t &gt; &gt;&#160;&#160;&#160;<a class="el" href="#a984026f6abff2ac4a83154131ee1d711">lastMouseDownLocation</a> {}&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="memitem:a5c33bb1a6d16aa00586cadfcf39e5c80" id="r_a5c33bb1a6d16aa00586cadfcf39e5c80"><td class="memItemLeft anon">&#160;&#160;&#160;std::optional&lt; std::pair&lt; std::uint32_t, std::uint32_t &gt; &gt;&#160;&#160;&#160;<a class="el" href="#adf48c6c0aee99e4b97013743a391e9e0">lastMousePosition</a> {}&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="memitem:a3653325acd8bc66e9dc94b133550b93c" id="r_a3653325acd8bc66e9dc94b133550b93c"><td class="memItemLeft anonEnd" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3653325acd8bc66e9dc94b133550b93c">m_cursorState</a></td></tr>
 <tr class="inherit_header pro_attribs_classmostly__harmless_1_1gui_1_1WebviewBase"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classmostly__harmless_1_1gui_1_1WebviewBase')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html">mostly_harmless::gui::WebviewBase</a></td></tr>
 <tr class="memitem:a8b78207d8126ebc74b59799029210385 inherit pro_attribs_classmostly__harmless_1_1gui_1_1WebviewBase" id="r_a8b78207d8126ebc74b59799029210385"><td class="memItemLeft" align="right" valign="top">choc::ui::WebView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html#a8b78207d8126ebc74b59799029210385">m_internalWebview</a> { nullptr }</td></tr>
 </table>
@@ -145,13 +149,15 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>An opinionated subclass of <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a>, providing default impls for bidirectional comms. </p>
 <p>Where <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a> handles lower level things like window creation / management, this class handles slightly higher level details - namely, an event system, and param updates.</p>
 <p>To use it, you'll probably want to still subclass it, but the boilerplate will be fairly minimal. See <a class="el" href="classmostly__harmless_1_1gui_1_1WebviewBase.html" title="Convenience wrapper layer implementing the creation and management of a choc::ui::WebView....">WebviewBase</a> for more fine grained details.</p>
-<p>The default implementation establishes bindings to 3 javascript functions, pertaining to parameter updates. These are: <span class="tt">beginParamGesture()</span>, <span class="tt">setParamValue()</span>, and <span class="tt">endParamGesture()</span>. <br  />
+<p>The default implementation establishes bindings to several javascript functions. Firstly the ones pertaining to parameter updates: <span class="tt">beginParamGesture()</span>, <span class="tt">setParamValue()</span>, and <span class="tt">endParamGesture()</span>. <br  />
  Each of these functions take an object as an arg, expected to be formatted as json containing the paramId to affect, and the value to set. For example:</p>
 <div class="fragment"><div class="line">const args = {</div>
 <div class="line">    paramId: 0,</div>
 <div class="line">    value: 0.8</div>
 <div class="line">};</div>
 </div><!-- fragment --><p>beginParamGesture is expected to be called when a slider first begins being dragged, setParamValue while it is being changed, and endParamValue once the user stops dragging. These functions are bound to internal native functions (which you can override if you like), <a class="el" href="#a5da09e824612b7d2f0945c79167cc5b5">beginParamChangeGestureCallback()</a>, <a class="el" href="#abe0eb428c3937499c18ef1398ddea40d">paramChangeGestureCallback()</a>, and <a class="el" href="#a57c9ed66bbdebfd60d2652b650c4f843">endParamChangeGestureCallback()</a>. These functions are actually promises, which we don't really leverage here, aside from to report errors in the case of an arg-parsing failure. The default implementation will attempt to parse the args (and assert fail if it failed), and then enqueue the param changes to the guiToProcQueue, for the host and audio side to pick up.</p>
+<p>For what I've been calling "ouroborosing" the cursor position, and generally providing the facilities to hide the cursor, snap back to original mouse down position on a drag etc, we also provide some extra helpers here. <span class="tt">beginScopedCursorMoveGesture()</span> caches the mouse down position at the time of calling, and hides the cursor. <span class="tt">endScopedCursorMoveGesture()</span> restores the cached cursor position, and shows the cursor. These functions should be called as a pair, for a slider in mouseDown / mouseUp for example.</p>
+<p><span class="tt">resetCursorPosition()</span> does much the same as <span class="tt">endScopedCursorMoveGesture()</span>, except it doesn't zero any of the internally cached variables, and doesn't show the cursor. The use case is quite different, and is for forcing the cursor to be within a given area - this allows for "infinite drag", or "ouroborosing" without the cursor hitting the screen edges. If <span class="tt">resetCursorPosition()</span> is used, then to avoid unexpected jumps, use <span class="tt">tickCursorMove()</span>, and use its return value instead of the js side <span class="tt">event.movementY</span> variable. It updates the internal cache of the last mouse position, and then returns the difference between the old and new values. Call it every time <span class="tt">mousemove</span> is called for example. <span class="tt">clearPreviousCursorPosition()</span> in this paradigm should be called on mouseUp, and simply nulls the last mouse position stored in the cache, preparing it for a new gesture.</p>
 <p>The structure of an event in the default implementation is:</p>
 <div class="fragment"><div class="line">event = new CustomEvent(&quot;the event&#39;s id&quot;, {</div>
 <div class="line">    detail: {</div>
@@ -502,6 +508,48 @@ You're also totally free to overload this if you don't like the default impl - s
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a984026f6abff2ac4a83154131ee1d711" name="a984026f6abff2ac4a83154131ee1d711"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a984026f6abff2ac4a83154131ee1d711">&#9670;&#160;</a></span>lastMouseDownLocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::pair&lt;std::uint32_t, std::uint32_t&gt; &gt; mostly_harmless::gui::WebviewEditor::lastMouseDownLocation {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf48c6c0aee99e4b97013743a391e9e0" name="adf48c6c0aee99e4b97013743a391e9e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf48c6c0aee99e4b97013743a391e9e0">&#9670;&#160;</a></span>lastMousePosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::pair&lt;std::uint32_t, std::uint32_t&gt; &gt; mostly_harmless::gui::WebviewEditor::lastMousePosition {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3653325acd8bc66e9dc94b133550b93c" name="a3653325acd8bc66e9dc94b133550b93c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3653325acd8bc66e9dc94b133550b93c">&#9670;&#160;</a></span>[struct]</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct  { ... }  mostly_harmless::gui::WebviewEditor::m_cursorState</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aafb75f8c62c2c08ab6e7749fc44e43fd" name="aafb75f8c62c2c08ab6e7749fc44e43fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aafb75f8c62c2c08ab6e7749fc44e43fd">&#9670;&#160;</a></span>m_sharedState</h2>
 

@@ -2,11 +2,15 @@ var namespacemostly__harmless_1_1gui_1_1helpers =
 [
     [ "macos", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html", [
       [ "createView", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a164a8658c908d901c4b4c27c974f7f73", null ],
+      [ "getMousePos", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#ac658130d376bedc5e0f25177f6358765", null ],
       [ "getViewSize", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aa7732cb067ff73c5fb879edaa11137b9", null ],
+      [ "hideCursor", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aaed7e1ec51ff3c11343d67636432d4b6", null ],
       [ "hideView", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8ae69eea9aecfc8ac734d56213687048", null ],
       [ "removeFromParentView", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#afdae1ffa2ffabbf08beea34d8e4ca287", null ],
       [ "reparentView", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a4ae94c9f73385a702c0b5320bf4278fa", null ],
+      [ "setMousePos", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a1db64f1bea804367599413ff553c3f9b", null ],
       [ "setViewSize", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8e6b76e81afa3152032ffa6de869c796", null ],
+      [ "showCursor", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a3d245b5d39afa64f7081e5b24a5eff6b", null ],
       [ "showView", "namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#ac8fef1567c0547ce6195b09c95cb4a73", null ]
     ] ]
 ];

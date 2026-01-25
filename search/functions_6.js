@@ -10,5 +10,6 @@ var searchData=
   ['hasgui_7',['hasGui',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#aab3fcec3cbdb8d7a48a053196f99d8ec',1,'mostly_harmless::core::IPluginEntry']]],
   ['hassignalledstop_8',['hasSignalledStop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ad9cefe24598befc8c553d2d3fbe433e3',1,'mostly_harmless::utils::TaskThread']]],
   ['hide_9',['hide',['../structmostly__harmless_1_1core_1_1IEditor.html#a07c091f62b3cee918843e94ff0b30bcf',1,'mostly_harmless::core::IEditor::hide()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a8208c0343578e42c04cc1e2fe24e7d7f',1,'mostly_harmless::gui::WebviewBase::hide()']]],
-  ['hideview_10',['hideView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8ae69eea9aecfc8ac734d56213687048',1,'mostly_harmless::gui::helpers::macos']]]
+  ['hidecursor_10',['hideCursor',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aaed7e1ec51ff3c11343d67636432d4b6',1,'mostly_harmless::gui::helpers::macos']]],
+  ['hideview_11',['hideView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8ae69eea9aecfc8ac734d56213687048',1,'mostly_harmless::gui::helpers::macos']]]
 ];

@@ -104,6 +104,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a4ae94c9f73385a702c0b5320bf4278fa" id="r_a4ae94c9f73385a702c0b5320bf4278fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ae94c9f73385a702c0b5320bf4278fa">reparentView</a> (void *hostViewHandle, void *clientViewHandle, void *childViewHandle, <a class="el" href="structmostly__harmless_1_1gui_1_1Colour.html">Colour</a> backgroundColour)</td></tr>
 <tr class="memitem:ac8fef1567c0547ce6195b09c95cb4a73" id="r_ac8fef1567c0547ce6195b09c95cb4a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8fef1567c0547ce6195b09c95cb4a73">showView</a> (void *viewHandle)</td></tr>
 <tr class="memitem:a8ae69eea9aecfc8ac734d56213687048" id="r_a8ae69eea9aecfc8ac734d56213687048"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ae69eea9aecfc8ac734d56213687048">hideView</a> (void *viewHandle)</td></tr>
+<tr class="memitem:ac658130d376bedc5e0f25177f6358765" id="r_ac658130d376bedc5e0f25177f6358765"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac658130d376bedc5e0f25177f6358765">getMousePos</a> (std::uint32_t *x, std::uint32_t *y)</td></tr>
+<tr class="memitem:a1db64f1bea804367599413ff553c3f9b" id="r_a1db64f1bea804367599413ff553c3f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1db64f1bea804367599413ff553c3f9b">setMousePos</a> (std::uint32_t newX, std::uint32_t newY)</td></tr>
+<tr class="memitem:a3d245b5d39afa64f7081e5b24a5eff6b" id="r_a3d245b5d39afa64f7081e5b24a5eff6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d245b5d39afa64f7081e5b24a5eff6b">showCursor</a> ()</td></tr>
+<tr class="memitem:aaed7e1ec51ff3c11343d67636432d4b6" id="r_aaed7e1ec51ff3c11343d67636432d4b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaed7e1ec51ff3c11343d67636432d4b6">hideCursor</a> ()</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>macOS specific gui helper functions </p>
@@ -126,6 +130,34 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac658130d376bedc5e0f25177f6358765" name="ac658130d376bedc5e0f25177f6358765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac658130d376bedc5e0f25177f6358765">&#9670;&#160;</a></span>getMousePos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::gui::helpers::macos::getMousePos </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t *</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retrieves the current mouse position in screen coords, and stores them in <span class="tt">x</span> and <span class="tt">y</span>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>A pointer to your x variable - the result will be written here. </td></tr>
+    <tr><td class="paramname">y</td><td>A pointer to your y variable - the result will be written here. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -160,6 +192,24 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aaed7e1ec51ff3c11343d67636432d4b6" name="aaed7e1ec51ff3c11343d67636432d4b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaed7e1ec51ff3c11343d67636432d4b6">&#9670;&#160;</a></span>hideCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::gui::helpers::macos::hideCursor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Hides the cursor. </p>
 
 </div>
 </div>
@@ -247,6 +297,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a1db64f1bea804367599413ff553c3f9b" name="a1db64f1bea804367599413ff553c3f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1db64f1bea804367599413ff553c3f9b">&#9670;&#160;</a></span>setMousePos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::gui::helpers::macos::setMousePos </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>newX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>newY</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the mouse position to the provided position (in screen coords). Internally handles translating from screen coords to global space coords. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newX</td><td>The x position to set the mouse position to (in screen space). </td></tr>
+    <tr><td class="paramname">newY</td><td>The y position to set the mouse position to (in screen space). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a8e6b76e81afa3152032ffa6de869c796" name="a8e6b76e81afa3152032ffa6de869c796"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e6b76e81afa3152032ffa6de869c796">&#9670;&#160;</a></span>setViewSize()</h2>
 
@@ -278,6 +356,24 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a3d245b5d39afa64f7081e5b24a5eff6b" name="a3d245b5d39afa64f7081e5b24a5eff6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d245b5d39afa64f7081e5b24a5eff6b">&#9670;&#160;</a></span>showCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mostly_harmless::gui::helpers::macos::showCursor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Shows (or more accurately, "unhides") the cursor. </p>
 
 </div>
 </div>

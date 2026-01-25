@@ -10,5 +10,8 @@ var classmostly__harmless_1_1gui_1_1WebviewEditor =
     [ "onResizeRequested", "classmostly__harmless_1_1gui_1_1WebviewEditor.html#acf90a728084453370cc71bcf7885ffa4", null ],
     [ "paramChangeGestureCallback", "classmostly__harmless_1_1gui_1_1WebviewEditor.html#abe0eb428c3937499c18ef1398ddea40d", null ],
     [ "sendEvent", "classmostly__harmless_1_1gui_1_1WebviewEditor.html#a65fb335988544d4d5f7d8558d94319fa", null ],
+    [ "lastMouseDownLocation", "classmostly__harmless_1_1gui_1_1WebviewEditor.html#a984026f6abff2ac4a83154131ee1d711", null ],
+    [ "lastMousePosition", "classmostly__harmless_1_1gui_1_1WebviewEditor.html#adf48c6c0aee99e4b97013743a391e9e0", null ],
+    [ "m_cursorState", "classmostly__harmless_1_1gui_1_1WebviewEditor.html#a3653325acd8bc66e9dc94b133550b93c", null ],
     [ "m_sharedState", "classmostly__harmless_1_1gui_1_1WebviewEditor.html#aafb75f8c62c2c08ab6e7749fc44e43fd", null ]
 ];
