@@ -62,5 +62,9 @@ namespace mostly_harmless::core {
         return m_context.requestGuiResize(width, height);
     }
 
+    auto ISharedState::getHostInfo() const -> utils::HostInfoView {
+        return m_context.hostInfo;
+    }
+
 
 } // namespace mostly_harmless::core

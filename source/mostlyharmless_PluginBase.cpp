@@ -12,10 +12,12 @@
 #include <clap/helpers/plugin.hxx>
 
 namespace mostly_harmless::internal {
-    PluginBase::PluginBase(const clap_host* host) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Ignore, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host) {
+    PluginBase::PluginBase(const clap_host* host) : clap::helpers::Plugin<clap::helpers::MisbehaviourHandler::Ignore, clap::helpers::CheckingLevel::Maximal>(&getDescriptor(), host),
+                                                    m_hostInfo({ .hostName = host->name, .vendorName = host->vendor, .version = host->version }) {
         MH_LOG("PROC: Creating plugin instance...");
         m_pluginEntry = core::createPluginEntry();
         core::SharedStateContext context{
+            .hostInfo = m_hostInfo.view(),
             .runOnMainThread = [this](std::function<void(void)>&& toCall) { runOnMainThread(toCall); },
             .requestParamFlush = [this]() {
                 if (_host.canUseParams()) {
