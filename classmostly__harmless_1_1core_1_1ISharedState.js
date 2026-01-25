@@ -3,6 +3,7 @@ var classmostly__harmless_1_1core_1_1ISharedState =
     [ "ISharedState", "classmostly__harmless_1_1core_1_1ISharedState.html#a39ee14562171c70d77eef1af2c47ef74", null ],
     [ "~ISharedState", "classmostly__harmless_1_1core_1_1ISharedState.html#a86d768562b5399f2c7bdd222a64daab0", null ],
     [ "getGuiToProcQueue", "classmostly__harmless_1_1core_1_1ISharedState.html#a20a0c466b7df0437d63e32969c136088", null ],
+    [ "getHostInfo", "classmostly__harmless_1_1core_1_1ISharedState.html#a91208aee1003e0fda45badd02b3f9ce1", null ],
     [ "getNumParams", "classmostly__harmless_1_1core_1_1ISharedState.html#aaf61aad39ab8496e1c3c65943056515f", null ],
     [ "getParameterById", "classmostly__harmless_1_1core_1_1ISharedState.html#a29af1382203a833569e8248d36b06590", null ],
     [ "getParameterById", "classmostly__harmless_1_1core_1_1ISharedState.html#a5597648d83a6dbd2893cda12a456541e", null ],

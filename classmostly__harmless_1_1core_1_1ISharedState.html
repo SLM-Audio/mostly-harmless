@@ -114,6 +114,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a96dbac2dfdcb3e3fde432f0790401070" id="r_a96dbac2dfdcb3e3fde432f0790401070"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96dbac2dfdcb3e3fde432f0790401070">requestParamFlush</a> () const</td></tr>
 <tr class="memitem:a4cdf1903c05a6e8453e3dff65b5c2f83" id="r_a4cdf1903c05a6e8453e3dff65b5c2f83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cdf1903c05a6e8453e3dff65b5c2f83">rescanParams</a> () const</td></tr>
 <tr class="memitem:a38ab453b2f9e860bc1e357152ed28f1c" id="r_a38ab453b2f9e860bc1e357152ed28f1c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38ab453b2f9e860bc1e357152ed28f1c">requestGuiResize</a> (std::uint32_t width, std::uint32_t height) const</td></tr>
+<tr class="memitem:a91208aee1003e0fda45badd02b3f9ce1" id="r_a91208aee1003e0fda45badd02b3f9ce1"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91208aee1003e0fda45badd02b3f9ce1">getHostInfo</a> () const -&gt; <a class="el" href="structmostly__harmless_1_1utils_1_1HostInfoView.html">utils::HostInfoView</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for the plugin's shared state. </p>
@@ -208,6 +209,24 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Retrieves the gui-&gt;proc parameters spsc, for direct access by either the engine or the editor. </p><dl class="section return"><dt>Returns</dt><dd>A ref to the gui-&gt;proc parameter queue. </dd></dl>
+
+</div>
+</div>
+<a id="a91208aee1003e0fda45badd02b3f9ce1" name="a91208aee1003e0fda45badd02b3f9ce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91208aee1003e0fda45badd02b3f9ce1">&#9670;&#160;</a></span>getHostInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto mostly_harmless::core::ISharedState::getHostInfo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const -&gt;  <a class="el" href="structmostly__harmless_1_1utils_1_1HostInfoView.html">utils::HostInfoView</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retrieves the current HostInfo as a non-owning view </p><dl class="section return"><dt>Returns</dt><dd>The current host information. </dd></dl>
 
 </div>
 </div>

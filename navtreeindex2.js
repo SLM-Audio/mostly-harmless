@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"structmostly__harmless_1_1core_1_1ProcessContext.html#a6243c8448baa7763bd08938775037319":[2,0,0,1,5,1],
+"structmostly__harmless_1_1core_1_1ProcessContext.html#a6243c8448baa7763bd08938775037319":[3,0,0,0,5,1],
+"structmostly__harmless_1_1core_1_1ProcessContext.html#affbb8496a15aeeed6d0cbdc15e7535ea":[2,0,0,1,5,0],
+"structmostly__harmless_1_1core_1_1ProcessContext.html#affbb8496a15aeeed6d0cbdc15e7535ea":[3,0,0,0,5,0],
 "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html":[2,0,0,3,1],
 "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html":[3,0,0,2,1],
 "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html#a2e5f82a1a4547ce65eb468f83d29181d":[2,0,0,3,1,1],
@@ -126,6 +130,14 @@ var NAVTREEINDEX2 =
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#aec10948467e291b75733f510920da68e":[3,0,0,3,1,1,0],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#af51bda90a40a638cde22fff8d0498cba":[2,0,0,4,3,1,3],
 "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#af51bda90a40a638cde22fff8d0498cba":[3,0,0,3,1,1,3],
-"structmostly__harmless_1_1utils_1_1Visitor.html":[2,0,0,6,7],
-"structmostly__harmless_1_1utils_1_1Visitor.html":[3,0,0,5,6]
+"structmostly__harmless_1_1utils_1_1HostInfoView.html":[2,0,0,6,1],
+"structmostly__harmless_1_1utils_1_1HostInfoView.html":[3,0,0,5,0],
+"structmostly__harmless_1_1utils_1_1HostInfoView.html#a7cdb1fdde94613f8261b8000e7007513":[2,0,0,6,1,1],
+"structmostly__harmless_1_1utils_1_1HostInfoView.html#a7cdb1fdde94613f8261b8000e7007513":[3,0,0,5,0,1],
+"structmostly__harmless_1_1utils_1_1HostInfoView.html#abb92ac5dcc826f85dd25385d157c1a04":[2,0,0,6,1,0],
+"structmostly__harmless_1_1utils_1_1HostInfoView.html#abb92ac5dcc826f85dd25385d157c1a04":[3,0,0,5,0,0],
+"structmostly__harmless_1_1utils_1_1HostInfoView.html#ad6755a9b8e978b46ffe9d7f1d4e4aff7":[2,0,0,6,1,2],
+"structmostly__harmless_1_1utils_1_1HostInfoView.html#ad6755a9b8e978b46ffe9d7f1d4e4aff7":[3,0,0,5,0,2],
+"structmostly__harmless_1_1utils_1_1Visitor.html":[2,0,0,6,8],
+"structmostly__harmless_1_1utils_1_1Visitor.html":[3,0,0,5,7]
 };

@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['name_0',['name',['../structmostly__harmless_1_1Parameter.html#a155799ccb04b1c10b66d035ec1d323c8',1,'mostly_harmless::Parameter']]],
-  ['note_1',['note',['../structmostly__harmless_1_1events_1_1midi_1_1NoteOn.html#aaa08472cf6818b8bc001ea88e48516da',1,'mostly_harmless::events::midi::NoteOn::note'],['../structmostly__harmless_1_1events_1_1midi_1_1NoteOff.html#a19d83c75635de832b6b54923cacb2663',1,'mostly_harmless::events::midi::NoteOff::note'],['../structmostly__harmless_1_1events_1_1midi_1_1PolyAftertouch.html#ac49db2c786a3046ee1a25b9d1e231496',1,'mostly_harmless::events::midi::PolyAftertouch::note']]],
-  ['numerator_2',['numerator',['../structmostly__harmless_1_1TimeSignature.html#af01468f236436759f2eeefae781bae9e',1,'mostly_harmless::TimeSignature']]]
+  ['m_5fcursorstate_0',['m_cursorState',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a3653325acd8bc66e9dc94b133550b93c',1,'mostly_harmless::gui::WebviewEditor']]],
+  ['m_5finternalwebview_1',['m_internalWebview',['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a8b78207d8126ebc74b59799029210385',1,'mostly_harmless::gui::WebviewBase']]],
+  ['m_5fsharedstate_2',['m_sharedState',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#aafb75f8c62c2c08ab6e7749fc44e43fd',1,'mostly_harmless::gui::WebviewEditor']]],
+  ['maxbuffersize_3',['maxBufferSize',['../structmostly__harmless_1_1core_1_1InitContext.html#aa3ad72e6038a9ea532134f992b5879f6',1,'mostly_harmless::core::InitContext']]],
+  ['mimetype_4',['mimeType',['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#af51bda90a40a638cde22fff8d0498cba',1,'mostly_harmless::gui::WebviewBase::Resource']]],
+  ['minbuffersize_5',['minBufferSize',['../structmostly__harmless_1_1core_1_1InitContext.html#ac4b37cb4fb80303fef9333b12d7acc6f',1,'mostly_harmless::core::InitContext']]],
+  ['mutex_6',['mutex',['../classmostly__harmless_1_1utils_1_1TaskThread.html#aef5f18e1396849d62bbee9a50ac32ea6',1,'mostly_harmless::utils::TaskThread']]]
 ];

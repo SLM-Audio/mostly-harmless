@@ -9,6 +9,7 @@ var hierarchy =
     [ "mostly_harmless::data::DatabasePropertyWatcher< T >", "classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html", null ],
     [ "mostly_harmless::data::DatabaseState", "classmostly__harmless_1_1data_1_1DatabaseState.html", null ],
     [ "mostly_harmless::events::GuiToProcParamEvent", "structmostly__harmless_1_1events_1_1GuiToProcParamEvent.html", null ],
+    [ "mostly_harmless::utils::HostInfoView", "structmostly__harmless_1_1utils_1_1HostInfoView.html", null ],
     [ "mostly_harmless::core::IEditor", "structmostly__harmless_1_1core_1_1IEditor.html", [
       [ "mostly_harmless::gui::WebviewBase", "classmostly__harmless_1_1gui_1_1WebviewBase.html", [
         [ "mostly_harmless::gui::WebviewEditor", "classmostly__harmless_1_1gui_1_1WebviewEditor.html", null ]

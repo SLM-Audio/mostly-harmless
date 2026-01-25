@@ -4,6 +4,5 @@ var searchData=
   ['valuetostring_1',['valueToString',['../structmostly__harmless_1_1Parameter.html#a309191dd348e3cb9fb602c36c35bcf24',1,'mostly_harmless::Parameter']]],
   ['velocity_2',['velocity',['../structmostly__harmless_1_1events_1_1midi_1_1NoteOn.html#a8b83172097c3b0d05d6cf217fd157693',1,'mostly_harmless::events::midi::NoteOn::velocity'],['../structmostly__harmless_1_1events_1_1midi_1_1NoteOff.html#a5241c63307e355958083c65a4d50f091',1,'mostly_harmless::events::midi::NoteOff::velocity']]],
   ['vendorname_3',['vendorName',['../structmostly__harmless_1_1utils_1_1HostInfoView.html#a7cdb1fdde94613f8261b8000e7007513',1,'mostly_harmless::utils::HostInfoView']]],
-  ['version_4',['version',['../structmostly__harmless_1_1utils_1_1HostInfoView.html#ad6755a9b8e978b46ffe9d7f1d4e4aff7',1,'mostly_harmless::utils::HostInfoView']]],
-  ['visitor_5',['Visitor',['../structmostly__harmless_1_1utils_1_1Visitor.html',1,'mostly_harmless::utils']]]
+  ['version_4',['version',['../structmostly__harmless_1_1utils_1_1HostInfoView.html#ad6755a9b8e978b46ffe9d7f1d4e4aff7',1,'mostly_harmless::utils::HostInfoView']]]
 ];
