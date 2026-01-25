@@ -4,6 +4,7 @@
 
 #ifndef MOSTLYHARMLESS_MOSTLYHARMLESS_SHAREDSTATECONTEXT_H
 #define MOSTLYHARMLESS_MOSTLYHARMLESS_SHAREDSTATECONTEXT_H
+#include <mostly_harmless/utils/mostlyharmless_HostInfo.h>
 #include <functional>
 namespace mostly_harmless::core {
     /**
@@ -11,6 +12,7 @@ namespace mostly_harmless::core {
      */
     struct SharedStateContext {
 
+        utils::HostInfoView hostInfo;
         /**
          * A lambda wrapping a call to the PluginBase's runOnMainThread function.
          */

@@ -121,6 +121,8 @@ namespace mostly_harmless::core {
          */
         bool requestGuiResize(std::uint32_t width, std::uint32_t height) const;
 
+        auto getHostInfo() const -> utils::HostInfoView;
+
     private:
         SharedStateContext m_context;
         std::vector<Parameter<float>> m_params;

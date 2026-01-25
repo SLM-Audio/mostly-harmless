@@ -10,6 +10,7 @@
 #include <mostly_harmless/core/mostlyharmless_IEditor.h>
 #include <mostly_harmless/core/mostlyharmless_ISharedState.h>
 #include <mostly_harmless/utils/mostlyharmless_Timer.h>
+#include <mostly_harmless/utils/mostlyharmless_HostInfo.h>
 #include <clap/helpers/plugin.hh>
 
 namespace mostly_harmless::core {
@@ -75,6 +76,7 @@ namespace mostly_harmless::internal {
         [[nodiscard]] bool guiSetSize(std::uint32_t width, std::uint32_t height) noexcept override;
         [[nodiscard]] bool guiGetSize(std::uint32_t* width, std::uint32_t* height) noexcept override;
 
+        utils::HostInfo m_hostInfo;
         std::optional<TransportState> m_lastTransportState{};
         utils::Timer m_guiDispatchThread;
         std::unique_ptr<core::IPluginEntry> m_pluginEntry{ nullptr };
