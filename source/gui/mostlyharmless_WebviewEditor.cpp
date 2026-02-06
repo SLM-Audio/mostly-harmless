@@ -38,6 +38,13 @@ namespace mostly_harmless::gui {
             return endParamChangeGestureCallback(args);
         };
 
+        auto performCompleteParamGestureCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
+            beginParamChangeGestureCallback(args);
+            paramChangeGestureCallback(args);
+            endParamChangeGestureCallback(args);
+            return {};
+        };
+
         auto cacheCursorDownPositionCallback_ = [this](const choc::value::ValueView& args) -> choc::value::Value {
             std::uint32_t x, y;
             cursor::getCursorPosition(&x, &y);
@@ -92,6 +99,7 @@ namespace mostly_harmless::gui {
         };
 
         m_internalWebview->bind("cacheCursorDownPosition", std::move(cacheCursorDownPositionCallback_));
+        m_internalWebview->bind("performCompleteParamGesture", std::move(performCompleteParamGestureCallback_));
         m_internalWebview->bind("beginParamGesture", std::move(beginParamGestureCallback_));
         m_internalWebview->bind("setParamValue", std::move(paramChangeCallback_));
         m_internalWebview->bind("endParamGesture", std::move(endParamGestureCallback_));
