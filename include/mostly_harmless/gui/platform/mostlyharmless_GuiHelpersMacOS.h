@@ -28,6 +28,10 @@ namespace mostly_harmless::gui::helpers::macos {
      * \param height A pointer to the height variable - the result will be written here.
      */
     void getViewSize(void* viewHandle, std::uint32_t* width, std::uint32_t* height);
+
+    void getScreenSize(std::uint32_t* width, std::uint32_t* height);
+
+    double getDevicePixelRatio();
     /**
      * Adds an NSView as a subview of another NSView.
      * \param parentViewHandle A void* to the NSView to add the child view to.
