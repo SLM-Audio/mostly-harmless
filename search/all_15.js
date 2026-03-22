@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_7edatabasestate_0',['~DatabaseState',['../classmostly__harmless_1_1data_1_1DatabaseState.html#a15d2a48d31a5ce5c1a59f7e05e404e2f',1,'mostly_harmless::data::DatabaseState']]],
+  ['_7edatabasestate_0',['~DatabaseState',['../namespacemostly__harmless_1_1data.html#abeafb63b31d68466027652b26c79f25d',1,'mostly_harmless::data']]],
   ['_7eieditor_1',['~IEditor',['../structmostly__harmless_1_1core_1_1IEditor.html#acb6113e8462edac0c9c64fc96fc4d109',1,'mostly_harmless::core::IEditor']]],
   ['_7eiengine_2',['~IEngine',['../classmostly__harmless_1_1core_1_1IEngine.html#a07aa05c3682664c448311f9faba83c96',1,'mostly_harmless::core::IEngine']]],
   ['_7eipluginentry_3',['~IPluginEntry',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#a2ac168194c2e6bf39e1ff24cb5aa837d',1,'mostly_harmless::core::IPluginEntry']]],

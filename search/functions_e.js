@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['tostring_0',['toString',['../structmostly__harmless_1_1ParameterID.html#a9303e8e8a4785d7f6d524b8576ade83c',1,'mostly_harmless::ParameterID']]],
-  ['trycreate_1',['tryCreate',['../classmostly__harmless_1_1data_1_1DatabaseState.html#a07772f77c297ee77c9a9c9305ef219d1',1,'mostly_harmless::data::DatabaseState::tryCreate()'],['../classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html#a46cc8cd58a0605019cca4403f3fc529f',1,'mostly_harmless::data::DatabasePropertyWatcher::tryCreate()']]]
+  ['webevent_0',['WebEvent',['../structmostly__harmless_1_1events_1_1WebEvent.html#ac3fe46658e7a96b30c55f5d2ee93b4a3',1,'mostly_harmless::events::WebEvent::WebEvent(std::string id_, nlohmann::json content_)'],['../structmostly__harmless_1_1events_1_1WebEvent.html#a56ebf32b42ac5eae0783a7c4b5f0c5eb',1,'mostly_harmless::events::WebEvent::WebEvent(ProcToGuiParamEvent event)']]],
+  ['webviewbase_1',['WebviewBase',['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a6ddd9b2515602bfd9648e248cfcf4807',1,'mostly_harmless::gui::WebviewBase']]],
+  ['webvieweditor_2',['WebviewEditor',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#ad45c9ffc4171984a20330f9d15c4d3c4',1,'mostly_harmless::gui::WebviewEditor']]]
 ];

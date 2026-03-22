@@ -1,7 +1,7 @@
 var classmostly__harmless_1_1gui_1_1WebviewBase =
 [
-    [ "Options", "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html", "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options" ],
     [ "Resource", "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html", "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource" ],
+    [ "Options", "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options.html", "structmostly__harmless_1_1gui_1_1WebviewBase_1_1Options" ],
     [ "WebviewBase", "classmostly__harmless_1_1gui_1_1WebviewBase.html#a6ddd9b2515602bfd9648e248cfcf4807", null ],
     [ "~WebviewBase", "classmostly__harmless_1_1gui_1_1WebviewBase.html#a4c741fc4c617987dbaa79e003b6134c6", null ],
     [ "allowResize", "classmostly__harmless_1_1gui_1_1WebviewBase.html#ab4106b8a2f00fccf1890f388c28a688d", null ],

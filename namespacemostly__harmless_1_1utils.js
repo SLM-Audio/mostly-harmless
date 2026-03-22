@@ -9,12 +9,12 @@ var namespacemostly__harmless_1_1utils =
       ] ],
       [ "getDirectory", "namespacemostly__harmless_1_1utils_1_1directories.html#a2da2e9354d8d521014a4e627b312d783", null ]
     ] ],
-    [ "HostInfoView", "structmostly__harmless_1_1utils_1_1HostInfoView.html", "structmostly__harmless_1_1utils_1_1HostInfoView" ],
-    [ "Logging", "classmostly__harmless_1_1utils_1_1Logging.html", "classmostly__harmless_1_1utils_1_1Logging" ],
-    [ "NoDenormals", "classmostly__harmless_1_1utils_1_1NoDenormals.html", "classmostly__harmless_1_1utils_1_1NoDenormals" ],
-    [ "OnScopeExit", "classmostly__harmless_1_1utils_1_1OnScopeExit.html", "classmostly__harmless_1_1utils_1_1OnScopeExit" ],
-    [ "Proxy", "classmostly__harmless_1_1utils_1_1Proxy.html", "classmostly__harmless_1_1utils_1_1Proxy" ],
     [ "TaskThread", "classmostly__harmless_1_1utils_1_1TaskThread.html", "classmostly__harmless_1_1utils_1_1TaskThread" ],
     [ "Timer", "classmostly__harmless_1_1utils_1_1Timer.html", "classmostly__harmless_1_1utils_1_1Timer" ],
-    [ "Visitor", "structmostly__harmless_1_1utils_1_1Visitor.html", null ]
+    [ "OnScopeExit", "classmostly__harmless_1_1utils_1_1OnScopeExit.html", "classmostly__harmless_1_1utils_1_1OnScopeExit" ],
+    [ "Proxy", "classmostly__harmless_1_1utils_1_1Proxy.html", "classmostly__harmless_1_1utils_1_1Proxy" ],
+    [ "NoDenormals", "classmostly__harmless_1_1utils_1_1NoDenormals.html", "classmostly__harmless_1_1utils_1_1NoDenormals" ],
+    [ "Logging", "classmostly__harmless_1_1utils_1_1Logging.html", "classmostly__harmless_1_1utils_1_1Logging" ],
+    [ "Visitor", "structmostly__harmless_1_1utils_1_1Visitor.html", null ],
+    [ "HostInfoView", "structmostly__harmless_1_1utils_1_1HostInfoView.html", "structmostly__harmless_1_1utils_1_1HostInfoView" ]
 ];

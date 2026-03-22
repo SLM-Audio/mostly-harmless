@@ -1,17 +1,17 @@
 var namespacemostly__harmless =
 [
-    [ "audio", "namespacemostly__harmless_1_1audio.html", null ],
     [ "core", "namespacemostly__harmless_1_1core.html", "namespacemostly__harmless_1_1core" ],
-    [ "data", "namespacemostly__harmless_1_1data.html", "namespacemostly__harmless_1_1data" ],
+    [ "internal", "namespacemostly__harmless_1_1internal.html", "namespacemostly__harmless_1_1internal" ],
     [ "events", "namespacemostly__harmless_1_1events.html", "namespacemostly__harmless_1_1events" ],
     [ "gui", "namespacemostly__harmless_1_1gui.html", "namespacemostly__harmless_1_1gui" ],
-    [ "internal", "namespacemostly__harmless_1_1internal.html", "namespacemostly__harmless_1_1internal" ],
     [ "utils", "namespacemostly__harmless_1_1utils.html", "namespacemostly__harmless_1_1utils" ],
-    [ "LoopInfo", "structmostly__harmless_1_1LoopInfo.html", "structmostly__harmless_1_1LoopInfo" ],
-    [ "Parameter", "structmostly__harmless_1_1Parameter.html", "structmostly__harmless_1_1Parameter" ],
-    [ "ParameterID", "structmostly__harmless_1_1ParameterID.html", "structmostly__harmless_1_1ParameterID" ],
+    [ "data", "namespacemostly__harmless_1_1data.html", "namespacemostly__harmless_1_1data" ],
+    [ "audio", "namespacemostly__harmless_1_1audio.html", null ],
     [ "TimeSignature", "structmostly__harmless_1_1TimeSignature.html", "structmostly__harmless_1_1TimeSignature" ],
+    [ "LoopInfo", "structmostly__harmless_1_1LoopInfo.html", "structmostly__harmless_1_1LoopInfo" ],
     [ "TransportState", "structmostly__harmless_1_1TransportState.html", "structmostly__harmless_1_1TransportState" ],
+    [ "ParameterID", "structmostly__harmless_1_1ParameterID.html", "structmostly__harmless_1_1ParameterID" ],
+    [ "Parameter", "structmostly__harmless_1_1Parameter.html", "structmostly__harmless_1_1Parameter" ],
     [ "BusConfig", "namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6", [
       [ "InputOutput", "namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6aac7eafbd848f2f627c8da7d25a4faade", null ],
       [ "InputOnly", "namespacemostly__harmless.html#a8a6a5b83db80421ea36533977f16b7c6a8f9b3bff7f94966d2b5fe61b0805793f", null ],

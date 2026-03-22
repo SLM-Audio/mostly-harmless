@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['paramchangegesturecallback_0',['paramChangeGestureCallback',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#abe0eb428c3937499c18ef1398ddea40d',1,'mostly_harmless::gui::WebviewEditor']]],
-  ['parameter_1',['Parameter',['../structmostly__harmless_1_1Parameter.html#a5ba754de8c7f5636d1580c2051faafce',1,'mostly_harmless::Parameter::Parameter(ParameterID parameterId_, std::string_view name_, std::string_view category_, marvin::utils::Range&lt; SampleType &gt; range_, SampleType defaultValue_, std::uint32_t flags_)'],['../structmostly__harmless_1_1Parameter.html#ac2750f850e78f04405249d0f07e24cb3',1,'mostly_harmless::Parameter::Parameter(std::uint32_t pid_, std::string_view name_, std::string_view category_, marvin::utils::Range&lt; SampleType &gt; range_, SampleType defaultValue_, std::uint32_t flags_)']]],
-  ['parameterid_2',['ParameterID',['../structmostly__harmless_1_1ParameterID.html#a34935b3f9fb8a7b8027f50cf9bff5aeb',1,'mostly_harmless::ParameterID']]],
-  ['parse_3',['parse',['../namespacemostly__harmless_1_1events_1_1midi.html#a82a423849b4377d7d2beb80a6fbef20c',1,'mostly_harmless::events::midi']]],
-  ['perform_4',['perform',['../classmostly__harmless_1_1utils_1_1TaskThread.html#a9c9e3a892d1729e4d581091878fe5778',1,'mostly_harmless::utils::TaskThread']]],
-  ['pluginbase_5',['PluginBase',['../classmostly__harmless_1_1internal_1_1PluginBase.html#a63d83b502b35798be59757dede35669e',1,'mostly_harmless::internal::PluginBase']]],
-  ['process_6',['process',['../classmostly__harmless_1_1core_1_1IEngine.html#a18cca1c5774944609ac06e15bc2b4db9',1,'mostly_harmless::core::IEngine']]],
-  ['proxy_7',['Proxy',['../classmostly__harmless_1_1utils_1_1Proxy.html#a26cb77aa7c2d1ce51b821bb707f4115d',1,'mostly_harmless::utils::Proxy']]]
+  ['removefromparentview_0',['removeFromParentView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#afdae1ffa2ffabbf08beea34d8e4ca287',1,'mostly_harmless::gui::helpers::macos']]],
+  ['reparentview_1',['reparentView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a4ae94c9f73385a702c0b5320bf4278fa',1,'mostly_harmless::gui::helpers::macos']]],
+  ['requestguiresize_2',['requestGuiResize',['../classmostly__harmless_1_1core_1_1ISharedState.html#a38ab453b2f9e860bc1e357152ed28f1c',1,'mostly_harmless::core::ISharedState']]],
+  ['requestparamflush_3',['requestParamFlush',['../classmostly__harmless_1_1core_1_1ISharedState.html#a96dbac2dfdcb3e3fde432f0790401070',1,'mostly_harmless::core::ISharedState']]],
+  ['rescanparams_4',['rescanParams',['../classmostly__harmless_1_1core_1_1ISharedState.html#a4cdf1903c05a6e8453e3dff65b5c2f83',1,'mostly_harmless::core::ISharedState']]],
+  ['reset_5',['reset',['../classmostly__harmless_1_1core_1_1IEngine.html#a3e66bf8b432af893904f7db9d5589ed7',1,'mostly_harmless::core::IEngine']]],
+  ['resource_6',['Resource',['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#aec10948467e291b75733f510920da68e',1,'mostly_harmless::gui::WebviewBase::Resource::Resource()=default'],['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a943a6ee74c7c2e6c700b12e8aebf0970',1,'mostly_harmless::gui::WebviewBase::Resource::Resource(std::string_view content, std::string mimeType_)']]],
+  ['run_7',['run',['../classmostly__harmless_1_1utils_1_1Timer.html#a866d2d60dcf5fcff9ababa1c083ab610',1,'mostly_harmless::utils::Timer::run(int intervalMs) -&gt; void'],['../classmostly__harmless_1_1utils_1_1Timer.html#ad3475e245ca6edb59c8ec5c59fc74235',1,'mostly_harmless::utils::Timer::run(double frequency) -&gt; void']]],
+  ['runblockdispatch_8',['runBlockDispatch',['../namespacemostly__harmless.html#a8d2d74acdc833b5d2eef76b423e9cf89',1,'mostly_harmless']]],
+  ['runonmainthread_9',['runOnMainThread',['../classmostly__harmless_1_1core_1_1ISharedState.html#ac15da31be172228169ea302ed1acadf4',1,'mostly_harmless::core::ISharedState']]]
 ];

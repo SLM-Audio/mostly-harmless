@@ -1,15 +1,8 @@
 var searchData=
 [
-  ['handlechannelaftertouch_0',['handleChannelAftertouch',['../classmostly__harmless_1_1core_1_1IEngine.html#a94de0b1369408f7536a87f73d9d544f4',1,'mostly_harmless::core::IEngine']]],
-  ['handlecontrolchange_1',['handleControlChange',['../classmostly__harmless_1_1core_1_1IEngine.html#ae63414ebb5bc531c20e655220e5eb9ab',1,'mostly_harmless::core::IEngine']]],
-  ['handlenoteoff_2',['handleNoteOff',['../classmostly__harmless_1_1core_1_1IEngine.html#a52d94392e2a4b08c73f3ec4248068385',1,'mostly_harmless::core::IEngine']]],
-  ['handlenoteon_3',['handleNoteOn',['../classmostly__harmless_1_1core_1_1IEngine.html#a81402565b13fac637c2d665788e3e09a',1,'mostly_harmless::core::IEngine']]],
-  ['handlepitchwheel_4',['handlePitchWheel',['../classmostly__harmless_1_1core_1_1IEngine.html#af129559b0f86a2855cb7b23fe23617b5',1,'mostly_harmless::core::IEngine']]],
-  ['handlepolyaftertouch_5',['handlePolyAftertouch',['../classmostly__harmless_1_1core_1_1IEngine.html#ab6df0b9cce51b4379022209378d7e48e',1,'mostly_harmless::core::IEngine']]],
-  ['handleprogramchange_6',['handleProgramChange',['../classmostly__harmless_1_1core_1_1IEngine.html#a7243d3f2d0ebb1ba7da4d89b48bcc024',1,'mostly_harmless::core::IEngine']]],
-  ['hasgui_7',['hasGui',['../structmostly__harmless_1_1core_1_1IPluginEntry.html#aab3fcec3cbdb8d7a48a053196f99d8ec',1,'mostly_harmless::core::IPluginEntry']]],
-  ['hassignalledstop_8',['hasSignalledStop',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ad9cefe24598befc8c553d2d3fbe433e3',1,'mostly_harmless::utils::TaskThread']]],
-  ['hide_9',['hide',['../structmostly__harmless_1_1core_1_1IEditor.html#a07c091f62b3cee918843e94ff0b30bcf',1,'mostly_harmless::core::IEditor::hide()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a8208c0343578e42c04cc1e2fe24e7d7f',1,'mostly_harmless::gui::WebviewBase::hide()']]],
-  ['hidecursor_10',['hideCursor',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#aaed7e1ec51ff3c11343d67636432d4b6',1,'mostly_harmless::gui::helpers::macos']]],
-  ['hideview_11',['hideView',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a8ae69eea9aecfc8ac734d56213687048',1,'mostly_harmless::gui::helpers::macos']]]
+  ['initialise_0',['initialise',['../classmostly__harmless_1_1core_1_1IEngine.html#a3ea8f26e120106793454ad91d7638b74',1,'mostly_harmless::core::IEngine::initialise()'],['../structmostly__harmless_1_1core_1_1IEditor.html#a740caae0b6e7afe4e255003d77f0aa5f',1,'mostly_harmless::core::IEditor::initialise()'],['../classmostly__harmless_1_1gui_1_1WebviewBase.html#a939351f0ea95f93b2a2da02a6b405a21',1,'mostly_harmless::gui::WebviewBase::initialise()'],['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a1f971ab269931475d34d5dca242f563d',1,'mostly_harmless::gui::WebviewEditor::initialise()']]],
+  ['inputeventcontext_1',['InputEventContext',['../structmostly__harmless_1_1events_1_1InputEventContext.html#a4392545508d4265ba2fb1e477711b615',1,'mostly_harmless::events::InputEventContext']]],
+  ['isharedstate_2',['ISharedState',['../classmostly__harmless_1_1core_1_1ISharedState.html#a39ee14562171c70d77eef1af2c47ef74',1,'mostly_harmless::core::ISharedState']]],
+  ['isthreadrunning_3',['isThreadRunning',['../classmostly__harmless_1_1utils_1_1TaskThread.html#ad2ef16eab595b3b2389b83d2c7d1b2ae',1,'mostly_harmless::utils::TaskThread']]],
+  ['isvalid_4',['isValid',['../classmostly__harmless_1_1utils_1_1Proxy.html#aa833e5e77573b804cfdda986d6292459',1,'mostly_harmless::utils::Proxy']]]
 ];

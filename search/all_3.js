@@ -3,7 +3,7 @@ var searchData=
   ['data_0',['Binary Data',['../index.html#autotoc_md11',1,'']]],
   ['data_1',['data',['../structmostly__harmless_1_1events_1_1midi_1_1ControlChange.html#a62011c1930f0d24ffbf31f86f28d0d44',1,'mostly_harmless::events::midi::ControlChange::data'],['../structmostly__harmless_1_1gui_1_1WebviewBase_1_1Resource.html#a95f0429b73dc7988bdb62c982c31e7b2',1,'mostly_harmless::gui::WebviewBase::Resource::data']]],
   ['databasepropertywatcher_2',['DatabasePropertyWatcher',['../classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html',1,'mostly_harmless::data::DatabasePropertyWatcher&lt; T &gt;'],['../classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html#a009021dabaa4815f33310e7ab95ef263',1,'mostly_harmless::data::DatabasePropertyWatcher::DatabasePropertyWatcher(const DatabasePropertyWatcher &amp;)=delete'],['../classmostly__harmless_1_1data_1_1DatabasePropertyWatcher.html#a5cc69c2ffba9168a37f1e7851a6284dd',1,'mostly_harmless::data::DatabasePropertyWatcher::DatabasePropertyWatcher(DatabasePropertyWatcher &amp;&amp;) noexcept=delete']]],
-  ['databasestate_3',['DatabaseState',['../classmostly__harmless_1_1data_1_1DatabaseState.html',1,'mostly_harmless::data::DatabaseState'],['../classmostly__harmless_1_1data_1_1DatabaseState.html#a53d3cb498b70d0fa0abbfc18e9341fb0',1,'mostly_harmless::data::DatabaseState::DatabaseState(const DatabaseState &amp;)=delete'],['../classmostly__harmless_1_1data_1_1DatabaseState.html#a80ef6ec41de94383c6d4055d79159c01',1,'mostly_harmless::data::DatabaseState::DatabaseState(DatabaseState &amp;&amp;other) noexcept']]],
+  ['databasestate_3',['DatabaseState',['../namespacemostly__harmless_1_1data.html#a89e63ec6f9bb8b74b600f48089f85290',1,'mostly_harmless::data::DatabaseState(const DatabaseState &amp;)=delete'],['../namespacemostly__harmless_1_1data.html#ab3c914bb91afea5699e3a8c560ffb5d0',1,'mostly_harmless::data::DatabaseState(DatabaseState &amp;&amp;other) noexcept']]],
   ['databasevaluevariant_4',['DatabaseValueVariant',['../namespacemostly__harmless_1_1data.html#a055629b370f5f824bf6a28ebd10ba983',1,'mostly_harmless::data']]],
   ['defaultvalue_5',['defaultValue',['../structmostly__harmless_1_1Parameter.html#a591232554956997b8a959737ba351a82',1,'mostly_harmless::Parameter']]],
   ['denominator_6',['denominator',['../structmostly__harmless_1_1TimeSignature.html#a0c3e27150f4a102a9332ad3a9c3b9704',1,'mostly_harmless::TimeSignature']]],
@@ -15,5 +15,5 @@ var searchData=
   ['documents_12',['Documents',['../namespacemostly__harmless_1_1utils_1_1directories.html#a2c6f5f83a8af557c3c4f1fd217925e45af28128b38efbc6134dc40751ee21fd29',1,'mostly_harmless::utils::directories']]],
   ['dsp_13',['dsp',['../index.html#autotoc_md4',1,'']]],
   ['dump_14',['dump',['../classmostly__harmless_1_1utils_1_1Logging.html#adb610c74edb73a17af46fe89764b154e',1,'mostly_harmless::utils::Logging']]],
-  ['duplicate_15',['duplicate',['../classmostly__harmless_1_1data_1_1DatabaseState.html#ac5252df551ab65b880e43eab954dc960',1,'mostly_harmless::data::DatabaseState']]]
+  ['duplicate_15',['duplicate',['../namespacemostly__harmless_1_1data.html#a084b6041223daaec23c54c2cfc00299f',1,'mostly_harmless::data']]]
 ];

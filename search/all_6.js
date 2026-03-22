@@ -2,7 +2,7 @@ var searchData=
 [
   ['g_0',['g',['../structmostly__harmless_1_1gui_1_1Colour.html#a772582c3a0aa3a36c1562c1217a845da',1,'mostly_harmless::gui::Colour']]],
   ['gain_20plugin_1',['A Gain Plugin',['../md_FXPluginTutorial.html#autotoc_md26',1,'']]],
-  ['get_2',['get',['../classmostly__harmless_1_1data_1_1DatabaseState.html#ae66302a1cba081ec5a08684263c418f2',1,'mostly_harmless::data::DatabaseState']]],
+  ['get_2',['get',['../namespacemostly__harmless_1_1data.html#a9eaa06dbd21fa2f8ab949bc3bf23b4ee',1,'mostly_harmless::data']]],
   ['getaudiobusconfig_3',['getAudioBusConfig',['../namespacemostly__harmless.html#acff0881b0acaad3e3db2abcefae922c3',1,'mostly_harmless']]],
   ['getcursorposition_4',['getCursorPosition',['../namespacemostly__harmless_1_1gui_1_1cursor.html#a7ef1f38a96312bf9f5bbc25dadf102d5',1,'mostly_harmless::gui::cursor']]],
   ['getdescriptor_5',['getDescriptor',['../namespacemostly__harmless.html#ae392e2bba2bfe3c93499c8242a516cb8',1,'mostly_harmless']]],

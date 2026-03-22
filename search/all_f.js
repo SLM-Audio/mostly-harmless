@@ -4,7 +4,7 @@ var searchData=
   ['samplerate_1',['sampleRate',['../structmostly__harmless_1_1core_1_1InitContext.html#a3b018189a9c686d4ca4a711b2e565294',1,'mostly_harmless::core::InitContext']]],
   ['savestate_2',['saveState',['../classmostly__harmless_1_1core_1_1ISharedState.html#af5556586621e0e40ffc1004e8205f6e0',1,'mostly_harmless::core::ISharedState']]],
   ['sendevent_3',['sendEvent',['../classmostly__harmless_1_1gui_1_1WebviewEditor.html#a65fb335988544d4d5f7d8558d94319fa',1,'mostly_harmless::gui::WebviewEditor']]],
-  ['set_4',['set',['../classmostly__harmless_1_1data_1_1DatabaseState.html#a94ba3f6eb1cbfcf0e7fa5151fea7e5cd',1,'mostly_harmless::data::DatabaseState']]],
+  ['set_4',['set',['../namespacemostly__harmless_1_1data.html#a279857d5f1f57a6812dd1038d3b7856a',1,'mostly_harmless::data']]],
   ['setcursorposition_5',['setCursorPosition',['../namespacemostly__harmless_1_1gui_1_1cursor.html#a5f6c0ccb9eec65b4ac0f7b98011a9452',1,'mostly_harmless::gui::cursor']]],
   ['setcursorstate_6',['setCursorState',['../namespacemostly__harmless_1_1gui_1_1cursor.html#aabe8f1928ae0c73f4b2d94aeb1c6a5fb',1,'mostly_harmless::gui::cursor']]],
   ['setmousepos_7',['setMousePos',['../namespacemostly__harmless_1_1gui_1_1helpers_1_1macos.html#a1db64f1bea804367599413ff553c3f9b',1,'mostly_harmless::gui::helpers::macos']]],
