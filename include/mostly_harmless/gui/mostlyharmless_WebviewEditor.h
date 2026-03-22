@@ -35,11 +35,12 @@ namespace mostly_harmless::gui {
      * ```
      *
      * beginParamGesture is expected to be called when a slider first begins being dragged,
-     * setParamValue while it is being changed, and endParamValue once the user stops dragging.
+     * setParamValue while it is being changed, and endParamGesture once the user stops dragging.
      * These functions are bound to internal native functions (which you can override if you like), beginParamChangeGestureCallback(),
      * paramChangeGestureCallback(), and endParamChangeGestureCallback(). These functions are actually promises, which we don't really leverage here, aside from to report errors in the case of an arg-parsing failure.
      * The default implementation will attempt to parse the args (and assert fail if it failed),
      * and then enqueue the param changes to the guiToProcQueue, for the host and audio side to pick up.
+     * performCompleteParamGesture() is equivalent to calling beginParamGesture(),setParamValue(), and endParamGesture() in one operation - this is useful for buttons, comboboxes etc.
      *
      * For what I've been calling "ouroborosing" the cursor position, and generally providing the facilities to hide the cursor, snap back to original mouse down position on a drag etc, we also provide some extra helpers here.
      * `beginScopedCursorMoveGesture()` caches the mouse down position at the time of calling, and hides the cursor.
