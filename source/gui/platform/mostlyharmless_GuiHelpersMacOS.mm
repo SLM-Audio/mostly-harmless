@@ -44,9 +44,6 @@ namespace mostly_harmless::gui::helpers::macos {
         CGFloat f32B = static_cast<CGFloat>(b) / 255.0f;
         auto* color = [NSColor colorWithCalibratedRed:f32R green:f32G blue:f32B alpha:1];
         [[client layer] setBackgroundColor:color.CGColor];
-        host.autoresizesSubviews = YES;
-        host.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-        host.translatesAutoresizingMaskIntoConstraints = true;
         client.autoresizesSubviews = YES;
         client.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
         client.translatesAutoresizingMaskIntoConstraints = true;
