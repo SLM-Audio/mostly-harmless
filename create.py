@@ -37,7 +37,7 @@ def main():
         os.mkdir(dest_src_path)
 
         prepro_name = args.name.replace('-', '_').upper()
-        au_subtype, clap_features = ('aufx', 'audio_effect') if args.type == 'fx' else ('aumu', 'instrument')
+        au_subtype, clap_features = ('aufx', 'audio-effect') if args.type == 'fx' else ('aumu', 'instrument')
         
         boilerplate_source = os.path.join(os.path.dirname(__file__), 'boilerplate')
         gui_source = os.path.join(boilerplate_source, f'{gui}_gui')
