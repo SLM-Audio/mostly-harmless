@@ -32,6 +32,27 @@ namespace mostly_harmless::gui::helpers::macos {
         *height = static_cast<std::uint32_t>(bounds.size.height);
     }
 
+    void getScreenSize(std::uint32_t* width, std::uint32_t* height) {
+        auto frame = [[NSScreen mainScreen] frame];
+        *width = static_cast<std::uint32_t>(frame.size.width);
+        *height = static_cast<std::uint32_t>(frame.size.height);
+    }
+
+    double getDevicePixelRatio() {
+        auto mainDisplayId = CGMainDisplayID();
+        auto screenSizeMm = CGDisplayScreenSize(mainDisplayId);
+        const auto widthMm = screenSizeMm.width;
+        const auto heightMm = screenSizeMm.height;
+        const auto hypMm = std::sqrt((widthMm * widthMm) + (heightMm * heightMm));
+        std::uint32_t widthPx, heightPx;
+        getScreenSize(&widthPx, &heightPx);
+        const auto pxHyp = std::sqrt((widthPx * widthPx) + (heightPx * heightPx));
+        constexpr static auto mmPerInch = 25.4;
+        const auto ratio = pxHyp / hypMm;
+        const auto dpi = ratio * mmPerInch;
+        return 1.0;
+    }
+
     void reparentView(void* hostViewHandle, void* clientViewHandle, void* childViewHandle, Colour backgroundColour) {
         auto* host = static_cast<NSView*>(hostViewHandle);
         auto* client = static_cast<NSView*>(clientViewHandle);

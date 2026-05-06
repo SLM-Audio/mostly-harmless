@@ -28,6 +28,7 @@ set(MOSTLYHARMLESS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_WebviewEditor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Cursor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_Colour.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/gui/mostlyharmless_DisplayInfo.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_TaskThread.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_Timer.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/mostlyharmless_OnScopeExit.cpp
